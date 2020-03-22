@@ -4,6 +4,9 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
+import { CookModule } from './modules/cook/cook.module';
+import { CookRoutingModule } from './modules/cook/cook-routing.module';
+
 import { HomeModule } from './modules/home/home.module';
 import { HomeRoutingModule } from './modules/home/home-routing.module';
 
@@ -20,12 +23,15 @@ import { WaiterRoutingModule } from './modules/waiter/waiter-routing.module';
   imports: [
     BrowserModule,
     AppRoutingModule,
+    CookModule,
+    CookRoutingModule,
     HomeModule,
     ManagerModule,
     WaiterModule,
     HomeRoutingModule,
     ManagerRoutingModule,
     WaiterRoutingModule
+
   ],
   providers: [],
   bootstrap: [AppComponent]
