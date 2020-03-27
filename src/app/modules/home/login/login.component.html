@@ -1,0 +1,19 @@
+<form (submit)="submit($event)" [formGroup]="loginForm">
+    <div class="input-box">
+        <label for="login">LOGIN</label>
+        <input type="text" name="login" formControlName="login">
+        <ng-container *ngIf="loginForm.get('login').touched && loginForm.get('login').errors">
+            <span class="warning" *ngIf="loginForm.get('login').errors.required">Login cannot be empty</span>
+        </ng-container>
+    </div>
+    <div class="input-box">
+        <label for="login">PASSWORD</label>
+        <input type="password" name="password" formControlName="password">
+        <ng-container *ngIf="loginForm.get('password').touched && loginForm.get('password').errors">
+            <span class="warning"  *ngIf="loginForm.get('password').errors.required">Password cannot be empty</span>
+        </ng-container>
+    </div>
+    <div class="button-box">
+        <button class="btnSubmit" [disabled]="!loginForm.valid" type="submit">LOG IN</button>
+    </div>
+</form>
