@@ -1,9 +1,17 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { CookMainComponent } from './modules/cook/cook-main/cook-main.component';
 
-
-const routes: Routes = [  ];
+const routes: Routes = [ 
+  {
+    path: 'cook',
+    loadChildren: () => import('./modules/cook/cook.module').then(m => m.CookModule)
+  },
+  {
+    path: '',
+    redirectTo: '',
+    pathMatch: 'full'
+  }
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
