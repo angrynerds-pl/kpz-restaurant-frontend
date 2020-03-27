@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -19,7 +20,8 @@ import { WaiterModule } from './modules/waiter/waiter.module';
     CookModule,
     HomeModule,
     ManagerModule,
-    WaiterModule
+    WaiterModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
