@@ -8,10 +8,12 @@ import { ManagerFooterComponent } from './manager-footer/manager-footer.componen
 import { PersonnelMainComponent } from './personnel/personnel-main/personnel-main.component';
 import { StatisticsMainComponent } from './statistics/statistics-main/statistics-main.component';
 import { MenuMainComponent } from './menu/menu-main/menu-main.component';
+import { MenuListComponent } from './menu/menu-list/menu-list.component';
+import { MenuEditComponent } from './menu/menu-edit/menu-edit.component';
 
 
 @NgModule({
-  declarations: [ManagerMainComponent, ManagerTopNavbarComponent, ManagerFooterComponent, PersonnelMainComponent, StatisticsMainComponent, MenuMainComponent],
+  declarations: [ManagerMainComponent, ManagerTopNavbarComponent, ManagerFooterComponent, PersonnelMainComponent, StatisticsMainComponent, MenuMainComponent, MenuListComponent, MenuEditComponent],
   imports: [
     CommonModule,
     ManagerRoutingModule

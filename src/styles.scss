@@ -12,6 +12,7 @@ $lightBlue: #BED1EE;
 $darkBlue: #23569C;
 $textLight: #eee;
 $textDark: #222;
+$snowWhite:#FFFAFA;
 
 html, body {
     font-family: 'Montserrat', sans-serif;  
@@ -24,5 +25,9 @@ html, body {
     margin: 0;
     padding: 0;
 }
+app-root {
+    display: block;
+   height: 100%;
+  }
 
 @import "~bootstrap/dist/css/bootstrap.css"; // don't move !!!
