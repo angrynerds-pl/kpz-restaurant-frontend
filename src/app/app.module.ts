@@ -9,7 +9,7 @@ import { CookModule } from './modules/cook/cook.module';
 import { HomeModule } from './modules/home/home.module';
 import { ManagerModule } from './modules/manager/manager.module';
 import { WaiterModule } from './modules/waiter/waiter.module';
-
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 @NgModule({
   declarations: [
     AppComponent
@@ -21,7 +21,8 @@ import { WaiterModule } from './modules/waiter/waiter.module';
     HomeModule,
     ManagerModule,
     WaiterModule,
-    HttpClientModule
+    HttpClientModule,
+    FontAwesomeModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

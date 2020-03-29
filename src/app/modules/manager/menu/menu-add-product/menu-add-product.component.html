@@ -1,1 +1,35 @@
-<p>menu-add-product works!</p>
+<h3>Product</h3>
+<section class="d-flex container-fluid flex-column col-12">
+  <form>
+    <div class="form-group">
+      <label for="nameOfProduct">Name</label>
+      <input
+        type="text"
+        class="form-control-text"
+        id="nameOfProduct"
+        placeholder="Product's name"
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="priceOfProduct">Price</label>
+      <input
+        type="number"
+        class="form-control-number"
+        id="priceOfProduct"
+        placeholder="Product's price"
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="categoryOfProduct">Category</label>
+      <select id="categoryOfProduct"></select>
+    </div>
+
+    <div class="buttons-container d-flex justify-content-around">
+      <button type="button" class="btn-sm btn-success"><fa-icon [icon]="acceptIcon"></fa-icon></button>
+
+      <button type="button" class="btn-sm btn-danger"><fa-icon [icon]="cancelIcon"></fa-icon></button>
+    </div>
+  </form>
+</section>

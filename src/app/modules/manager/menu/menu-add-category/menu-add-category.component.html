@@ -1,1 +1,24 @@
-<p>menu-add-category works!</p>
+
+    <h3>Category</h3>
+    <section class="d-flex container-fluid flex-column col-12">
+    <form>
+        <div class="form-group">
+        <label for="nameOfCategory">Name</label>
+        <input type="text" class="form-control-text" id="nameOfCategory" placeholder="Category's name">
+        </div>
+
+        <div class="form-group">
+        <label for="iconOfCategory">Icon</label>
+        <input type="file" class="form-control-file form-control-sm" id="iconOfCategory">
+        </div>
+        
+        <div class="buttons-container d-flex justify-content-around">
+            <button  type="button" class="btn-sm btn-success" ><fa-icon [icon]="acceptIcon"></fa-icon></button>
+        
+            <button  type="button" class="btn-sm btn-danger" ><fa-icon [icon]="cancelIcon"></fa-icon></button>
+        </div>
+    </form>
+
+
+
+</section>

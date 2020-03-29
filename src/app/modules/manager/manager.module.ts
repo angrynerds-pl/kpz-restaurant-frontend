@@ -13,7 +13,7 @@ import { MenuListComponent } from './menu/menu-list/menu-list.component';
 import { MenuEditComponent } from './menu/menu-edit/menu-edit.component';
 import { MenuAddCategoryComponent } from './menu/menu-add-category/menu-add-category.component';
 import { MenuAddProductComponent } from './menu/menu-add-product/menu-add-product.component';
-
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome'
 
 @NgModule({
   declarations: [ManagerMainComponent, ManagerTopNavbarComponent, ManagerFooterComponent, PersonnelMainComponent, StatisticsMainComponent, MenuMainComponent, MenuListComponent, MenuEditComponent, MenuAddCategoryComponent, MenuAddProductComponent],
@@ -22,7 +22,8 @@ import { MenuAddProductComponent } from './menu/menu-add-product/menu-add-produc
 
  imports: [
     CommonModule,
-    ManagerRoutingModule
+    ManagerRoutingModule,
+    FontAwesomeModule
   ]
 })
 export class ManagerModule { }
