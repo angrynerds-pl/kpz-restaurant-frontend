@@ -11,10 +11,12 @@ import { MenuMainComponent } from './menu/menu-main/menu-main.component';
 
 import { MenuListComponent } from './menu/menu-list/menu-list.component';
 import { MenuEditComponent } from './menu/menu-edit/menu-edit.component';
+import { MenuAddCategoryComponent } from './menu/menu-add-category/menu-add-category.component';
+import { MenuAddProductComponent } from './menu/menu-add-product/menu-add-product.component';
 
 
 @NgModule({
-  declarations: [ManagerMainComponent, ManagerTopNavbarComponent, ManagerFooterComponent, PersonnelMainComponent, StatisticsMainComponent, MenuMainComponent, MenuListComponent, MenuEditComponent],
+  declarations: [ManagerMainComponent, ManagerTopNavbarComponent, ManagerFooterComponent, PersonnelMainComponent, StatisticsMainComponent, MenuMainComponent, MenuListComponent, MenuEditComponent, MenuAddCategoryComponent, MenuAddProductComponent],
 
 
 

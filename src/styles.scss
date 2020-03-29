@@ -25,9 +25,11 @@ html, body {
     margin: 0;
     padding: 0;
 }
-app-root {
-    display: block;
-   height: 100%;
-  }
+//app-root {
+ //@extend   display: block;
+ //  height: 100%;
+//  }
+
+
 
 @import "~bootstrap/dist/css/bootstrap.css"; // don't move !!!

@@ -1,9 +1,8 @@
-
-
+@import '../../../../styles.scss';
 main {
     
-    height: calc(100vh - 166.4px);
+    height: calc(100vh - 150px);
     padding:1em;
     //height:100%;
-    //background-color:$lightBlue;
+    background-color:$snowWhite;
 }

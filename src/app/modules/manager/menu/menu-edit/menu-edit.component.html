@@ -1,2 +1,14 @@
-<p>menu-edit works!</p>
-<p> dwa radio buttonyy i bede przełączac czy chce dodac kategorie czy produkt</p>
+<section class="d-flex flex-column container-fluid col-12">
+<h2>Edit menu</h2>
+<div class="buttons-container d-flex justify-content-around">
+    <button id="categoryButton" type="button" class="btn btn-info" (click)="changeEditing()">Category</button>
+
+    <button id="productButton" type="button" class="btn btn-info" (click)="changeEditing()">Product</button>
+</div>
+<article>
+    <app-menu-add-category class="" *ngIf="category"></app-menu-add-category>
+    <app-menu-add-product *ngIf="!category"></app-menu-add-product>
+</article>
+
+    
+</section>
