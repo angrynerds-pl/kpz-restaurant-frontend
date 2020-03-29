@@ -11,14 +11,19 @@ form {
   width: 100%;
   text-align: center;
 }
-
+.form-control {
+  //width: 100%;
+  text-align: center;
+  margin:auto;
+  
+}
 label {
   width: 100%;
 }
 input {
   text-align: center;
-}
-#nameOfCategory {
+//}
+//#nameOfCategory {
   max-width: 240px;
   border: 1px solid black;
   border-radius: 10px;
@@ -32,4 +37,18 @@ input {
 }
 .buttons-container {
   padding: 1em;
+}
+.warning {
+  color: $red;
+  font-size: 12px;
+  text-align: center;
+  margin-left: 2em;
+}
+
+input.ng-valid {
+   box-shadow: 0px 0px 1px 1px $green;
+}
+
+input.ng-invalid.ng-touched {
+  box-shadow: 0px 0px 1px 1px $red;
 }
