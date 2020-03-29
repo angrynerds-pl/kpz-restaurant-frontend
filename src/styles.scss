@@ -25,4 +25,14 @@ html, body {
     padding: 0;
 }
 
+.table {
+    padding: 1em;
+    border: 1px solid black; // temporary
+    min-width: 85px;
+    min-height: 85px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 @import "~bootstrap/dist/css/bootstrap.css"; // don't move !!!

@@ -1,0 +1,23 @@
+section {
+    padding: 1em;
+}
+
+select {
+    min-width: 200px;
+    border-radius: 8px;
+    padding: 4px 8px;
+}
+
+.tableRow {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.select-box {
+    margin-bottom: 1em;
+    text-align: center;
+}
+
+p {
+    text-align: center;
+}
