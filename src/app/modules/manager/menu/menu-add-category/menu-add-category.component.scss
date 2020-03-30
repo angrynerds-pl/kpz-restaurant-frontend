@@ -12,28 +12,20 @@ form {
   text-align: center;
 }
 .form-control {
-  //width: 100%;
   text-align: center;
-  margin:auto;
-  
+  margin: auto;
+  max-width: 300px;
+
+  width: 100%;
 }
 label {
   width: 100%;
 }
-input {
-  text-align: center;
-//}
-//#nameOfCategory {
-  max-width: 240px;
-  border: 1px solid black;
-  border-radius: 10px;
-  font-weight: bold;
+
+.btn-sm {
+  max-height: 35px;
+  max-width: 35px;
   width: 100%;
-}
-.btn-sm{
-    max-height:35px;
-    max-width:35px;
-   width:100%;
 }
 .buttons-container {
   padding: 1em;
@@ -46,7 +38,7 @@ input {
 }
 
 input.ng-valid {
-   box-shadow: 0px 0px 1px 1px $green;
+  box-shadow: 0px 0px 1px 1px $green;
 }
 
 input.ng-invalid.ng-touched {

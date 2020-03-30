@@ -15,7 +15,9 @@ import { MenuEditComponent } from "./menu/menu-edit/menu-edit.component";
 import { MenuAddCategoryComponent } from "./menu/menu-add-category/menu-add-category.component";
 import { MenuAddProductComponent } from "./menu/menu-add-product/menu-add-product.component";
 import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+ 
+import { ToastrModule } from 'ngx-toastr';
 @NgModule({
   declarations: [
     ManagerMainComponent,
@@ -36,7 +38,8 @@ import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
     FontAwesomeModule,
     FormsModule,
     ReactiveFormsModule,
-    
+    //BrowserAnimationsModule, // required animations module
+    ToastrModule.forRoot()
   ]
 })
 export class ManagerModule {}
