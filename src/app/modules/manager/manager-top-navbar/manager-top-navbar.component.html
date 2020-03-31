@@ -1,31 +1,54 @@
 <nav class="navbar navbar-expand-md navbar-dark">
+  <a class="navbar-brand">Nazwa Aplikacji</a>
 
-    <a class="navbar-brand">Nazwa Aplikacji</a>
+  <button
+    class="navbar-toggler"
+    type="button"
+    data-toggle="collapse"
+    data-target="#collapsibleNavbar"
+  >
+    <span class="navbar-toggler-icon"></span>
+  </button>
 
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <div class="collapse navbar-collapse" id="collapsibleNavbar">
-        <ul class="navbar-nav ml-auto">
-          <li class="nav-item">
-            <a class="nav-link" routerLink="statistics" routerLinkActive="active">Statistics</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" routerLink="menu" routerLinkActive="active">Menu</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" routerLink="personnel" routerLinkActive="active">Personnel</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" >Room editor</a>
-            <!--a class="nav-link" routerLink="room-editor" routerLinkActive="active">Room editor</a-->
-          </li>
-        </ul>
-      </div>
-
-
+  <div class="collapse navbar-collapse" id="collapsibleNavbar">
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item">
+        <a class="nav-link" routerLink="statistics" routerLinkActive="active"
+          >Statistics</a
+        >
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="menu" routerLinkActive="active">Menu</a>
+      </li>
+      
+      <li class="nav-item dropdown">
+        <a
+          class="nav-link dropdown-toggle"
+          href="#"
+          id="navbarDropdown"
+          role="button"
+          data-toggle="dropdown"
+          aria-haspopup="true"
+          aria-expanded="false"
+          
+        >
+          Personnel
+        </a>
+        <div class="dropdown-menu " aria-labelledby="navbarDropdown">
+          <a class="dropdown-item nav-item">
+            <a class="nav-link" routerLink="personnel/database"  routerLinkActive="active">Database</a>
+          </a> 
+          <a class="dropdown-item nav-item">
+            <a class="nav-link" routerLink="personnel/registration"  routerLinkActive="active">Registration</a>
+          </a> 
+        </div>
+        
+          
+      </li>
+      <li class="nav-item">
+        <a class="nav-link">Room editor</a>
+        <!--a class="nav-link" routerLink="room-editor" routerLinkActive="active">Room editor</a-->
+      </li>
+    </ul>
+  </div>
 </nav>
-
-
-

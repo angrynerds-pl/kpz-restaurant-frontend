@@ -10,14 +10,15 @@ import { PersonnelMainComponent } from "./personnel/personnel-main/personnel-mai
 import { StatisticsMainComponent } from "./statistics/statistics-main/statistics-main.component";
 import { MenuMainComponent } from "./menu/menu-main/menu-main.component";
 
-import { MenuListComponent } from "./menu/menu-list/menu-list.component";
-import { MenuEditComponent } from "./menu/menu-edit/menu-edit.component";
-import { MenuAddCategoryComponent } from "./menu/menu-add-category/menu-add-category.component";
-import { MenuAddProductComponent } from "./menu/menu-add-product/menu-add-product.component";
+import { MenuListComponent } from "./menu/view/menu-list/menu-list.component";
+import { MenuEditComponent } from "./menu/edit/menu-edit/menu-edit.component";
+import { MenuAddCategoryComponent } from "./menu/edit/menu-add-category/menu-add-category.component";
+import { MenuAddProductComponent } from "./menu/edit/menu-add-product/menu-add-product.component";
 import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
  
 import { ToastrModule } from 'ngx-toastr';
+import { PersonnelDatabaseComponent } from './personnel/personnel-database/personnel-database.component';
+import { PersonnelRegistrationComponent } from './personnel/personnel-registration/personnel-registration.component';
 @NgModule({
   declarations: [
     ManagerMainComponent,
@@ -29,7 +30,9 @@ import { ToastrModule } from 'ngx-toastr';
     MenuListComponent,
     MenuEditComponent,
     MenuAddCategoryComponent,
-    MenuAddProductComponent
+    MenuAddProductComponent,
+    PersonnelDatabaseComponent,
+    PersonnelRegistrationComponent
   ],
 
   imports: [
@@ -38,7 +41,6 @@ import { ToastrModule } from 'ngx-toastr';
     FontAwesomeModule,
     FormsModule,
     ReactiveFormsModule,
-    //BrowserAnimationsModule, // required animations module
     ToastrModule.forRoot()
   ]
 })

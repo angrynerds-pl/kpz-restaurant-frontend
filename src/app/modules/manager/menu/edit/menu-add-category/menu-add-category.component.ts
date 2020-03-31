@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { CategoryService } from "src/app/services/category.service";
-import { MenuCategory } from "../../../../models/menu-category";
+import { MenuCategory } from "../../../../../models/menu-category";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { faCheck } from "@fortawesome/free-solid-svg-icons";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
