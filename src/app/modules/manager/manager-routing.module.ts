@@ -3,7 +3,6 @@ import { Routes, RouterModule } from '@angular/router';
 import { ManagerMainComponent} from './manager-main/manager-main.component';
 import { StatisticsMainComponent} from './statistics/statistics-main/statistics-main.component';
 import { MenuMainComponent } from './menu/menu-main/menu-main.component';
-import { PersonnelMainComponent } from './personnel/personnel-main/personnel-main.component';
 import{PersonnelDatabaseComponent} from './personnel/personnel-database/personnel-database.component';
 import{PersonnelRegistrationComponent} from './personnel/personnel-registration/personnel-registration.component';
 

@@ -13,11 +13,14 @@ $lightBlue: #BED1EE;
 $darkBlue: #23569C;
 $textLight: #eee;
 $textDark: #222;
-$snowWhite:#FFFAFA;
+//$snowWhite: #edede3;
+$snowWhite:rgba(255, 255, 255, 0.5);
 
 html, body {
     font-family: 'Montserrat', sans-serif;  
-    height: 100%;    
+    min-height: 100%;
+    height: auto;
+    margin: 0; 
     background-image: $backgroundGradient;
 }
 
