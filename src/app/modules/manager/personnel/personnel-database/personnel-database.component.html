@@ -1,14 +1,33 @@
 <section class="container-fluid  col-md-10 offset-md-1 col-lg-8 offset-lg-2">
-    <h2>personnel-database works!</h2>
+    <h2>Database of personnel</h2>
     
     <article>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas vestibulum fermentum sem eget condimentum. Aenean ac quam consequat, gravida lacus ac, scelerisque justo. Mauris tempus massa vitae sapien mattis, eget faucibus eros volutpat. Nulla diam urna, feugiat nec enim sit amet, commodo ullamcorper neque. Nullam semper neque non ullamcorper posuere. Pellentesque vitae metus porttitor, condimentum nulla ut, vulputate leo. Interdum et malesuada fames ac ante ipsum primis in faucibus. Vivamus est ligula, varius quis ante quis, iaculis consectetur ex. Nulla in maximus ligula, nec dictum velit. Aenean accumsan est magna, sed sollicitudin est lacinia eget. Morbi facilisis cursus velit quis ullamcorper. Fusce venenatis libero vehicula, finibus dolor finibus, venenatis sapien. </p>
-    
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas vestibulum fermentum sem eget condimentum. Aenean ac quam consequat, gravida lacus ac, scelerisque justo. Mauris tempus massa vitae sapien mattis, eget faucibus eros volutpat. Nulla diam urna, feugiat nec enim sit amet, commodo ullamcorper neque. Nullam semper neque non ullamcorper posuere. Pellentesque vitae metus porttitor, condimentum nulla ut, vulputate leo. Interdum et malesuada fames ac ante ipsum primis in faucibus. Vivamus est ligula, varius quis ante quis, iaculis consectetur ex. Nulla in maximus ligula, nec dictum velit. Aenean accumsan est magna, sed sollicitudin est lacinia eget. Morbi facilisis cursus velit quis ullamcorper. Fusce venenatis libero vehicula, finibus dolor finibus, venenatis sapien. </p>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas vestibulum fermentum sem eget condimentum. Aenean ac quam consequat, gravida lacus ac, scelerisque justo. Mauris tempus massa vitae sapien mattis, eget faucibus eros volutpat. Nulla diam urna, feugiat nec enim sit amet, commodo ullamcorper neque. Nullam semper neque non ullamcorper posuere. Pellentesque vitae metus porttitor, condimentum nulla ut, vulputate leo. Interdum et malesuada fames ac ante ipsum primis in faucibus. Vivamus est ligula, varius quis ante quis, iaculis consectetur ex. Nulla in maximus ligula, nec dictum velit. Aenean accumsan est magna, sed sollicitudin est lacinia eget. Morbi facilisis cursus velit quis ullamcorper. Fusce venenatis libero vehicula, finibus dolor finibus, venenatis sapien. </p>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas vestibulum fermentum sem eget condimentum. Aenean ac quam consequat, gravida lacus ac, scelerisque justo. Mauris tempus massa vitae sapien mattis, eget faucibus eros volutpat. Nulla diam urna, feugiat nec enim sit amet, commodo ullamcorper neque. Nullam semper neque non ullamcorper posuere. Pellentesque vitae metus porttitor, condimentum nulla ut, vulputate leo. Interdum et malesuada fames ac ante ipsum primis in faucibus. Vivamus est ligula, varius quis ante quis, iaculis consectetur ex. Nulla in maximus ligula, nec dictum velit. Aenean accumsan est magna, sed sollicitudin est lacinia eget. Morbi facilisis cursus velit quis ullamcorper. Fusce venenatis libero vehicula, finibus dolor finibus, venenatis sapien. </p>
-    
+        <table class="table table-bordered table-striped table-hover table-dark">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">First name</th>
+                <th scope="col">Last name </th>
+                <th scope="col">Username</th>
+                <th scope="col">Password</th>
+                <th scope="col">Position</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr  *ngFor="let user of users, index as i" data-toggle="collapse" data-target="#collapseme">
+                <th scope="row">{{user.id}}</th>
+                <td>{{user.firstName}}</td>
+                <td> {{user.lastName}}</td>
+                <td>{{user.username}}</td>
+                <td> {{user.password}}</td>
+                <td>{{user.position}}</td>
+                
+              </tr>
+              
+              </tbody>
+          </table>
+          
+         
     </article>
-    
         
 </section>

@@ -10,8 +10,8 @@ export class UserService {
  
   constructor() {
     this.users = [
-      new User(0, "adamn", "qwerty", "Adam", "Nowak", "Waiter"),
-      new User(1, "kubag", "123", "Kuba", "Grabowski", "Cook")
+    {id:0,username: "adamn",password: "qwerty",firstName: "Adam",lastName: "Nowak",position: "Waiter"},
+    {id:1,username: "kubag",password: "123", firstName:"Kuba",lastName: "Grabowski",position: "Cook"}
     ];
   }
 
@@ -19,11 +19,11 @@ export class UserService {
     this.users.push(user);
   }
 
-  getCategories():Observable<User[]>{
+  getUsers():Observable<User[]>{
     return ObservableOf(this.users);
   }
 
-  getLastCategoryID(){
+  getLastUserID(){
     return this.users.length;
     
   }
