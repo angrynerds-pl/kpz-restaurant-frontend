@@ -1,13 +1,146 @@
-<section class="container-fluid col-md-10 offset-md-1 col-lg-8 offset-lg-2">
-    <p>personnel-registration works!</p>
-    
-    <article>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas vestibulum fermentum sem eget condimentum. Aenean ac quam consequat, gravida lacus ac, scelerisque justo. Mauris tempus massa vitae sapien mattis, eget faucibus eros volutpat. Nulla diam urna, feugiat nec enim sit amet, commodo ullamcorper neque. Nullam semper neque non ullamcorper posuere. Pellentesque vitae metus porttitor, condimentum nulla ut, vulputate leo. Interdum et malesuada fames ac ante ipsum primis in faucibus. Vivamus est ligula, varius quis ante quis, iaculis consectetur ex. Nulla in maximus ligula, nec dictum velit. Aenean accumsan est magna, sed sollicitudin est lacinia eget. Morbi facilisis cursus velit quis ullamcorper. Fusce venenatis libero vehicula, finibus dolor finibus, venenatis sapien. </p>
-    
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas vestibulum fermentum sem eget condimentum. Aenean ac quam consequat, gravida lacus ac, scelerisque justo. Mauris tempus massa vitae sapien mattis, eget faucibus eros volutpat. Nulla diam urna, feugiat nec enim sit amet, commodo ullamcorper neque. Nullam semper neque non ullamcorper posuere. Pellentesque vitae metus porttitor, condimentum nulla ut, vulputate leo. Interdum et malesuada fames ac ante ipsum primis in faucibus. Vivamus est ligula, varius quis ante quis, iaculis consectetur ex. Nulla in maximus ligula, nec dictum velit. Aenean accumsan est magna, sed sollicitudin est lacinia eget. Morbi facilisis cursus velit quis ullamcorper. Fusce venenatis libero vehicula, finibus dolor finibus, venenatis sapien. </p>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas vestibulum fermentum sem eget condimentum. Aenean ac quam consequat, gravida lacus ac, scelerisque justo. Mauris tempus massa vitae sapien mattis, eget faucibus eros volutpat. Nulla diam urna, feugiat nec enim sit amet, commodo ullamcorper neque. Nullam semper neque non ullamcorper posuere. Pellentesque vitae metus porttitor, condimentum nulla ut, vulputate leo. Interdum et malesuada fames ac ante ipsum primis in faucibus. Vivamus est ligula, varius quis ante quis, iaculis consectetur ex. Nulla in maximus ligula, nec dictum velit. Aenean accumsan est magna, sed sollicitudin est lacinia eget. Morbi facilisis cursus velit quis ullamcorper. Fusce venenatis libero vehicula, finibus dolor finibus, venenatis sapien. </p>
-        
-    </article>
-    
-        
+<section class="d-flex container-fluid flex-column col-md-8 offset-md-2">
+  <h2>Registration</h2>
+  <form (submit)="createAccount()" [formGroup]="userForm">
+    <h3>User data</h3>
+    <div class="block d-flex justify-content-around flex-column flex-md-row">
+      <div class="form-group">
+        <label for="firstName">Name</label>
+        <input
+          type="text"
+          formControlName="firstName"
+          class="form-control"
+          id="firstName"
+          placeholder=""
+        />
+
+        <div class="warning-box">
+          <ng-container
+            *ngIf="
+              userForm.get('firstName').touched &&
+              userForm.get('firstName').invalid
+            "
+          >
+            <span
+              class="warning"
+              *ngIf="userForm.get('firstName').errors.required"
+              >First name input can't be empty</span
+            >
+          </ng-container>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="lastName">Last name</label>
+        <input
+          type="text"
+          formControlName="lastName"
+          class="form-control"
+          id="lastName"
+          placeholder=""
+        />
+
+        <div class="warning-box">
+          <ng-container
+            *ngIf="
+              userForm.get('lastName').touched &&
+              userForm.get('lastName').invalid
+            "
+          >
+            <span
+              class="warning"
+              *ngIf="userForm.get('lastName').errors.required"
+              >Last name input can't be empty</span
+            >
+          </ng-container>
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="position">Position</label>
+      <input
+        type="text"
+        formControlName="position"
+        class="form-control"
+        id="position"
+        placeholder=""
+      />
+
+      <div class="warning-box">
+        <ng-container
+          *ngIf="
+            userForm.get('position').touched && userForm.get('position').invalid
+          "
+        >
+          <span class="warning" *ngIf="userForm.get('position').errors.required"
+            >Position input can't be empty</span
+          >
+        </ng-container>
+      </div>
+    </div>
+    <h3>Account details</h3>
+    <div class="block d-flex justify-content-around flex-column flex-md-row">
+      <div class="form-group">
+        <label for="username">Username</label>
+        <input
+          type="text"
+          formControlName="username"
+          class="form-control"
+          id="username"
+          placeholder=""
+        />
+
+        <div class="warning-box">
+          <ng-container
+            *ngIf="
+              userForm.get('username').touched &&
+              userForm.get('username').invalid
+            "
+          >
+            <span
+              class="warning"
+              *ngIf="userForm.get('username').errors.required"
+              >Username input can't be empty</span
+            >
+          </ng-container>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input
+          type="text"
+          formControlName="password"
+          class="form-control"
+          id="password"
+          placeholder=""
+        />
+
+        <div class="warning-box">
+          <ng-container
+            *ngIf="
+              userForm.get('password').touched &&
+              userForm.get('password').invalid
+            "
+          >
+            <span
+              class="warning"
+              *ngIf="userForm.get('password').errors.required"
+              >Password input can't be empty</span
+            >
+          </ng-container>
+        </div>
+      </div>
+    </div>
+    <div class="buttons-container d-flex justify-content-around">
+      <button
+        type="submit"
+        class="btn-sm btn-success"
+        [disabled]="!userForm.valid"
+      >
+        <fa-icon [icon]="acceptIcon"></fa-icon>
+      </button>
+
+      <button type="button" class="btn-sm btn-danger" (click)="resetForm()">
+        <fa-icon [icon]="cancelIcon"></fa-icon>
+      </button>
+    </div>
+  </form>
 </section>
