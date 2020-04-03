@@ -2,9 +2,11 @@
   <h2>Registration</h2>
   <form (submit)="createAccount()" [formGroup]="userForm">
     <h3>User data</h3>
-    <div class="block d-flex justify-content-around flex-column flex-md-row">
+    
+    <div class="block d-flex justify-content-around flex-column">
+      
       <div class="form-group">
-        <label for="firstName">Name</label>
+        <label for="firstName">First name</label>
         <input
           type="text"
           formControlName="firstName"
@@ -77,7 +79,8 @@
       </div>
     </div>
     <h3>Account details</h3>
-    <div class="block d-flex justify-content-around flex-column flex-md-row">
+    <div class="block d-flex justify-content-around flex-column">
+     
       <div class="form-group">
         <label for="username">Username</label>
         <input
@@ -129,17 +132,20 @@
         </div>
       </div>
     </div>
+  
     <div class="buttons-container d-flex justify-content-around">
       <button
         type="submit"
-        class="btn-sm btn-success"
+        class="btn btn-success"
         [disabled]="!userForm.valid"
       >
-        <fa-icon [icon]="acceptIcon"></fa-icon>
+        <!--fa-icon-- [icon]="acceptIcon"></!--fa-icon-->
+        Create
       </button>
 
-      <button type="button" class="btn-sm btn-danger" (click)="resetForm()">
-        <fa-icon [icon]="cancelIcon"></fa-icon>
+      <button type="button" class="btn btn-danger" (click)="resetForm()">
+        <!--fa-icon-- [icon]="cancelIcon"></!--fa-icon-->
+        Cancel
       </button>
     </div>
   </form>
