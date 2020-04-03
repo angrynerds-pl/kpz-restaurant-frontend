@@ -26,13 +26,27 @@ html, body {
 }
 
 .table {
-    padding: 1em;
-    border: 1px solid black; // temporary
-    min-width: 85px;
-    min-height: 85px;
+    padding: 20px;
+    margin: 2px;
+    min-width: 80px;
+    min-height: 80px;
     display: flex;
     align-items: center;
     justify-content: center;
+    font-size: 30px;
+    border-radius: 8px;
+}
+
+.free {
+    background-color: $green;
+}
+
+.serve {
+    background-color: $yellow;
+}
+
+.occupied {
+    background-color: $red;
 }
 
 @import "~bootstrap/dist/css/bootstrap.css"; // don't move !!!

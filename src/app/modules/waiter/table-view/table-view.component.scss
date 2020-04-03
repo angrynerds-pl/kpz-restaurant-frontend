@@ -1,18 +1,14 @@
 @import '../../../../styles.scss';
 
+section {
+    cursor: pointer;
+}
+
+section:hover{
+    opacity: 0.8;
+}
+
 p {
     margin: 0;
     padding: 0;
-}
-
-.free {
-    background-color: $green;
-}
-
-.serve {
-    background-color: $yellow;
-}
-
-.occupied {
-    background-color: $red;
 }

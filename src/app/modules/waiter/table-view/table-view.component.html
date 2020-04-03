@@ -1,4 +1,4 @@
-<section [ngClass]="getClass()">
+<section [routerLink]="['/waiter/table', table.tableID ]" [ngClass]="getClass()">
     <p>{{table.tableID}}</p>
 </section>
 

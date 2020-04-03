@@ -1,15 +1,29 @@
 section {
-    padding: 1em;
+    display: flex;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.tables-wrapper {
+    flex: 1 1 100%;
+}
+
+.grid-wrapper {
+    display: flex;
+    flex-direction: column;
 }
 
 select {
     min-width: 200px;
     border-radius: 8px;
     padding: 4px 8px;
+    font-size: 24px;
+    margin: 16px;
 }
 
 .tableRow {
     display: flex;
+    margin: 16px 0px;
     justify-content: space-evenly;
 }
 
