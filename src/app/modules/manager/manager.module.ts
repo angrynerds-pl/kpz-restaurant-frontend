@@ -14,10 +14,14 @@ import { MenuEditComponent } from "./menu/edit/menu-edit/menu-edit.component";
 import { MenuAddCategoryComponent } from "./menu/edit/menu-add-category/menu-add-category.component";
 import { MenuAddProductComponent } from "./menu/edit/menu-add-product/menu-add-product.component";
 import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
+import { MatDialogModule } from "@angular/material/dialog";
+import { MatButtonModule } from "@angular/material/button";
 
 import { ToastrModule } from "ngx-toastr";
 import { PersonnelDatabaseComponent } from "./personnel/personnel-database/personnel-database.component";
 import { PersonnelRegistrationComponent } from "./personnel/personnel-registration/personnel-registration.component";
+import { PersonnelDatabaseDialogComponent } from './personnel/personnel-database-dialog/personnel-database-dialog.component';
+import { PersonnelAccountComponent } from './personnel/personnel-account/personnel-account.component';
 @NgModule({
   declarations: [
     ManagerMainComponent,
@@ -30,7 +34,10 @@ import { PersonnelRegistrationComponent } from "./personnel/personnel-registrati
     MenuAddCategoryComponent,
     MenuAddProductComponent,
     PersonnelDatabaseComponent,
-    PersonnelRegistrationComponent
+    PersonnelRegistrationComponent,
+    PersonnelDatabaseDialogComponent,
+    PersonnelAccountComponent,
+    
   ],
 
   imports: [
@@ -39,7 +46,10 @@ import { PersonnelRegistrationComponent } from "./personnel/personnel-registrati
     FontAwesomeModule,
     FormsModule,
     ReactiveFormsModule,
-    ToastrModule.forRoot()
+    ToastrModule.forRoot(),
+    MatDialogModule,
+    MatButtonModule
+    
   ]
 })
 export class ManagerModule {}
