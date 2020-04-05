@@ -1,3 +1,7 @@
 <ng-container *ngIf="table">
-    <h1 [ngClass]="getClass()" >Table #{{table.tableID}} </h1>
+    <header [ngClass]="getClass()">
+        <span>Table #{{table.tableID}} </span>
+        <!--We will use icon later-->
+        <button routerLink="/waiter/tables" class="btnBack">X</button>
+    </header>
 </ng-container>
