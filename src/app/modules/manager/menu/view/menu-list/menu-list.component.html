@@ -1,1 +1,25 @@
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas vestibulum fermentum sem eget condimentum. Aenean ac quam consequat, gravida lacus ac, scelerisque justo. Mauris tempus massa vitae sapien mattis, eget faucibus eros volutpat. Nulla diam urna, feugiat nec enim sit amet, commodo ullamcorper neque. Nullam semper neque non ullamcorper posuere. Pellentesque vitae metus porttitor, condimentum nulla ut, vulputate leo. Interdum et malesuada fames ac ante ipsum primis in faucibus. Vivamus est ligula, varius quis ante quis, iaculis consectetur ex. Nulla in maximus ligula, nec dictum velit. Aenean accumsan est magna, sed sollicitudin est lacinia eget. Morbi facilisis cursus velit quis ullamcorper. Fusce venenatis libero vehicula, finibus dolor finibus, venenatis sapien. </p>
+
+<div>
+    <div class="label">
+        <label for="foods">Food type</label>
+    </div>
+    <div>  
+        <select class="selectBox" [(ngModel)] = "selectedCategoryId" (change)="onChange()" >
+            <ng-container *ngFor = "let category of categories" >
+               <option [ngValue] = "category.id" class = "product" >{{category.name}}</option>
+            </ng-container>           
+        </select>
+    </div>
+</div>
+<div class="table">
+    <div class="header">
+        <span class="productInfo">Name</span>
+        <span class="productInfo">Price</span>
+    </div>
+    <div *ngFor = "let product of products">
+        <div class="productDiv" *ngIf = "product.category==selectedCategoryId">
+           <span class="productInfo"> {{product.name}} </span>  
+           <span class="productInfo"> {{product.price}} </span>
+        </div>
+    </div>
+</div>

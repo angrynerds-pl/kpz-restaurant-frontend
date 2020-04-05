@@ -1,0 +1,33 @@
+.table {
+    background-color: rgba(0, 0, 0, 0.2);
+    //height: 500px;
+    border-radius: 10px;
+    box-shadow: 0 5px 3px 0 rgba(0,0,0,0.4);
+}
+div {
+    text-align: center;
+}
+
+
+.selectBox {
+    border-radius: 4px;
+    padding: 4px;
+    margin-bottom: 15px;
+    color: #FFFFFF;
+    background: #88D4D9;
+    box-shadow: 0 5px 3px 0 rgba(0,0,0,0.4);
+}
+.productDiv {
+    background-color:#FFFFFF;
+    border-radius: 4px;
+    margin-bottom: 2px;
+    display: flex;
+    justify-content:space-evenly;
+}
+.header {
+    display: flex;
+    justify-content:space-evenly;
+}
+span {
+    flex: 1;
+}

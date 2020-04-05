@@ -6,5 +6,12 @@
 }*/
 
 export class MenuCategory {
-  constructor(public id: number, public name: string, public file: string) {}
+  
+  constructor(
+    public id: number,
+    public name: string, 
+    public file: string
+    ) {
+     
+    }
 }

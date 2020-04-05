@@ -11,7 +11,9 @@ export class CategoryService {
   categories:MenuCategory[];
   constructor() {
     this.categories = [
-      new MenuCategory(0,"Pizzas","pizza.jpg")
+      new MenuCategory(0,"Pizzas","pizza.jpg"),
+      new MenuCategory(1,"Drinks", "drink.jpg")
+
     ];
    }
 
