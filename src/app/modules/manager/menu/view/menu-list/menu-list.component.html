@@ -17,7 +17,7 @@
         <span class="productInfo">Price</span>
     </div>
     <div *ngFor = "let product of products">
-        <div class="productDiv" *ngIf = "product.category==selectedCategoryId">
+        <div class="productDiv" *ngIf = "product.categoryId==selectedCategoryId">
            <span class="productInfo"> {{product.name}} </span>  
            <span class="productInfo"> {{product.price}} </span>
         </div>

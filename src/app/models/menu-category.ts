@@ -1,10 +1,10 @@
-/*export interface MenuCategory { //jak bedzie api
+export interface MenuCategory { 
     id:number,
     name:string,
-    icon:File
+    icon:string //File
 
-}*/
-
+}
+/*
 export class MenuCategory {
   
   constructor(
@@ -14,4 +14,4 @@ export class MenuCategory {
     ) {
      
     }
-}
+}*/

@@ -9,13 +9,14 @@ import { MenuCategory } from '../models/menu-category';
 export class ProductService {
   products:MenuProduct[];
   constructor() {
+    
     this.products = [
-      new MenuProduct(0,"Funghi",20,0),
-      new MenuProduct(1,"CocaCola",50,1),
-      new MenuProduct(2,"Fanta",5, 1),
-      new MenuProduct(3,"Margherita",45,0),
-      new MenuProduct(4,"Sprite",92,1)
-    ];
+      {id:0,name: "Funghi",price: 20, categoryId: 0},
+      {id:1,name: "CocaCola",price: 50, categoryId: 1},
+      {id:2,name: "Fanta",price: 5, categoryId: 1},
+      {id:3,name: "Margherita",price: 45, categoryId: 0},
+      {id:4,name: "Sprite",price: 92, categoryId: 1},
+      ];
    }
 
   addProduct(product){
