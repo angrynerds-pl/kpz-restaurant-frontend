@@ -26,6 +26,14 @@ label {
   max-width: 35px;
   width: 100%;
 }
+.btn-sm:focus {
+  outline: none;
+}
+
+.btn-sm:focus,.btn:active {
+  outline: none !important;
+  box-shadow: none;
+}
 .buttons-container {
   padding: 1em;
 }

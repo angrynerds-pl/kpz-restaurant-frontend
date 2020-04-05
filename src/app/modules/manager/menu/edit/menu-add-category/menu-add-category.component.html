@@ -6,7 +6,7 @@
       <input
         type="text"
         formControlName="name"
-        class=" form-control"
+        class=" form-control globalShadow"
         id="nameOfCategory"
         placeholder="Category's name"
       />
@@ -28,7 +28,7 @@
         type="file"
         formControlName="icon"
         (change)="handleUpload($event)"
-        class="form-control-file form-control"
+        class="form-control-file form-control globalShadow"
         id="iconOfCategory"
       />
       <!--input type="text" formControlName="icon" (change)="handleUpload($event)" class=" form-control" id="iconOfCategory" placeholder="URL link"-->
@@ -47,13 +47,13 @@
     <div class="buttons-container d-flex justify-content-around">
       <button
         type="submit"
-        class="btn-sm btn-success"
+        class="btn-sm btn-success globalShadow"
         [disabled]="!categoryForm.valid"
       >
         <fa-icon [icon]="acceptIcon"></fa-icon>
       </button>
 
-      <button type="button" class="btn-sm btn-danger" (click)="resetForm()">
+      <button type="button" class="btn-sm btn-danger globalShadow" (click)="resetForm()">
         <fa-icon [icon]="cancelIcon"></fa-icon>
       </button>
     </div>

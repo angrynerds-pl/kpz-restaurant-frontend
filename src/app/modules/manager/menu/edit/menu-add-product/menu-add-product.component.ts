@@ -54,7 +54,7 @@ export class MenuAddProductComponent implements OnInit {
       this.productID = this.productService.getLastProductID();
       this.product = Object.assign({}, this.productForm.value);
       this.product.id = this.productID;
-
+      console.log(this.product);
       this.productService.addProduct(this.product);
 
       this.resetForm();

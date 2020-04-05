@@ -8,7 +8,7 @@
         <input
           type="text"
           formControlName="firstName"
-          class="form-control"
+          class="form-control globalShadow"
           id="firstName"
           placeholder=""
         />
@@ -33,7 +33,7 @@
         <input
           type="text"
           formControlName="lastName"
-          class="form-control"
+          class="form-control globalShadow"
           id="lastName"
           placeholder=""
         />
@@ -59,7 +59,7 @@
       <input
         type="text"
         formControlName="position"
-        class="form-control"
+        class="form-control globalShadow"
         id="position"
         placeholder=""
       />
@@ -84,7 +84,7 @@
         <input
           type="text"
           formControlName="username"
-          class="form-control"
+          class="form-control globalShadow"
           id="username"
           placeholder=""
         />
@@ -109,7 +109,7 @@
         <input
           type="text"
           formControlName="password"
-          class="form-control"
+          class="form-control globalShadow"
           id="password"
           placeholder=""
         />
@@ -134,7 +134,7 @@
     <div class="buttons-container d-flex justify-content-around">
       <button
         type="submit"
-        class="btn btn-success"
+        class="btn btn-success globalShadow"
         [disabled]="!userForm.valid"
       >
         <!--fa-icon-- [icon]="acceptIcon"></!--fa-icon-->
@@ -142,7 +142,7 @@
         <a *ngIf="editing">Edit</a>
       </button>
 
-      <button type="button" *ngIf="!editing" class="btn btn-danger" (click)="resetForm()">
+      <button type="button" *ngIf="!editing" class="btn btn-danger globalShadow" (click)="resetForm()">
         <!--fa-icon-- [icon]="cancelIcon"></!--fa-icon-->
         Cancel
       </button>
