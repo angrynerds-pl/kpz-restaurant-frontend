@@ -35,3 +35,9 @@ select {
 p {
     text-align: center;
 }
+
+@media (max-width: 768px) {
+    select {
+        width: 85%;
+    }
+}

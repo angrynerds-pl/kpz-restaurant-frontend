@@ -6,10 +6,10 @@ import { Table } from 'src/app/models/table';
 
 @Component({
   selector: 'app-tables',
-  templateUrl: './tables.component.html',
-  styleUrls: ['./tables.component.scss']
+  templateUrl: './tables-main.component.html',
+  styleUrls: ['./tables-main.component.scss']
 })
-export class TablesComponent implements OnInit {
+export class TablesMainComponent implements OnInit {
 
   rooms: Array<Room>;
   tables: Array<Table>;

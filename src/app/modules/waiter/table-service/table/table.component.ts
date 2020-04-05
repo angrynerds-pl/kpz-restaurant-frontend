@@ -24,4 +24,15 @@ export class TableComponent implements OnInit {
     })
   }
 
+  getClass() {
+    switch(this.table.status){
+      case 'free':
+        return 'free';
+      case 'serve':
+        return 'serve';
+      case 'occupied':
+        return 'occupied';
+    }
+  }
+
 }

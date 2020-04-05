@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { WaiterMainComponent } from './waiter-main/waiter-main.component';
-import { TablesComponent } from './tables/tables.component';
-import { ReservationsComponent } from './reservations/reservations.component';
-import { TableComponent } from './table/table.component';
+import { TablesMainComponent } from './tables/tables-main/tables-main.component';
+import { ReservationsMainComponent } from './reservations/reservations-main/reservations-main.component';
+import { TableComponent } from './table-service/table/table.component';
 
 const routes: Routes = [
   {
@@ -17,11 +17,11 @@ const routes: Routes = [
       },
       {
         path: 'tables',
-        component: TablesComponent,
+        component: TablesMainComponent,
       },
       {
         path: 'reservations',
-        component: ReservationsComponent,
+        component: ReservationsMainComponent,
       },
       {
         path: 'table/:id',
