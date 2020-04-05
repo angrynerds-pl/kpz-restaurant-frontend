@@ -13,7 +13,10 @@ h2 {
 }
 
 .table{
-  border-radius:1em;
+  //border-radius:1em;
  
 }
 
+tbody tr:hover{
+  cursor:pointer;
+}

@@ -22,9 +22,29 @@ export class UserService {
   getUsers():Observable<User[]>{
     return ObservableOf(this.users);
   }
-
+  updateUser(user){
+   let userArrayIndex = this.findUser(user.id);
+    this.users[userArrayIndex] = user;
+  }
+  removeUser(user){
+    let userArrayIndex = this.findUser(user.id);
+     console.log("index",userArrayIndex )
+    this.users.splice(userArrayIndex,1);
+  }
+  findUser(id){
+    console.log("index user",id )
+   let index = this.users.findIndex(user => user.id ===id);
+    
+      
+      return index;
+  }
   getLastUserID(){
-    return this.users.length;
+    if(this.users.length!=0){
+      return this.users[this.users.length-1].id+1;
+    }else{
+        return 0;
+    }
+    
     
   }
 }

@@ -10,17 +10,17 @@
                 <th scope="col">First name</th>
                 <th scope="col">Last name </th>
                 <th scope="col">Username</th>
-                <th scope="col">Password</th>
+                <!--th-- scope="col">Password</!--th-->
                 <th scope="col">Position</th>
               </tr>
             </thead>
             <tbody>
-              <tr  *ngFor="let user of users, index as i" data-toggle="collapse" data-target="#collapseme">
+              <tr mat-button (click)="openDialog(user)" *ngFor="let user of users, index as i" data-toggle="collapse" data-target="#collapseme" >
                 <th scope="row">{{user.id}}</th>
                 <td>{{user.firstName}}</td>
                 <td> {{user.lastName}}</td>
                 <td>{{user.username}}</td>
-                <td> {{user.password}}</td>
+                <!--td>{{user.password}}</!--td>-->
                 <td>{{user.position}}</td>
                 
               </tr>
