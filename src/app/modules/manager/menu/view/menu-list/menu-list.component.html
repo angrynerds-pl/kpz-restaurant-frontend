@@ -4,14 +4,14 @@
         <label for="foods">Food type</label>
     </div>
     <div>  
-        <select class="selectBox" [(ngModel)] = "selectedCategoryId" (change)="onChange()" >
+        <select class="globalShadow selectBox" [(ngModel)] = "selectedCategoryId"  >
             <ng-container *ngFor = "let category of categories" >
                <option [ngValue] = "category.id" class = "product" >{{category.name}}</option>
             </ng-container>           
         </select>
     </div>
 </div>
-<div class="table">
+<div  class="globalShadow table">
     <div class="header">
         <span class="productInfo">Name</span>
         <span class="productInfo">Price</span>

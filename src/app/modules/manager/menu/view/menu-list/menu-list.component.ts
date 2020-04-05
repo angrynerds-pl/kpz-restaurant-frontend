@@ -35,12 +35,4 @@ export class MenuListComponent implements OnInit {
       this.categories = categories;
     });
   }
-
-  onChange() {  
-    
-   // this.selectedCategoryId = category;
-  // console.log('category of food', category.id);
-  // console.log('selected category id', this.selectedCategory.id);
-}
-
 }
