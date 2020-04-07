@@ -1,25 +1,29 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Table } from 'src/app/models/table';
 import { TableService } from 'src/app/services/table.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-table',
   templateUrl: './table.component.html',
   styleUrls: ['./table.component.scss']
 })
-export class TableComponent implements OnInit {
+export class TableComponent implements OnInit, OnDestroy {
 
   id: number;
   table:Table = {} as Table;
 
+  routeSubscription: Subscription;
+  tableSubscription: Subscription;
+
   constructor(private route:ActivatedRoute, private tableService:TableService) { }
 
   ngOnInit(): void {
-    this.route.params.subscribe(data => {
+    this.routeSubscription = this.route.params.subscribe(data => {
       this.id = data.id;
     })
-    this.tableService.getTable(this.id).subscribe(data => {
+    this.tableSubscription = this.tableService.getTable(this.id).subscribe(data => {
       this.table = data;
     })
   }
@@ -33,6 +37,11 @@ export class TableComponent implements OnInit {
       case 'occupied':
         return 'occupied';
     }
+  }
+
+  ngOnDestroy(){
+    this.routeSubscription.unsubscribe();
+    this.tableSubscription.unsubscribe();
   }
 
 }
