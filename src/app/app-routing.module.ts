@@ -7,6 +7,10 @@ const routes: Routes = [
     loadChildren: () => import('./modules/cook/cook.module').then(m => m.CookModule)
   },
   {
+    path: 'waiter',
+    loadChildren: () => import('./modules/waiter/waiter.module').then(m => m.WaiterModule)
+  },
+  {
     path: '',
     loadChildren: () => import('./modules/home/home.module').then(m => m.HomeModule)
   }
