@@ -1,0 +1,10 @@
+<section class="col-12">
+<h4 mat-dialog-title>Account of {{data.user.firstName}} {{data.user.lastName}}</h4>
+<mat-dialog-content>
+    <app-personnel-account [userToEdit]="data.user"></app-personnel-account>
+</mat-dialog-content>
+<mat-dialog-actions>
+<button mat-button mat-dialog-close>Return</button>
+<button mat-button mat-dialog-close (click)="removeUser()">Delete this account</button>
+</mat-dialog-actions>
+</section>

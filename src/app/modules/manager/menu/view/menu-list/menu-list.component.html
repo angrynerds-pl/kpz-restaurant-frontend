@@ -1,0 +1,25 @@
+
+<div>
+    <div class="label">
+        <label for="foods">Food type</label>
+    </div>
+    <div>  
+        <select class="globalShadow selectBox" [(ngModel)] = "selectedCategoryId"  >
+            <ng-container *ngFor = "let category of categories" >
+               <option [ngValue] = "category.id" class = "product" >{{category.name}}</option>
+            </ng-container>           
+        </select>
+    </div>
+</div>
+<div  class="globalShadow table">
+    <div class="header">
+        <span class="productInfo">Name</span>
+        <span class="productInfo">Price</span>
+    </div>
+    <div *ngFor = "let product of products">
+        <div class="productDiv" *ngIf = "product.categoryId==selectedCategoryId">
+           <span class="productInfo"> {{product.name}} </span>  
+           <span class="productInfo"> {{product.price}} </span>
+        </div>
+    </div>
+</div>
