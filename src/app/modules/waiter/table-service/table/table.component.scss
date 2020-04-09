@@ -1,0 +1,17 @@
+header {
+    padding: 20px;
+    text-align: center;
+    font-size: 30px;
+    position: relative;
+}
+
+// temporary instead of icon
+.btnBack {
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    background-color: transparent;
+    -webkit-appearance: none;
+    border: 0;
+    color: #fff;
+}

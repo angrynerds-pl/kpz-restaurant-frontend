@@ -11,6 +11,10 @@ const routes: Routes = [
     loadChildren: () => import('./modules/manager/manager.module').then(m => m.ManagerModule)
   },
   {
+    path: 'waiter',
+    loadChildren: () => import('./modules/waiter/waiter.module').then(m => m.WaiterModule)
+  },
+  {
     path: '',
     loadChildren: () => import('./modules/home/home.module').then(m => m.HomeModule)
   }

@@ -1,0 +1,29 @@
+<section>
+    <div class="tables-wrapper">
+        <ng-container *ngIf="rooms">
+            <div class="select-box">
+                <select [(ngModel)]="currentID" (change)="setTables()">
+                    <ng-container *ngFor="let room of rooms">
+                        <option [ngValue]="room.roomID">Room #{{room.number}}</option>
+                    </ng-container>
+                </select>
+            </div>
+            <div class="grid-wrapper">
+                <ng-container *ngIf="grid">
+                    <ng-container *ngFor="let row of grid;">
+                        <div class="tableRow">
+                            <ng-container *ngFor="let col of row;">
+                                <ng-container *ngIf="col; else empty">
+                                    <app-table-view [table]="col"></app-table-view>
+                                </ng-container>
+                                <ng-template #empty>
+                                    <app-empty-view></app-empty-view>
+                                </ng-template>
+                            </ng-container>
+                        </div>
+                    </ng-container>
+                </ng-container>
+            </div>
+        </ng-container>
+    </div>
+</section>
