@@ -10,6 +10,7 @@ import { TableViewComponent } from './tables/table-view/table-view.component';
 import { EmptyViewComponent } from './tables/empty-view/empty-view.component';
 import { ReservationsMainComponent } from './reservations/reservations-main/reservations-main.component';
 import { ReservationViewComponent } from './reservations/reservation-view/reservation-view.component';
+import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { ReservationViewComponent } from './reservations/reservation-view/reserv
   imports: [
     CommonModule,
     WaiterRoutingModule,
-    FormsModule
+    FormsModule,
+    FontAwesomeModule
   ]
 })
 export class WaiterModule { }
