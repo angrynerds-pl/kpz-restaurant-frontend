@@ -3,7 +3,9 @@ import { ActivatedRoute } from '@angular/router';
 import { Table } from 'src/app/models/table';
 import { TableService } from 'src/app/services/table.service';
 import { Subscription } from 'rxjs';
-
+import { faTimes} from  "@fortawesome/free-solid-svg-icons";
+import { faPlusCircle} from  "@fortawesome/free-solid-svg-icons";
+import { faFileInvoiceDollar} from  "@fortawesome/free-solid-svg-icons";
 @Component({
   selector: 'app-table',
   templateUrl: './table.component.html',
@@ -12,6 +14,9 @@ import { Subscription } from 'rxjs';
 export class TableComponent implements OnInit, OnDestroy {
 
   id: number;
+  buttonBack =faTimes;
+  iconPlusCircle =  faPlusCircle;
+  iconBill = faFileInvoiceDollar;
   table:Table = {} as Table;
 
   routeSubscription: Subscription;
