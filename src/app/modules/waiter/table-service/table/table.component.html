@@ -1,19 +1,31 @@
 <ng-container *ngIf="table">
-    <header [ngClass]="getClass()">
-        <span>Table #{{table.tableID}} </span>
-        <!--We will use icon later-->
-        <a routerLink="/waiter/tables" class="btnBack"><fa-icon id="backIcon" [icon]="buttonBack"></fa-icon></a>
-    </header>
-    
-        <!--panel with colors-->
-    <section class="tableOrders container-fluid col-12">
-        <div class="d-flex align-items-center justify-content-between currentOrders">
-            
-            <h3>Current orders</h3>
-            <button class="btn btn-success"><fa-icon  [icon]="iconPlusCircle"></fa-icon> Add</button>
-            
-        </div>
+  <header [ngClass]="getClass()">
+    <span>Table #{{ table.tableID }} </span>
+    <!--We will use icon later-->
+    <a routerLink="/waiter/tables" class="btnBack"
+      ><fa-icon id="backIcon" [icon]="buttonBack"></fa-icon
+    ></a>
+  </header>
 
-        <div class= "summary container-fluid"><a type="button" class=""><fa-icon id="iconBill" [icon]="iconBill"></fa-icon></a></div>
-    </section>
+  <!--panel with colors-->
+  <section class="tableOrders container-fluid col-12">
+    <div
+      class="d-flex align-items-center justify-content-between currentOrders"
+    >
+      <h3>Current orders</h3>
+      <button
+        class="btn btn-success globalShadow"
+        mat-raised-button
+        (click)="openBottomSheet()"
+      >
+        <fa-icon [icon]="iconPlusCircle"></fa-icon> Add
+      </button>
+    </div>
+
+    <div class="summary container-fluid">
+      <a type="button" class="iconBill"
+        ><fa-icon  [icon]="iconBill"></fa-icon
+      ></a>
+    </div>
+  </section>
 </ng-container>

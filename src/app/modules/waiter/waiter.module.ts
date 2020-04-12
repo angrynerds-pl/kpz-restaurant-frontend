@@ -11,7 +11,8 @@ import { EmptyViewComponent } from './tables/empty-view/empty-view.component';
 import { ReservationsMainComponent } from './reservations/reservations-main/reservations-main.component';
 import { ReservationViewComponent } from './reservations/reservation-view/reservation-view.component';
 import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
-
+import { TableAddOrderComponent } from './table-service/table-add-order/table-add-order.component';
+import {MatBottomSheetModule} from '@angular/material/bottom-sheet';
 @NgModule({
   declarations: [
     WaiterMainComponent, 
@@ -20,13 +21,17 @@ import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
     TableViewComponent, 
     EmptyViewComponent, 
     ReservationsMainComponent,
-    ReservationViewComponent
+    ReservationViewComponent,
+    TableAddOrderComponent
   ],
   imports: [
     CommonModule,
     WaiterRoutingModule,
     FormsModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    MatBottomSheetModule,
+    
+    
   ]
 })
 export class WaiterModule { }

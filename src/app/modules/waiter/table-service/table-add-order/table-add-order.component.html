@@ -1,0 +1,58 @@
+<section class="container-fluid accordion accordion-sm" id="accordionOrders" role="tablist" aria-multiselectable="true">
+    <div class="card container-fluid">
+    <div class="card-header" role="tab" id="customizeHeader">
+        <a class="collapsed" data-toggle="collapse" data-parent="#accordionOrders" href="#collapseOrders"
+          aria-expanded="false" aria-controls="collapseOrders">
+          <h3 class="mb-0">
+            Customize order
+          </h3>
+        </a>
+      </div>
+  
+      <!-- Card body -->
+      <div id="collapseOrders" class="collapse show" role="tabpanel" aria-labelledby="#customizeHeader"
+        data-parent="#accordionOrders">
+        <div class="card-body">
+           <li class="list-group d-flex flex-row flex-wrap">
+              <ul class="d-flex justify-content-center w-50 categoryRow" *ngFor="let category of categories"><button type="radio" class="categoryButton btn-lg btn-info d-flex align-items-center justify-content-between" (click)="showCategory(category.id,category.icon)"><img src="../../../../../assets/images/{{category.icon}}"><div class="responsive-width">{{category.name}}</div></button></ul>
+          </li>
+          <li>
+              <ul *ngFor="let product of products">
+                  <div class="productInfo d-flex justify-content-between" *ngIf="product.categoryId==choosenCategoryId" >
+                      <div>{{product.name}}</div><div>{{product.price}}</div>+
+                  </div>
+              </ul>
+          </li>
+        </div>
+      </div>
+  
+    </div>
+    <div class="card container-fluid">
+        <div class="card-header" role="tab" id="summaryHeader">
+            <a class="collapsed" data-toggle="collapse" data-parent="#accordionOrders" href="#collapseSummary"
+              aria-expanded="false" aria-controls="collapseSummary">
+              <h3 class="mb-0">
+                Summary
+              </h3>
+            </a>
+          </div>
+      
+          <!-- Card body -->
+          <div id="collapseSummary" class="collapse" role="tabpanel" aria-labelledby="#summaryHeader"
+            data-parent="#accordionOrders">
+            <div class="card-body">
+                <h1>POdsumowanie</h1>
+              Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3
+              wolf
+              moon
+              officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod.
+              Brunch
+              3
+              you probably haven't heard of them accusamus labore sustainable VHS.
+            </div>
+          </div>
+      
+        </div>
+
+</section>
+
