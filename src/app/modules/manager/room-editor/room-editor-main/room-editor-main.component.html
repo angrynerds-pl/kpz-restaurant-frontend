@@ -1,32 +1,28 @@
 <div class="row">
-    <aside class="col-md-6">
-        <form #editorForm="ngForm">
-            <div class="select-box">
-                <label for="columns-select">Columns</label>
-                <select required name="columns-select" [(ngModel)]="columns">
-                    <ng-container *ngFor="let col of columnsOption">
-                        <option [ngValue]="col">{{col}}</option>
-                    </ng-container>
-                </select>
-            </div>
-            <div class="select-box">
-                <label for="rows-select">Rows</label>
-                <select required name="rows-select" [(ngModel)]="rows">
-                    <ng-container *ngFor="let row of rowsOption">
-                        <option [ngValue]="row">{{row}}</option>
-                    </ng-container>
-                </select>
-            </div>
-            <div class="button-box">
-                <button (click)="create()" [disabled]="!editorForm.valid">Generate room</button>
-            </div>
-        </form>
-            <ng-container *ngFor="let table of tables">
-                <p>{{table | json}}</p>
-            </ng-container>
-    </aside>
-    <section class="col-md-6">
+    <form [ngClass]="getFormClass()" #editorForm="ngForm">
+        <div class="select-box">
+            <label for="columns-select">Columns</label>
+            <select required name="columns-select" [(ngModel)]="columns">
+                <ng-container *ngFor="let col of columnsOption">
+                    <option [ngValue]="col">{{col}}</option>
+                </ng-container>
+            </select>
+        </div>
+        <div class="select-box">
+            <label for="rows-select">Rows</label>
+            <select required name="rows-select" [(ngModel)]="rows">
+                <ng-container *ngFor="let row of rowsOption">
+                    <option [ngValue]="row">{{row}}</option>
+                </ng-container>
+            </select>
+        </div>
+        <div class="button-box">
+            <button (click)="create()" [disabled]="!editorForm.valid">Generate room</button>
+        </div>
+    </form>
+    <section class="col-md-5 offset-md-1">
         <ng-container *ngIf="grid">
+            <p>Layout</p>
             <div class="grid-box">
                 <ng-container *ngFor="let col of grid; let i=index">
                     <div class="row">
@@ -46,4 +42,12 @@
             </div>
         </ng-container>
     </section>
+    <aside class="col-md-5">
+        <ng-container *ngIf="picked">
+            <p>Tables</p>
+        </ng-container>
+        <ng-container *ngFor="let table of tables">
+            <app-table-info [table]="table" ></app-table-info>
+        </ng-container>
+    </aside>
 </div>

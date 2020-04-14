@@ -4,6 +4,10 @@ p, .select-box, .button-box{
     text-align: center;
 }
 
+p {
+    font-size: 24px;
+}
+
 label, select {
     min-width: 150px;
 }
@@ -40,4 +44,8 @@ button {
 
 button:not(:disabled):hover {
     transform: scale(1.05);
+}
+
+.hidden {
+    display: none;
 }

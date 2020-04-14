@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Table } from 'src/app/models/table';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-room-editor-main',
@@ -18,6 +19,8 @@ export class RoomEditorMainComponent implements OnInit {
 
   tables: Array<Table> = [];
 
+  picked: boolean = false;
+
   constructor() { }
 
   ngOnInit(): void {
@@ -27,6 +30,7 @@ export class RoomEditorMainComponent implements OnInit {
 
   create(){
     this.grid = new Array(this.rows).fill(null).map(() => new Array(this.columns).fill(null));
+    this.picked = true;
   }
 
   add(table){
@@ -35,6 +39,11 @@ export class RoomEditorMainComponent implements OnInit {
 
   delete(table){
     this.tables = this.tables.filter(e => e !== table);
+  }
+
+  getFormClass(){
+    if(this.picked) return "hidden";
+    return "col-12";
   }
 
 }
