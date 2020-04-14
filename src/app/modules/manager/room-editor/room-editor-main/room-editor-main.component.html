@@ -1,1 +1,49 @@
-<p>room-editor-main works!</p>
+<div class="row">
+    <aside class="col-md-6">
+        <form #editorForm="ngForm">
+            <div class="select-box">
+                <label for="columns-select">Columns</label>
+                <select required name="columns-select" [(ngModel)]="columns">
+                    <ng-container *ngFor="let col of columnsOption">
+                        <option [ngValue]="col">{{col}}</option>
+                    </ng-container>
+                </select>
+            </div>
+            <div class="select-box">
+                <label for="rows-select">Rows</label>
+                <select required name="rows-select" [(ngModel)]="rows">
+                    <ng-container *ngFor="let row of rowsOption">
+                        <option [ngValue]="row">{{row}}</option>
+                    </ng-container>
+                </select>
+            </div>
+            <div class="button-box">
+                <button (click)="create()" [disabled]="!editorForm.valid">Generate room</button>
+            </div>
+        </form>
+            <ng-container *ngFor="let table of tables">
+                <p>{{table | json}}</p>
+            </ng-container>
+    </aside>
+    <section class="col-md-6">
+        <ng-container *ngIf="grid">
+            <div class="grid-box">
+                <ng-container *ngFor="let col of grid; let i=index">
+                    <div class="row">
+                        <ng-container *ngFor="let row of col; let j=index">
+                            <app-table-option 
+                            (addTable)="add($event)" 
+                            (deleteTable)="delete($event)" 
+                            [coordX]="i" 
+                            [coordY]="j">
+                            </app-table-option>
+                        </ng-container>
+                    </div>
+                </ng-container>
+            </div>
+            <div class="button-box">
+                <button>Save</button>
+            </div>
+        </ng-container>
+    </section>
+</div>

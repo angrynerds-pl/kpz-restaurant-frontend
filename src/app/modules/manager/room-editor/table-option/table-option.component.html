@@ -1,1 +1,8 @@
-<p>table-option works!</p>
+<section (click)="select()" [ngClass]="getClass()" class="table-view table-option">  
+    <ng-container *ngIf="selected">
+        <p>{{table.number}}</p>
+        <div (click)="edit($event)" class="info">
+            <fa-icon [icon]="icon"></fa-icon>
+        </div>
+    </ng-container>
+</section>
