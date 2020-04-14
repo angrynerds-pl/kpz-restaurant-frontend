@@ -1,0 +1,28 @@
+<section *ngIf="productsToAdd.length > 0">
+  
+    <li>
+    <ul
+      class="productInfo d-flex justify-content-between align-items-center globalShadow"
+      *ngFor="let productToAdd of productsToAdd"
+    >
+      <div>{{ productToAdd.product.name }}</div>
+      <div class="amountBar">
+        <button class="amountButton" (click)="changeAmountOfProduct(-1,productToAdd)">
+          <fa-icon
+        
+            [icon]="iconMinusCircle"
+          ></fa-icon></button
+        >
+        
+        {{ productToAdd.amount}}
+        
+        <button class="amountButton" (click)="changeAmountOfProduct(1,productToAdd)">
+          <fa-icon [icon]="iconPlusCircle"></fa-icon>
+        </button>
+      </div>
+    </ul>
+  </li>
+  <div class="summary container-fluid">
+    <a type="button"><fa-icon [icon]="iconPlusCircle"></fa-icon></a>
+  </div>
+</section>

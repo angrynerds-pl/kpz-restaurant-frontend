@@ -35,4 +35,11 @@ export class ProductService {
     return this.products.length;
     
   }
+  findProduct(id){
+    
+   let index = this.products.findIndex(product => product.id ===id);
+    
+      
+      return index;
+  }
 }

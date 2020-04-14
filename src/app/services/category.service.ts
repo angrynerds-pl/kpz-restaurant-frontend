@@ -19,7 +19,7 @@ export class CategoryService {
       
       {id:4,name: "Chinese",icon: "starter.jpg"},
       
-      {id:5,name: "sssssssssssssgvggggggggggggggggggggggggss",icon: "starter.jpg"},
+      {id:5,name: "sssssssssssss",icon: "starter.jpg"},
       
 
       ];

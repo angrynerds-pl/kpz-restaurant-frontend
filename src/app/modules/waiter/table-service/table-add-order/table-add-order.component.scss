@@ -1,3 +1,4 @@
+@import '../../../../../styles.scss';
 section{
     padding:0;
     margin:0;
@@ -5,6 +6,22 @@ section{
 
 .card{
     padding:0;
+
+}
+.title{
+  text-align:center;
+   //font-weight:bold; 
+   font-size:30px;
+  //@extend align-items:center;
+   //display:flex;
+  // justify-content:center;
+}
+a:active, a:focus{
+    outline:0;
+}
+a:hover{
+    color:#aaa;
+    text-decoration:none;
 }
 .card-body{
     padding:5px;
@@ -18,10 +35,14 @@ a{
 }
 .categoryButton{
     //margin:auto;
-    max-width:150px;
+    //max-width:150px;
+    width:95%;
     max-height:50px;
     font-weight:bold;
     border-radius:2em;
+}
+.categoryButton:focus{
+    outline:0;
 }
 .responsive-width {
     font-size:80% ;
@@ -32,3 +53,21 @@ a{
     //justify-content:space-between;
     //flex-direction:column;
 }
+
+.productInfo{
+    font-size:20px;
+    background-color:$blue;
+    padding:10px;
+    width:100%;
+    //margin-left:5px;
+    //margin-right:5px;
+    border-radius:1em;
+    outline:none;
+    border:none;
+    color:black;
+}
+
+.productInfo:active, .productInfo:focus{
+    outline:0;
+}
+

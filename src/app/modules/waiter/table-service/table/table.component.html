@@ -1,13 +1,13 @@
 <ng-container *ngIf="table">
   <header [ngClass]="getClass()">
     <span>Table #{{ table.tableID }} </span>
-    <!--We will use icon later-->
+    
     <a routerLink="/waiter/tables" class="btnBack"
       ><fa-icon id="backIcon" [icon]="buttonBack"></fa-icon
     ></a>
   </header>
 
-  <!--panel with colors-->
+  
   <section class="tableOrders container-fluid col-12">
     <div
       class="d-flex align-items-center justify-content-between currentOrders"

@@ -1,0 +1,51 @@
+@import '../../../../../styles.scss';
+
+
+.title{
+   text-align:center;
+   font-weight:bold; 
+   font-size:30px;
+   padding:10px;
+   margin-bottom:20px;
+}
+.summary{
+    //position: absolute;
+    //bottom:0;
+   // left:0;
+    text-align:center;
+    font-size:40px;
+    height:40px
+}
+li{
+    margin-bottom:20px;
+    margin-top:20px;
+}
+
+.productInfo{
+    font-size:20px;
+    background-color:$blue;
+    padding:10px;
+    width:100%;
+    //margin-left:5px;
+    //margin-right:5px;
+    border-radius:1em;
+    outline:none;
+    border:none;
+    color:black;
+}
+
+.productInfo:active, .productInfo:focus{
+    outline:0;
+}
+.amountButton{
+    background-color:transparent;
+    border:0;
+    //font-size:25px;
+}
+
+.amountButton:active, .amountButton:focus{
+    outline:0;
+   
+}
+
+
