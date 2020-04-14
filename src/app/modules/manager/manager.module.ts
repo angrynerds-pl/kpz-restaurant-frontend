@@ -22,6 +22,8 @@ import { PersonnelDatabaseComponent } from "./personnel/personnel-database/perso
 import { PersonnelRegistrationComponent } from "./personnel/personnel-registration/personnel-registration.component";
 import { PersonnelDatabaseDialogComponent } from './personnel/personnel-database-dialog/personnel-database-dialog.component';
 import { PersonnelAccountComponent } from './personnel/personnel-account/personnel-account.component';
+import { RoomEditorMainComponent } from './room-editor/room-editor-main/room-editor-main.component';
+import { TableOptionComponent } from './room-editor/table-option/table-option.component';
 @NgModule({
   declarations: [
     ManagerMainComponent,
@@ -37,6 +39,8 @@ import { PersonnelAccountComponent } from './personnel/personnel-account/personn
     PersonnelRegistrationComponent,
     PersonnelDatabaseDialogComponent,
     PersonnelAccountComponent,
+    RoomEditorMainComponent,
+    TableOptionComponent,
     
   ],
 
