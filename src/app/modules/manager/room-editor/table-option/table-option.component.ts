@@ -12,23 +12,27 @@ import { Subscription } from 'rxjs';
 export class TableOptionComponent implements OnInit, OnDestroy {
 
   selected: boolean = false;
-  table: Table = {} as Table;
 
   icon = faCog;
 
+  @Input() table: Table;
   @Input() coordX: number;
   @Input() coordY: number;
 
   @Output() addTable: EventEmitter<Table> = new EventEmitter();
   @Output() deleteTable: EventEmitter<Table> = new EventEmitter();
-  @Output() editTable: EventEmitter<Table> = new EventEmitter();
 
   dialogSubscription: Subscription;
-
+  
   constructor(public dialog: MatDialog) { }
 
   ngOnInit(): void {
-    this.table = { x: this.coordX, y: this.coordY, status: 'free', number: null, seats: null, tableID: 0, roomID: 0 };
+    if(!this.table){
+      this.table = { x: this.coordX, y: this.coordY, status: 'free', number: null, seats: null, tableID: 0, roomID: 0 };
+    }
+    else{
+      this.selected = true;
+    }
   }
 
   select(){
@@ -62,10 +66,10 @@ export class TableOptionComponent implements OnInit, OnDestroy {
     });
 
     this.dialogSubscription = dialogRef.afterClosed().subscribe(result => {
-      this.table = result;
+      if(result) this.table = result;
     });
   }
-
+  
   ngOnDestroy(){
     if(this.dialogSubscription) this.dialogSubscription.unsubscribe();
   }

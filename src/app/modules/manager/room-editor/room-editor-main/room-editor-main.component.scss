@@ -8,8 +8,9 @@ p {
     font-size: 24px;
 }
 
-label, select {
-    min-width: 150px;
+select {
+    min-width: 60px;
+    margin: 0px 8px;
 }
 
 select {
@@ -29,23 +30,48 @@ select {
     flex: 1;
 }
 
-button {
+.rooms {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    text-align: center;
+}
+
+.room {
+    display: flex;
+    padding: 0.5em;
+    margin: 8px;
+    background-color: $gray;
+    border-radius: 8px;
+    align-items: center;
+}
+
+form {
+    background-color: $gray;
+    padding: 0.5em;
+    margin: 8px;
+    border-radius: 8px;
+    display: flex;
+    align-items: baseline;
+}
+
+.btnSubmit, .btnEdit {
     padding: 8px 16px;
+    margin-left: 8px;
     border-radius: 8px;
     -webkit-appearance: none;
     border: 0;
     font-size: 14px;
-    margin: 1em;
     color: $textLight;
     background-color: $darkBlue;
     transition: 0.5s ease-in-out;
     outline: 0;
 }
 
-button:not(:disabled):hover {
+.btnSubmit:not(:disabled):hover, .btnEdit:hover {
     transform: scale(1.05);
 }
 
-.hidden {
-    display: none;
+label {
+    margin: 0;
 }
