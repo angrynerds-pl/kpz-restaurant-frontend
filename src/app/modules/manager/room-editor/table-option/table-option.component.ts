@@ -1,13 +1,15 @@
-import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input, OnDestroy } from '@angular/core';
 import { Table } from 'src/app/models/table';
 import { faCog } from "@fortawesome/free-solid-svg-icons";
-
+import { MatDialog } from '@angular/material/dialog';
+import { TableEditDialogComponent } from '../table-edit-dialog/table-edit-dialog.component';
+import { Subscription } from 'rxjs';
 @Component({
   selector: 'app-table-option',
   templateUrl: './table-option.component.html',
   styleUrls: ['./table-option.component.scss']
 })
-export class TableOptionComponent implements OnInit {
+export class TableOptionComponent implements OnInit, OnDestroy {
 
   selected: boolean = false;
   table: Table = {} as Table;
@@ -21,10 +23,12 @@ export class TableOptionComponent implements OnInit {
   @Output() deleteTable: EventEmitter<Table> = new EventEmitter();
   @Output() editTable: EventEmitter<Table> = new EventEmitter();
 
-  constructor() { }
+  dialogSubscription: Subscription;
+
+  constructor(public dialog: MatDialog) { }
 
   ngOnInit(): void {
-    this.table = { x: this.coordX, y: this.coordY, status: 'free', number: null, seats: 0, tableID: 0, roomID: 0 };
+    this.table = { x: this.coordX, y: this.coordY, status: 'free', number: null, seats: null, tableID: 0, roomID: 0 };
   }
 
   select(){
@@ -42,11 +46,28 @@ export class TableOptionComponent implements OnInit {
 
   edit(event){
     event.stopPropagation();
+    this.openDialog();
   }
 
   getClass(){
     if(this.selected) return "table-view table-option selected";
     return "table-view table-option";
+  }
+
+  openDialog(){
+    const dialogRef = this.dialog.open(TableEditDialogComponent, {
+      width: '300px',
+      height: '270px',
+      data: this.table
+    });
+
+    this.dialogSubscription = dialogRef.afterClosed().subscribe(result => {
+      this.table = result;
+    });
+  }
+
+  ngOnDestroy(){
+    if(this.dialogSubscription) this.dialogSubscription.unsubscribe();
   }
 
 }
