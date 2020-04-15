@@ -1,42 +1,40 @@
-import { Component, OnInit,Input } from '@angular/core';
-import {MatBottomSheet, MatBottomSheetRef} from '@angular/material/bottom-sheet';
-import { CategoryService } from 'src/app/services/category.service';
-import { MenuCategory } from 'src/app/models/menu-category';
-import { MenuProduct } from 'src/app/models/menu-product';
-import { ProductService } from 'src/app/services/product.service';
-import { faPlusCircle, faMinusCircle} from  "@fortawesome/free-solid-svg-icons";
-import {Observable} from 'rxjs';
-import { ProductsToOrderService } from 'src/app/services/products-to-order.service';
-import { ProductsToAdd } from 'src/app/models/products-to-add';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Component, OnInit, Input, Output } from "@angular/core";
+import { faPlusCircle, faMinusCircle } from "@fortawesome/free-solid-svg-icons";
+import { ProductsToOrderService } from "src/app/services/products-to-order.service";
+import { ProductToAdd } from "src/app/models/product-to-add";
+import { EventEmitter } from '@angular/core';
+import { OrderService } from 'src/app/services/order.service';
 
 @Component({
-  selector: 'app-order-summary',
-  templateUrl: './order-summary.component.html',
-  styleUrls: ['./order-summary.component.scss']
+  selector: "app-order-summary",
+  templateUrl: "./order-summary.component.html",
+  styleUrls: ["./order-summary.component.scss"],
 })
 export class OrderSummaryComponent implements OnInit {
 
-  //prodcutsToAddOb:Observable<ProductsToAdd[]>;
   iconPlusCircle = faPlusCircle;
   iconMinusCircle = faMinusCircle;
-  @Input() productsToAdd:ProductsToAdd[];
-  constructor(private productsToOrderService:ProductsToOrderService) { }
+  
+  @Input() productsToAdd: ProductToAdd[];
+  @Input() tableID:number;
+  @Output() close: EventEmitter<any> = new EventEmitter();
 
-  ngOnInit(): void {
-    
+  constructor(private orderService:OrderService,  private productsToOrderService: ProductsToOrderService) {}
+
+  ngOnInit(): void {}
+
+  changeAmountOfProduct(amount, product) {
+    product.amount += amount;
+    if (product.amount == 0) {
+      this.productsToOrderService.removeProduct(product.product);
+    }
   }
 
-  changeAmountOfProduct(amount, product){
+  createOrder(){
+    console.log(this.productsToAdd);
+    this.orderService.createOrder(this.tableID);
     
-     
-        product.amount +=amount;
-        if(product.amount==0){
-          this.productsToOrderService.removeProduct(product.product);
-           
-        
-        }
-    }
-  
-
+    
+    this.close.emit();
+  }
 }

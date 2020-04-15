@@ -1,51 +1,105 @@
-<section class=" accordion " id="accordionOrders" role="tablist" aria-multiselectable="true">
-    <div class="card container-fluid">
+<section
+  class="accordion"
+  id="accordionOrders"
+  role="tablist"
+  aria-multiselectable="true"
+>
+  <div class="card container-fluid">
     <div class="card-header" role="tab" id="customizeHeader">
-        <a class="collapsed" data-toggle="collapse" data-parent="#accordionOrders" href="#collapseOrders"
-          aria-expanded="false" aria-controls="collapseOrders">
-          <h3 class="title">
+      <a
+        class="collapsed"
+        data-toggle="collapse"
+        data-parent="#accordionOrders"
+        href="#collapseOrders"
+        aria-expanded="false"
+        aria-controls="collapseOrders"
+      >
+        <h3 class="title">
           Customize order
         </h3>
-        </a>
-      </div>
-  
-      <!-- Card body -->
-      <div id="collapseOrders" class="collapse show" role="tabpanel" aria-labelledby="#customizeHeader"
-        data-parent="#accordionOrders">
-        <div class="card-body">
-           <li class="list-group d-flex flex-row flex-wrap btn-group btn-group-toggle" data-toggle="buttons">
-              <ul class="d-flex justify-content-center w-50 categoryRow" *ngFor="let category of categories"><button type="radio" class="categoryButton btn-lg btn-info  d-flex align-items-center justify-content-between" (click)="showCategory(category.id,category.icon)"><img src="../../../../../assets/images/{{category.icon}}"><div class="responsive-width">{{category.name}}</div></button></ul>
-              
-          </li>
-          <li>
-              <ul *ngFor="let product of products">
-                  <button class=" productInfo d-flex justify-content-between globalShadow" (click)="addToSummaryProducts(product,1)" *ngIf="product.categoryId==choosenCategoryId" >
-                      <div>{{product.name}}</div><fa-icon class="iconAddProduct" [icon]="iconPlusCircle"></fa-icon>
-                  </button>
-              </ul>
-          </li>
-        </div>
-      </div>
-  
+      </a>
     </div>
-    <div class="card container-fluid">
-        <div class="card-header" role="tab" id="summaryHeader" (click)="updateProductsToAdd()">
-            <a class="collapsed" data-toggle="collapse" data-parent="#accordionOrders" href="#collapseSummary"
-              aria-expanded="false" aria-controls="collapseSummary">
-              <h3 class="title">
-                Chosen products
-              </h3>
-            </a>
-          </div>
-      
-         
-          <div id="collapseSummary" class="collapse" role="tabpanel" aria-labelledby="#summaryHeader"
-            data-parent="#accordionOrders">
-            <div class="card-body">
-               <app-order-summary  [productsToAdd]="productsToAdd"></app-order-summary>
-          </div>
-      
-        </div>
-      </div>
-</section>
 
+    <div
+      id="collapseOrders"
+      class="collapse show"
+      role="tabpanel"
+      aria-labelledby="#customizeHeader"
+      data-parent="#accordionOrders"
+    >
+      <div class="card-body">
+        
+        <pagination-controls class="hide-page-numbers" (pageChange)="pageNumber = $event" previousLabel="" nextLabel="" autoHide="true"></pagination-controls>
+        <li
+          class="list-group d-flex flex-row flex-wrap btn-group btn-group-toggle"
+          data-toggle="buttons"
+        >
+          <ul
+            class="d-flex justify-content-center w-50 categoryRow"
+            *ngFor="let category of categories | paginate: { itemsPerPage: 6, currentPage: pageNumber }"
+          >
+            <button
+              type="radio"
+              class="categoryButton btn-lg btn-info d-flex align-items-center justify-content-between"
+              (click)="showCategory(category.id, category.icon)"
+            >
+              <img src="../../../../../assets/images/{{ category.icon }}" />
+              <div class="responsive-width">{{ category.name }}</div>
+            </button>
+            
+          </ul>
+          
+      </li>
+      
+        <li>
+          <ul *ngFor="let product of products">
+            <button
+              class="productInfo d-flex justify-content-between globalShadow"
+              (click)="addToSummaryProducts(product, 1)"
+              *ngIf="product.categoryId == choosenCategoryId"
+            >
+              <div>{{ product.name }}</div>
+              <fa-icon class="iconAddProduct" [icon]="iconPlusCircle"></fa-icon>
+            </button>
+          </ul>
+        </li>
+      </div>
+    </div>
+  </div>
+  <div class="card container-fluid">
+    <div
+      class="card-header"
+      role="tab"
+      id="summaryHeader"
+      (click)="updateProductsToAdd()"
+    >
+      <a
+        class="collapsed"
+        data-toggle="collapse"
+        data-parent="#accordionOrders"
+        href="#collapseSummary"
+        aria-expanded="false"
+        aria-controls="collapseSummary"
+      >
+        <h3 class="title container-fluid">
+          Chosen products
+        </h3>
+      </a>
+      <span class="badge badge-pill badge-info" *ngIf="counterBadge > 0">{{
+        counterBadge
+      }}</span>
+    </div>
+
+    <div
+      id="collapseSummary"
+      class="collapse"
+      role="tabpanel"
+      aria-labelledby="#summaryHeader"
+      data-parent="#accordionOrders"
+    >
+      <div class="card-body">
+        <app-order-summary [tableID]="tableID" [productsToAdd]="productsToAdd" (close)="closeBottomSheet($event)"></app-order-summary>
+      </div>
+    </div>
+  </div>
+</section>

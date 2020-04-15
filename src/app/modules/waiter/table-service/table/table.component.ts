@@ -3,12 +3,11 @@ import { ActivatedRoute } from '@angular/router';
 import { Table } from 'src/app/models/table';
 import { TableService } from 'src/app/services/table.service';
 import { Subscription } from 'rxjs';
-import {MatBottomSheet, MatBottomSheetRef} from '@angular/material/bottom-sheet';
+import {MatBottomSheet} from '@angular/material/bottom-sheet';
 import { faTimes} from  "@fortawesome/free-solid-svg-icons";
 import { faPlusCircle} from  "@fortawesome/free-solid-svg-icons";
 import { faFileInvoiceDollar} from  "@fortawesome/free-solid-svg-icons";
 import { TableAddOrderComponent} from  "../table-add-order/table-add-order.component";
-
 @Component({
   selector: 'app-table',
   templateUrl: './table.component.html',
@@ -53,7 +52,10 @@ export class TableComponent implements OnInit, OnDestroy {
   }
 
   openBottomSheet(): void {
-    this._bottomSheet.open(TableAddOrderComponent);
+    this._bottomSheet.open(TableAddOrderComponent,{
+      data: {id:this.id}
+    });
   }
+  
 
 }

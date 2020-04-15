@@ -1,73 +1,90 @@
-@import '../../../../../styles.scss';
-section{
-    padding:0;
-    margin:0;
+@import "../../../../../styles.scss";
+section {
+  padding: 0;
+  margin: 0;
 }
 
-.card{
-    padding:0;
+.card {
+  padding: 0;
+}
 
+h3 {
+  padding: 0;
 }
-.title{
-  text-align:center;
-   //font-weight:bold; 
-   font-size:30px;
-  //@extend align-items:center;
-   //display:flex;
-  // justify-content:center;
+
+.title {
+  text-align: center;
+  font-size: 30px;
 }
-a:active, a:focus{
-    outline:0;
+
+a:active,
+a:focus {
+  outline: 0;
 }
-a:hover{
-    color:#aaa;
-    text-decoration:none;
+
+a:hover {
+  color: #aaa;
+  text-decoration: none;
 }
-.card-body{
-    padding:5px;
+
+.card-body {
+  padding: 5px;
 }
-.collapsed{
-    color:black;
-    font-weight:bold;
+
+.collapsed {
+  color: black;
+  font-weight: bold;
 }
-a{
-    color:black;
+a {
+  color: black;
 }
-.categoryButton{
-    //margin:auto;
-    //max-width:150px;
-    width:95%;
-    max-height:50px;
-    font-weight:bold;
-    border-radius:2em;
+.categoryButton {
+  width: 95%;
+  max-height: 50px;
+  font-weight: bold;
+  border-radius: 2em;
 }
-.categoryButton:focus{
-    outline:0;
+
+.categoryButton:focus {
+  outline: 0;
 }
+
 .responsive-width {
-    font-size:80% ;
-    width:100px;
-    max-width:100px;
-    max-height:45px;
-    //display: flex;
-    //justify-content:space-between;
-    //flex-direction:column;
+  font-size: 80%;
+  width: 100px;
+  max-width: 100px;
+  max-height: 45px;
 }
 
-.productInfo{
-    font-size:20px;
-    background-color:$blue;
-    padding:10px;
-    width:100%;
-    //margin-left:5px;
-    //margin-right:5px;
+.badge {
+  font-size: 20px;
+  position: absolute;
+  right: 0px;
+  top: 0px;
+}
+
+.productInfo {
+  font-size: 20px;
+  background-color: $blue;
+  padding: 10px;
+  width: 100%;
+  border-radius: 1em;
+  outline: none;
+  border: none;
+  color: black;
+}
+
+.productInfo:active,
+.productInfo:focus {
+  outline: 0;
+}
+
+
+pagination-controls {
+    text-align:center;
+    font-size:25px;
     border-radius:1em;
-    outline:none;
-    border:none;
-    color:black;
-}
 
-.productInfo:active, .productInfo:focus{
-    outline:0;
-}
-
+     
+  }
+  

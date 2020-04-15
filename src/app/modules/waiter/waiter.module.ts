@@ -14,6 +14,9 @@ import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
 import { TableAddOrderComponent } from './table-service/table-add-order/table-add-order.component';
 import {MatBottomSheetModule} from '@angular/material/bottom-sheet';
 import { OrderSummaryComponent } from './table-service/order-summary/order-summary.component';
+import {NgxPaginationModule} from 'ngx-pagination';
+
+
 @NgModule({
   declarations: [
     WaiterMainComponent, 
@@ -24,7 +27,8 @@ import { OrderSummaryComponent } from './table-service/order-summary/order-summa
     ReservationsMainComponent,
     ReservationViewComponent,
     TableAddOrderComponent,
-    OrderSummaryComponent
+    OrderSummaryComponent,
+    
   ],
   imports: [
     CommonModule,
@@ -32,8 +36,7 @@ import { OrderSummaryComponent } from './table-service/order-summary/order-summa
     FormsModule,
     FontAwesomeModule,
     MatBottomSheetModule,
-    
-    
+    NgxPaginationModule
   ]
 })
 export class WaiterModule { }
