@@ -87,4 +87,19 @@ pagination-controls {
 
      
   }
-  
+  select {
+    max-width: 200px;
+    border-radius: 1em;
+    //padding: 4px 8px;
+    font-size: 20px;
+    margin: 5px;
+    outline: none;
+    margin:auto;
+    text-align: center;
+}
+
+.select-box {
+    margin-bottom: 1em;
+    margin-top: 1em;
+    text-align: center;
+}

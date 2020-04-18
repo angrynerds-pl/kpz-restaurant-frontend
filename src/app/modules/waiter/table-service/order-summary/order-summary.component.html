@@ -19,7 +19,7 @@
           class="amountButton"
           (click)="changeAmountOfProduct(1, productToAdd)"
         >
-          <fa-icon [icon]="iconPlusCircle"></fa-icon>
+          <fa-icon [icon]="iconPlus"></fa-icon>
         </button>
       </div>
     </ul>
@@ -29,10 +29,12 @@
         type="text"
         placeholder="Additional comments in regard to order"
         class="form-control glaobalShadow"
+        name='notes'
+        [(ngModel)]='notes'
       />
     </ul>
   </li>
   <div class="summary container-fluid">
-    <a type="button" (click)="createOrder()" ><fa-icon [icon]="iconPlusCircle"></fa-icon></a>
+    <a type="button" (click)="manageOrder()" ><fa-icon [icon]="iconPlusCircle"></fa-icon></a>
   </div>
 </section>

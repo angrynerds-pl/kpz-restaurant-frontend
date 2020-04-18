@@ -28,20 +28,25 @@
       data-parent="#accordionOrders"
     >
       <div class="card-body">
-        
+        <div class="select-box">
+          <select [(ngModel)]="currentCategory" class="form-control globalShadow">
+              <option [ngValue]="category" *ngFor='let category of categories'>{{category.name}}</option>
+              
+          </select>
+      </div>
         <pagination-controls class="hide-page-numbers" (pageChange)="pageNumber = $event" previousLabel="" nextLabel="" autoHide="true"></pagination-controls>
         <li
           class="list-group d-flex flex-row flex-wrap btn-group btn-group-toggle"
-          data-toggle="buttons"
+          data-toggle="buttons" 
         >
           <ul
-            class="d-flex justify-content-center w-50 categoryRow"
+            class="d-flex justify-content-center w-50 categoryRow"  
             *ngFor="let category of categories | paginate: { itemsPerPage: 6, currentPage: pageNumber }"
           >
-            <button
-              type="radio"
+            <button 
+              type="radio"  (click)="setCategory(category)"
               class="categoryButton btn-lg btn-info d-flex align-items-center justify-content-between"
-              (click)="showCategory(category.id, category.icon)"
+              
             >
               <img src="../../../../../assets/images/{{ category.icon }}" />
               <div class="responsive-width">{{ category.name }}</div>
@@ -56,7 +61,7 @@
             <button
               class="productInfo d-flex justify-content-between globalShadow"
               (click)="addToSummaryProducts(product, 1)"
-              *ngIf="product.categoryId == choosenCategoryId"
+              *ngIf="product.categoryId == currentCategory.id"
             >
               <div>{{ product.name }}</div>
               <fa-icon class="iconAddProduct" [icon]="iconPlusCircle"></fa-icon>
@@ -71,7 +76,7 @@
       class="card-header"
       role="tab"
       id="summaryHeader"
-      (click)="updateProductsToAdd()"
+      (click)="counterBadge = 0"
     >
       <a
         class="collapsed"
@@ -98,7 +103,7 @@
       data-parent="#accordionOrders"
     >
       <div class="card-body">
-        <app-order-summary [tableID]="tableID" [productsToAdd]="productsToAdd" (close)="closeBottomSheet($event)"></app-order-summary>
+        <app-order-summary [tableID]="tableID" [orderEdit]="orderEdit" [productsToAdd]="productsToAdd" (close)="closeBottomSheet($event)"></app-order-summary>
       </div>
     </div>
   </div>

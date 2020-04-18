@@ -1,0 +1,7 @@
+<section class="container-fluid">
+    <label for="billSelect">Bill</label>
+    <select id="billSelect" [(ngModel)] = "billNumber" class="form-control"><option *ngFor="let number of billAmount">{{number}}</option></select>
+    {{billNumber}}
+
+</section>
+

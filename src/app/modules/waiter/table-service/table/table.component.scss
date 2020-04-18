@@ -53,6 +53,20 @@ header {
     border:none;
 }
 
+.orderInformation{
+    margin-top:20px;
+    
+    font-size:20px;
+}
+
+
+.orderHeader{
+    font-size:25px;
+    border-top:2px solid black;
+    padding-top:20px;
+}
+
+
 .summary{
     position: absolute;
     bottom:0;
@@ -60,6 +74,11 @@ header {
     text-align:center;
     font-size:60px;
     
+}
+
+.productInfo{
+    border-radius:1em;
+    padding:0 10px;
 }
 
 

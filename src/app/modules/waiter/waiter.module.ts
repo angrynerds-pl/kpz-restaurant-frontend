@@ -15,6 +15,7 @@ import { TableAddOrderComponent } from './table-service/table-add-order/table-ad
 import {MatBottomSheetModule} from '@angular/material/bottom-sheet';
 import { OrderSummaryComponent } from './table-service/order-summary/order-summary.component';
 import {NgxPaginationModule} from 'ngx-pagination';
+import { BillComponent } from './table-service/bill/bill.component';
 
 
 @NgModule({
@@ -28,6 +29,7 @@ import {NgxPaginationModule} from 'ngx-pagination';
     ReservationViewComponent,
     TableAddOrderComponent,
     OrderSummaryComponent,
+    BillComponent,
     
   ],
   imports: [

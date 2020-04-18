@@ -3,12 +3,14 @@ import { MenuProduct } from "../models/menu-product";
 import { Observable } from "rxjs";
 import { of as ObservableOf } from "rxjs";
 import { ProductToAdd } from "../models/product-to-add";
+import { ProductService } from './product.service';
 @Injectable({
   providedIn: "root",
 })
 export class ProductsToOrderService {
   productsToAdd: ProductToAdd[];
-  constructor() {
+  productToAdd:ProductToAdd;
+  constructor(private productService:ProductService) {
     this.productsToAdd = [];
   }
 
@@ -46,5 +48,16 @@ export class ProductsToOrderService {
   }
   resetProducts() {
     this.productsToAdd = [];
+  }
+
+
+  editProdroductsFromOrder(productInOrder){
+    productInOrder.forEach(element => {
+      this.addProduct(this.productService.getProduct(element.productID),1);
+    });
+  }
+
+  editOrder(){
+    
   }
 }
