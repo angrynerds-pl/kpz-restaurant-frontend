@@ -12,6 +12,9 @@
             <input type="password" name="password" formControlName="password">
             <ng-container *ngIf="registerForm.get('password').touched && registerForm.get('password').errors">
                 <span class="warning"  *ngIf="registerForm.get('password').errors.required">Password cannot be empty</span>
+                <span class="warning"  *ngIf="registerForm.get('password').errors.pattern">
+                    Password must have 6-40 characters including numbers, small and large letters
+                </span>
             </ng-container>
         </div>
     </div>
