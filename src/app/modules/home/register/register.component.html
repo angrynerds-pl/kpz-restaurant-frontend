@@ -1,1 +1,46 @@
-<p>register works!</p>
+<form (submit)="submit($event)" [formGroup]="registerForm">
+    <div class="row">
+        <div class="input-box col-sm-6">
+            <label for="username">USERNAME</label>
+            <input type="text" name="username" formControlName="username">
+            <ng-container *ngIf="registerForm.get('username').touched && registerForm.get('username').errors">
+                <span class="warning" *ngIf="registerForm.get('username').errors.required">Username cannot be empty</span>
+            </ng-container>
+        </div>
+        <div class="input-box col-sm-6">
+            <label for="password">PASSWORD</label>
+            <input type="password" name="password" formControlName="password">
+            <ng-container *ngIf="registerForm.get('password').touched && registerForm.get('password').errors">
+                <span class="warning"  *ngIf="registerForm.get('password').errors.required">Password cannot be empty</span>
+            </ng-container>
+        </div>
+    </div>
+    <div class="row">
+        <div class="input-box col-sm-6">
+            <label for="firstName">FIRST NAME</label>
+            <input type="firstName" name="firstName" formControlName="firstName">
+            <ng-container *ngIf="registerForm.get('firstName').touched && registerForm.get('firstName').errors">
+                <span class="warning"  *ngIf="registerForm.get('firstName').errors.required">First name cannot be empty</span>
+            </ng-container>
+        </div>
+        <div class="input-box col-sm-6">
+            <label for="lastName">LAST NAME</label>
+            <input type="lastName" name="lastName" formControlName="lastName">
+            <ng-container *ngIf="registerForm.get('lastName').touched && registerForm.get('lastName').errors">
+                <span class="warning"  *ngIf="registerForm.get('lastName').errors.required">Last name cannot be empty</span>
+            </ng-container>
+        </div>
+    </div>
+    <div class="row">
+        <div class="input-box col-12">
+            <label for="restaurant">RESTAURANT NAME</label>
+            <input type="restaurant" name="restaurant" formControlName="restaurant">
+            <ng-container *ngIf="registerForm.get('restaurant').touched && registerForm.get('restaurant').errors">
+                <span class="warning"  *ngIf="registerForm.get('restaurant').errors.required">Restaurant name cannot be empty</span>
+            </ng-container>
+        </div>
+    </div>
+    <div class="button-box">
+        <button class="btnSubmit" [disabled]="!registerForm.valid" type="submit">REGISTER</button>
+    </div>
+</form>
