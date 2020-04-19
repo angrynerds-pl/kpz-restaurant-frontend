@@ -3,6 +3,7 @@ import { MenuProduct } from 'src/app/models/menu-product';
 import { ProductService } from 'src/app/services/product.service';
 import { OrderService } from 'src/app/services/order.service';
 import { NgClass } from '@angular/common';
+import { Order } from 'src/app/models/order';
 
 @Component({
   selector: 'app-order-panel',
@@ -11,24 +12,26 @@ import { NgClass } from '@angular/common';
 })
 export class OrderPanelComponent implements OnInit {
 
-  isReady: boolean =false;
-  products:MenuProduct[];
-  color: any;
-  value: any;
+  productId:number;
+  orders:Order[];
   constructor(private orderService:OrderService) { }
 
   ngOnInit(): void {
-    this.loadProducts();
+
+    this.loadOrders();
   }
 
-  loadProducts() {
-    this.orderService.getProducts().subscribe(products =>{
-      this.products = products;
+  loadOrders ()
+  {
+    this.orderService.getOrders().subscribe(orders =>{
+      
+      this.orders = orders;
+      //sorting so the longest order is at the end 
+      this.orders.sort((n1,n2) => {
+        if (n1.productsInOrder.length > n2.productsInOrder.length)
+        return 1;
+        else return -1;
+      });
     })
   }
-  changeColor(){
-    this.isReady ? this.isReady=false : this.isReady=true;
-  }
-    
-  
 }

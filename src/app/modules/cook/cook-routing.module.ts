@@ -4,8 +4,7 @@ import { CookMainComponent } from './cook-main/cook-main.component';
 import { OrderPanelComponent } from './order-panel/order-panel.component';
 
 const routes: Routes = [
-  {path: '', component: CookMainComponent},
-  {path: 'order-panel', component: OrderPanelComponent}
+  {path: '', component: CookMainComponent}
 ];
 
 @NgModule({

@@ -1,14 +1,13 @@
-
-<div class="orderBackground globalShadow">
-    <div class="orderTitle globalShadow">
-        Order 1
-    </div>
-    <div class="timer">
-        20 minut zostało mordo
-    </div>
-    <div *ngFor = "let product of products" class="orderContent ">
-        <div class="componentDiv" [ngClass]="{componentReady : isReady}" (click)="changeColor()">
-            <span class="componentName">{{product.name}}</span>
+<div class="grid">
+    <ng-container *ngFor = "let order of orders">
+        <div class="orderBackground globalShadow">
+        <div class="orderTitle globalShadow">
+            {{order.id}}
         </div>
-    </div>
+        <div class="timer">
+            {{order.date}}
+        </div>       
+            <app-order-item [productInOrder]="order.productsInOrder"></app-order-item>
+        </div>
+    </ng-container>
 </div>
