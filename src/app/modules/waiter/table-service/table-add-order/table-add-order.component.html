@@ -29,7 +29,7 @@
     >
       <div class="card-body">
         <div class="select-box">
-          <select [(ngModel)]="currentCategory" class="form-control globalShadow">
+          <select [(ngModel)]="currentCategory" class="form-control globalShadow borderRadius">
               <option [ngValue]="category" *ngFor='let category of categories'>{{category.name}}</option>
               
           </select>
@@ -45,7 +45,7 @@
           >
             <button 
               type="radio"  (click)="setCategory(category)"
-              class="categoryButton btn-lg btn-info d-flex align-items-center justify-content-between"
+              class="categoryButton btn-lg btn-info d-flex align-items-center justify-content-between globalShadow"
               
             >
               <img src="../../../../../assets/images/{{ category.icon }}" />

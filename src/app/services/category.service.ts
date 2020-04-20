@@ -19,7 +19,7 @@ export class CategoryService {
       
       {id:4,name: "Chinese",icon: "starter.jpg"},
       
-      {id:5,name: "Fishes",icon: "starter.jpg"},
+      {id:5,name: "Fish",icon: "starter.jpg"},
       {id:6,name: "Burgers",icon: "starter.jpg"},
       {id:7,name: "Burgers",icon: "starter.jpg"},
       {id:8,name: "Burgers",icon: "starter.jpg"},

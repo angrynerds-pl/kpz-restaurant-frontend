@@ -6,6 +6,7 @@ section {
 
 .card {
   padding: 0;
+  border-radius:20px;
 }
 
 h3 {
@@ -42,7 +43,7 @@ a {
   width: 95%;
   max-height: 50px;
   font-weight: bold;
-  border-radius: 2em;
+  border-radius:25px;
 }
 
 .categoryButton:focus {
@@ -68,7 +69,7 @@ a {
   background-color: $blue;
   padding: 10px;
   width: 100%;
-  border-radius: 1em;
+  border-radius: 20px;
   outline: none;
   border: none;
   color: black;
@@ -102,4 +103,9 @@ pagination-controls {
     margin-bottom: 1em;
     margin-top: 1em;
     text-align: center;
+}
+
+
+.borderRadius{
+  border-radius:20px;
 }
