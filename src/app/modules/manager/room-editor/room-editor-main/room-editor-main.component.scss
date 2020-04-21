@@ -11,11 +11,8 @@ p {
 select {
     min-width: 60px;
     margin: 0px 8px;
-}
-
-select {
     border-radius: 8px;
-    padding: 4px 8px;
+    padding: 0px 8px;
 }
 
 .grid-box {
@@ -74,4 +71,8 @@ form {
 
 label {
     margin: 0;
+}
+
+app-table-option{
+    margin: 3px;
 }

@@ -1,6 +1,6 @@
 import { Component, OnInit, Output, EventEmitter, Input, OnDestroy } from '@angular/core';
 import { Table } from 'src/app/models/table';
-import { faCog } from "@fortawesome/free-solid-svg-icons";
+import { faCog, faTrashAlt, faPlusCircle } from "@fortawesome/free-solid-svg-icons";
 import { MatDialog } from '@angular/material/dialog';
 import { TableEditDialogComponent } from '../table-edit-dialog/table-edit-dialog.component';
 import { Subscription } from 'rxjs';
@@ -13,7 +13,9 @@ export class TableOptionComponent implements OnInit, OnDestroy {
 
   selected: boolean = false;
 
-  icon = faCog;
+  settingsIcon = faCog;
+  trashIcon = faTrashAlt;
+  plusIcon = faPlusCircle;
 
   @Input() table: Table;
   @Input() coordX: number;
@@ -36,26 +38,21 @@ export class TableOptionComponent implements OnInit, OnDestroy {
   }
 
   select(){
-    if(this.selected){
-      if(confirm('Table will be deleted! Continue?')){
-        this.deleteTable.emit(this.table);
-        this.selected = !this.selected;
-      }
-    }
-    else{
+    if(!this.selected){
       this.addTable.emit(this.table);
       this.selected = !this.selected;
     }
   }
 
-  edit(event){
-    event.stopPropagation();
-    this.openDialog();
+  delete(){
+    if(confirm('Table will be deleted! Continue?')){
+      this.deleteTable.emit(this.table);
+      this.selected = !this.selected;
+    }
   }
 
-  getClass(){
-    if(this.selected) return "table-view table-option selected";
-    return "table-view table-option";
+  edit(){
+    this.openDialog();
   }
 
   openDialog(){

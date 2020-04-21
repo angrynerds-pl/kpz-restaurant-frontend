@@ -56,6 +56,7 @@ export class RoomEditorMainComponent implements OnInit, OnDestroy {
     this.tables = [];
     this.grid = new Array(this.rows).fill(null).map(() => new Array(this.columns).fill(null));
     this.picked = true;
+    this.rows = this.columns = null;
   }
 
   add(table){
