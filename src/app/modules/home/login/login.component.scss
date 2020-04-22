@@ -25,6 +25,7 @@ input {
     -webkit-box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     -moz-box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    text-align: center;
 }
 
 input.ng-touched.ng-invalid{
@@ -32,14 +33,13 @@ input.ng-touched.ng-invalid{
 }
 
 .input-box {
-    margin: 1em;
+    margin: 0.5em 0em;
     box-shadow: rgba(0, 0, 0, 0.25);
 }
 
 .btnSubmit {
     padding: 8px 16px;
     border: 0px;
-    margin: 1em;
     font-size: 24px;
     border-radius: 8px;
     min-width: 125px;
@@ -61,4 +61,19 @@ input.ng-touched.ng-invalid{
 .warning {
     display: block;
     color: $invalid;
+}
+
+a {
+    color: $textLight;
+    text-decoration: none;
+    display: block;
+    padding: 16px;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+.button-box {
+    margin: 1em;
 }
