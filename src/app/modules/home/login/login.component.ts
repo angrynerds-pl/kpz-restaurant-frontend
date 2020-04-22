@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/services/auth.service';
 import { Subscription } from 'rxjs';
 import { LocalStorageService } from 'src/app/services/local-storage.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-login',
@@ -12,25 +13,27 @@ import { LocalStorageService } from 'src/app/services/local-storage.service';
 export class LoginComponent implements OnInit, OnDestroy {
 
   loginForm: FormGroup;
-
   loginSubscription: Subscription;
 
-  constructor(private formBuilder:FormBuilder, private authService:AuthService, private localStorageService:LocalStorageService) { }
+  constructor(private formBuilder:FormBuilder, private authService:AuthService, 
+    private localStorageService:LocalStorageService, private toastrService:ToastrService) { }
 
   ngOnInit(): void {
     this.loginForm = this.formBuilder.group({
-      username: [null, Validators.required],
-      password: [null, Validators.required]
+      Username: [null, Validators.required],
+      Password: [null, Validators.required]
     })
   }
 
   submit(event){
     event.preventDefault();
-    console.log(this.loginForm.value);
-    // this.loginSubscription = this.authService.login(this.loginForm.get('login').value, this.loginForm.get('password').value)
-    // .subscribe(data => {
-    //   this.localStorageService.setToken(data.token);
-    // })
+    this.loginSubscription = this.authService.login(this.loginForm.get('Username').value, this.loginForm.get('Password').value)
+    .subscribe(data => {
+      this.localStorageService.setToken(data.token);
+      this.toastrService.success('Welcome!');
+    }, error => {
+      this.toastrService.error('Error!', 'Invalid login or password');
+    })
   }
 
   ngOnDestroy(){

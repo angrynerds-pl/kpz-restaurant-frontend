@@ -1,16 +1,16 @@
 <form (submit)="submit($event)" [formGroup]="loginForm">
     <div class="input-box">
         <label for="username">USERNAME</label>
-        <input type="text" name="username" formControlName="username">
-        <ng-container *ngIf="loginForm.get('username').touched && loginForm.get('username').errors">
-            <span class="warning" *ngIf="loginForm.get('username').errors.required">Username cannot be empty</span>
+        <input type="text" name="username" formControlName="Username">
+        <ng-container *ngIf="loginForm.get('Username').touched && loginForm.get('Username').errors">
+            <span class="warning" *ngIf="loginForm.get('Username').errors.required">Username cannot be empty</span>
         </ng-container>
     </div>
     <div class="input-box">
         <label for="password">PASSWORD</label>
-        <input type="password" name="password" formControlName="password">
-        <ng-container *ngIf="loginForm.get('password').touched && loginForm.get('password').errors">
-            <span class="warning"  *ngIf="loginForm.get('password').errors.required">Password cannot be empty</span>
+        <input type="password" name="password" formControlName="Password">
+        <ng-container *ngIf="loginForm.get('Password').touched && loginForm.get('Password').errors">
+            <span class="warning"  *ngIf="loginForm.get('Password').errors.required">Password cannot be empty</span>
         </ng-container>
     </div>
     <div class="button-box">
