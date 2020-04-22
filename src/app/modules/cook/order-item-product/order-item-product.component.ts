@@ -32,7 +32,6 @@ export class OrderItemProductComponent implements OnInit {
     else return 'componentPicked';
   }
   changeStatus(){
-   // console.log(this.status);
     return this.status==1 ? this.status=2 : this.status=1;
   }
 
