@@ -21,8 +21,7 @@ export class OrderPanelComponent implements OnInit {
     this.loadOrders();
   }
 
-  loadOrders ()
-  {
+  loadOrders () {
     this.orderService.getOrders().subscribe(orders =>{
       
       this.orders = orders;
