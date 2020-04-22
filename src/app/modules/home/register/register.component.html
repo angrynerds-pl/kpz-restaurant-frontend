@@ -2,17 +2,17 @@
     <div class="row">
         <div class="input-box col-sm-6">
             <label for="username">USERNAME</label>
-            <input type="text" name="username" formControlName="username">
-            <ng-container *ngIf="registerForm.get('username').touched && registerForm.get('username').errors">
-                <span class="warning" *ngIf="registerForm.get('username').errors.required">Username cannot be empty</span>
+            <input type="text" name="username" formControlName="Username">
+            <ng-container *ngIf="registerForm.get('Username').touched && registerForm.get('Username').errors">
+                <span class="warning" *ngIf="registerForm.get('Username').errors.required">Username cannot be empty</span>
             </ng-container>
         </div>
         <div class="input-box col-sm-6">
             <label for="password">PASSWORD</label>
-            <input type="password" name="password" formControlName="password">
-            <ng-container *ngIf="registerForm.get('password').touched && registerForm.get('password').errors">
-                <span class="warning"  *ngIf="registerForm.get('password').errors.required">Password cannot be empty</span>
-                <span class="warning"  *ngIf="registerForm.get('password').errors.pattern">
+            <input type="password" name="password" formControlName="Password">
+            <ng-container *ngIf="registerForm.get('Password').touched && registerForm.get('Password').errors">
+                <span class="warning"  *ngIf="registerForm.get('Password').errors.required">Password cannot be empty</span>
+                <span class="warning"  *ngIf="registerForm.get('Password').errors.pattern">
                     Password must have 6-40 characters including numbers, small and large letters
                 </span>
             </ng-container>
@@ -21,25 +21,25 @@
     <div class="row">
         <div class="input-box col-sm-6">
             <label for="firstName">FIRST NAME</label>
-            <input type="firstName" name="firstName" formControlName="firstName">
-            <ng-container *ngIf="registerForm.get('firstName').touched && registerForm.get('firstName').errors">
-                <span class="warning"  *ngIf="registerForm.get('firstName').errors.required">First name cannot be empty</span>
+            <input type="firstName" name="firstName" formControlName="FirstName">
+            <ng-container *ngIf="registerForm.get('FirstName').touched && registerForm.get('FirstName').errors">
+                <span class="warning"  *ngIf="registerForm.get('FirstName').errors.required">First name cannot be empty</span>
             </ng-container>
         </div>
         <div class="input-box col-sm-6">
             <label for="lastName">LAST NAME</label>
-            <input type="lastName" name="lastName" formControlName="lastName">
-            <ng-container *ngIf="registerForm.get('lastName').touched && registerForm.get('lastName').errors">
-                <span class="warning"  *ngIf="registerForm.get('lastName').errors.required">Last name cannot be empty</span>
+            <input type="lastName" name="lastName" formControlName="LastName">
+            <ng-container *ngIf="registerForm.get('LastName').touched && registerForm.get('LastName').errors">
+                <span class="warning"  *ngIf="registerForm.get('LastName').errors.required">Last name cannot be empty</span>
             </ng-container>
         </div>
     </div>
     <div class="row">
         <div class="input-box col-12">
             <label for="restaurant">RESTAURANT NAME</label>
-            <input type="restaurant" name="restaurant" formControlName="restaurant">
-            <ng-container *ngIf="registerForm.get('restaurant').touched && registerForm.get('restaurant').errors">
-                <span class="warning"  *ngIf="registerForm.get('restaurant').errors.required">Restaurant name cannot be empty</span>
+            <input type="restaurant" name="restaurant" formControlName="RestaurantName">
+            <ng-container *ngIf="registerForm.get('RestaurantName').touched && registerForm.get('RestaurantName').errors">
+                <span class="warning"  *ngIf="registerForm.get('RestaurantName').errors.required">Restaurant name cannot be empty</span>
             </ng-container>
         </div>
     </div>
