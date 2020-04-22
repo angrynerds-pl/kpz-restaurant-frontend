@@ -31,6 +31,7 @@ export class LocalStorageService {
 
   logout(){
     localStorage.removeItem('token');
+    localStorage.removeItem('role');
   }
 
   getDecodedAccessToken(token: string): any {
