@@ -16,6 +16,7 @@ import {MatBottomSheetModule} from '@angular/material/bottom-sheet';
 import { OrderSummaryComponent } from './table-service/order-summary/order-summary.component';
 import {NgxPaginationModule} from 'ngx-pagination';
 import { BillComponent } from './table-service/bill/bill.component';
+import {MatSelectModule} from '@angular/material/select';
 
 
 @NgModule({
@@ -38,7 +39,8 @@ import { BillComponent } from './table-service/bill/bill.component';
     FormsModule,
     FontAwesomeModule,
     MatBottomSheetModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    MatSelectModule
   ]
 })
 export class WaiterModule { }

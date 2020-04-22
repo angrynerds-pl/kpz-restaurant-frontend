@@ -17,7 +17,7 @@ import { Subscription } from "rxjs";
 import { MatBottomSheetRef } from "@angular/material/bottom-sheet";
 import {MAT_BOTTOM_SHEET_DATA} from '@angular/material/bottom-sheet';
 import { ProductInOrder } from 'src/app/models/product-in-order';
-
+import {MatSelect} from "@angular/material/select";
 @Component({
   selector: "app-table-add-order",
   templateUrl: "./table-add-order.component.html",

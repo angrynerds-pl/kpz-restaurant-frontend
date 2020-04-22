@@ -3,26 +3,18 @@ section {
   padding: 0;
   margin: 0;
 }
-
 .card {
   padding: 0;
   border-radius:20px;
 }
-
-h3 {
-  padding: 0;
-}
-
 .title {
   text-align: center;
-  font-size: 30px;
+  font-size: 20px;
 }
-
 a:active,
 a:focus {
   outline: 0;
 }
-
 a:hover {
   color: #aaa;
   text-decoration: none;
@@ -32,38 +24,14 @@ a:hover {
   padding: 5px;
 }
 
-.collapsed {
-  color: black;
-  font-weight: bold;
-}
 a {
   color: black;
 }
-.categoryButton {
-  width: 95%;
-  max-height: 50px;
-  font-weight: bold;
-  border-radius:25px;
-}
 
-.categoryButton:focus {
-  outline: 0;
-}
 
-.responsive-width {
-  font-size: 80%;
-  width: 100px;
-  max-width: 100px;
-  max-height: 45px;
+.collapsed{
+  font-weight:normal;
 }
-
-.badge {
-  font-size: 20px;
-  position: absolute;
-  right: 0px;
-  top: 0px;
-}
-
 .productInfo {
   font-size: 20px;
   background-color: $blue;
@@ -79,16 +47,10 @@ a {
 .productInfo:focus {
   outline: 0;
 }
-
-
-pagination-controls {
-    text-align:center;
-    font-size:25px;
-    border-radius:1em;
-
-     
-  }
-  select {
+.iconAddProduct{
+  font-size:15px;
+}
+select {
     max-width: 200px;
     border-radius: 1em;
     //padding: 4px 8px;
@@ -108,4 +70,16 @@ pagination-controls {
 
 .borderRadius{
   border-radius:20px;
+}
+mat-form-field{
+  width:200px;
+}
+.categorySelectView{
+  display:flex;
+  justify-content:center;
+  align-items: center;
+  font-size:25px;
+  img{
+    margin-right:20px;
+  }
 }

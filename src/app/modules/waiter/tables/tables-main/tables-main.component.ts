@@ -4,7 +4,7 @@ import { TableService } from 'src/app/services/table.service';
 import { Room } from 'src/app/models/room';
 import { Table } from 'src/app/models/table';
 import { Subscription } from 'rxjs';
-
+import { faBars } from "@fortawesome/free-solid-svg-icons";
 @Component({
   selector: 'app-tables',
   templateUrl: './tables-main.component.html',
@@ -12,6 +12,7 @@ import { Subscription } from 'rxjs';
 })
 export class TablesMainComponent implements OnInit, OnDestroy {
 
+  menuIcon = faBars;
   rooms: Array<Room>;
   tables: Array<Table>;
   currentRoom: Room;

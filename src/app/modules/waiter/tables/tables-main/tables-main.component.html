@@ -26,4 +26,30 @@
             </div>
         </ng-container>
     </div>
+    <a
+    class="float"
+    type="button"
+    data-toggle="dropdown"
+    aria-haspopup="true"
+    aria-expanded="false"
+  >
+    <fa-icon id="menuBars" [icon]="menuIcon"></fa-icon>
+  </a>
+  <div class="dropdown-menu dropdown-primary globalShadow">
+    <a
+      class="dropdown-item nav-link"
+      routerLink="/waiter/reservations"
+      routerLinkActive="active"
+      >Reservations
+    </a>
+
+    <a
+      class="dropdown-item nav-link"
+      routerLink="/waiter/tables"
+      routerLinkActive="active"
+      >Service</a
+    >
+    <!--a-- class="dropdown-item" routerLink="">My orders</!--a-->
+    <a class="dropdown-item" routerLink="">Logout</a>
+  </div>
 </section>

@@ -14,9 +14,9 @@
         aria-expanded="false"
         aria-controls="collapseOrders"
       >
-        <h3 class="title">
+        <h4 class="title">
           Customize order
-        </h3>
+        </h4>
       </a>
     </div>
 
@@ -29,33 +29,18 @@
     >
       <div class="card-body">
         <div class="select-box">
-          <select [(ngModel)]="currentCategory" class="form-control globalShadow borderRadius">
-              <option [ngValue]="category" *ngFor='let category of categories'>{{category.name}}</option>
-              
-          </select>
-      </div>
-        <pagination-controls class="hide-page-numbers" (pageChange)="pageNumber = $event" previousLabel="" nextLabel="" autoHide="true"></pagination-controls>
-        <li
-          class="list-group d-flex flex-row flex-wrap btn-group btn-group-toggle"
-          data-toggle="buttons" 
-        >
-          <ul
-            class="d-flex justify-content-center w-50 categoryRow"  
-            *ngFor="let category of categories | paginate: { itemsPerPage: 6, currentPage: pageNumber }"
-          >
-            <button 
-              type="radio"  (click)="setCategory(category)"
-              class="categoryButton btn-lg btn-info d-flex align-items-center justify-content-between globalShadow"
-              
-            >
-              <img src="../../../../../assets/images/{{ category.icon }}" />
-              <div class="responsive-width">{{ category.name }}</div>
-            </button>
-            
-          </ul>
+          <mat-form-field>
+            <!--mat-label>Categories</!--mat-label-->
+            <mat-select  [(ngModel)]="currentCategory">
+              <mat-select-trigger>
+                <div class="categorySelectView"><img src="../../../../../assets/images/{{currentCategory.icon}}"alt="photo">{{currentCategory.name}}</div>
+              </mat-select-trigger>
+              <mat-option *ngFor='let category of categories' [value]="category"><div class="categorySelectView"><img src="../../../../../assets/images/{{category.icon}}"alt="photo">{{category.name}}</div></mat-option>
+            </mat-select>
+          </mat-form-field>
           
-      </li>
-      
+      </div>
+        
         <li>
           <ul *ngFor="let product of products">
             <button
@@ -86,13 +71,13 @@
         aria-expanded="false"
         aria-controls="collapseSummary"
       >
-        <h3 class="title container-fluid">
-          Chosen products
-        </h3>
+        <h4 class="title">
+          Chosen products <span class="badge badge-pill badge-info">{{
+            counterBadge
+          }}</span>
+        </h4>
       </a>
-      <span class="badge badge-pill badge-info" *ngIf="counterBadge > 0">{{
-        counterBadge
-      }}</span>
+      
     </div>
 
     <div
