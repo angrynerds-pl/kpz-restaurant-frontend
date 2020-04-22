@@ -1,13 +1,11 @@
-<div class="grid">
-    <ng-container *ngFor = "let order of orders">
-        <div class="orderBackground globalShadow">
-        <div class="orderTitle globalShadow">
-            {{order.id}}
-        </div>
-        <div class="timer">
-            {{order.date}}
-        </div>       
-            <app-order-item [productInOrder]="order.productsInOrder"></app-order-item>
-        </div>
-    </ng-container>
+<div class="grid" *ngFor = "let order of orders">
+      <div class="orderBackground globalShadow">
+      <div class="orderTitle globalShadow">
+          {{order.id}}
+      </div>
+      <div class="timer">
+          {{order.date}}
+      </div>       
+          <app-order-item [productInOrder]="order.productsInOrder"></app-order-item>
+      </div>
 </div>
