@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-
+import * as jwt_decode from "jwt-decode";
 @Injectable({
   providedIn: 'root'
 })
@@ -16,6 +16,14 @@ export class LocalStorageService {
     return localStorage.getItem('token');
   }
 
+  setRole(token: string){
+    localStorage.setItem('role', this.getDecodedAccessToken(token).role);
+  }
+
+  getRole(){
+    return localStorage.getItem('role');
+  }
+
   isLoggedIn(){
     if(localStorage.getItem('token')) return true;
     return false;
@@ -23,6 +31,15 @@ export class LocalStorageService {
 
   logout(){
     localStorage.removeItem('token');
+  }
+
+  getDecodedAccessToken(token: string): any {
+    try{
+        return jwt_decode(token);
+    }
+    catch(Error){
+        return null;
+    }
   }
 
 }
