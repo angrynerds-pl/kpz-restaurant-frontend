@@ -6,13 +6,14 @@ import { HomeRoutingModule } from './home-routing.module';
 import { LoginComponent } from './login/login.component';
 import { HomeMainComponent } from './home-main/home-main.component';
 import { WelcomeComponent } from './welcome/welcome.component';
+import { RegisterComponent } from './register/register.component';
 
 
 @NgModule({
   declarations: [
     LoginComponent, 
     HomeMainComponent, 
-    WelcomeComponent
+    WelcomeComponent, RegisterComponent
   ],
   imports: [
     CommonModule,
