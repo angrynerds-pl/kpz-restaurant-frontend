@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
+import { Register } from '../models/register';
 
 @Injectable({
   providedIn: 'root'
@@ -8,10 +10,19 @@ import { Observable } from 'rxjs';
 
 export class AuthService {
 
+  host: string = environment.host;
+
   constructor(private http:HttpClient) { }
 
-  login(login: string, password:string): Observable<any> {
-    return null; // to do
+  login(username: string, password:string): Observable<any> {
+    return this.http.post(this.host + 'api/login/authenticate', {
+      Username: username,
+      Password: password
+    });
   }
 
+  register(data: Register): Observable<any> {
+    return this.http.post(this.host + 'api/login/register', data);
+  }
+  
 }
