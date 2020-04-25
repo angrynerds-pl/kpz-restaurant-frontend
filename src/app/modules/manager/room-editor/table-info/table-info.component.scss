@@ -1,0 +1,15 @@
+@import '../../../../../styles.scss';
+
+section {
+    display: flex;
+    background-color: $gray;
+    padding: 16px;
+    margin: 4px;
+    border-radius: 8px;
+}
+
+p {
+    flex: 1;
+    text-align: center;
+    margin: 0;
+}

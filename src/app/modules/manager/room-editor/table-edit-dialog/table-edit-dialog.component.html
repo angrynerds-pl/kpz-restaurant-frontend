@@ -1,0 +1,17 @@
+<section>
+    <form [formGroup]="tableForm">
+        <label>Number</label>
+        <input type="number" formControlName="number">
+        <ng-container *ngIf="this.tableForm.get('number').touched && this.tableForm.get('number').errors">
+            <span class="warning">Invalid value</span>
+        </ng-container>
+        <label>Seats</label>
+        <input type="number" formControlName="seats">
+        <ng-container *ngIf="this.tableForm.get('seats').touched && this.tableForm.get('seats').errors">
+            <span class="warning">Invalid value</span>
+        </ng-container>
+        <div class="button-box">
+            <button [disabled]="!tableForm.valid" (click)="save()" type="submit">Save</button>
+        </div>
+    </form>
+</section>

@@ -1,0 +1,40 @@
+@import '../../../../../styles.scss';
+
+label, input {
+    display: block;
+}
+
+button{
+    padding: 8px 16px;
+    border-radius: 8px;
+    -webkit-appearance: none;
+    border: 0;
+    font-size: 14px;
+    margin: 1em auto;
+    color: $textLight;
+    background-color: $darkBlue;
+    transition: 0.5s ease-in-out;
+    outline: 0;
+    text-align: center;
+}
+
+button:not(:disabled):hover{
+    transform: scale(1.05);
+}
+
+section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.button-box{
+    text-align: center;
+}
+
+.warning {
+    display: block;
+    color: $invalid;
+    font-size: 12px;
+    text-align: center;
+}
