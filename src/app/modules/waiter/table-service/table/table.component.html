@@ -1,7 +1,50 @@
 <ng-container *ngIf="table">
-    <header [ngClass]="getClass()">
-        <span>Table #{{table.tableID}} </span>
-        <!--We will use icon later-->
-        <button routerLink="/waiter/tables" class="btnBack">X</button>
-    </header>
+  <header [ngClass]="getClassTable()">
+    <span>Table #{{ table.tableID }} </span>
+    
+    <a routerLink="/waiter/tables" class="btnBack"
+      ><fa-icon id="backIcon" [icon]="buttonBack"></fa-icon
+    ></a>
+  </header>
+
+  
+  <section class="tableOrders container-fluid col-12">
+    <div
+      class="d-flex align-items-center justify-content-between currentOrders"
+    >
+      <h3>Current orders</h3>
+      <button *ngIf="!productsInOrder"
+        class="btn btn-success globalShadow"
+        mat-raised-button
+        (click)="openBottomSheetOrder()"
+      >
+        <fa-icon [icon]="iconPlusCircle"></fa-icon> Add
+      </button>
+      <button *ngIf="productsInOrder"
+        class="btn btn-success globalShadow"
+        mat-raised-button
+        (click)="openBottomSheetOrder()"
+      >
+        <fa-icon [icon]="iconEdit"></fa-icon> Edit
+      </button>
+    </div>
+    <section class="orderInformation" *ngIf="orderDetails">
+      
+      <ul class="text-center">Addition time: {{orderDetails.orderDate.toLocaleTimeString()}}</ul>
+      <ul class="text-center" *ngIf="orderDetails.notes!=''">Notes: {{orderDetails.notes}}</ul>
+    <li class="orderProducts">
+      
+      <ul class = 'productInfo justify-content-between d-flex align-items-center' [ngClass]="getClassProduct(product.status)" *ngFor='let product of productsInOrder'>
+        <div class="productName">{{products[product.productID].name}}</div> <div class="productState">{{product.status}}</div><!--div-- class="productState" *ngIf = "product.status=='In progress'"><div class="spinner-border" role="status">
+          <span class="sr-only">Loading...</span>
+        </div></!--div-->
+    </ul> 
+  </li>
+    <div class="summary container-fluid">
+      <a type="button" (click)="openBottomSheetBill()" class="iconBill"
+        ><fa-icon  [icon]="iconBill"></fa-icon
+      ></a>
+    </div>
+    </section>
+  </section>
 </ng-container>

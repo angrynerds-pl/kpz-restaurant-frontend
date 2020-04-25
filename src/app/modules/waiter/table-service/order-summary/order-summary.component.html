@@ -1,0 +1,40 @@
+<section *ngIf="productsToAdd.length > 0">
+  <li>
+    <ul
+      class="productInfo d-flex justify-content-between align-items-center globalShadow"
+      *ngFor="let productToAdd of productsToAdd"
+    >
+      <div>{{ productToAdd.product.name }}</div>
+      <div class="amountBar">
+        <button
+          class="amountButton"
+          (click)="changeAmountOfProduct(-1, productToAdd)"
+        >
+          <fa-icon [icon]="iconMinusCircle"></fa-icon>
+        </button>
+
+        {{ productToAdd.amount }}
+
+        <button
+          class="amountButton"
+          (click)="changeAmountOfProduct(1, productToAdd)"
+        >
+          <fa-icon [icon]="iconPlus"></fa-icon>
+        </button>
+      </div>
+    </ul>
+    <ul class="orderNotes">
+      <label for="notesTextBox">Notes</label>
+      <input
+        type="text"
+        placeholder="Additional comments in regard to order"
+        class="form-control globalShadow borderRadius"
+        name='notes'
+        [(ngModel)]='notes'
+      />
+    </ul>
+  </li>
+  <div class="summary container-fluid">
+    <a type="button" (click)="manageOrder()" ><fa-icon [icon]="iconPlusCircle"></fa-icon></a>
+  </div>
+</section>

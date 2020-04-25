@@ -49,6 +49,11 @@ html, body {
     border-radius: 8px;
 }
 
+.mat-bottom-sheet-container{ //my idea with bottom sheet
+    min-height: calc(100vh - 65px); 
+    padding: 5px 5px !important;
+    
+}
 .free {
     background-color: $green;
 }

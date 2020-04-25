@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { faBars } from "@fortawesome/free-solid-svg-icons";
 
 @Component({
   selector: 'app-waiter-main',
@@ -6,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./waiter-main.component.scss']
 })
 export class WaiterMainComponent implements OnInit {
-
+  menuIcon = faBars;
   constructor() { }
 
   ngOnInit(): void {

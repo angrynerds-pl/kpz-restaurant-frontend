@@ -1,3 +1,5 @@
+@import '../../../../../styles.scss';
+
 section {
     display: flex;
     align-items: center;
@@ -42,3 +44,42 @@ p {
         width: 85%;
     }
 }
+
+.float{
+	position:fixed;
+	//width:70px;
+	//height:70px;
+    height:50px;
+    width:50px;
+    top:5px;
+	left:5px;
+	background-color: transparent;;
+	color:#FFF;
+	//border-radius:50%;
+    justify-content:center;
+    display:flex;
+    align-items:center;
+    
+}
+
+.dropdown-menu{
+    
+    text-align:center;
+    background-color: $dropdownMenuColor;
+    border-radius:1em;
+}
+
+.dropdown-item{
+    font-size:20px;
+}
+.dropdown-item.active, .dropdown-item:hover {
+    background-color: transparent;
+}
+
+.btn{
+    border-radius:1em;
+}
+fa-icon{
+    font-size: 30px;
+    color:black;
+  }

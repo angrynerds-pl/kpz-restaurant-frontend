@@ -12,9 +12,23 @@ export class CategoryService {
   constructor() {
     
     this.categories = [
-      {id:0,name: "Pizzas",icon: "pizza.jpg"},
+      {id:0,name: "Pizzas",icon: "pizza.png"},
       {id:1,name: "Drinks",icon: "drink.jpg"},
+      {id:2,name: "Starters",icon: "starter.jpg"},
+      {id:3,name: "Noodles",icon: "starter.jpg"},
       
+      {id:4,name: "Chinese",icon: "starter.jpg"},
+      
+      {id:5,name: "Fish",icon: "starter.jpg"},
+      {id:6,name: "Burgers",icon: "starter.jpg"},
+      {id:7,name: "Burgers",icon: "starter.jpg"},
+      {id:8,name: "Burgers",icon: "starter.jpg"},
+      {id:9,name: "Burgers",icon: "starter.jpg"},
+      {id:10,name: "Burgers",icon: "starter.jpg"},
+      {id:11,name: "Buargers",icon: "starter.jpg"},
+      {id:12,name: "d",icon: "starter.jpg"},
+      
+
       ];
    }
 
