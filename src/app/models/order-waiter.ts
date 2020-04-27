@@ -1,4 +1,4 @@
-export interface Order { 
+export interface OrderWaiter { 
     orderID:number;
     tableID:number;
     orderDate:Date;
