@@ -1,0 +1,29 @@
+@import '../../../../../styles.scss';
+.productInfo{
+    border-radius:1em;
+    padding:0 10px;
+    font-size:20px;
+}
+
+.button-box{
+    padding:20px;
+    text-align:center;
+
+}
+li {
+    list-style-type: none;
+    border-bottom:2px black dashed;
+    
+   }
+.button-split{
+    border-radius:1em;
+    border:none;
+    font-size:20px;
+    
+}
+.button-split:focus,.button-split:active {
+    outline: none ;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border:none;
+    background-color: #17a2b8;
+}

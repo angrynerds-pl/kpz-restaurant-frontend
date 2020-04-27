@@ -1,7 +1,13 @@
 <section class="container-fluid">
-    <label for="billSelect">Bill</label>
-    <select id="billSelect" [(ngModel)] = "billNumber" class="form-control"><option *ngFor="let number of billAmount">{{number}}</option></select>
-    {{billNumber}}
+    <div class="button-box">
+        <button type="button" class="btn btn-info globalShadow button-split">Split the bill</button>
+    </div>    
+        <li>
+        <ul class="productInfo justify-content-between d-flex align-items-center" *ngFor="let product of productsInOrder">
+            
+            <div class="product-name">{{products[product.productID].name}}</div> <input type = "radio" checked>
+        </ul>
+    </li>
 
 </section>
 

@@ -12,7 +12,8 @@ export class OrderService {
   orders:Order[];
   newOrder:Order;
   constructor(private tableService:TableService) { 
-    this.orders=[{orderID:0,tableID:5,orderDate:new Date(), notes:"without sause"}]
+    this.orders=[{orderID:0,tableID:5,orderDate:new Date(), notes:"without sause"},
+    {orderID:1,tableID:4,orderDate:new Date(), notes:""},]
   }
 
 
