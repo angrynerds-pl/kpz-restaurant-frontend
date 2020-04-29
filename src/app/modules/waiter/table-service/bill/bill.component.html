@@ -1,13 +1,14 @@
-<section class="container-fluid">
+<section class="container-fluid bill-view">
     <div class="button-box">
-        <button type="button" class="btn btn-info globalShadow button-split">Split the bill</button>
+        <button type="button" class="btn btn-info globalShadow button-split" (click)="splitTheBill()">Split the bill</button>
     </div>    
         <li>
         <ul class="productInfo justify-content-between d-flex align-items-center" *ngFor="let product of productsInOrder">
             
-            <div class="product-name">{{products[product.productID].name}}</div> <input type = "radio" checked>
+            <div class="product-name">{{products[product.productID].name}}</div><mat-checkbox [checked]="checkAll"></mat-checkbox>
         </ul>
     </li>
-
+    <div class="text-left container-fluid mt-3">To pay:</div>
+    <div class="text-right container-fluid mt-1 font-weight-bold">{{totalAmount}}</div>
 </section>
 
