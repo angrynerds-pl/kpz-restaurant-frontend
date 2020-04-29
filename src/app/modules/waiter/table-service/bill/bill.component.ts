@@ -7,6 +7,7 @@ import { ProductsToOrderService } from 'src/app/services/products-to-order.servi
 import { ProductInOrder } from 'src/app/models/product-in-order';
 import { MenuProduct } from 'src/app/models/menu-product';
 import { Subscription } from 'rxjs';
+import {MatCheckbox} from '@angular/material/checkbox';
 @Component({
   selector: 'app-bill',
   templateUrl: './bill.component.html',
@@ -19,7 +20,10 @@ export class BillComponent implements OnInit,OnDestroy {
   billAmount:Array<number>;
   billNumber:number =1;
 
+  totalAmount :number  =0 ;
 
+  checkAll:boolean = true;
+  disableAll:boolean = true;
   productsSubscription:Subscription;
   constructor(
     @Inject(MAT_BOTTOM_SHEET_DATA) public data: any,
@@ -34,19 +38,17 @@ export class BillComponent implements OnInit,OnDestroy {
   ngOnInit(): void {
     this.productsInOrder = this.data.productsInOrder;
     this.productsSubscription = this.pruductsService.getProducts().subscribe(products => this.products = products);
-    this.loadBillAmount();
+    this.sumUpTotalAmount();
     
   }
 
-
-  loadBillAmount(){
-    this.billAmount = new Array(this.productsInOrder.length);
-    for(let i=1;i<=this.billAmount.length;i++){
-      this.billAmount[i-1] = i;
-    }
+  sumUpTotalAmount(){
+    this.productsInOrder.forEach(product =>{
+      this.totalAmount+=this.products[product.productID].price;
+    })
   }
-
-  createBills(numberOfBills){
-    
+  splitTheBill(){
+    this.checkAll = false;
+    //this.disableAll = false;
   }
 }

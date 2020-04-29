@@ -1,8 +1,11 @@
 @import '../../../../../styles.scss';
+.bill-view{
+    font-size:20px;
+}
 .productInfo{
     border-radius:1em;
     padding:0 10px;
-    font-size:20px;
+    
 }
 
 .button-box{
@@ -12,13 +15,13 @@
 }
 li {
     list-style-type: none;
-    border-bottom:2px black dashed;
+    border-bottom:2px black solid;
     
    }
 .button-split{
     border-radius:1em;
     border:none;
-    font-size:20px;
+    
     
 }
 .button-split:focus,.button-split:active {
@@ -27,3 +30,11 @@ li {
     border:none;
     background-color: #17a2b8;
 }
+::ng-deep .mat-checkbox-checked .mat-checkbox-background, .mat-checkbox-indeterminate .mat-checkbox-background {
+    background-color: $dropdownMenuColor !important;
+  }
+  
+  
+  ::ng-deep .mat-checkbox:not(.mat-checkbox-disabled) .mat-checkbox-ripple .mat-ripple-element {
+    background-color: $dropdownMenuColor !important;
+  }
