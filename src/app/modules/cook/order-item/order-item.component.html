@@ -1,0 +1,3 @@
+<ng-container *ngFor = "let productInOrder of productInOrder" >
+    <app-order-item-product [id]="productInOrder.id" [status]="productInOrder.status" [product]="productInOrder.product"></app-order-item-product>
+</ng-container>

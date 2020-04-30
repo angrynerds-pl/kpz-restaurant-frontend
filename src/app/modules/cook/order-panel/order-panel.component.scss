@@ -1,0 +1,26 @@
+
+.orderBackground {
+    background-color: gray;
+    margin: 10px;
+    border-radius: 10px;
+    overflow: hidden;    
+}
+.orderTitle {
+    background-color: #6963AC;
+    width: 100%;
+    height: 30px;
+    color: white;
+    text-align: center;
+    padding: 3px;
+   
+}
+.timer {
+    color: white;
+    text-align: center;
+    background-color: #87A5D2;
+    
+}
+.grid {
+    display: grid;
+    grid-template-columns: repeat(5,1fr);
+}
