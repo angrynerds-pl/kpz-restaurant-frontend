@@ -10,6 +10,14 @@ import { TableViewComponent } from './tables/table-view/table-view.component';
 import { EmptyViewComponent } from './tables/empty-view/empty-view.component';
 import { ReservationsMainComponent } from './reservations/reservations-main/reservations-main.component';
 import { ReservationViewComponent } from './reservations/reservation-view/reservation-view.component';
+import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
+import { TableAddOrderComponent } from './table-service/table-add-order/table-add-order.component';
+import {MatBottomSheetModule} from '@angular/material/bottom-sheet';
+import { OrderSummaryComponent } from './table-service/order-summary/order-summary.component';
+import {NgxPaginationModule} from 'ngx-pagination';
+import { BillComponent } from './table-service/bill/bill.component';
+import {MatSelectModule} from '@angular/material/select';
+
 
 @NgModule({
   declarations: [
@@ -19,12 +27,20 @@ import { ReservationViewComponent } from './reservations/reservation-view/reserv
     TableViewComponent, 
     EmptyViewComponent, 
     ReservationsMainComponent,
-    ReservationViewComponent
+    ReservationViewComponent,
+    TableAddOrderComponent,
+    OrderSummaryComponent,
+    BillComponent,
+    
   ],
   imports: [
     CommonModule,
     WaiterRoutingModule,
-    FormsModule
+    FormsModule,
+    FontAwesomeModule,
+    MatBottomSheetModule,
+    NgxPaginationModule,
+    MatSelectModule
   ]
 })
 export class WaiterModule { }

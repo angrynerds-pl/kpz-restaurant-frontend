@@ -16,6 +16,13 @@ export class ProductService {
       {id:2,name: "Fanta",price: 5, categoryId: 1},
       {id:3,name: "Margherita",price: 45, categoryId: 0},
       {id:4,name: "Sprite",price: 92, categoryId: 1},
+      {id:5,name: "Salami",price: 20, categoryId: 0},
+      {id:6,name: "Italiana",price: 20, categoryId: 0},
+      {id:7,name: "Braziliana",price: 20, categoryId: 0},
+      {id:8,name: "Hawaiian",price: 20, categoryId: 0},
+      {id:9,name: "Spinace",price: 20, categoryId: 0},
+      {id:10,name: "Diavolo",price: 20, categoryId: 0},
+
       ];
    }
 
@@ -34,5 +41,16 @@ export class ProductService {
   getLastProductID(){
     return this.products.length;
     
+  }
+  findProduct(id){
+    
+   let index = this.products.findIndex(product => product.id ===id);
+    
+      
+      return index;
+  }
+  getProduct(id):MenuProduct{
+    let index = this.findProduct(id);
+    return this.products[index];
   }
 }

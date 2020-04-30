@@ -1,0 +1,78 @@
+@import '../../../../../styles.scss';
+
+p, .select-box, .button-box{
+    text-align: center;
+}
+
+p {
+    font-size: 24px;
+}
+
+select {
+    min-width: 60px;
+    margin: 0px 8px;
+    border-radius: 8px;
+    padding: 0px 8px;
+}
+
+.grid-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 1em;
+}
+
+.row {
+    flex: 1;
+}
+
+.rooms {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    text-align: center;
+}
+
+.room {
+    display: flex;
+    padding: 0.5em;
+    margin: 8px;
+    background-color: $gray;
+    border-radius: 8px;
+    align-items: center;
+}
+
+form {
+    background-color: $gray;
+    padding: 0.5em;
+    margin: 8px;
+    border-radius: 8px;
+    display: flex;
+    align-items: baseline;
+}
+
+.btnSubmit, .btnEdit {
+    padding: 8px 16px;
+    margin-left: 8px;
+    border-radius: 8px;
+    -webkit-appearance: none;
+    border: 0;
+    font-size: 14px;
+    color: $textLight;
+    background-color: $darkBlue;
+    transition: 0.5s ease-in-out;
+    outline: 0;
+}
+
+.btnSubmit:not(:disabled):hover, .btnEdit:hover {
+    transform: scale(1.05);
+}
+
+label {
+    margin: 0;
+}
+
+app-table-option{
+    margin: 3px;
+}

@@ -1,6 +1,12 @@
 @import '../../../../styles.scss';
 
-article {
-    background-color: #ddd; // I will use global style later
-    min-height: 100%;
+main
+ {
+    background-color: $backgroundGradient; // I will use global style later
+    min-height: 100vh;
+    
 }
+
+
+
+  
