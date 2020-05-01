@@ -7,6 +7,9 @@ import { ManagerGuard } from 'src/app/guards/manager.guard';
 import { PersonnelDatabaseComponent } from './personnel/personnel-database/personnel-database.component';
 import { PersonnelRegistrationComponent } from './personnel/personnel-registration/personnel-registration.component';
 import { RoomEditorMainComponent } from './room-editor/room-editor-main/room-editor-main.component';
+import { IncomeComponent } from './statistics/income/income.component';
+import { ProductsComponent } from './statistics/products/products.component';
+import { CustomersComponent } from './statistics/customers/customers.component';
 
 const routes: Routes = [
   {
@@ -22,7 +25,24 @@ const routes: Routes = [
     { 
       path: 'statistics', 
       canActivate: [ManagerGuard],
-      component: StatisticsMainComponent 
+      component: StatisticsMainComponent,
+      children: [
+        {
+          path: 'income',
+          component: IncomeComponent,
+          canActivate: [ManagerGuard]
+        },
+        {
+          path: 'products',
+          component: ProductsComponent,
+          canActivate: [ManagerGuard]
+        },
+        {
+          path: 'customers',
+          component: CustomersComponent,
+          canActivate: [ManagerGuard]
+        }
+      ] 
     },
     { 
       path: 'menu', 
