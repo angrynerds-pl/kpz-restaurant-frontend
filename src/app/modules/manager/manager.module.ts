@@ -27,6 +27,7 @@ import { TableInfoComponent } from './room-editor/table-info/table-info.componen
 import { IncomeComponent } from './statistics/income/income.component';
 import { ProductsComponent } from './statistics/products/products.component';
 import { CustomersComponent } from './statistics/customers/customers.component';
+import { ChartsModule } from 'ng2-charts';
 @NgModule({
   declarations: [
     ManagerMainComponent,
@@ -59,7 +60,8 @@ import { CustomersComponent } from './statistics/customers/customers.component';
     ReactiveFormsModule,
     ToastrModule.forRoot(),
     MatDialogModule,
-    MatButtonModule
+    MatButtonModule,
+    ChartsModule
   ]
 })
 export class ManagerModule {}
