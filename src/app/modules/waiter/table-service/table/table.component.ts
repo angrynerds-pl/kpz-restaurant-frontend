@@ -142,6 +142,15 @@ export class TableComponent implements OnInit, OnDestroy {
     //this._bottomSheet._openedBottomSheetRef
   }
   openBottomSheetBill(): void {
+    console.log(this.productsInOrder.some((product)=>{
+      product.status ==='Served';
+    }));
+    this.productsInOrder.forEach((product)=>{
+      console.log(product.status);
+    });
+    if(this.productsInOrder.some((product)=>{
+      product.status =='Served';
+    })){
   this._bottomSheet._openedBottomSheetRef = this._bottomSheet.open(
     BillComponent,
     {
@@ -149,6 +158,7 @@ export class TableComponent implements OnInit, OnDestroy {
       disableClose: false,
     }
   );
+    }
   /*this._bottomSheet._openedBottomSheetRef
     .afterDismissed()
     .subscribe((data) => {
