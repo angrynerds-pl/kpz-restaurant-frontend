@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
-
 import { ProductService } from './product.service';
 import { MenuProduct } from '../models/menu-product';
 import {of as ObservableOf, Observable} from 'rxjs';
 import { Order } from '../models/order';
+import { OrderWaiter } from '../models/order-waiter';
+import { TableService } from './table.service';
 
 
 @Injectable({
@@ -12,10 +13,13 @@ import { Order } from '../models/order';
 export class OrderService {
 
 
+
   products:MenuProduct[];
   orders:Order[];
-
-  constructor() {
+  
+  ordersWaiter:OrderWaiter[];
+  newOrder:OrderWaiter;
+  constructor(private tableService:TableService) {
     this.orders = [
       {id:1, tableId: 1, date:"2020-04-18 15:00:00", status:true, productsInOrder:[
         {id:1,orderId:1,product:{id:0,name: "Funghi",price: 20, categoryId: 0}, status:1},
@@ -49,10 +53,48 @@ export class OrderService {
         {id:4,orderId:1,product:{id:1,name: "Zupa",price: 30, categoryId: 0}, status:1}
       ]}
     ]
+    this.ordersWaiter=[{orderID:0,tableID:5,orderDate:new Date(), notes:"without sause"}]
    }
 
    getOrders():Observable<Order[]>{
      return ObservableOf(this.orders);
    }
+
+
+  
+  
+
+
+  createOrder(tableID, notes){
+    
+    this.newOrder = {orderID:this.getLastOrderId() , tableID: tableID, orderDate: new Date(),notes};
+    this.ordersWaiter.push( this.newOrder);
+    this.tableService.changeStatusOfTable(tableID);
+   
+    
+  }
+  editOrder(orderID: number, notes,){
+    let order = this.getOrderByID(orderID);
+    order.notes = notes;
+  }
+
+  getLastOrderId(){
+    return this.ordersWaiter.length;
+  }
+
+
+  getOrderByTableID(tableID: number): Observable<OrderWaiter> {
+    return ObservableOf(this.ordersWaiter.find((e) => e.tableID == tableID));
+    
+  }
+  getOrderIDByTableID(tableID: number): number {
+    return this.ordersWaiter.find((e) => e.tableID == tableID).orderID;
+    
+  }
+
+  getOrderByID(orderID: number) {
+    return this.ordersWaiter.find((e) => e.orderID == orderID);
+    
+  }
 
 }

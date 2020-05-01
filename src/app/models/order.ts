@@ -1,4 +1,3 @@
-
 import { ProductsInOrder } from './products-in-order';
 
 export interface Order {
@@ -8,4 +7,3 @@ export interface Order {
     status: boolean; 
     productsInOrder: Array<ProductsInOrder>;  
 }
-
