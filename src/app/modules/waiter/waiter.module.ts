@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from "@angular/forms";
-
+import { FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { WaiterRoutingModule } from './waiter-routing.module';
 import { WaiterMainComponent } from './waiter-main/waiter-main.component';
 import { TablesMainComponent } from './tables/tables-main/tables-main.component';
@@ -17,6 +16,7 @@ import { OrderSummaryComponent } from './table-service/order-summary/order-summa
 import {NgxPaginationModule} from 'ngx-pagination';
 import { BillComponent } from './table-service/bill/bill.component';
 import {MatSelectModule} from '@angular/material/select';
+import { AddNewReservationComponent } from './reservations/add-new-reservation/add-new-reservation.component';
 
 
 @NgModule({
@@ -31,6 +31,7 @@ import {MatSelectModule} from '@angular/material/select';
     TableAddOrderComponent,
     OrderSummaryComponent,
     BillComponent,
+    AddNewReservationComponent,
     
   ],
   imports: [
@@ -40,7 +41,8 @@ import {MatSelectModule} from '@angular/material/select';
     FontAwesomeModule,
     MatBottomSheetModule,
     NgxPaginationModule,
-    MatSelectModule
+    MatSelectModule,
+    ReactiveFormsModule
   ]
 })
 export class WaiterModule { }

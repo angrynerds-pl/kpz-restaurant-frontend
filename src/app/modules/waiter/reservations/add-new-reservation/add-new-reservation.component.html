@@ -1,0 +1,26 @@
+<section class="container-fluid">
+    <form (submit)="addReservation()" [formGroup]="newReservationForm" >
+        
+
+        <label for="customerName">Name of guest</label>
+        <input
+          type="text"
+          formControlName="customerName"
+          class="form-control globalShadow"
+          id="customerName"
+          placeholder=""
+        />
+        
+            <div class="button-box">
+            <button class="add-reservation-button" type="submit">
+                <fa-icon id="confirmReservationIcon" [icon]="confirmReservationIcon"></fa-icon>
+            
+            </button>
+            </div>  
+      
+            
+          
+    </form>
+
+
+</section>
