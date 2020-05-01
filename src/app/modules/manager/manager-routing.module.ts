@@ -27,6 +27,11 @@ const routes: Routes = [
       canActivate: [ManagerGuard],
       component: StatisticsMainComponent,
       children: [
+        { 
+          path: '', 
+          redirectTo: 'customers', 
+          pathMatch:'full' 
+        },
         {
           path: 'income',
           component: IncomeComponent,

@@ -1,1 +1,37 @@
-<p>customers works!</p>
+<section>
+    
+    <div class="btn-grid">
+        <div class="switch-box">
+            <p>Today</p>
+            <label class="switch">
+                <input type="checkbox" (change)="check()" [(ngModel)]="today">
+                <span class="slider"></span>
+            </label>
+        </div>
+        <div class="switch-box">
+            <p>Week</p>
+            <label class="switch">
+                <input type="checkbox" (change)="check()" [(ngModel)]="week">
+                <span class="slider"></span>
+            </label>
+        </div>
+        <div class="switch-box">
+            <p>Month</p>
+            <label class="switch">
+                <input type="checkbox" (change)="check()" [(ngModel)]="month">
+                <span class="slider"></span>
+            </label>
+        </div>
+    </div>
+
+    <div class="chart">
+        <canvas baseChart 
+          [datasets]="chartData"
+          [labels]="labels"
+          [options]="options"
+          [legend]="legend"
+          [chartType]="chartType">
+        </canvas>
+      </div>
+</section>
+
