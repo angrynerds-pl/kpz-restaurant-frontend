@@ -31,9 +31,10 @@
         
         formControlName="tableID"
         class="form-control globalShadow"
+        name="tableID"
         id="tableID"
         placeholder=""
-      ><option *ngFor="let tableID of tableNumbers">{{tableID}}</option></select>
+      ><option [ngValue]="tableID" *ngFor="let tableID of tableNumbers">{{tableID}}</option></select>
 
       <div class="warning-box">
         <ng-container
@@ -42,7 +43,13 @@
             newReservationForm.get('tableID').invalid
           "
         >
-          
+        <span
+        class="warning"
+        *ngIf="
+          newReservationForm.get('tableID').errors.required
+        "
+        >You must choose table number</span
+      >
         </ng-container>
       </div>
     </div>
