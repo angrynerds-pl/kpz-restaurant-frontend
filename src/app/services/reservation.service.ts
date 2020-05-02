@@ -35,4 +35,13 @@ export class ReservationService {
     // return this.http.get<Array<Reservation>>(url);
   }
 
+  addReservation(reservation){
+    this.reservations.push(reservation);
+  }
+
+  getLastReservationID(){
+    return this.reservations.length;
+    
+  }
+
 }

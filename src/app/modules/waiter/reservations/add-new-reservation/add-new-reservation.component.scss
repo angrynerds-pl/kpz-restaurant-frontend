@@ -2,6 +2,36 @@
 
 
 
+form{
+    margin-top:10px;
+}
+
+.form-group{
+    padding:5px 0px;
+}
+label{
+    font-size:15px;
+}
+
+
+.warning-box{
+    text-align: center;
+    padding:2px;
+}
+.warning {
+    color: $invalid;
+    font-size: 12px;
+    
+    
+  }
+  
+  input.ng-valid {
+    border: 2px solid $green;
+  }
+  
+  input.ng-invalid.ng-touched {
+    border: 2px solid $invalid;
+  }
 
 
 
@@ -11,23 +41,23 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
+.btn{
+    padding:0;
+}
 .button-box{
     position:fixed;
     bottom:0;
+    left:0;
     text-align: center;
     height: 50px;
 }
-
+.btn:focus,.btn:active{
+    outline: none;
+    box-shadow: none;
+}
 .add-reservation-button{
      font-size:30px;
+     overflow: none;
+
 }
+

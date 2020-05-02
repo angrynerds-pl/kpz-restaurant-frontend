@@ -1,26 +1,132 @@
 <section class="container-fluid">
-    <form (submit)="addReservation()" [formGroup]="newReservationForm" >
-        
+  <form (submit)="addReservation()" [formGroup]="newReservationForm">
+    <div class="form-group">
+      <label for="customerName">Name of guest</label>
+      <input
+        type="text"
+        formControlName="customerName"
+        class="form-control globalShadow"
+        id="customerName"
+        placeholder=""
+      />
 
-        <label for="customerName">Name of guest</label>
+      <div class="warning-box">
+        <ng-container
+          *ngIf="
+            newReservationForm.get('customerName').touched &&
+            newReservationForm.get('customerName').invalid
+          "
+        >
+          <span
+            class="warning"
+            *ngIf="newReservationForm.get('customerName').errors.required"
+            >Name of guest input can't be empty</span
+          >
+        </ng-container>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="tableID">Table number</label>
+      <select
+        
+        formControlName="tableID"
+        class="form-control globalShadow"
+        id="tableID"
+        placeholder=""
+      ><option *ngFor="let tableID of tableNumbers">{{tableID}}</option></select>
+
+      <div class="warning-box">
+        <ng-container
+          *ngIf="
+            newReservationForm.get('tableID').touched &&
+            newReservationForm.get('tableID').invalid
+          "
+        >
+          
+        </ng-container>
+      </div>
+    </div>
+    <div class="form-group">
+        <label for="numberOfSeats">Number of seats</label>
         <input
           type="text"
-          formControlName="customerName"
+          formControlName="numberOfSeats"
           class="form-control globalShadow"
-          id="customerName"
+          id="numberOfSeats"
           placeholder=""
         />
-        
-            <div class="button-box">
-            <button class="add-reservation-button" type="submit">
-                <fa-icon id="confirmReservationIcon" [icon]="confirmReservationIcon"></fa-icon>
-            
-            </button>
-            </div>  
+  
+        <div class="warning-box">
+          <ng-container
+            *ngIf="
+              newReservationForm.get('numberOfSeats').touched &&
+              newReservationForm.get('numberOfSeats').invalid
+            "
+          >
+            <span
+              class="warning"
+              *ngIf="
+                newReservationForm.get('numberOfSeats').errors.required ||
+                newReservationForm.get('numberOfSeats').errors.pattern
+              "
+              >Incorrect number of seats</span
+            >
+          </ng-container>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="startDate">Start time of reservation</label>
+        <input id="startDate" class="form-control globalShadow" formControlName="startDate" [owlDateTime]="dt1" [owlDateTimeTrigger]="dt1" placeholder="">
+        <owl-date-time #dt1 ></owl-date-time>
+        <div class="warning-box">
+          <ng-container
+            *ngIf="
+              newReservationForm.get('startDate').touched &&
+              newReservationForm.get('startDate').invalid
+            "
+          >
+            <span
+              class="warning"
+              *ngIf="
+                newReservationForm.get('startDate').errors.required
+              "
+              >Start time is incorrect</span
+            >
+          </ng-container>
+        </div>
+      </div>
       
-            
-          
-    </form>
-
-
+      <div class="form-group">
+        <label for="endDate">End time of reservation</label>
+        <input id="endDate" class="form-control globalShadow" formControlName="endDate" [owlDateTime]="dt2" [owlDateTimeTrigger]="dt2" placeholder="">
+        <owl-date-time #dt2></owl-date-time>
+        <div class="warning-box">
+          <ng-container
+            *ngIf="
+              
+              newReservationForm.get('endDate').invalid &&
+              newReservationForm.get('endDate').touched
+            "
+          >
+            <span
+              class="warning"
+              *ngIf="
+              newReservationForm.get('endDate').dirty &&
+                newReservationForm.get('endDate').errors.required
+              "
+              >End time is incorrect</span
+            >
+          </ng-container>
+        </div>
+      </div>
+    <div class="button-box container-fluid">
+      <button class="add-reservation-button btn" type="submit">
+        <fa-icon
+          id="confirmReservationIcon"
+          [icon]="confirmReservationIcon"
+        ></fa-icon>
+      </button>
+    </div>
+    
+  </form>
 </section>
