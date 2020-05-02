@@ -1,1 +1,30 @@
 @import '../../../../../styles.scss';
+
+
+.reservation-details{
+    text-align:center;
+    border-radius:1em;
+    border:1px solid black;
+    padding:0;
+    background-color: $lightBlue;
+}
+span{
+    padding:5px;
+}
+.dateDetails{
+    background-color: $blue;
+    border-top-left-radius:1em;
+    border-top-right-radius:1em;
+}
+.tableDetails{
+    //background-color: $lightBlue;
+}
+.customerDetails{
+    //background-color: $gray;
+}
+
+.guestsNumberDetails{
+    //background-color: $gray;
+    //border-bottom-left-radius:1em;
+    //border-bottom-right-radius:1em;
+}

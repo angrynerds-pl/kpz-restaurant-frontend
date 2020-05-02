@@ -10,9 +10,13 @@ import { Reservation } from 'src/app/models/reservation';
 export class ReservationViewComponent implements OnInit {
 
   @Input() reservationDetails:Reservation;
+  todayDate:Date= new Date();
+  reservationDate :Date;
   constructor() { }
 
   ngOnInit(): void {
+    this.reservationDate = new Date(this.reservationDetails.startDate);
+    this.todayDate.setHours(0);
   }
 
 }
