@@ -1,1 +1,13 @@
-<p>income works!</p>
+<section>
+    <div class="chart">
+        <canvas baseChart 
+          [datasets]="chartData"
+          [labels]="labels"
+          [colors]="colors"
+          [options]="options"
+          [legend]="legend"
+          [chartType]="chartType">
+        </canvas>
+      </div>
+</section>
+

@@ -11,7 +11,7 @@ export class CustomersComponent implements OnInit {
 
   options: ChartOptions = { responsive: true };
   //colors: any[] = [ { backgroundColor: "#DD6C6C" }, { backgroundColor: "#88ACE2" }, { backgroundColor: "#CFD082" } ]
-  labels: Label[] = ['8:00', '10:00', '12:00', '14:00', '16:00', '18:00', '20:00', '22:00'];
+  labels: Label[] = [];
   chartType: ChartType = 'bar';
   legend = true;
 
@@ -28,8 +28,8 @@ export class CustomersComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-
-    this.todayData = { data: [2, 23, 36, 54, 47, 30, 38, 12], label: 'Today' };
+    this.labels = ['8:00', '10:00', '12:00', '14:00', '16:00', '18:00', '20:00', '22:00'];
+    this.todayData = { data: [2, 23, 36, 54, 47, 0, 0, 0], label: 'Today' };
     this.weekData = { data: [23, 33, 46, 64, 57, 12, 23, 43], label: 'Week' };
     this.monthData = { data: [11, 26, 34, 67, 68, 26, 27, 17], label: 'Month' };
 
