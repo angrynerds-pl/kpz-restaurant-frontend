@@ -28,6 +28,7 @@ import { IncomeComponent } from './statistics/income/income.component';
 import { ProductsComponent } from './statistics/products/products.component';
 import { CustomersComponent } from './statistics/customers/customers.component';
 import { ChartsModule } from 'ng2-charts';
+import { PieChartComponent } from './statistics/pie-chart/pie-chart.component';
 @NgModule({
   declarations: [
     ManagerMainComponent,
@@ -49,7 +50,8 @@ import { ChartsModule } from 'ng2-charts';
     TableInfoComponent,
     IncomeComponent,
     ProductsComponent,
-    CustomersComponent
+    CustomersComponent,
+    PieChartComponent
   ],
 
   imports: [

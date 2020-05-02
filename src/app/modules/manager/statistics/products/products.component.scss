@@ -1,0 +1,31 @@
+@import '../../../../../styles.scss';
+
+section {
+    margin: 1em 0em;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    gap: 1em;
+}
+
+.chart {
+    display: block;
+    background-color: $gray;
+    border-radius: 8px;
+    padding: 0.5em;
+}
+
+.best {
+    grid-column: 1/2;
+    grid-row: 1/2;
+}
+
+.worst {
+    grid-column: 1/2;
+    grid-row: 2/3;
+}
+
+app-pie-chart {
+    grid-column: 2/3;
+    grid-row: 1/3;
+}

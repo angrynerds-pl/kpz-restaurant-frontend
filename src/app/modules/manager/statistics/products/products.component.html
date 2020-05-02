@@ -1,1 +1,22 @@
-<p>products works!</p>
+<section>
+    <div class="chart best">
+        <canvas baseChart 
+          [datasets]="chartDataBest"
+          [labels]="labelsBest"
+          [colors]="colorsBest"
+          [options]="options"
+          [legend]="legend"
+          [chartType]="chartType">
+        </canvas>
+      </div>
+      <div class="chart worst">
+        <canvas baseChart 
+          [datasets]="chartDataWorst"
+          [labels]="labelsWorst"
+          [options]="options"
+          [legend]="legend"
+          [chartType]="chartType">
+        </canvas>
+      </div>
+      <app-pie-chart [labels]="labelsPie" [chartData]="chartDataPie"></app-pie-chart>
+</section>
