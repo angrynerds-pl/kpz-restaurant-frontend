@@ -17,8 +17,7 @@ import { OrderSummaryComponent } from './table-service/order-summary/order-summa
 import {NgxPaginationModule} from 'ngx-pagination';
 import { BillComponent } from './table-service/bill/bill.component';
 import {MatSelectModule} from '@angular/material/select';
-
-
+import {MatCheckboxModule} from '@angular/material/checkbox'
 @NgModule({
   declarations: [
     WaiterMainComponent, 
@@ -40,7 +39,8 @@ import {MatSelectModule} from '@angular/material/select';
     FontAwesomeModule,
     MatBottomSheetModule,
     NgxPaginationModule,
-    MatSelectModule
+    MatSelectModule,
+    MatCheckboxModule
   ]
 })
 export class WaiterModule { }

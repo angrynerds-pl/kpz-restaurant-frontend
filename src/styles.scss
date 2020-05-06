@@ -65,5 +65,7 @@ html, body {
 .occupied {
     background-color: $red;
 }
-
+.served {
+    background-color: transparent;
+}
 @import "~bootstrap/dist/css/bootstrap.css"; // don't move !!!

@@ -16,6 +16,7 @@ export class OrderService {
 
   products:MenuProduct[];
   orders:Order[];
+<<<<<<< HEAD
   
   ordersWaiter:OrderWaiter[];
   newOrder:OrderWaiter;
@@ -53,7 +54,8 @@ export class OrderService {
         {id:4,orderId:1,product:{id:1,name: "Zupa",price: 30, categoryId: 0}, status:1}
       ]}
     ]
-    this.ordersWaiter=[{orderID:0,tableID:5,orderDate:new Date(), notes:"without sause"}]
+    this.ordersWaiter=[{orderID:0,tableID:5,orderDate:new Date(), notes:"without sause"},
+    {orderID:1,tableID:4,orderDate:new Date(), notes:""}]
    }
 
    getOrders():Observable<Order[]>{
@@ -63,6 +65,14 @@ export class OrderService {
 
   
   
+
+=======
+  newOrder:Order;
+  constructor(private tableService:TableService) { 
+    this.orders=[{orderID:0,tableID:5,orderDate:new Date(), notes:"without sause"},
+    {orderID:1,tableID:4,orderDate:new Date(), notes:""},]
+  }
+>>>>>>> 9944fdb0c184aa1c1cbc5c2e9a425e6c57d52b2c
 
 
   createOrder(tableID, notes){
