@@ -12,7 +12,8 @@ export class ProductsInOrderService {
   constructor() {
     this.productsInOrder=[{orderID:0,productInOrderID:0,productID:0, status:"In progress"},
     {orderID:0,productInOrderID:1,productID:0, status:"In progress"},{orderID:0,productInOrderID:2,productID:4, status:"Ready"},
-    {orderID:0,productInOrderID:3,productID:4, status:"Ready"},{orderID:0,productInOrderID:4,productID:3, status:"Late"}]
+    {orderID:0,productInOrderID:3,productID:4, status:"Ready"},{orderID:0,productInOrderID:4,productID:3, status:"Late"},
+    {orderID:1,productInOrderID:0,productID:4, status:"Ready"},{orderID:1,productInOrderID:1,productID:3, status:"Served"},{orderID:1,productInOrderID:2,productID:2, status:"Served"},]
   }
 
   addProductsToOrder(orderID, productsToOrder:Array<ProductToAdd>) {

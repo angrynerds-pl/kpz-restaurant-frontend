@@ -1,3 +1,40 @@
-<p>reservations works!</p>
-<app-reservation-view></app-reservation-view>
-<app-reservation-view></app-reservation-view>
+<header>
+    <span>Today's reservations</span>
+    
+    <a
+    class="float"
+    type="button"
+    data-toggle="dropdown"
+    aria-haspopup="true"
+    aria-expanded="false"
+  >
+    <fa-icon id="menuBars" [icon]="menuIcon"></fa-icon>
+  </a>
+  <div class="dropdown-menu dropdown-primary globalShadow">
+    <a
+      class="dropdown-item nav-link"
+      routerLink="/waiter/reservations"
+      routerLinkActive="active"
+      >Reservations
+    </a>
+
+    <a
+      class="dropdown-item nav-link"
+      routerLink="/waiter/tables"
+      routerLinkActive="active"
+      >Service</a
+    >
+    
+    <a class="dropdown-item" routerLink="">Logout</a>
+  </div>
+</header>
+<section class='container-fluid'>
+<ul *ngFor='let reservation of reservations'>
+<app-reservation-view [reservationDetails]='reservation'></app-reservation-view>
+</ul>
+
+<a class="add-reservation-button" type="button" (click)="addNewReservation()">
+    <fa-icon id="iconPLus" [icon]="plusIcon"></fa-icon>
+
+</a>
+</section>
