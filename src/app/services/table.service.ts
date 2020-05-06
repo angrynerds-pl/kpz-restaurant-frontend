@@ -37,14 +37,14 @@ export class TableService {
     this.getTable(tableID).pipe(take(1)).subscribe(table => {
       if(table){
         switch (table.status) {
-          case "free":
-            table.status = 'serve';
+          case 'FREE':
+            table.status = 'SERVE';
             break;
-          case "serve":
-            table.status = 'occupied';
+          case 'SERVE':
+            table.status = 'OCCUPIED';
             break;
-          case "occupied":
-            table.status = 'free';
+          case "OCCUPIED":
+            table.status = 'FREE';
             break;
         }
         this.updateTable(table).pipe(take(1)).subscribe(data => {

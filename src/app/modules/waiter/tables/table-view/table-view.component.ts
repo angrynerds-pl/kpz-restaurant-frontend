@@ -17,11 +17,11 @@ export class TableViewComponent implements OnInit {
 
   getClass() {
     switch(this.table.status){
-      case 'free':
+      case 'FREE':
         return 'table-view free';
-      case 'serve':
+      case 'SERVE':
         return 'table-view serve';
-      case 'occupied':
+      case 'OCCUPIED':
         return 'table-view occupied';
     }
   }

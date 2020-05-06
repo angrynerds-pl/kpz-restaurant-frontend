@@ -82,12 +82,12 @@ export class TableComponent implements OnInit, OnDestroy {
 
   getClassTable() {
     switch (this.table.status) {
-      case "free":
-        return "free";
-      case "serve":
-        return "serve";
-      case "occupied":
-        return "occupied";
+      case 'FREE':
+        return 'free';
+      case 'SERVE':
+        return 'serve';
+      case 'OCCUPIED':
+        return 'occupied';
     }
   }
   getClassProduct(status) {
