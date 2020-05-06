@@ -3,7 +3,7 @@ export interface Table {
     number: number;
     seats: number;
     status: string;
-    roomID: number;
+    roomId: number;
     x: number;
     y: number;
 }

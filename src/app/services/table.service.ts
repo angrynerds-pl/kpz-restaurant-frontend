@@ -13,23 +13,35 @@ export class TableService {
 
   host = environment.host;
 
-  constructor(private http:HttpClient, private storageSerice:LocalStorageService) {}
+  constructor(private http:HttpClient, private storageService:LocalStorageService) {}
 
   getTables(roomID: number): Observable<Array<Table>> {
     return this.http.get<Array<Table>>(this.host + 'api/tables/room/' + roomID, {
-      headers: new HttpHeaders().set('Authorization', 'Bearer ' + this.storageSerice.getToken()),
+      headers: new HttpHeaders().set('Authorization', 'Bearer ' + this.storageService.getToken()),
     });
   }
 
   getTable(tableID: number): Observable<Table> {
     return this.http.get<Table>(this.host + 'api/tables/' + tableID, {
-      headers: new HttpHeaders().set('Authorization', 'Bearer ' + this.storageSerice.getToken()),
+      headers: new HttpHeaders().set('Authorization', 'Bearer ' + this.storageService.getToken()),
+    });
+  }
+
+  addTable(table: Table){
+    return this.http.post<Table>(this.host + 'api/tables/', table, {
+      headers: new HttpHeaders().set('Authorization', 'Bearer ' + this.storageService.getToken()),
     });
   }
 
   updateTable(table: Table){
     return this.http.put<Table>(this.host + 'api/tables/' + table.id, table, {
-      headers: new HttpHeaders().set('Authorization', 'Bearer ' + this.storageSerice.getToken()),
+      headers: new HttpHeaders().set('Authorization', 'Bearer ' + this.storageService.getToken()),
+    });
+  }
+
+  deleteTable(table: Table){
+    return this.http.delete<any>(this.host + 'api/tables/' + table.id, {
+      headers: new HttpHeaders().set('Authorization', 'Bearer ' + this.storageService.getToken()),
     });
   }
 
