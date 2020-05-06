@@ -92,7 +92,9 @@ export class TableService {
     return of(this.tables.find((e) => e.tableID == tableID));
     // return this.http.get<Table>(url);
   }
-
+  getTablesID(): Observable<Number[]>{
+    return of(this.tables.map(table => table.tableID));
+  }
   changeStatusOfTable(tableID: number) {
     let table = this.getTable(tableID);
     table.subscribe((table) => {

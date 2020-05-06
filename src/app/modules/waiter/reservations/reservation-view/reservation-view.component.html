@@ -1,2 +1,8 @@
-<p>reservation-view works!</p>
-<p>Reservation #Number</p>
+
+<section class="col-10 offset-1 reservation-details globalShadow" *ngIf="todayDate<=reservationDate">
+    <span class="container-fluid d-flex inline-block justify-content-center dateDetails">{{reservationDetails.startDate | date:'H:mm '}} - {{reservationDetails.endDate |  date:'H:mm'}}</span>
+    <span class="container-fluid d-flex inline-block justify-content-center tableDetails">Table #{{reservationDetails.tableID}}</span>
+    <span class="container-fluid d-flex inline-block justify-content-center customerDetails">{{reservationDetails.customerName}}</span>
+    <span class="container-fluid d-flex inline-block justify-content-center guestsNumberDetails">{{reservationDetails.numberOfSeats}} guests</span>
+</section>
+

@@ -24,6 +24,14 @@ export class ReservationService {
       customerName: 'Thomas Smith', 
       startDate: '2020-04-07 12:45', 
       endDate: '2020-04-07 13:15' 
+    },
+    { 
+      reservationID: 3, 
+      tableID: 4, 
+      numberOfSeats: 3, 
+      customerName: 'Thomas Edison', 
+      startDate: '2020-05-02 13:54', 
+      endDate: '2020-05-02 13:55' 
     }
   ]
 
@@ -33,6 +41,15 @@ export class ReservationService {
   getReservations():Observable<Array<Reservation>> {
     return of(this.reservations);
     // return this.http.get<Array<Reservation>>(url);
+  }
+
+  addReservation(reservation){
+    this.reservations.push(reservation);
+  }
+
+  getLastReservationID(){
+    return this.reservations.length;
+    
   }
 
 }
