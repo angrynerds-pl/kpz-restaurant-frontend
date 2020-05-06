@@ -22,7 +22,7 @@ export class OrderPanelComponent implements OnInit {
   }
 
   loadOrders () {
-    this.orderService.getOrders().subscribe(orders =>{
+   /* this.orderService.getOrders().subscribe(orders =>{
       
       this.orders = orders;
       //sorting so the longest order is at the end 
@@ -31,6 +31,6 @@ export class OrderPanelComponent implements OnInit {
         return 1;
         else return -1;
       });
-    })
+    })*/
   }
 }

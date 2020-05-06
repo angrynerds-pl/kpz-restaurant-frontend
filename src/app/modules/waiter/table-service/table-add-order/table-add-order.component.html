@@ -29,16 +29,17 @@
     >
       <div class="card-body">
         <div class="select-box">
+          <ng-container *ngIf="currentCategory">
           <mat-form-field>
-            <!--mat-label>Categories</!--mat-label-->
             <mat-select  [(ngModel)]="currentCategory">
               <mat-select-trigger>
-                <div class="categorySelectView"><img src="../../../../../assets/images/{{currentCategory.icon}}"alt="photo">{{currentCategory.name}}</div>
+                <div class="categorySelectView">{{ currentCategory.name |titlecase }}</div><!--img src="../../../../../assets/images/{{currentCategory.icon}}"alt="photo">{{currentCategory.name |titlecase }}--</div-->
               </mat-select-trigger>
-              <mat-option *ngFor='let category of categories' [value]="category"><div class="categorySelectView"><img src="../../../../../assets/images/{{category.icon}}"alt="photo">{{category.name}}</div></mat-option>
+              <mat-option *ngFor='let category of categories' [value]="category"><div class="categorySelectView"><img src="../../../../../assets/images/{{category.icon | titlecase}}"alt="p">{{category.name |titlecase }}</div></mat-option>
             </mat-select>
-          </mat-form-field>
           
+          </mat-form-field>
+        </ng-container>
       </div>
         
         <li>

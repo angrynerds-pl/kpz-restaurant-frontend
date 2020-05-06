@@ -43,7 +43,7 @@ export class TableComponent implements OnInit, OnDestroy {
   productsSubscription: Subscription;
 
   products: MenuProduct[];
-
+  orders:Array<OrderWaiter>=[];
   constructor(
     private orderService: OrderService,
     private route: ActivatedRoute,
@@ -62,14 +62,18 @@ export class TableComponent implements OnInit, OnDestroy {
       .subscribe((data) => {
         this.table = data;
       });
-
+      this.orderSubscription = this.orderService
+      .getOrders()
+      .subscribe((data) => {
+        
+      this.orders = data;console.log(this.orders);});
     this.orderSubscription = this.orderService
       .getOrderByTableID(this.id)
       .subscribe((data) => (this.orderDetails = data));
     if (this.orderDetails) {
       console.log(this.orderDetails);
       this.productsInOrderSubscription = this.productsInOrderService
-        .getProductsInOrder(this.orderDetails.orderID)
+        .getProductsInOrder(this.orderDetails.id)
         .subscribe((data) => {
           this.productsInOrder = data;
         });
@@ -79,6 +83,7 @@ export class TableComponent implements OnInit, OnDestroy {
           this.products = data;
         });
     }
+    
   }
 
   getClassTable() {
@@ -131,7 +136,7 @@ export class TableComponent implements OnInit, OnDestroy {
         //this.productsInOrderSubscription.unsubscribe();
         if (this.orderDetails) {
           this.productsInOrderSubscription = this.productsInOrderService
-            .getProductsInOrder(this.orderDetails.orderID)
+            .getProductsInOrder(this.orderDetails.id)
             .subscribe((data) => {
               this.productsInOrder = data;
             });
@@ -147,7 +152,7 @@ export class TableComponent implements OnInit, OnDestroy {
     //this._bottomSheet._openedBottomSheetRef
   }
   openBottomSheetBill(): void {
-<<<<<<< HEAD
+
     if (this.productsInOrder.some((product) => product.status == "Served")) {
       this._bottomSheet._openedBottomSheetRef = this._bottomSheet.open(
         BillComponent,
@@ -161,7 +166,7 @@ export class TableComponent implements OnInit, OnDestroy {
       );
     }
     /*this._bottomSheet._openedBottomSheetRef
-=======
+
     console.log(this.productsInOrder.some((product)=>{
       product.status ==='Served';
     }));
@@ -180,7 +185,7 @@ export class TableComponent implements OnInit, OnDestroy {
   );
     }
   /*this._bottomSheet._openedBottomSheetRef
->>>>>>> 9944fdb0c184aa1c1cbc5c2e9a425e6c57d52b2c
+
     .afterDismissed()
     .subscribe((data) => {
       /*this.orderSubscription.unsubscribe();

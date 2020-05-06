@@ -1,14 +1,18 @@
 import { Injectable } from '@angular/core';
-import { MenuProduct } from '../models/menu-product';
+import {MenuProduct} from '../models/menu-product';
 import {Observable} from 'rxjs';
 import {of as ObservableOf} from 'rxjs';
-import { MenuCategory } from '../models/menu-category';
+import { environment } from 'src/environments/environment';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { LocalStorageService } from './local-storage.service';
 @Injectable({
   providedIn: 'root'
 })
 export class ProductService {
   products:MenuProduct[];
-  constructor() {
+
+  host: string = environment.host;
+  constructor(private http:HttpClient, private storageService:LocalStorageService) {
     
     this.products = [
       {id:0,name: "Funghi",price: 20, categoryId: 0},
@@ -31,13 +35,17 @@ export class ProductService {
   }
 
   
-   // getProducts():Observable<MenuProduct[]>{
-   // return ObservableOf(this.products);
+   
+  //getProducts():Observable<MenuProduct[]>{
+  //  return ObservableOf(this.products);
   //}
-  getProducts():Observable<MenuProduct[]>{
-    return ObservableOf(this.products);
+  getProducts():Observable<Array<MenuProduct>>{
+    return this.http.get<Array<MenuProduct>>(this.host+'api/menu',{
+      headers: new HttpHeaders().set('Authorization', 'Bearer ' + this.storageService.getToken()),
+    });
+    
   }
-
+  //getCategoryProducts
   getLastProductID(){
     return this.products.length;
     

@@ -1,7 +1,14 @@
+import { Table } from './table';
+import { ProductsInOrder } from './products-in-order';
+
 export interface OrderWaiter { 
-    orderID:number;
-    tableID:number;
-    orderDate:Date;
-    notes:string;
+    id: number,
+    restaurantId: number,
+    tableId: number,
+    table: Table,
+    waiterId: number,
+    orderDate: Date,
+    orderedProducts: Array<ProductsInOrder>;
+    notes:string
 }
 
