@@ -147,7 +147,7 @@ export class TableComponent implements OnInit, OnDestroy {
     //this._bottomSheet._openedBottomSheetRef
   }
   openBottomSheetBill(): void {
-<<<<<<< HEAD
+
     if (this.productsInOrder.some((product) => product.status == "Served")) {
       this._bottomSheet._openedBottomSheetRef = this._bottomSheet.open(
         BillComponent,
@@ -160,44 +160,6 @@ export class TableComponent implements OnInit, OnDestroy {
         }
       );
     }
-    /*this._bottomSheet._openedBottomSheetRef
-=======
-    console.log(this.productsInOrder.some((product)=>{
-      product.status ==='Served';
-    }));
-    this.productsInOrder.forEach((product)=>{
-      console.log(product.status);
-    });
-    if(this.productsInOrder.some((product)=>{
-      product.status =='Served';
-    })){
-  this._bottomSheet._openedBottomSheetRef = this._bottomSheet.open(
-    BillComponent,
-    {
-      data: { orderDetails: this.orderDetails, productsInOrder: this.productsInOrder },
-      disableClose: false,
-    }
-  );
-    }
-  /*this._bottomSheet._openedBottomSheetRef
->>>>>>> 9944fdb0c184aa1c1cbc5c2e9a425e6c57d52b2c
-    .afterDismissed()
-    .subscribe((data) => {
-      /*this.orderSubscription.unsubscribe();
-      this.orderSubscription = this.orderService
-      .getOrderByTableID(this.id)
-      .subscribe((data) => (this.orderDetails = data));
-      //this.productsInOrderSubscription.unsubscribe();
-      if(this.orderDetails){
-        this.productsInOrderSubscription = this.productsInOrderService.getProductsInOrder(this.orderDetails.orderID).subscribe((data)=>{
-          this.productsInOrder = data;
-        });
-        this.productsSubscription = this.productService.getProducts().subscribe((data)=>{
-          this.products = data;
-          console.log(this.products[0].name);
-        });
-      }
-     
-    });*/
+   
   }
 }
