@@ -1,0 +1,29 @@
+@import '../../../../../styles.scss';
+
+nav {
+    display: flex;
+}
+
+a {
+    flex: 1;
+    padding: 1em;
+    background-color: $darkBlue;
+    color: $textLight;
+    text-decoration: none;
+    text-align: center;
+    border-radius: 8px;
+}
+
+a:not(:last-child){
+    margin-right: 1em;
+}
+
+a:hover{
+    text-decoration: none;
+    color: $textLight;
+}
+
+.active, .active:hover {
+    background-color: $yellow;
+    color: $textDark;
+}

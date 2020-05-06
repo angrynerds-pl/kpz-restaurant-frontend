@@ -24,6 +24,11 @@ import { RoomEditorMainComponent } from './room-editor/room-editor-main/room-edi
 import { TableOptionComponent } from './room-editor/table-option/table-option.component';
 import { TableEditDialogComponent } from './room-editor/table-edit-dialog/table-edit-dialog.component';
 import { TableInfoComponent } from './room-editor/table-info/table-info.component';
+import { IncomeComponent } from './statistics/income/income.component';
+import { ProductsComponent } from './statistics/products/products.component';
+import { CustomersComponent } from './statistics/customers/customers.component';
+import { ChartsModule } from 'ng2-charts';
+import { PieChartComponent } from './statistics/pie-chart/pie-chart.component';
 @NgModule({
   declarations: [
     ManagerMainComponent,
@@ -42,7 +47,11 @@ import { TableInfoComponent } from './room-editor/table-info/table-info.componen
     RoomEditorMainComponent,
     TableOptionComponent,
     TableEditDialogComponent,
-    TableInfoComponent
+    TableInfoComponent,
+    IncomeComponent,
+    ProductsComponent,
+    CustomersComponent,
+    PieChartComponent
   ],
 
   imports: [
@@ -53,7 +62,8 @@ import { TableInfoComponent } from './room-editor/table-info/table-info.componen
     ReactiveFormsModule,
     ToastrModule.forRoot(),
     MatDialogModule,
-    MatButtonModule
+    MatButtonModule,
+    ChartsModule
   ]
 })
 export class ManagerModule {}
