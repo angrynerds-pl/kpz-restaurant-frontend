@@ -18,6 +18,7 @@ import { BillComponent } from "./table-service/bill/bill.component";
 import { MatSelectModule } from "@angular/material/select";
 import { AddNewReservationComponent } from "./reservations/add-new-reservation/add-new-reservation.component";
 import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
+import {MatCheckboxModule} from '@angular/material/checkbox'
 
 @NgModule({
   declarations: [
@@ -44,7 +45,9 @@ import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
     MatSelectModule,
     ReactiveFormsModule,
     OwlDateTimeModule,
-    OwlNativeDateTimeModule
-  ],
+    OwlNativeDateTimeModule,
+    MatCheckboxModule
+  ]
+
 })
 export class WaiterModule {}

@@ -12,20 +12,19 @@ import { faEdit } from "@fortawesome/free-solid-svg-icons";
 import { faPlusCircle } from "@fortawesome/free-solid-svg-icons";
 import { faFileInvoiceDollar } from "@fortawesome/free-solid-svg-icons";
 import { TableAddOrderComponent } from "../table-add-order/table-add-order.component";
-import {BillComponent} from '../bill/bill.component';
+import { BillComponent } from "../bill/bill.component";
 import { OrderService } from "src/app/services/order.service";
 import { OrderWaiter } from "src/app/models/order-waiter";
 import { ProductInOrder } from "src/app/models/product-in-order";
-import { ProductsInOrderService } from 'src/app/services/products-in-order.service';
-import { ProductService } from 'src/app/services/product.service';
-import { MenuProduct } from 'src/app/models/menu-product';
+import { ProductsInOrderService } from "src/app/services/products-in-order.service";
+import { ProductService } from "src/app/services/product.service";
+import { MenuProduct } from "src/app/models/menu-product";
 @Component({
   selector: "app-table",
   templateUrl: "./table.component.html",
   styleUrls: ["./table.component.scss"],
 })
 export class TableComponent implements OnInit, OnDestroy {
-  
   id: number;
   table: Table = {} as Table;
 
@@ -35,23 +34,23 @@ export class TableComponent implements OnInit, OnDestroy {
   iconEdit = faEdit;
 
   orderDetails: OrderWaiter;
-  productsInOrder:ProductInOrder[] ;
+  productsInOrder: ProductInOrder[];
 
   routeSubscription: Subscription;
   tableSubscription: Subscription;
   orderSubscription: Subscription;
-  productsInOrderSubscription:Subscription;
-  productsSubscription:Subscription;
-  
-  products:MenuProduct[];
-  
+  productsInOrderSubscription: Subscription;
+  productsSubscription: Subscription;
+
+  products: MenuProduct[];
+
   constructor(
     private orderService: OrderService,
     private route: ActivatedRoute,
     private tableService: TableService,
     private _bottomSheet: MatBottomSheet,
-    private productsInOrderService:ProductsInOrderService,
-    private productService:ProductService
+    private productsInOrderService: ProductsInOrderService,
+    private productService: ProductService
   ) {}
 
   ngOnInit(): void {
@@ -63,21 +62,23 @@ export class TableComponent implements OnInit, OnDestroy {
       .subscribe((data) => {
         this.table = data;
       });
-    
-      this.orderSubscription = this.orderService
+
+    this.orderSubscription = this.orderService
       .getOrderByTableID(this.id)
       .subscribe((data) => (this.orderDetails = data));
-     if(this.orderDetails){
-       console.log(this.orderDetails)
-      this.productsInOrderSubscription = this.productsInOrderService.getProductsInOrder(this.orderDetails.orderID).subscribe((data)=>{
-        this.productsInOrder = data;
-      });
-      this.productsSubscription = this.productService.getProducts().subscribe((data)=>{
-        this.products = data;
-      });
-
-     }
-     
+    if (this.orderDetails) {
+      console.log(this.orderDetails);
+      this.productsInOrderSubscription = this.productsInOrderService
+        .getProductsInOrder(this.orderDetails.orderID)
+        .subscribe((data) => {
+          this.productsInOrder = data;
+        });
+      this.productsSubscription = this.productService
+        .getProducts()
+        .subscribe((data) => {
+          this.products = data;
+        });
+    }
   }
 
   getClassTable() {
@@ -99,18 +100,17 @@ export class TableComponent implements OnInit, OnDestroy {
       case "Late":
         return "occupied";
       case "Served":
-        return "serve";
+        return "served";
     }
   }
   ngOnDestroy() {
     this.routeSubscription.unsubscribe();
     this.tableSubscription.unsubscribe();
     this.orderSubscription.unsubscribe();
-    if(this.orderDetails){
+    if (this.orderDetails) {
       this.productsInOrderSubscription.unsubscribe();
       this.productsSubscription.unsubscribe();
     }
-    
   }
 
   openBottomSheetOrder(): void {
@@ -126,49 +126,40 @@ export class TableComponent implements OnInit, OnDestroy {
       .subscribe((data) => {
         this.orderSubscription.unsubscribe();
         this.orderSubscription = this.orderService
-        .getOrderByTableID(this.id)
-        .subscribe((data) => (this.orderDetails = data));
+          .getOrderByTableID(this.id)
+          .subscribe((data) => (this.orderDetails = data));
         //this.productsInOrderSubscription.unsubscribe();
-        if(this.orderDetails){
-          this.productsInOrderSubscription = this.productsInOrderService.getProductsInOrder(this.orderDetails.orderID).subscribe((data)=>{
-            this.productsInOrder = data;
-          });
-          this.productsSubscription = this.productService.getProducts().subscribe((data)=>{
-            this.products = data;
-            console.log(this.products[0].name);
-          });
+        if (this.orderDetails) {
+          this.productsInOrderSubscription = this.productsInOrderService
+            .getProductsInOrder(this.orderDetails.orderID)
+            .subscribe((data) => {
+              this.productsInOrder = data;
+            });
+          this.productsSubscription = this.productService
+            .getProducts()
+            .subscribe((data) => {
+              this.products = data;
+              console.log(this.products[0].name);
+            });
         }
-       
       });
 
     //this._bottomSheet._openedBottomSheetRef
   }
   openBottomSheetBill(): void {
-  this._bottomSheet._openedBottomSheetRef = this._bottomSheet.open(
-    BillComponent,
-    {
-      data: { orderDetails: this.orderDetails, productsInOrder: this.productsInOrder },
-      disableClose: false,
+
+    if (this.productsInOrder.some((product) => product.status == "Served")) {
+      this._bottomSheet._openedBottomSheetRef = this._bottomSheet.open(
+        BillComponent,
+        {
+          data: {
+            orderDetails: this.orderDetails,
+            productsInOrder: this.productsInOrder,
+          },
+          disableClose: false,
+        }
+      );
     }
-  );
-  /*this._bottomSheet._openedBottomSheetRef
-    .afterDismissed()
-    .subscribe((data) => {
-      /*this.orderSubscription.unsubscribe();
-      this.orderSubscription = this.orderService
-      .getOrderByTableID(this.id)
-      .subscribe((data) => (this.orderDetails = data));
-      //this.productsInOrderSubscription.unsubscribe();
-      if(this.orderDetails){
-        this.productsInOrderSubscription = this.productsInOrderService.getProductsInOrder(this.orderDetails.orderID).subscribe((data)=>{
-          this.productsInOrder = data;
-        });
-        this.productsSubscription = this.productService.getProducts().subscribe((data)=>{
-          this.products = data;
-          console.log(this.products[0].name);
-        });
-      }
-     
-    });*/
+   
   }
 }
