@@ -5,6 +5,10 @@ import {of as ObservableOf, Observable} from 'rxjs';
 import { Order } from '../models/order';
 import { OrderWaiter } from '../models/order-waiter';
 import { TableService } from './table.service';
+import { environment } from 'src/environments/environment';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { LocalStorageService } from './local-storage.service';
+import { Local } from 'protractor/built/driverProviders';
 
 
 @Injectable({
@@ -12,58 +16,18 @@ import { TableService } from './table.service';
 })
 export class OrderService {
 
-
-
+  host: string =environment.host;
   products:MenuProduct[];
-  orders:Order[];
   
   ordersWaiter:OrderWaiter[];
   newOrder:OrderWaiter;
-  constructor(private tableService:TableService) {
-    this.orders = [
-      {id:1, tableId: 1, date:"2020-04-18 15:00:00", status:true, productsInOrder:[
-        {id:1,orderId:1,product:{id:0,name: "Funghi",price: 20, categoryId: 0}, status:1},
-        {id:2,orderId:1,product:{id:1,name: "Zupa",price: 30, categoryId: 0}, status:1}
-      ]},
-      {id:2, tableId: 3, date:"2020-04-18 16:00:00", status:false, productsInOrder:[
-        {id:3,orderId:1,product:{id:0,name: "Funghi",price: 20, categoryId: 0}, status:1},
-        {id:4,orderId:1,product:{id:1,name: "Zupa",price: 30, categoryId: 0}, status:1},
-        {id:4,orderId:1,product:{id:1,name: "Zupa",price: 30, categoryId: 0}, status:1}
-      ]},
-      {id:3, tableId: 3, date:"2020-04-18 16:00:00", status:false, productsInOrder:[
-        {id:3,orderId:1,product:{id:0,name: "Funghi",price: 20, categoryId: 0}, status:1},
-        {id:4,orderId:1,product:{id:1,name: "Zupa",price: 30, categoryId: 0}, status:1}
-      ]},
-      {id:4, tableId: 3, date:"2020-04-18 16:00:00", status:false, productsInOrder:[
-        {id:3,orderId:1,product:{id:0,name: "Funghi",price: 20, categoryId: 0}, status:1},
-        {id:4,orderId:1,product:{id:1,name: "Zupa",price: 30, categoryId: 0}, status:1}
-      ]},
-      {id:5, tableId: 3, date:"2020-04-18 16:00:00", status:false, productsInOrder:[
-        {id:3,orderId:1,product:{id:0,name: "Funghi",price: 20, categoryId: 0}, status:1},
-        {id:4,orderId:1,product:{id:1,name: "Zupa",price: 30, categoryId: 0}, status:1}
-      ]},
-      {id:6, tableId: 3, date:"2020-04-18 16:00:00", status:false, productsInOrder:[
-        {id:3,orderId:1,product:{id:0,name: "Funghi",price: 20, categoryId: 0}, status:1},
-        {id:4,orderId:1,product:{id:1,name: "Zupa",price: 30, categoryId: 0}, status:1}
-      ]},
-      {id:7, tableId: 3, date:"2020-04-18 16:00:00", status:false, productsInOrder:[
-        {id:3,orderId:1,product:{id:0,name: "Funghi",price: 20, categoryId: 0}, status:1},
-        {id:4,orderId:1,product:{id:1,name: "Zupa",price: 30, categoryId: 0}, status:1},
-        {id:4,orderId:1,product:{id:1,name: "Zupa",price: 30, categoryId: 0}, status:1},
-        {id:4,orderId:1,product:{id:1,name: "Zupa",price: 30, categoryId: 0}, status:1}
-      ]}
-    ]
-    this.ordersWaiter=[{orderID:0,tableID:5,orderDate:new Date(), notes:"without sause"}]
+  constructor(private tableService:TableService, private http:HttpClient, private storageService:LocalStorageService) {
    }
-
-   getOrders():Observable<Order[]>{
-     return ObservableOf(this.orders);
+   getOrders () : Observable<Array<Order>> {
+     return this.http.get<Array<Order>>(this.host + 'api/orders',{
+     headers : new HttpHeaders().set('Authorization', 'Bearer '+ this.storageService.getToken()),
+    });    
    }
-
-
-  
-  
-
 
   createOrder(tableID, notes){
     

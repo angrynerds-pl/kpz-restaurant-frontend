@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { MenuProduct } from 'src/app/models/menu-product';
 import { ProductService } from 'src/app/services/product.service';
 import { OrderService } from 'src/app/services/order.service';
@@ -12,7 +12,9 @@ import { Order } from 'src/app/models/order';
 })
 export class OrderPanelComponent implements OnInit {
 
+  
   productId:number;
+  comment: string;
   orders:Order[];
   constructor(private orderService:OrderService) { }
 
@@ -23,14 +25,15 @@ export class OrderPanelComponent implements OnInit {
 
   loadOrders () {
     this.orderService.getOrders().subscribe(orders =>{
-      
+  
       this.orders = orders;
       //sorting so the longest order is at the end 
-      this.orders.sort((n1,n2) => {
+     /* this.orders.sort((n1,n2) => {
         if (n1.productsInOrder.length > n2.productsInOrder.length)
         return 1;
         else return -1;
-      });
+      });*/
     })
   }
+ 
 }

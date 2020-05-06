@@ -13,7 +13,7 @@ export class OrderItemComponent implements OnInit {
   constructor() {  }
 
   ngOnInit(): void {
-    console.log(this.productInOrder);
+    console.log("productinorder "+this.productInOrder);
   }
 
   

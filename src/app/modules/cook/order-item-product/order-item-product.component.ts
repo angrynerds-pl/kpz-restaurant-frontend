@@ -10,29 +10,30 @@ import { connectableObservableDescriptor } from 'rxjs/internal/observable/Connec
 })
 export class OrderItemProductComponent implements OnInit {
 
-  @Input() product:MenuProduct;
-  @Input() id:number;
-  @Input() status:number;
+  @Input() product: MenuProduct;
+  @Input() id: number;
+  @Input() status: string;
   constructor(private service:OrderService) { 
     
   }
 
   ngOnInit(): void {
+    console.log("product" +this.product);
 
   }
   getClass(){
-    if (this.status==1)
+    if (this.status=="IN_PROGRESS")
     {
       return 'componentDiv';
     }
-    else if (this.status == 2)
+    else if (this.status == "READY")
     {
       return 'componentReady';
     }
     else return 'componentPicked';
   }
   changeStatus(){
-    return this.status==1 ? this.status=2 : this.status=1;
+    return this.status=="IN_PROGRESS" ? this.status="READY" : this.status="IN_PROGRESS";
   }
 
 
