@@ -40,7 +40,7 @@ export class MenuAddCategoryComponent implements OnInit {
 
   createCategory() {
     if (this.categoryForm.valid) {
-      this.categoryID = this.categoryService.getLastCategoryID();
+      //this.categoryID = this.categoryService.getLastCategoryID();
       this.category = Object.assign({}, this.categoryForm.value);
       this.category.id = this.categoryID;
 

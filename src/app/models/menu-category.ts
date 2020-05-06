@@ -1,7 +1,8 @@
 export interface MenuCategory { 
     id:number,
+    restaurantId:number,
     name:string,
-    icon:string //File
+    //icon:string //File
 
 }
 /*

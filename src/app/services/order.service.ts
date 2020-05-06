@@ -1,13 +1,17 @@
 import { Injectable, DebugElement } from '@angular/core';
 import { ProductService } from './product.service';
-import { MenuProduct } from '../models/menu-product';
-import {of as ObservableOf, Observable} from 'rxjs';
-import { Order } from '../models/order';
-import { OrderWaiter } from '../models/order-waiter';
-import { TableService } from './table.service';
+import {MenuCategory} from '../models/menu-category';
+import {Observable} from 'rxjs';
+import {of as ObservableOf} from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { LocalStorageService } from './local-storage.service';
+import { OrderWaiter } from '../models/order-waiter';
+import { MenuProduct } from '../models/menu-product';
+import { Order } from '../models/order';
+import { TableService } from './table.service';
+
+import { HttpParams } from '@angular/common/http';
 import { Local } from 'protractor/built/driverProviders';
 import { ProductsInOrder } from '../models/products-in-order';
 
@@ -20,9 +24,13 @@ export class OrderService {
   host: string =environment.host;
   products:MenuProduct[];
 
+  orders:Order[];
+// categories and products from database, waiting on endpoints to connect with tables
+
   
-  ordersWaiter:OrderWaiter[];
-  newOrder:OrderWaiter;
+  ordersWaiter:Order[];
+  newOrder:Order;
+
   constructor(private tableService:TableService, private http:HttpClient, private storageService:LocalStorageService) {
 
    }
@@ -39,17 +47,26 @@ export class OrderService {
   }
 
 
-  createOrder(tableID, notes){
+  createOrder(tableId, note){
     
-    this.newOrder = {orderID:this.getLastOrderId() , tableID: tableID, orderDate: new Date(),notes};
-    this.ordersWaiter.push( this.newOrder);
-    this.tableService.changeStatusOfTable(tableID);
-   
-    
+    //this.newOrder = {id:this.getLastOrderId() , tableID: tableID, orderDate: new Date(),notes};
+    //this.ordersWaiter.push( this.newOrder);
+    //this.tableService.changeStatusOfTable(tableID);
+    //return this.http.post(this.host + 'api/login/authenticate', {
+    //  Username: username,
+    //  Password: password
+    //});
+    //return this.http.post(this.host + 'api/orders/authenticate', {
+     // tableId: tableId,
+    //  Password: password,
+     // note:,
+      
+    //);
   }
+  
   editOrder(orderID: number, notes,){
     let order = this.getOrderByID(orderID);
-    order.notes = notes;
+   // order.notes = notes;
   }
 
   getLastOrderId(){
@@ -57,17 +74,17 @@ export class OrderService {
   }
 
 
-  getOrderByTableID(tableID: number): Observable<OrderWaiter> {
-    return ObservableOf(this.ordersWaiter.find((e) => e.tableID == tableID));
+  getOrderByTableID(tableID: number): Observable<Order> {
+    return ObservableOf(this.ordersWaiter.find((e) => e.tableId == tableID));
     
   }
   getOrderIDByTableID(tableID: number): number {
-    return this.ordersWaiter.find((e) => e.tableID == tableID).orderID;
+    return this.ordersWaiter.find((e) => e.tableId == tableID).id;
     
   }
 
-  getOrderByID(orderID: number) {
-    return this.ordersWaiter.find((e) => e.orderID == orderID);
+  getOrderByID(orderId: number) {
+    return this.ordersWaiter.find((e) => e.id == orderId);
     
   }
 

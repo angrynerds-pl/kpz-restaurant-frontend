@@ -19,6 +19,7 @@ import { ProductInOrder } from "src/app/models/product-in-order";
 import { ProductsInOrderService } from "src/app/services/products-in-order.service";
 import { ProductService } from "src/app/services/product.service";
 import { MenuProduct } from "src/app/models/menu-product";
+import { Order } from 'src/app/models/order';
 @Component({
   selector: "app-table",
   templateUrl: "./table.component.html",
@@ -33,7 +34,7 @@ export class TableComponent implements OnInit, OnDestroy {
   iconBill = faFileInvoiceDollar;
   iconEdit = faEdit;
 
-  orderDetails: OrderWaiter;
+  orderDetails: Order;
   productsInOrder: ProductInOrder[];
 
   routeSubscription: Subscription;
@@ -43,7 +44,7 @@ export class TableComponent implements OnInit, OnDestroy {
   productsSubscription: Subscription;
 
   products: MenuProduct[];
-
+  orders:Array<Order>=[];
   constructor(
     private orderService: OrderService,
     private route: ActivatedRoute,
@@ -62,14 +63,18 @@ export class TableComponent implements OnInit, OnDestroy {
       .subscribe((data) => {
         this.table = data;
       });
-
+      this.orderSubscription = this.orderService
+      .getOrders()
+      .subscribe((data) => {
+        
+      this.orders = data;console.log(this.orders);});
     this.orderSubscription = this.orderService
       .getOrderByTableID(this.id)
       .subscribe((data) => (this.orderDetails = data));
     if (this.orderDetails) {
       console.log(this.orderDetails);
       this.productsInOrderSubscription = this.productsInOrderService
-        .getProductsInOrder(this.orderDetails.orderID)
+        .getProductsInOrder(this.orderDetails.id)
         .subscribe((data) => {
           this.productsInOrder = data;
         });
@@ -79,6 +84,7 @@ export class TableComponent implements OnInit, OnDestroy {
           this.products = data;
         });
     }
+    
   }
 
   getClassTable() {
@@ -131,7 +137,7 @@ export class TableComponent implements OnInit, OnDestroy {
         //this.productsInOrderSubscription.unsubscribe();
         if (this.orderDetails) {
           this.productsInOrderSubscription = this.productsInOrderService
-            .getProductsInOrder(this.orderDetails.orderID)
+            .getProductsInOrder(this.orderDetails.id)
             .subscribe((data) => {
               this.productsInOrder = data;
             });
@@ -160,6 +166,6 @@ export class TableComponent implements OnInit, OnDestroy {
         }
       );
     }
-   
+
   }
 }

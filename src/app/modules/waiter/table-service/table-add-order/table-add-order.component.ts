@@ -24,7 +24,7 @@ import {MatSelect} from "@angular/material/select";
   styleUrls: ["./table-add-order.component.scss"],
 })
 export class TableAddOrderComponent implements OnInit, OnDestroy {
-  categories: MenuCategory[];
+  categories: Array<MenuCategory>  = [];
   products: MenuProduct[];
   productsToAdd: ProductToAdd[];
   choosenCategoryId: number;
@@ -40,6 +40,7 @@ export class TableAddOrderComponent implements OnInit, OnDestroy {
 
   pageNumber:number = 1;
 
+  
 
   orderEdit:ProductInOrder[];
   @Output() pageChange: EventEmitter<number>;
@@ -82,7 +83,10 @@ export class TableAddOrderComponent implements OnInit, OnDestroy {
       .subscribe((categories) => {
         this.categories = categories;
         this.currentCategory = this.categories[0];
+        console.log('current',this.currentCategory);
       });
+     
+     
   }
 
   loadProducts() {
