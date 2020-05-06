@@ -1,5 +1,5 @@
 export interface Table {
-    tableID: number;
+    id: number;
     number: number;
     seats: number;
     status: string;

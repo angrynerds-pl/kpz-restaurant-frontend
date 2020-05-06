@@ -1,23 +1,23 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Room } from '../models/room';
-import { Observable, of } from 'rxjs';
+import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
+import { LocalStorageService } from './local-storage.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class RoomService {
 
-  rooms: Array<Room> = [
-    { roomID: 1, number: 1, rows: 5, columns: 4 },
-    { roomID: 2, number: 2, rows: 5, columns: 3 }
-  ]
+  host = environment.host;
 
-  constructor(private http:HttpClient) { }
+  constructor(private http:HttpClient, private storageSerice:LocalStorageService) { }
 
   getRooms(): Observable<Array<Room>>{
-    return of(this.rooms);
-    // return this.http.get<Array<Room>>(url);
+    return this.http.get<Array<Room>>(this.host + 'api/rooms', {
+      headers: new HttpHeaders().set('Authorization', 'Bearer ' + this.storageSerice.getToken()),
+  });
   }
 
 }

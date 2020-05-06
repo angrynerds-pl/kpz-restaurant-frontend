@@ -4,7 +4,7 @@
             <div class="select-box">
                 <select [(ngModel)]="currentID" (change)="setTables()">
                     <ng-container *ngFor="let room of rooms">
-                        <option [ngValue]="room.roomID">Room #{{room.number}}</option>
+                        <option [ngValue]="room.id">{{room.name}}</option>
                     </ng-container>
                 </select>
             </div>
@@ -49,7 +49,6 @@
       routerLinkActive="active"
       >Service</a
     >
-    <!--a-- class="dropdown-item" routerLink="">My orders</!--a-->
     <a class="dropdown-item" routerLink="">Logout</a>
   </div>
 </section>

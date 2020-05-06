@@ -3,7 +3,7 @@
         <ng-container *ngIf="rooms">
             <ng-container *ngFor="let room of rooms">
                 <div class="room">
-                    <span>Room #{{room.number}}</span>
+                    <span>{{room.name}}</span>
                     <button class="btnEdit" (click)="edit(room)">Edit</button>
                 </div>
             </ng-container>
@@ -24,6 +24,10 @@
                             <option [ngValue]="row">{{row}}</option>
                         </ng-container>
                     </select>
+                </div>
+                <div>
+                    <label>Name</label>
+                    <input required name="name" type="text" [(ngModel)]="name">
                 </div>
             <button class="btnSubmit" (click)="create()" [disabled]="!editorForm.valid">Add</button>
         </form>

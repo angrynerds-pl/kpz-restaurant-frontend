@@ -24,6 +24,11 @@ export class LocalStorageService {
     return localStorage.getItem('role');
   }
 
+  // getRestaurantId(){
+  //   const id = this.getDecodedAccessToken(this.getToken()).Restaurant;
+  //   return id;
+  // }
+
   isLoggedIn(){
     if(localStorage.getItem('token')) return true;
     return false;

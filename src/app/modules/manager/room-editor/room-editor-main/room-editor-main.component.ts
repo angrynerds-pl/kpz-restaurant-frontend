@@ -16,6 +16,7 @@ export class RoomEditorMainComponent implements OnInit, OnDestroy {
 
   rows:number; // number of rows selected by user from select
   columns: number; // number of columns selected by user from select
+  name: string; // name of the room (user input)
 
   rowsOption: Array<number>; // hardcoded number of rows (select options)
   columnsOption: Array<number>; // hardcoded number of columns (select options)
@@ -40,7 +41,7 @@ export class RoomEditorMainComponent implements OnInit, OnDestroy {
   }
 
   edit(room: Room){
-    this.tableSubscription = this.tableService.getTables(room.roomID).subscribe(data => {
+    this.tableSubscription = this.tableService.getTables(room.id).subscribe(data => {
       this.tables = data;
       this.grid = new Array(room.rows).fill(null).map(() => new Array(room.columns).fill(null));
       for(let i = 0; i < room.rows; i++){
@@ -56,7 +57,6 @@ export class RoomEditorMainComponent implements OnInit, OnDestroy {
     this.tables = [];
     this.grid = new Array(this.rows).fill(null).map(() => new Array(this.columns).fill(null));
     this.picked = true;
-    this.rows = this.columns = null;
   }
 
   add(table){

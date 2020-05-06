@@ -30,7 +30,7 @@ export class TableOptionComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     if(!this.table){
-      this.table = { x: this.coordX, y: this.coordY, status: 'free', number: null, seats: null, tableID: 0, roomID: 0 };
+      this.table = { x: this.coordX, y: this.coordY, status: 'free', number: null, seats: null, id: 0, roomID: 0 };
     }
     else{
       this.selected = true;
