@@ -61,10 +61,12 @@ export class RoomEditorMainComponent implements OnInit, OnDestroy {
     })
     this.picked = true;
     this.currentRoom.id = room.id;
+    this.deletedTables = [];
   }
 
   create(){
     this.tables = [];
+    this.deletedTables = [];
     this.grid = new Array(this.rows).fill(null).map(() => new Array(this.columns).fill(null));
     this.currentRoom = { 
       id: null, rows: this.rows, columns: this.columns, name: this.name, restaurantId: this.storageService.getRestaurantId()
