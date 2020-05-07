@@ -20,6 +20,7 @@ export class TableOptionComponent implements OnInit, OnDestroy {
   @Input() table: Table;
   @Input() coordX: number;
   @Input() coordY: number;
+  @Input() tables: Array<Table>;
 
   @Output() addTable: EventEmitter<Table> = new EventEmitter();
   @Output() deleteTable: EventEmitter<Table> = new EventEmitter();
@@ -59,11 +60,14 @@ export class TableOptionComponent implements OnInit, OnDestroy {
     const dialogRef = this.dialog.open(TableEditDialogComponent, {
       width: '300px',
       height: '270px',
-      data: this.table
+      data: { tables: this.tables, table: this.table }
     });
 
     this.dialogSubscription = dialogRef.afterClosed().subscribe(result => {
-      if(result) this.table = result;
+      if(result) {
+        this.table = result.table;
+        this.tables = result.tables;
+      } 
     });
   }
   

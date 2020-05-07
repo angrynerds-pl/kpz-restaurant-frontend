@@ -11,12 +11,16 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 export class TableEditDialogComponent implements OnInit {
 
   table: Table;
-
+  tables: Array<Table>;
   tableForm: FormGroup;
+  oldNumber: number;
 
-  constructor(public dialogRef: MatDialogRef<TableEditDialogComponent>, @Inject(MAT_DIALOG_DATA) public data: Table,
+  wrongNumber: boolean = false;
+
+  constructor(public dialogRef: MatDialogRef<TableEditDialogComponent>, @Inject(MAT_DIALOG_DATA) public data: any,
     private formBuilder:FormBuilder) {
-    this.table = data;
+    this.table = data.table;
+    this.tables = data.tables;
   }
 
   ngOnInit(): void {
@@ -24,12 +28,28 @@ export class TableEditDialogComponent implements OnInit {
       number: [this.table.number || 0, [Validators.required, Validators.min(1)]],
       seats: [this.table.seats || 0, [Validators.required, Validators.min(1)]]
     })
+    this.oldNumber = this.table.number;
   }
   
   save(): void {
-    this.table.number = this.tableForm.get('number').value;
-    this.table.seats = this.tableForm.get('seats').value;
-    this.dialogRef.close(this.table);
+    const number = this.tableForm.get('number').value;
+    if(!this.isNumberTaken(number)){
+      this.table.number = this.tableForm.get('number').value;
+      this.table.seats = this.tableForm.get('seats').value;
+      this.dialogRef.close({
+        tables: this.tables,
+        table: this.table
+      });
+    }
+    else{
+      this.wrongNumber = true;
+    }
+  }
+
+  isNumberTaken(number: number){
+    if(number === this.oldNumber) return false;
+    const index = this.tables.findIndex(t => t.number == number);
+    return index == -1 ? false : true;
   }
 
 }

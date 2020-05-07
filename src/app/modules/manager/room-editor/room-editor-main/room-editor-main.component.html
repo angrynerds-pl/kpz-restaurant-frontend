@@ -46,6 +46,7 @@
                             <app-table-option 
                             (addTable)="add($event)" 
                             (deleteTable)="delete($event)" 
+                            [tables]="tables"
                             [table]="row"
                             [coordX]="i" 
                             [coordY]="j">
