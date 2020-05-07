@@ -17,11 +17,13 @@ export class LocalStorageService {
   }
 
   getRole(){
-    return this.getDecodedAccessToken(this.getToken()).role;
+    const token = this.getToken();
+    return token ? this.getDecodedAccessToken(this.getToken()).role : null;
   }
 
   getRestaurantId(){
-    return this.getDecodedAccessToken(this.getToken()).Restaurant;
+    const token = this.getToken();
+    return token ? this.getDecodedAccessToken(this.getToken()).Restaurant : null;
   }
 
   isLoggedIn(){
