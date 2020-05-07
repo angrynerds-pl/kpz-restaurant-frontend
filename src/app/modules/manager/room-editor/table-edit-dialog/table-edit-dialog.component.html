@@ -13,5 +13,8 @@
         <div class="button-box">
             <button [disabled]="!tableForm.valid" (click)="save()" type="submit">Save</button>
         </div>
+        <ng-container *ngIf="wrongNumber">
+            <span class="warning">Number has been already taken</span>
+        </ng-container>
     </form>
 </section>

@@ -1,35 +1,42 @@
 
-    <section class="rooms">
-        <ng-container *ngIf="rooms">
-            <ng-container *ngFor="let room of rooms">
-                <div class="room">
-                    <span>Room #{{room.number}}</span>
-                    <button class="btnEdit" (click)="edit(room)">Edit</button>
-                </div>
-            </ng-container>
+<section class="rooms">
+    <ng-container *ngIf="rooms">
+        <ng-container *ngFor="let room of rooms">
+            <div class="room">
+                <span>{{room.name}}</span>
+                <button class="btnEdit" (click)="edit(room)">Edit</button>
+                <button class="btnDelete" (click)="deleteRoom(room)">Delete</button>
+            </div>
         </ng-container>
-        <form #editorForm="ngForm">
-                <div class="d-flex">
-                    <label>Columns</label>
-                    <select required name="columns-select" [(ngModel)]="columns">
-                        <ng-container *ngFor="let col of columnsOption">
-                            <option [ngValue]="col">{{col}}</option>
-                        </ng-container>
-                    </select>
-                </div>
-                <div class="d-flex">
-                    <label>Rows</label>
-                    <select required name="rows-select" [(ngModel)]="rows">
-                        <ng-container *ngFor="let row of rowsOption">
-                            <option [ngValue]="row">{{row}}</option>
-                        </ng-container>
-                    </select>
-                </div>
-            <button class="btnSubmit" (click)="create()" [disabled]="!editorForm.valid">Add</button>
-        </form>
-    </section>
+    </ng-container>
+</section>
+<section>
+    <form #editorForm="ngForm">
+        <div class="input-box">
+            <label>Columns</label>
+            <select required name="columns-select" [(ngModel)]="columns">
+                <ng-container *ngFor="let col of columnsOption">
+                    <option [ngValue]="col">{{col}}</option>
+                </ng-container>
+            </select>
+        </div>
+        <div class="input-box">
+            <label>Rows</label>
+            <select required name="rows-select" [(ngModel)]="rows">
+                <ng-container *ngFor="let row of rowsOption">
+                    <option [ngValue]="row">{{row}}</option>
+                </ng-container>
+            </select>
+        </div>
+        <div class="input-box">
+            <label>Name</label>
+            <input required name="name" type="text" [(ngModel)]="name">
+        </div>
+        <button class="btnSubmit" (click)="create()" [disabled]="!editorForm.valid">Add</button>
+    </form>
+</section>
 <div class="row">
-    <section class="col-md-5 offset-md-1">
+    <article class="col-md-5 offset-md-1">
         <ng-container *ngIf="grid">
             <p>Layout</p>
             <div class="grid-box">
@@ -39,6 +46,7 @@
                             <app-table-option 
                             (addTable)="add($event)" 
                             (deleteTable)="delete($event)" 
+                            [tables]="tables"
                             [table]="row"
                             [coordX]="i" 
                             [coordY]="j">
@@ -51,7 +59,7 @@
                 <button (click)="save()" class="btnSubmit">Save</button>
             </div>
         </ng-container>
-    </section>
+    </article>
     <aside class="col-md-5">
         <ng-container *ngIf="picked">
             <p>Tables</p>

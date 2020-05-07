@@ -13,6 +13,21 @@ select {
     margin: 0px 8px;
     border-radius: 8px;
     padding: 0px 8px;
+    border: 1px solid black;
+}
+
+input {
+    margin: 0px 8px;
+    border-radius: 8px;
+    padding: 0px 8px;
+    width: 125px;
+    border: 1px solid black;
+    text-align: center;
+}
+
+.input-box{
+    display: flex;
+    padding: 10px 0px;
 }
 
 .grid-box {
@@ -27,7 +42,7 @@ select {
     flex: 1;
 }
 
-.rooms {
+section {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -46,13 +61,15 @@ select {
 form {
     background-color: $gray;
     padding: 0.5em;
-    margin: 8px;
+    margin: 8px auto;
+    min-width: 0;
     border-radius: 8px;
     display: flex;
     align-items: baseline;
+    flex-wrap: wrap;
 }
 
-.btnSubmit, .btnEdit {
+.btnSubmit, .btnEdit, .btnDelete {
     padding: 8px 16px;
     margin-left: 8px;
     border-radius: 8px;
@@ -65,7 +82,11 @@ form {
     outline: 0;
 }
 
-.btnSubmit:not(:disabled):hover, .btnEdit:hover {
+.btnDelete {
+    background-color: $red;
+}
+
+.btnSubmit:not(:disabled):hover, .btnEdit:hover, .btnDelete:hover {
     transform: scale(1.05);
 }
 

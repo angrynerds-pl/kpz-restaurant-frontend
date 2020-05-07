@@ -27,16 +27,16 @@ export class TablesMainComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.roomSubscription = this.roomService.getRooms().subscribe(data => {
       this.rooms = data;
+      if(this.rooms.length > 0){
+        this.currentID = this.rooms[0].id;
+        this.setTables();
+      }
     })
-    if(this.rooms.length > 0){
-      this.currentID = this.rooms[0].roomID;
-      this.setTables();
-    }
   }
 
   setTables(){
-    this.currentRoom = this.rooms.find(e => e.roomID === this.currentID);
-    this.tableSubscription = this.tableService.getTables(this.currentRoom.roomID).subscribe(data => {
+    this.currentRoom = this.rooms.find(e => e.id === this.currentID);
+    this.tableSubscription = this.tableService.getTables(this.currentRoom.id).subscribe(data => {
       this.tables = data;
       this.grid = new Array(this.currentRoom.rows).fill(null).map(() => new Array(this.currentRoom.columns).fill(null));
       for(let i = 0; i < this.currentRoom.rows; i++){
