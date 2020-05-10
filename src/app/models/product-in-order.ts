@@ -1,6 +1,6 @@
 export interface ProductInOrder { 
-    productInOrderID:number;
-    orderID:number;
-    productID:number;
-    status:string;
+    productInOrderID: number;
+    orderID: number;
+    productID: number;
+    status: string;
 }
