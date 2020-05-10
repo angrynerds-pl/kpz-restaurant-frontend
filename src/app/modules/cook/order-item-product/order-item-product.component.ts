@@ -2,6 +2,10 @@ import { Component, OnInit, Input } from '@angular/core';
 import { MenuProduct } from 'src/app/models/menu-product';
 import { OrderService } from 'src/app/services/order.service';
 import { connectableObservableDescriptor } from 'rxjs/internal/observable/ConnectableObservable';
+import { OrderPanelComponent } from '../order-panel/order-panel.component';
+import { ProductInOrder } from 'src/app/models/product-in-order';
+import { ProductsInOrder } from 'src/app/models/products-in-order';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-order-item-product',
@@ -13,28 +17,29 @@ export class OrderItemProductComponent implements OnInit {
   @Input() product: MenuProduct;
   @Input() id: number;
   @Input() status: string;
-  constructor(private service:OrderService) { 
+  @Input() orderedProduct: ProductsInOrder;
+  
+  constructor(private service:OrderService) {    
     
   }
 
   ngOnInit(): void {
-    console.log("product" +this.product);
 
   }
   getClass(){
-    if (this.status=="IN_PROGRESS")
+    if (this.orderedProduct.status=="IN_PROGRESS")
     {
       return 'componentDiv';
     }
-    else if (this.status == "READY")
+    else if (this.orderedProduct.status == "READY")
     {
       return 'componentReady';
     }
     else return 'componentPicked';
   }
-  changeStatus(){
-    return this.status=="IN_PROGRESS" ? this.status="READY" : this.status="IN_PROGRESS";
+
+  changeStatus(){  
+    this.orderedProduct.status=="IN_PROGRESS" ? this.orderedProduct.status="READY" : this.orderedProduct.status="IN_PROGRESS";
+    this.service.updateStatus(this.orderedProduct).subscribe();  
   }
-
-
 }

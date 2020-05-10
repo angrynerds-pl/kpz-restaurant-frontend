@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { MenuProduct } from 'src/app/models/menu-product';
 import { ProductsInOrder } from 'src/app/models/products-in-order';
+import { OrderService } from 'src/app/services/order.service';
 
 @Component({
   selector: 'app-order-item',
@@ -10,11 +11,8 @@ import { ProductsInOrder } from 'src/app/models/products-in-order';
 export class OrderItemComponent implements OnInit {
 
   @Input() productInOrder:ProductsInOrder;
-  constructor() {  }
+  constructor(private service:OrderService) {  }
 
   ngOnInit(): void {
-    console.log("productinorder "+this.productInOrder);
   }
-
-  
 }

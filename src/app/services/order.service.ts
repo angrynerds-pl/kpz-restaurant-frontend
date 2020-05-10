@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, DebugElement } from '@angular/core';
 import { ProductService } from './product.service';
 import { MenuProduct } from '../models/menu-product';
 import {of as ObservableOf, Observable} from 'rxjs';
@@ -6,9 +6,10 @@ import { Order } from '../models/order';
 import { OrderWaiter } from '../models/order-waiter';
 import { TableService } from './table.service';
 import { environment } from 'src/environments/environment';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { LocalStorageService } from './local-storage.service';
 import { Local } from 'protractor/built/driverProviders';
+import { ProductsInOrder } from '../models/products-in-order';
 
 
 @Injectable({
@@ -28,6 +29,12 @@ export class OrderService {
      headers : new HttpHeaders().set('Authorization', 'Bearer '+ this.storageService.getToken()),
     });    
    }
+   updateStatus (orderedProduct:ProductsInOrder) : Observable<ProductsInOrder> { 
+     console.log(orderedProduct);
+    return this.http.put<ProductsInOrder>(this.host + 'api/orders/products/',orderedProduct, {  
+    headers : new HttpHeaders().set('Authorization', 'Bearer '+ this.storageService.getToken()),
+   });    
+  }
 
   createOrder(tableID, notes){
     
