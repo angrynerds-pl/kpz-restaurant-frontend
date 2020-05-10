@@ -16,12 +16,14 @@ export class LocalStorageService {
     return localStorage.getItem('token');
   }
 
-  setRole(token: string){
-    localStorage.setItem('role', this.getDecodedAccessToken(token).role);
+  getRole(){
+    const token = this.getToken();
+    return token ? this.getDecodedAccessToken(this.getToken()).role : null;
   }
 
-  getRole(){
-    return localStorage.getItem('role');
+  getRestaurantId(){
+    const token = this.getToken();
+    return token ? this.getDecodedAccessToken(this.getToken()).Restaurant : null;
   }
 
   isLoggedIn(){
@@ -31,7 +33,6 @@ export class LocalStorageService {
 
   logout(){
     localStorage.removeItem('token');
-    localStorage.removeItem('role');
   }
 
   getDecodedAccessToken(token: string): any {

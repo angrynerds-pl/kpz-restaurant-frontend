@@ -1,0 +1,12 @@
+@import '../../../../../styles.scss';
+
+section {
+    margin: 1em 0em;
+}
+
+.chart {
+    display: block;
+    background-color: $gray;
+    border-radius: 8px;
+    padding: 0.5em;
+}

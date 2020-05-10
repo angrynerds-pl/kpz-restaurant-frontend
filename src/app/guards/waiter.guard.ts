@@ -15,16 +15,14 @@ export class WaiterGuard implements CanActivate {
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
       
-      return true; // temporary
-      // We'll uncomment this later, but for know it would be annoying
-      // const role = this.localStorageService.getRole();
+      const role = this.localStorageService.getRole();
 
-      // if(role === 'WAITER' || role === 'HEAD_WAITER'){
-      //   return true;
-      // }
+      if(role === 'WAITER' || role === 'HEAD_WAITER'){
+        return true;
+      }
         
-      // this.router.navigate(['/login']);
-      // return false;
+      this.router.navigate(['/login']);
+      return false;
 
   }
   

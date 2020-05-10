@@ -1,0 +1,10 @@
+@import '../../../../../styles.scss';
+
+.pie {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: $gray;
+    border-radius: 8px;
+    height: 100%;
+}

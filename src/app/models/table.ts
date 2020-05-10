@@ -1,9 +1,9 @@
 export interface Table {
-    tableID: number;
+    id: number;
     number: number;
     seats: number;
     status: string;
-    roomID: number;
+    roomId: number;
     x: number;
     y: number;
 }

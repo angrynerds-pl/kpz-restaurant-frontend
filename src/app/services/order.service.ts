@@ -19,10 +19,12 @@ export class OrderService {
 
   host: string =environment.host;
   products:MenuProduct[];
+
   
   ordersWaiter:OrderWaiter[];
   newOrder:OrderWaiter;
   constructor(private tableService:TableService, private http:HttpClient, private storageService:LocalStorageService) {
+
    }
    getOrders () : Observable<Array<Order>> {
      return this.http.get<Array<Order>>(this.host + 'api/orders',{
@@ -35,6 +37,7 @@ export class OrderService {
     headers : new HttpHeaders().set('Authorization', 'Bearer '+ this.storageService.getToken()),
    });    
   }
+
 
   createOrder(tableID, notes){
     

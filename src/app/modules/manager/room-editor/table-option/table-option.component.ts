@@ -20,6 +20,7 @@ export class TableOptionComponent implements OnInit, OnDestroy {
   @Input() table: Table;
   @Input() coordX: number;
   @Input() coordY: number;
+  @Input() tables: Array<Table>;
 
   @Output() addTable: EventEmitter<Table> = new EventEmitter();
   @Output() deleteTable: EventEmitter<Table> = new EventEmitter();
@@ -30,7 +31,7 @@ export class TableOptionComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     if(!this.table){
-      this.table = { x: this.coordX, y: this.coordY, status: 'free', number: null, seats: null, tableID: 0, roomID: 0 };
+      this.table = { x: this.coordX, y: this.coordY, status: 'FREE', number: null, seats: null, id: 0, roomId: null };
     }
     else{
       this.selected = true;
@@ -59,11 +60,14 @@ export class TableOptionComponent implements OnInit, OnDestroy {
     const dialogRef = this.dialog.open(TableEditDialogComponent, {
       width: '300px',
       height: '270px',
-      data: this.table
+      data: { tables: this.tables, table: this.table }
     });
 
     this.dialogSubscription = dialogRef.afterClosed().subscribe(result => {
-      if(result) this.table = result;
+      if(result) {
+        this.table = result.table;
+        this.tables = result.tables;
+      } 
     });
   }
   
