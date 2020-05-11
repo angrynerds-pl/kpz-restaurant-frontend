@@ -13,6 +13,7 @@ import { ProductsInOrder } from '../models/products-in-order';
 })
 export class OrderService {
 
+
   host: string =environment.host;
   
   constructor(private tableService:TableService, private http:HttpClient, private storageService:LocalStorageService) {
@@ -63,7 +64,7 @@ export class OrderService {
   
   //PATCH or PUT order
   editOrder(orderId: number, orderedProducts,note){
-    
+
     return this.http.put<Order>(this.host + 'api/orders/'+orderId, {  
       
       orderedProducts:orderedProducts,
@@ -71,11 +72,13 @@ export class OrderService {
      });  
   }
 
+
   //GET order by orderId
   getOrderById(orderId: number) {
     return this.http.get<Order>(this.host + 'api/orders/'+orderId,{
       headers : new HttpHeaders().set('Authorization', 'Bearer '+ this.storageService.getToken()),
      });  
+
     
   }
   //POST produkty do zamówienia

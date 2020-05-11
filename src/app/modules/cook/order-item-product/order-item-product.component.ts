@@ -3,7 +3,6 @@ import { MenuProduct } from 'src/app/models/menu-product';
 import { OrderService } from 'src/app/services/order.service';
 import { connectableObservableDescriptor } from 'rxjs/internal/observable/ConnectableObservable';
 import { OrderPanelComponent } from '../order-panel/order-panel.component';
-import { ProductInOrder } from 'src/app/models/product-in-order';
 import { ProductsInOrder } from 'src/app/models/products-in-order';
 import { Observable } from 'rxjs';
 

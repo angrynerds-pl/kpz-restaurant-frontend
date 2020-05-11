@@ -4,7 +4,7 @@ import { MAT_BOTTOM_SHEET_DATA } from "@angular/material/bottom-sheet";
 import { CategoryService } from "src/app/services/category.service";
 import { ProductService } from "src/app/services/product.service";
 import { ProductsToOrderService } from "src/app/services/products-to-order.service";
-import { ProductInOrder } from "src/app/models/product-in-order";
+import { ProductsInOrder } from "src/app/models/products-in-order";
 import { MenuProduct } from "src/app/models/menu-product";
 import { Subscription } from "rxjs";
 import { MatCheckbox } from "@angular/material/checkbox";
@@ -16,7 +16,7 @@ import { FormControl } from "@angular/forms";
 })
 export class BillComponent implements OnInit, OnDestroy {
   products: MenuProduct[];
-  productsInOrder: ProductInOrder[];
+  productsInOrder: ProductsInOrder[];
   billAmount: Array<number>;
   billNumber: number = 1;
 
@@ -55,7 +55,7 @@ export class BillComponent implements OnInit, OnDestroy {
 
   sumUpTotalAmount() {
     this.productsInOrder.forEach((product) => {
-      this.totalAmount += this.products[product.productID].price;
+      this.totalAmount += this.products[product.id].price;
     });
     this.checkStatus = new Array(this.productsInOrder.length);
     this.checkStatus.fill(true);

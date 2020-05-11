@@ -43,7 +43,9 @@ export class TableComponent implements OnInit, OnDestroy {
   productsSubscription: Subscription;
 
   products: MenuProduct[];
+
   orders:Array<Order>=[];
+
   constructor(
     private ordersService: OrderService,
     private route: ActivatedRoute,
@@ -61,6 +63,7 @@ export class TableComponent implements OnInit, OnDestroy {
       .subscribe((data) => {
         this.table = data;
       });
+
       /*this.orderSubscription = this.orderService
       .getOrders()
       .subscribe((data) => {
@@ -76,6 +79,7 @@ export class TableComponent implements OnInit, OnDestroy {
       
       this.productsInOrder = this.orderDetails.orderedProducts;
        
+
       this.productsSubscription = this.productService
         .getProducts()
         .subscribe((data) => {
@@ -134,10 +138,14 @@ export class TableComponent implements OnInit, OnDestroy {
           .subscribe((data) => (this.orderDetails = data));
         
         if (this.orderDetails) {
+
          
           //subscription
          
           /*this.ordersSubscription = this.productsInOrderService
+
+          this.productsInOrderSubscription = this.productsInOrderService
+
             .getProductsInOrder(this.orderDetails.id)
             .subscribe((data) => {
               this.productsInOrder = data;
