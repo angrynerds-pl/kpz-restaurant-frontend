@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { ProductInOrder } from "../models/product-in-order";
+import { ProductsInOrder } from "../models/products-in-order";
 import { ProductToAdd } from '../models/product-to-add';
 import { Observable } from "rxjs";
 import { of as ObservableOf } from "rxjs";
@@ -7,13 +7,10 @@ import { of as ObservableOf } from "rxjs";
   providedIn: "root",
 })
 export class ProductsInOrderService {
-  productsInOrder: Array<ProductInOrder>;
-  productToAdd:ProductInOrder = null;
+  
+  productToAdd:ProductsInOrder = null;
   constructor() {
-    this.productsInOrder=[{orderID:0,productInOrderID:0,productID:0, status:"In progress"},
-    {orderID:0,productInOrderID:1,productID:0, status:"In progress"},{orderID:0,productInOrderID:2,productID:4, status:"Ready"},
-    {orderID:0,productInOrderID:3,productID:4, status:"Ready"},{orderID:0,productInOrderID:4,productID:3, status:"Late"},
-    {orderID:1,productInOrderID:0,productID:4, status:"Ready"},{orderID:1,productInOrderID:1,productID:3, status:"Served"},{orderID:1,productInOrderID:2,productID:2, status:"Served"},]
+    
   }
 
   addProductsToOrder(orderID, productsToOrder:Array<ProductToAdd>) {
@@ -22,15 +19,15 @@ export class ProductsInOrderService {
       
         for(let i=0;i<element.amount;i++){
           
-          this.productToAdd = {orderID:orderID,productID:element.product.id,productInOrderID:counterID,status:'In progress'};
-          this.productsInOrder.push(this.productToAdd);
+          //this.productToAdd = {orderID:orderID,productID:element.product.id,productInOrderID:counterID,status:'In progress'};
+         // this.productsInOrder.push(this.productToAdd);
           counterID++;
         }
     });
-    console.log(this.productsInOrder);
+    //console.log(this.productsInOrder);
   }
   editProductsInOrder(orderID:number, productsToOrder:Array<ProductToAdd>){
-    let currentProducts = this.productsInOrder.filter((e) => e.orderID === orderID);
+   /*// let currentProducts = this.productsInOrder.filter((e) => e.orderID === orderID);
     let currentID = currentProducts.length +1;
     console.log(this.productsInOrder.filter((e) => e.orderID === orderID));
     console.log("from order",productsToOrder);
@@ -53,42 +50,42 @@ export class ProductsInOrderService {
       }
     }
 });
-  console.log(this.productsInOrder.filter((e) => e.orderID === orderID));
+  console.log(this.productsInOrder.filter((e) => e.orderID === orderID));*/
   }
   
 
   removeProductFromOrder(id) {
     let productsIndex = this.findProductsInOrder(id); 
 
-    this.productsInOrder.splice(productsIndex, 1);
+   // this.productsInOrder.splice(productsIndex, 1);
   }
 
-  getProductsInOrder(orderID):Observable<ProductInOrder[]>{
+  /*getProductsInOrder(orderID):Observable<ProductsInOrder[]>{
 
     
     return ObservableOf(this.productsInOrder.filter((e) => e.orderID === orderID));
     
-  }
+  }*/
   updateProductsInOrder(user) {
     let userArrayIndex = this.findProductsInOrder(user.id);
-    this.productsInOrder[userArrayIndex] = user;
+   // this.productsInOrder[userArrayIndex] = user;
   }
   
   findProductsInOrder(id) {
-    let index = this.productsInOrder.findIndex(
+   /* let index = this.productsInOrder.findIndex(
       (product) => product.productID === id
     );
 
-    return index;
+    return index;*/
   }
   getLastProductsInOrderID() {
-    if (this.productsInOrder.length != 0) {
+   /* if (this.productsInOrder.length != 0) {
       return (
         this.productsInOrder[this.productsInOrder.length - 1].productInOrderID +
         1
       );
     } else {
       return 0;
-    }
+    }*/
   }
 }

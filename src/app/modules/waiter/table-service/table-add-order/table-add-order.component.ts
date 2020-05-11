@@ -16,7 +16,7 @@ import { ProductToAdd } from "src/app/models/product-to-add";
 import { Subscription } from "rxjs";
 import { MatBottomSheetRef } from "@angular/material/bottom-sheet";
 import {MAT_BOTTOM_SHEET_DATA} from '@angular/material/bottom-sheet';
-import { ProductInOrder } from 'src/app/models/product-in-order';
+import { ProductsInOrder } from 'src/app/models/products-in-order';
 import {MatSelect} from "@angular/material/select";
 @Component({
   selector: "app-table-add-order",
@@ -36,13 +36,13 @@ export class TableAddOrderComponent implements OnInit, OnDestroy {
   categoriesSubscription: Subscription;
   productsToAddSubscription: Subscription;
 
-  tableID:number;
+  tableId:number;
 
   pageNumber:number = 1;
 
   
 
-  orderEdit:ProductInOrder[];
+  orderEdit:ProductsInOrder[];
   @Output() pageChange: EventEmitter<number>;
 
   @Output() closeBootomSheet: EventEmitter<any> = new EventEmitter();
@@ -61,7 +61,7 @@ export class TableAddOrderComponent implements OnInit, OnDestroy {
     this.loadCategories();
     this.loadProducts();
 
-    this.tableID = this.data.id;
+    this.tableId = this.data.id;
     if(this.data.productsInOrder){
         this.orderEdit = this.data.productsInOrder;
     }

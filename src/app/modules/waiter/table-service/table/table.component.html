@@ -31,7 +31,7 @@
     <section class="orderInformation" *ngIf="orderDetails">
       
       <ul class="text-center">Addition time: {{orderDetails.orderDate.toLocaleTimeString()}}</ul>
-      <ul class="text-center" *ngIf="orderDetails.notes!=''">Notes: {{orderDetails.notes}}</ul>
+      <ul class="text-center" *ngIf="orderDetails.note!=''">Note: {{orderDetails.note}}</ul>
     <li class="orderProducts">
       
       <ul class = 'productInfo justify-content-between d-flex align-items-center' [ngClass]="getClassProduct(product.status)" *ngFor='let product of productsInOrder'>

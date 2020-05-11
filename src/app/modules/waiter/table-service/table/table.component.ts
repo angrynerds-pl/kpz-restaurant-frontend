@@ -14,8 +14,7 @@ import { faFileInvoiceDollar } from "@fortawesome/free-solid-svg-icons";
 import { TableAddOrderComponent } from "../table-add-order/table-add-order.component";
 import { BillComponent } from "../bill/bill.component";
 import { OrderService } from "src/app/services/order.service";
-import { OrderWaiter } from "src/app/models/order-waiter";
-import { ProductInOrder } from "src/app/models/product-in-order";
+import { ProductsInOrder } from "src/app/models/products-in-order";
 import { ProductsInOrderService } from "src/app/services/products-in-order.service";
 import { ProductService } from "src/app/services/product.service";
 import { MenuProduct } from "src/app/models/menu-product";
@@ -35,22 +34,21 @@ export class TableComponent implements OnInit, OnDestroy {
   iconEdit = faEdit;
 
   orderDetails: Order;
-  productsInOrder: ProductInOrder[];
+  productsInOrder: ProductsInOrder[];
 
   routeSubscription: Subscription;
   tableSubscription: Subscription;
-  orderSubscription: Subscription;
+  ordersSubscription: Subscription;
   productsInOrderSubscription: Subscription;
   productsSubscription: Subscription;
 
   products: MenuProduct[];
   orders:Array<Order>=[];
   constructor(
-    private orderService: OrderService,
+    private ordersService: OrderService,
     private route: ActivatedRoute,
     private tableService: TableService,
     private _bottomSheet: MatBottomSheet,
-    private productsInOrderService: ProductsInOrderService,
     private productService: ProductService
   ) {}
 
@@ -63,21 +61,21 @@ export class TableComponent implements OnInit, OnDestroy {
       .subscribe((data) => {
         this.table = data;
       });
-      this.orderSubscription = this.orderService
+      /*this.orderSubscription = this.orderService
       .getOrders()
       .subscribe((data) => {
         
-      this.orders = data;console.log(this.orders);});
-    this.orderSubscription = this.orderService
-      .getOrderByTableID(this.id)
+      this.orders = data;
+      console.log(this.orders);
+    });*/
+      
+    this.ordersSubscription = this.ordersService
+      .getOrderByTableId(this.id)
       .subscribe((data) => (this.orderDetails = data));
     if (this.orderDetails) {
-      console.log(this.orderDetails);
-      this.productsInOrderSubscription = this.productsInOrderService
-        .getProductsInOrder(this.orderDetails.id)
-        .subscribe((data) => {
-          this.productsInOrder = data;
-        });
+      
+      this.productsInOrder = this.orderDetails.orderedProducts;
+       
       this.productsSubscription = this.productService
         .getProducts()
         .subscribe((data) => {
@@ -112,9 +110,9 @@ export class TableComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.routeSubscription.unsubscribe();
     this.tableSubscription.unsubscribe();
-    this.orderSubscription.unsubscribe();
+    this.ordersSubscription.unsubscribe();
     if (this.orderDetails) {
-      this.productsInOrderSubscription.unsubscribe();
+      
       this.productsSubscription.unsubscribe();
     }
   }
@@ -130,13 +128,16 @@ export class TableComponent implements OnInit, OnDestroy {
     this._bottomSheet._openedBottomSheetRef
       .afterDismissed()
       .subscribe((data) => {
-        this.orderSubscription.unsubscribe();
-        this.orderSubscription = this.orderService
-          .getOrderByTableID(this.id)
+        this.ordersSubscription.unsubscribe();
+        this.ordersSubscription = this.ordersService
+          .getOrderByTableId(this.id)
           .subscribe((data) => (this.orderDetails = data));
-        //this.productsInOrderSubscription.unsubscribe();
+        
         if (this.orderDetails) {
-          this.productsInOrderSubscription = this.productsInOrderService
+         
+          //subscription
+         
+          /*this.ordersSubscription = this.productsInOrderService
             .getProductsInOrder(this.orderDetails.id)
             .subscribe((data) => {
               this.productsInOrder = data;
@@ -146,11 +147,11 @@ export class TableComponent implements OnInit, OnDestroy {
             .subscribe((data) => {
               this.products = data;
               console.log(this.products[0].name);
-            });
+            });*/
         }
       });
 
-    //this._bottomSheet._openedBottomSheetRef
+    
   }
   openBottomSheetBill(): void {
 

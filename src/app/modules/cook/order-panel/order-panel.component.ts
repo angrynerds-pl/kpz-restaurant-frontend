@@ -24,26 +24,16 @@ export class OrderPanelComponent implements OnInit {
   }
 
   loadOrders () {
-<<<<<<< HEAD
     this.orderService.getOrders().subscribe(orders =>{
   
-=======
-   /* this.orderService.getOrders().subscribe(orders =>{
-      
->>>>>>> categories and products from database, waiting on endpoints to connect with tables
       this.orders = orders;
       //sorting so the longest order is at the end 
      /* this.orders.sort((n1,n2) => {
         if (n1.productsInOrder.length > n2.productsInOrder.length)
         return 1;
         else return -1;
-<<<<<<< HEAD
       });*/
     })
-=======
-      });
-    })*/
->>>>>>> categories and products from database, waiting on endpoints to connect with tables
   }
  
 }

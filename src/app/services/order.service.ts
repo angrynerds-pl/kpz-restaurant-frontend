@@ -1,18 +1,10 @@
-import { Injectable, DebugElement } from '@angular/core';
-import { ProductService } from './product.service';
-import {MenuCategory} from '../models/menu-category';
+import { Injectable } from '@angular/core';
 import {Observable} from 'rxjs';
-import {of as ObservableOf} from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { LocalStorageService } from './local-storage.service';
-import { OrderWaiter } from '../models/order-waiter';
-import { MenuProduct } from '../models/menu-product';
 import { Order } from '../models/order';
 import { TableService } from './table.service';
-
-import { HttpParams } from '@angular/common/http';
-import { Local } from 'protractor/built/driverProviders';
 import { ProductsInOrder } from '../models/products-in-order';
 
 
@@ -22,15 +14,7 @@ import { ProductsInOrder } from '../models/products-in-order';
 export class OrderService {
 
   host: string =environment.host;
-  products:MenuProduct[];
-
-  orders:Order[];
-// categories and products from database, waiting on endpoints to connect with tables
-
   
-  ordersWaiter:Order[];
-  newOrder:Order;
-
   constructor(private tableService:TableService, private http:HttpClient, private storageService:LocalStorageService) {
 
    }
@@ -45,47 +29,61 @@ export class OrderService {
     headers : new HttpHeaders().set('Authorization', 'Bearer '+ this.storageService.getToken()),
    });    
   }
-
-
-  createOrder(tableId, note){
+  
+  /*export interface Order {
+    id: number;
+    tableId: number;
+    table: Table;
+    waiterId: number;
+    orderDate: Date;
+    status: boolean; 
+    orderedProducts: Array<ProductsInOrder>;  
+    note: string;
+}*/
+//POST order
+  createOrder(table, waiterId,orderedProducts,note){
     
-    //this.newOrder = {id:this.getLastOrderId() , tableID: tableID, orderDate: new Date(),notes};
-    //this.ordersWaiter.push( this.newOrder);
-    //this.tableService.changeStatusOfTable(tableID);
-    //return this.http.post(this.host + 'api/login/authenticate', {
-    //  Username: username,
-    //  Password: password
-    //});
-    //return this.http.post(this.host + 'api/orders/authenticate', {
-     // tableId: tableId,
-    //  Password: password,
-     // note:,
-      
-    //);
+    return this.http.post(this.host + 'api/orders', {
+      tableId: table.id,
+      table:table,
+      orderDate: new Date(),
+      waiterId: waiterId,
+      status: 'In progress',
+      orderedProducts:orderedProducts,
+      note: note,
+    }
+    );
+  }
+  //GET order details by TableId
+  getOrderByTableId(tableId: number): Observable<Order> {
+    return this.http.get<Order>(this.host + 'api/orders/table/'+tableId,{
+      headers : new HttpHeaders().set('Authorization', 'Bearer '+ this.storageService.getToken()),
+     });  
   }
   
-  editOrder(orderID: number, notes,){
-    let order = this.getOrderByID(orderID);
-   // order.notes = notes;
+  //PATCH or PUT order
+  editOrder(orderId: number, orderedProducts,note){
+    
+    return this.http.put<Order>(this.host + 'api/orders/'+orderId, {  
+      
+      orderedProducts:orderedProducts,
+      note:note
+     });  
   }
 
-  getLastOrderId(){
-    return this.ordersWaiter.length;
-  }
-
-
-  getOrderByTableID(tableID: number): Observable<Order> {
-    return ObservableOf(this.ordersWaiter.find((e) => e.tableId == tableID));
+  //GET order by orderId
+  getOrderById(orderId: number) {
+    return this.http.get<Order>(this.host + 'api/orders/'+orderId,{
+      headers : new HttpHeaders().set('Authorization', 'Bearer '+ this.storageService.getToken()),
+     });  
     
   }
-  getOrderIDByTableID(tableID: number): number {
-    return this.ordersWaiter.find((e) => e.tableId == tableID).id;
-    
+  //POST produkty do zamówienia
+  addProductsToOrder(orderedProducts) {
+    return this.http.post(this.host + 'api/orders/products', {
+      
+      orderedProducts:orderedProducts,
+    }
+    );
   }
-
-  getOrderByID(orderId: number) {
-    return this.ordersWaiter.find((e) => e.id == orderId);
-    
-  }
-
 }

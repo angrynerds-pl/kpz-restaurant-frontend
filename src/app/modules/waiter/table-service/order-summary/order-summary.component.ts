@@ -5,8 +5,8 @@ import { ProductToAdd } from "src/app/models/product-to-add";
 import { EventEmitter } from '@angular/core';
 import { OrderService } from 'src/app/services/order.service';
 import { ProductsInOrderService } from 'src/app/services/products-in-order.service';
-import { ProductInOrder } from 'src/app/models/product-in-order';
 import { Subscription } from 'rxjs';
+import { ProductsInOrder } from 'src/app/models/products-in-order';
 
 @Component({
   selector: "app-order-summary",
@@ -19,22 +19,26 @@ export class OrderSummaryComponent implements OnInit, OnDestroy{
   iconMinusCircle = faMinus;
   iconPlus = faPlus;
   
-  orderID:number;
-
+  
+  
   @Input() productsToAdd: ProductToAdd[];
-  @Input() tableID:number;
+  @Input() tableId:number;
+  @Input() orderEdit:ProductsInOrder[]
   @Output() close: EventEmitter<any> = new EventEmitter();
 
-  @Input() orderEdit:ProductInOrder[]
   
-  notes:string = '';
+  orderId:number;
+  note:string = '';
+
   productsToOrderSubscription:Subscription;
+  ordersSubscription:Subscription;
 
   constructor(private orderService:OrderService,  private productsToOrderService: ProductsToOrderService, private productsInOrderService: ProductsInOrderService) {}
   ngOnDestroy(): void {
     if(this.orderEdit){
      
       this.productsToOrderSubscription.unsubscribe();
+      this.ordersSubscription.unsubscribe();
     }
   }
 
@@ -42,9 +46,13 @@ export class OrderSummaryComponent implements OnInit, OnDestroy{
 
     if(this.orderEdit){
       this.productsToOrderService.editProdroductsFromOrder(this.orderEdit);
-      this.orderID = this.orderEdit[0].orderID;
-      let order = this.orderService.getOrderByID(this.orderID);
-      this.notes = order.notes;
+      this.orderId = this.orderEdit[0].orderId;
+      
+      this.ordersSubscription = this.orderService.getOrderById(this.orderId).subscribe((data)=>{
+        this.orderId=data.id;
+        this.note = data.note;
+      });
+      
       this.productsToOrderSubscription = this.productsToOrderService.getProducts().subscribe(data => this.productsToAdd = data);
      
     }
@@ -68,17 +76,16 @@ export class OrderSummaryComponent implements OnInit, OnDestroy{
 
     //new order
     if(!this.orderEdit){
-
-    this.orderService.createOrder(this.tableID,this.notes);
-    this.orderID = this.orderService.getOrderIDByTableID(this.tableID);
-    this.productsInOrderService.addProductsToOrder(this.orderID, this.productsToAdd);
+     
+      // table, waiterId,orderedProducts,note
+    this.orderService.createOrder(this.tableId,0,this.productsToAdd,this.note);
+    this.orderService.addProductsToOrder( this.productsToAdd);
     
   }
     //editing order
     else{
       
-      this.orderService.editOrder(this.orderID,this.notes);
-      this.productsInOrderService.editProductsInOrder(this.orderID, this.productsToAdd);
+     this.orderService.editOrder(this.orderId, this.productsToAdd, this.note);
 
     }
     this.close.emit();
