@@ -140,7 +140,10 @@ export class RoomEditorMainComponent implements OnInit, OnDestroy {
 
   deleteRoom(room: Room) {
     this.roomService.deleteRoom(room).subscribe(data => {
-      this.toastrService.info('Room has been deleted');
+      this.toastrService.success('Room has been deleted');
+      this.router.navigateByUrl('/manager/statistics', { skipLocationChange: true }).then(() => {
+        this.router.navigate(['/manager/room-editor']);
+      }); 
     }, err => {
       this.toastrService.error('Error!');
     })
