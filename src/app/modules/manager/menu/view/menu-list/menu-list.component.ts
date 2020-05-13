@@ -15,24 +15,26 @@ export class MenuListComponent implements OnInit {
   products:MenuProduct[];
   selectedCategoryId:number;
 
-  constructor(private productService:ProductService, private categoryService:CategoryService) { 
-
-  }
+  constructor(private productService:ProductService, private categoryService:CategoryService) {}
 
   ngOnInit(): void {
     this.loadProducts();
     this.loadCategories();
   }
-  loadProducts()
-  {
+
+  loadProducts() {
     this.productService.getProducts().subscribe(products => {
       this.products = products;
     })
   }
-    loadCategories()
-  {
+
+    loadCategories() {
     this.categoryService.getCategories().subscribe(categories => {
       this.categories = categories;
+      if(this.categories){
+        this.selectedCategoryId = this.categories[0].id;
+      }
     });
   }
+
 }

@@ -34,13 +34,15 @@
   </div>
     <div class="form-group">
       <label for="categoryOfProduct">Category</label>
-      <select formControlName="categoryId" class="form-control globalShadow"id="categoryOfProduct"><option *ngFor="let category of categories" [value]="category.id">
-        {{category.name}}
-      </option></select>
+      <select formControlName="categoryName" class="form-control globalShadow"id="categoryOfProduct">
+        <option *ngFor="let category of categories" [value]="category.name">
+          {{category.name}}
+        </option>
+      </select>
     </div>
     <div class="warning-box">
-      <ng-container *ngIf="productForm.get('categoryId').touched && productForm.get('categoryId').invalid">
-          <span class="warning" *ngIf="productForm.get('categoryId').errors.required">You must choose category</span>
+      <ng-container *ngIf="productForm.get('categoryName').touched && productForm.get('categoryName').invalid">
+          <span class="warning" *ngIf="productForm.get('categoryName').errors.required">You must choose category</span>
       </ng-container>
   </div>
     <div class="buttons-container d-flex justify-content-around">

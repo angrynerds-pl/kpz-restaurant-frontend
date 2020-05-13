@@ -3,6 +3,7 @@
      name:string;
      price:number;
      categoryId: number;
+     restaurantId: number;
  }
 
 
