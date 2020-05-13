@@ -64,13 +64,13 @@ export class TableComponent implements OnInit, OnDestroy {
         this.table = data;
       });
 
-      /*this.orderSubscription = this.orderService
+      this.ordersSubscription = this.ordersService
       .getOrders()
       .subscribe((data) => {
         
       this.orders = data;
       console.log(this.orders);
-    });*/
+    });
       
     this.ordersSubscription = this.ordersService
       .getOrderByTableId(this.id)

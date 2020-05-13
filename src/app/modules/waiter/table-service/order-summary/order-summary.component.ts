@@ -7,6 +7,7 @@ import { OrderService } from 'src/app/services/order.service';
 import { ProductsInOrderService } from 'src/app/services/products-in-order.service';
 import { Subscription } from 'rxjs';
 import { ProductsInOrder } from 'src/app/models/products-in-order';
+import { Order } from 'src/app/models/order';
 
 @Component({
   selector: "app-order-summary",
@@ -29,6 +30,7 @@ export class OrderSummaryComponent implements OnInit, OnDestroy{
   
   orderId:number;
   note:string = '';
+  addedOrder:Order;
 
   productsToOrderSubscription:Subscription;
   ordersSubscription:Subscription;
@@ -73,13 +75,13 @@ export class OrderSummaryComponent implements OnInit, OnDestroy{
   manageOrder(){
 
     
-
     //new order
     if(!this.orderEdit){
      
-      // table, waiterId,orderedProducts,note
-    this.orderService.createOrder(this.tableId,0,this.productsToAdd,this.note);
-    this.orderService.addProductsToOrder( this.productsToAdd);
+    // id of user get from locale storage
+    this.orderService.createOrder(this.tableId,1,this.productsToAdd,this.note).subscribe();
+    this.orderService.getOrderByTableId(this.tableId).subscribe(order => this.addedOrder = order);
+    this.orderService.addProductsToOrder(this.addedOrder.id, this.productsToAdd);
     
   }
     //editing order

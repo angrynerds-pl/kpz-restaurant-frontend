@@ -6,6 +6,7 @@ import { LocalStorageService } from './local-storage.service';
 import { Order } from '../models/order';
 import { TableService } from './table.service';
 import { ProductsInOrder } from '../models/products-in-order';
+import { ProductToAdd } from '../models/product-to-add';
 
 
 @Injectable({
@@ -13,9 +14,13 @@ import { ProductsInOrder } from '../models/products-in-order';
 })
 export class OrderService {
 
-
+  
   host: string =environment.host;
   
+
+  productToAdd:ProductsInOrder = null;
+  productsToAdd:ProductsInOrder[] = [];
+
   constructor(private tableService:TableService, private http:HttpClient, private storageService:LocalStorageService) {
 
    }
@@ -31,29 +36,23 @@ export class OrderService {
    });    
   }
   
-  /*export interface Order {
-    id: number;
-    tableId: number;
-    table: Table;
-    waiterId: number;
-    orderDate: Date;
-    status: boolean; 
-    orderedProducts: Array<ProductsInOrder>;  
-    note: string;
-}*/
-//POST order
-  createOrder(table, waiterId,orderedProducts,note){
+  
+  createOrder(tableId:number, waiterId:number, orderedProducts,note:string){
     
-    return this.http.post(this.host + 'api/orders', {
-      tableId: table.id,
-      table:table,
-      orderDate: new Date(),
+    //new Date + two hours 
+      var dt = new Date();
+      dt.setHours( dt.getHours() + 2 );
+
+     //waiterId = this.storageService.getRole();
+    return this.http.post<Order>(this.host + 'api/orders',{
+      tableId: tableId,
       waiterId: waiterId,
-      status: 'In progress',
-      orderedProducts:orderedProducts,
       note: note,
-    }
-    );
+      orderDate:dt
+    },{
+      headers : new HttpHeaders().set('Authorization', 'Bearer '+ this.storageService.getToken()),
+   }
+   );
   }
   //GET order details by TableId
   getOrderByTableId(tableId: number): Observable<Order> {
@@ -82,11 +81,24 @@ export class OrderService {
     
   }
   //POST produkty do zamówienia
-  addProductsToOrder(orderedProducts) {
-    return this.http.post(this.host + 'api/orders/products', {
+  addProductsToOrder(orderId:number, productsToOrder:Array<ProductToAdd>) {
+    
+    let counterId = 1;
+    productsToOrder.forEach(element => {
       
-      orderedProducts:orderedProducts,
-    }
-    );
+        for(let i=0;i<element.amount;i++){
+          
+          this.productToAdd = {id:counterId,orderId:orderId,productId:element.product.id, product:element.product,status:'In progress'};
+          this.productsToAdd.push(this.productToAdd);
+          counterId++;
+        }
+    });
+    
+    return this.http.post(this.host + 'api/orders/products/'+orderId, {
+      orderedProducts:this.productsToAdd
+    },{
+      headers : new HttpHeaders().set('Authorization', 'Bearer '+ this.storageService.getToken()),
+   }
+   );
   }
 }
