@@ -1,6 +1,6 @@
 <ng-container *ngIf="table">
-  <header [ngClass]="getClassTable()">
-    <span>Table #{{ table.number }} </span>
+  <header [ngClass]="getClassTable()" class="d-flex align-items-center justify-content-center">
+    <span class="text-center">Table #{{ table.number }} </span>
 
     <a routerLink="/waiter/tables" class="btnBack"
       ><fa-icon id="backIcon" [icon]="buttonBack"></fa-icon
@@ -11,10 +11,10 @@
     <div
       class="d-flex align-items-center justify-content-between currentOrders"
     >
-      <h3>Current orders</h3>
+      <div class="title-orders">Current orders</div>
       <button
         *ngIf="!productsInOrder"
-        class="btn btn-success globalShadow"
+        class="btn btn-success globalShadow d-flex align-items-center justify-content-around"
         mat-raised-button
         (click)="openBottomSheetOrder()"
       >
@@ -22,7 +22,7 @@
       </button>
       <button
         *ngIf="productsInOrder"
-        class="btn btn-success globalShadow"
+        class="btn btn-success globalShadow d-flex align-items-center justify-content-around"
         mat-raised-button
         (click)="openBottomSheetOrder()"
       >
