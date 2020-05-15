@@ -18,7 +18,8 @@ import { ProductsInOrder } from "src/app/models/products-in-order";
 import { ProductsInOrderService } from "src/app/services/products-in-order.service";
 import { ProductService } from "src/app/services/product.service";
 import { MenuProduct } from "src/app/models/menu-product";
-import { Order } from 'src/app/models/order';
+import { Order } from "src/app/models/order";
+import { ProductStatusPipe } from "../product-status-pipe";
 @Component({
   selector: "app-table",
   templateUrl: "./table.component.html",
@@ -38,20 +39,18 @@ export class TableComponent implements OnInit, OnDestroy {
 
   routeSubscription: Subscription;
   tableSubscription: Subscription;
-  ordersSubscription: Subscription;
+  orderSubscription: Subscription;
   productsInOrderSubscription: Subscription;
-  productsSubscription: Subscription;
 
   products: MenuProduct[];
 
-  orders:Array<Order>=[];
+  orders: Array<Order> = [];
 
   constructor(
-    private ordersService: OrderService,
+    private orderService: OrderService,
     private route: ActivatedRoute,
     private tableService: TableService,
-    private _bottomSheet: MatBottomSheet,
-    private productService: ProductService
+    private _bottomSheet: MatBottomSheet
   ) {}
 
   ngOnInit(): void {
@@ -64,106 +63,79 @@ export class TableComponent implements OnInit, OnDestroy {
         this.table = data;
       });
 
-      this.ordersSubscription = this.ordersService
-      .getOrders()
-      .subscribe((data) => {
-        
-      this.orders = data;
-      console.log(this.orders);
-    });
-      
-    this.ordersSubscription = this.ordersService
+    this.orderSubscription = this.orderService
       .getOrderByTableId(this.id)
-      .subscribe((data) => (this.orderDetails = data));
-    if (this.orderDetails) {
-      
-      this.productsInOrder = this.orderDetails.orderedProducts;
-       
-
-      this.productsSubscription = this.productService
-        .getProducts()
-        .subscribe((data) => {
-          this.products = data;
-        });
-    }
-    
+      .subscribe((data) => {
+        //this.orderDetails = data;
+        this.orderDetails = data[0];
+        console.log(this.orderDetails)
+        if (this.orderDetails) {
+          this.productsInOrder = this.orderDetails.orderedProducts;
+        }
+      });
   }
 
   getClassTable() {
     switch (this.table.status) {
-      case 'FREE':
-        return 'free';
-      case 'SERVE':
-        return 'serve';
-      case 'OCCUPIED':
-        return 'occupied';
+      case "FREE":
+        return "free";
+      case "SERVE":
+        return "serve";
+      case "OCCUPIED":
+        return "occupied";
     }
   }
   getClassProduct(status) {
     switch (status) {
-      case "In progress":
+      case "IN_PROGRESS":
         return "serve";
-      case "Ready":
+      case "READY":
         return "free";
-      case "Late":
+      case "LATE":
         return "occupied";
-      case "Served":
+      case "SERVED":
+        return "served";
+      case "PAID":
         return "served";
     }
   }
   ngOnDestroy() {
     this.routeSubscription.unsubscribe();
     this.tableSubscription.unsubscribe();
-    this.ordersSubscription.unsubscribe();
-    if (this.orderDetails) {
-      
-      this.productsSubscription.unsubscribe();
-    }
+    this.orderSubscription.unsubscribe();
   }
 
   openBottomSheetOrder(): void {
     this._bottomSheet._openedBottomSheetRef = this._bottomSheet.open(
       TableAddOrderComponent,
       {
-        data: { id: this.id, productsInOrder: this.productsInOrder },
+        data: { id: this.id, orderEdit: this.orderDetails },
         disableClose: false,
       }
     );
     this._bottomSheet._openedBottomSheetRef
       .afterDismissed()
       .subscribe((data) => {
-        this.ordersSubscription.unsubscribe();
-        this.ordersSubscription = this.ordersService
-          .getOrderByTableId(this.id)
-          .subscribe((data) => (this.orderDetails = data));
         
-        if (this.orderDetails) {
-
-         
-          //subscription
-         
-          /*this.ordersSubscription = this.productsInOrderService
-
-          this.productsInOrderSubscription = this.productsInOrderService
-
-            .getProductsInOrder(this.orderDetails.id)
-            .subscribe((data) => {
-              this.productsInOrder = data;
-            });
-          this.productsSubscription = this.productService
-            .getProducts()
-            .subscribe((data) => {
-              this.products = data;
-              console.log(this.products[0].name);
-            });*/
-        }
+        this.orderSubscription = this.orderService
+          .getOrderByTableId(this.id)
+          .subscribe((data) => {
+            this.orderDetails = data[0];
+            if(this.orderDetails){
+              this.productsInOrder = this.orderDetails.orderedProducts;
+              this.tableSubscription = this.tableService
+                .getTable(this.id)
+                .subscribe((data) => {
+                  this.table = data;
+                });
+            }
+          });
+            
       });
-
-    
   }
-  openBottomSheetBill(): void {
 
-    if (this.productsInOrder.some((product) => product.status == "Served")) {
+  openBottomSheetBill(): void {
+    if (this.productsInOrder.some((product) => product.status == "SERVED")) {
       this._bottomSheet._openedBottomSheetRef = this._bottomSheet.open(
         BillComponent,
         {
@@ -174,7 +146,23 @@ export class TableComponent implements OnInit, OnDestroy {
           disableClose: false,
         }
       );
+   
+    this._bottomSheet._openedBottomSheetRef
+      .afterDismissed()
+      .subscribe((data) => {
+        if (this.productsInOrder.every((product) => product.status == "PAID")) {
+          this.orderDetails.status = "PAID";
+          this.orderService.editOrder(this.orderDetails);
+          this.orderDetails = null;
+        }
+      });
     }
+  }
 
+  changeOfProductStatus(product: ProductsInOrder) {
+    if (product.status == "READY") {
+      product.status = "SERVED";
+      this.orderService.updateStatus(product).subscribe();
+    }
   }
 }

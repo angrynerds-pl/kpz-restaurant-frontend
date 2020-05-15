@@ -9,6 +9,7 @@ import { MenuProduct } from "src/app/models/menu-product";
 import { Subscription } from "rxjs";
 import { MatCheckbox } from "@angular/material/checkbox";
 import { FormControl } from "@angular/forms";
+import { OrderService } from 'src/app/services/order.service';
 @Component({
   selector: "app-bill",
   templateUrl: "./bill.component.html",
@@ -26,36 +27,32 @@ export class BillComponent implements OnInit, OnDestroy {
 
   closeBottomSheet=true;
 
-  productsSubscription: Subscription;
+  
   productsInOrderSubscription:Subscription;
   orderItemPrice = new FormControl();
   constructor(
     @Inject(MAT_BOTTOM_SHEET_DATA) public data: any,
-    private categoriesService: CategoryService,
-    private pruductsService: ProductService,
-    private productsToOrderService: ProductsToOrderService,
+    private orderService:OrderService,
     private bottomSheetRef: MatBottomSheetRef
   ) {}
   ngOnDestroy(): void {
-    this.productsSubscription.unsubscribe();
+    
   }
   ngOnInit(): void {
     this.productsInOrder = new Array();
     this.data.productsInOrder.forEach((product) => {
-      if (product.status == "Served") {
+      if (product.status == "SERVED") {
         console.log(product);
         this.productsInOrder.push(product);
       }
     });
-    this.productsSubscription = this.pruductsService
-      .getProducts()
-      .subscribe((products) => (this.products = products));
+   
     this.sumUpTotalAmount();
   }
 
   sumUpTotalAmount() {
     this.productsInOrder.forEach((product) => {
-      this.totalAmount += this.products[product.id].price;
+      this.totalAmount += product.product.price;
     });
     this.checkStatus = new Array(this.productsInOrder.length);
     this.checkStatus.fill(true);
@@ -80,7 +77,8 @@ export class BillComponent implements OnInit, OnDestroy {
     this.totalAmount = 0;
     this.productsInOrder.forEach((product,index)=>{
       if(this.checkStatus[index]==true){
-        product.status="Paid";
+        product.status="PAID";
+        this.orderService.updateStatus(product).subscribe();
       }else{
         this.closeBottomSheet=false;
       }

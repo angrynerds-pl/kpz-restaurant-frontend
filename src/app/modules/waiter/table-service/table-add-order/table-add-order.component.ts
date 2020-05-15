@@ -18,6 +18,7 @@ import { MatBottomSheetRef } from "@angular/material/bottom-sheet";
 import {MAT_BOTTOM_SHEET_DATA} from '@angular/material/bottom-sheet';
 import { ProductsInOrder } from 'src/app/models/products-in-order';
 import {MatSelect} from "@angular/material/select";
+import { Order } from 'src/app/models/order';
 @Component({
   selector: "app-table-add-order",
   templateUrl: "./table-add-order.component.html",
@@ -42,7 +43,7 @@ export class TableAddOrderComponent implements OnInit, OnDestroy {
 
   
 
-  orderEdit:ProductsInOrder[];
+  orderEdit:Order;
   @Output() pageChange: EventEmitter<number>;
 
   @Output() closeBootomSheet: EventEmitter<any> = new EventEmitter();
@@ -62,19 +63,25 @@ export class TableAddOrderComponent implements OnInit, OnDestroy {
     this.loadProducts();
 
     this.tableId = this.data.id;
-    if(this.data.productsInOrder){
-        this.orderEdit = this.data.productsInOrder;
-    }
+    if(this.data.orderEdit){
+        this.orderEdit = this.data.orderEdit;
+        this.productsToOrderService.editProductsFromOrder(this.orderEdit.orderedProducts)
 
-    this.productsToAddSubscription = this.productsToOrderService
+      }else{
+
+      
+      this.productsToAddSubscription = this.productsToOrderService
       .getProducts()
-      .subscribe((products) => (this.productsToAdd = products));
-  }
+     .subscribe((products) => (this.productsToAdd = products));
+    }
+   }
   ngOnDestroy(): void {
     this.productsToOrderService.resetProducts();
     this.categoriesSubscription.unsubscribe();
     this.productsSubscription.unsubscribe();
+    if(!this.data.orderEdit){
     this.productsToAddSubscription.unsubscribe();
+    }
   }
 
   loadCategories() {
@@ -83,7 +90,6 @@ export class TableAddOrderComponent implements OnInit, OnDestroy {
       .subscribe((categories) => {
         this.categories = categories;
         this.currentCategory = this.categories[0];
-        console.log('current',this.currentCategory);
       });
      
      

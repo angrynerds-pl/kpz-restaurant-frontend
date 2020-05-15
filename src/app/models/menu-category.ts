@@ -1,18 +1,8 @@
 export interface MenuCategory { 
-    id:number,
-    restaurantId:number,
-    name:string,
-    //icon:string //File
+    id:number;
+    name:string;
+    icon:string; //File
+    restaurantId: number;
 
 }
-/*
-export class MenuCategory {
-  
-  constructor(
-    public id: number,
-    public name: string, 
-    public file: string
-    ) {
-     
-    }
-}*/
+
