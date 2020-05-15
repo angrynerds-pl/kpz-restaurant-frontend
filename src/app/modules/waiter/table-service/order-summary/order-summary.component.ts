@@ -32,7 +32,7 @@ export class OrderSummaryComponent implements OnInit, OnDestroy {
   orderId: number;
   note: string = "";
   addedOrder: Order;
-
+  productToEdit:ProductsInOrder;
   productsToOrderSubscription: Subscription;
   orderSubscription: Subscription;
 
@@ -59,11 +59,12 @@ export class OrderSummaryComponent implements OnInit, OnDestroy {
     }
   }
 
-  changeAmountOfProduct(amount, product) {
+  changeAmountOfProduct(amount, product:ProductToAdd) {
     product.amount += amount;
     if (product.amount == 0) {
       this.productsToOrderService.removeProduct(product.product);
     }
+    
   }
 
   manageOrder() {
@@ -89,10 +90,9 @@ export class OrderSummaryComponent implements OnInit, OnDestroy {
       this.orderSubscription = this.orderService
         .editOrder(this.orderEdit)
         .subscribe((editedOrder) => {
-          console.log('editedOrder',this.orderEdit)
-          this.orderService
-            .editOrderProducts(this.orderEdit, this.productsToAdd)
-            .subscribe();
+         // console.log('editedOrder',this.orderEdit)
+         this.orderService
+            .editOrderProducts(this.orderEdit, this.productsToAdd).subscribe(order=> console.log(order));
         });
       //this.orderSubscription.unsubscribe();
     }
