@@ -33,7 +33,7 @@ export class OrderService {
    }
    updateStatus (orderedProduct:ProductsInOrder) : Observable<ProductsInOrder> { 
      console.log(orderedProduct);
-    return this.http.put<ProductsInOrder>(this.host + 'api/orders/products/',orderedProduct, {  
+    return this.http.put<ProductsInOrder>(this.host + 'api/orders/products/'+orderedProduct.id,orderedProduct, {  
     headers : new HttpHeaders().set('Authorization', 'Bearer '+ this.storageService.getToken()),
    });    
   }
