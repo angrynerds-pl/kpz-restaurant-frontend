@@ -81,11 +81,12 @@ export class OrderService {
     
   }
 
-  editOrderDetails(order:Order, productsToOrder:Array<ProductToAdd>){
-    //editProductsInOrder(orderID:number, productsToOrder:Array<ProductToAdd>,productsInOrder:Array<ProductsInOrder>){
-       let currentProducts = order.orderedProducts;
-       let currentId = currentProducts.length +1;
-       this.productsToAdd=new Array();
+  editOrderProducts(order:Order, productsToOrder:Array<ProductToAdd>){
+    
+       let currentId = order.orderedProducts.length +1;
+       this.productsToAdd=order.orderedProducts;
+       console.log('order.orderedProducts',order.orderedProducts)
+       console.log('productsToOrder',productsToOrder)
        productsToOrder.forEach(element => {
         let amountOfProductsInOrder =  order.orderedProducts.filter((e) => e.product.id === element.product.id);
          if(amountOfProductsInOrder.length < element.amount){
@@ -101,21 +102,33 @@ export class OrderService {
          
          for(let i=element.amount;i<amountOfProductsInOrder.length;i++){
            console.log(amountOfProductsInOrder[0].product.id);
-           this.removeProductFromOrder(amountOfProductsInOrder[0].product.id,this.productsToAdd);
+           this.removeProductFromOrder(amountOfProductsInOrder[0].product.id,order.orderedProducts);
          }
        }
    });
-    
-   return order;
+   console.log('this.order.orderedProducts api',order.orderedProducts)
+   return this.http.put(this.host + 'api/orders/products/',order.orderedProducts,{
+    headers : new HttpHeaders().set('Authorization', 'Bearer '+ this.storageService.getToken()),
+ }
+ );
     
   }
 
   removeProductFromOrder(id,array) {
-    //let productsIndex = this.findProductsInOrder(id); 
+    let productsIndex = this.findProductsInOrder(id,array); 
 
-   // array.splice(productsIndex, 1);
+    array.splice(productsIndex, 1);
   }
-  //POST produkty do zamówienia
+
+  findProductsInOrder(id,array) {
+    let index = array.findIndex(
+      (product) => product.productId === id
+    );
+
+    return index;
+  }
+
+  //PUT produkty do zamówienia
   addProductsToOrder(orderId:number, productsToOrder:Array<ProductToAdd>) {
     
     let counterId = 1;
@@ -130,8 +143,8 @@ export class OrderService {
         }
     });
     
-    
-    return this.http.put(this.host + 'api/orders/products/',this.productsToAdd,{
+    console.log('this.productsToAdd',this.productsToAdd)
+    return this.http.put(this.host + 'api/orders/products',this.productsToAdd,{
       headers : new HttpHeaders().set('Authorization', 'Bearer '+ this.storageService.getToken()),
    }
    );

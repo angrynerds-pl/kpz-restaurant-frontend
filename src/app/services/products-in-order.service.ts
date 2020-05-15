@@ -72,11 +72,11 @@ export class ProductsInOrderService {
   }
   
   findProductsInOrder(id) {
-   /* let index = this.productsInOrder.findIndex(
-      (product) => product.productID === id
-    );
+    //let index = this.productsInOrder.findIndex(
+    //  (product) => product.productID === id
+   // );
 
-    return index;*/
+   // return index;
   }
   getLastProductsInOrderID() {
    /* if (this.productsInOrder.length != 0) {

@@ -85,12 +85,15 @@ export class OrderSummaryComponent implements OnInit, OnDestroy {
     //editing order
     else {
       this.orderEdit.note = this.note;
-      this.orderEdit = this.orderService
-      .editOrderDetails(this.orderEdit,this.productsToAdd);
-      console.log('przed doaniem',this.orderEdit)
-      this.orderService
-      .editOrder(this.orderEdit).subscribe();
       
+      this.orderSubscription = this.orderService
+        .editOrder(this.orderEdit)
+        .subscribe((editedOrder) => {
+          console.log('editedOrder',this.orderEdit)
+          this.orderService
+            .editOrderProducts(this.orderEdit, this.productsToAdd)
+            .subscribe();
+        });
       //this.orderSubscription.unsubscribe();
     }
     this.close.emit();

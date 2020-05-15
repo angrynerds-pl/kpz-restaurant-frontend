@@ -69,7 +69,7 @@ export class TableComponent implements OnInit, OnDestroy {
         //this.orderDetails = data;
         this.orderDetails = data[0];
         console.log(this.orderDetails)
-        if (this.orderDetails) {
+        if (this.orderDetails!=null) {
           this.productsInOrder = this.orderDetails.orderedProducts;
         }
       });
@@ -153,6 +153,10 @@ export class TableComponent implements OnInit, OnDestroy {
         if (this.productsInOrder.every((product) => product.status == "PAID")) {
           this.orderDetails.status = "PAID";
           this.orderService.editOrder(this.orderDetails);
+          if (this.productsInOrder.every((product) => product.status == "SERVED")) {
+            this.tableService.changeStatusOfTable(this.id);
+            this.tableSubscription =  this.tableService.getTable(this.id).subscribe();
+          }
           this.orderDetails = null;
         }
       });
@@ -163,6 +167,9 @@ export class TableComponent implements OnInit, OnDestroy {
     if (product.status == "READY") {
       product.status = "SERVED";
       this.orderService.updateStatus(product).subscribe();
+      if (this.productsInOrder.every((product) => product.status == "SERVED")) {
+        this.tableService.changeStatusOfTable(this.id);
+      }
     }
   }
 }
