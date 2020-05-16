@@ -31,6 +31,7 @@ export class OrderItemProductComponent implements OnInit {
   ngOnInit(): void {
     this.getClass();
   }
+
   getClass(){
     if (this.orderedProduct.status=="IN_PROGRESS")
     {
