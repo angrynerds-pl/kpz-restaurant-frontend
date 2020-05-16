@@ -13,6 +13,7 @@ import { Subscription } from "rxjs";
 import { ProductsInOrder } from "src/app/models/products-in-order";
 import { Order } from "src/app/models/order";
 import { TableService } from "src/app/services/table.service";
+import { LocalStorageService } from 'src/app/services/local-storage.service';
 
 @Component({
   selector: "app-order-summary",
@@ -39,7 +40,8 @@ export class OrderSummaryComponent implements OnInit, OnDestroy {
   constructor(
     private orderService: OrderService,
     private productsToOrderService: ProductsToOrderService,
-    private tableService: TableService
+    private tableService: TableService,
+    private localStorageService : LocalStorageService
   ) {}
   ngOnDestroy(): void {
     if (this.orderEdit) {
@@ -71,8 +73,9 @@ export class OrderSummaryComponent implements OnInit, OnDestroy {
     //new order
     if (!this.orderEdit) {
       // id of user get from locale storage
+      let userId = this.localStorageService.getUserId();
       this.orderSubscription = this.orderService
-        .createOrder(this.tableId, 1, this.productsToAdd, this.note)
+        .createOrder(this.tableId, userId, this.productsToAdd, this.note)
         .subscribe((newOrder) => {
           this.addedOrder = newOrder;
           this.orderService
@@ -90,7 +93,7 @@ export class OrderSummaryComponent implements OnInit, OnDestroy {
       this.orderSubscription = this.orderService
         .editOrder(this.orderEdit)
         .subscribe((editedOrder) => {
-         // console.log('editedOrder',this.orderEdit)
+         
          this.orderService
             .editOrderProducts(this.orderEdit, this.productsToAdd).subscribe(order=> console.log(order));
         });

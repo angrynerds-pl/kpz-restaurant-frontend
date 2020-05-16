@@ -83,21 +83,24 @@ export class OrderService {
 
   editOrderProducts(order:Order, productsToOrder:Array<ProductToAdd>){
     
-       let currentId = order.orderedProducts.length +1;
+       ////let currentId = order.orderedProducts.length +1;
        this.productsToAdd=order.orderedProducts;
        
 
        let productsToAdd = new Array();
        let productToAdd;
+       console.log(productsToOrder);
        productsToOrder.forEach(element => {
         let amountOfProductsInOrder = order.orderedProducts.filter((e) => e.productId === element.product.id);
+        console.log('amountOfProductsInOrder', amountOfProductsInOrder)
+        console.log('element.amount', element.amount)
         if(amountOfProductsInOrder.length < element.amount){
   
             for(let i=amountOfProductsInOrder.length;i<element.amount;i++){
           
               productToAdd = {orderId:order.id,productId:element.product.id, status:'IN_PROGRESS'};
               productsToAdd.push(productToAdd);
-              this.findProductsInOrder(order.id,productsToAdd).subscribe();
+              this.addProductToOrder(productsToAdd).subscribe();
               productsToAdd = new Array();
             }
     }
@@ -105,23 +108,24 @@ export class OrderService {
         
         for(let i=element.amount;i<amountOfProductsInOrder.length;i++){
           console.log("Do usuniecia",amountOfProductsInOrder[i])
+          console.log("Do usuniecia",amountOfProductsInOrder[i].id)
           this.deleteProductFromOrder(amountOfProductsInOrder[i].id).subscribe();
         }
       }
   });
+  
   return this.http.get<Order>(this.host + 'api/orders/'+order.id,{
     headers : new HttpHeaders().set('Authorization', 'Bearer '+ this.storageService.getToken()),
    });  
-  
  }
     
   removeProductFromOrder(id,array) {
-    let productsIndex = this.findProductsInOrder(id,array); 
+    //let productsIndex = this.findProductsInOrder(id,array); 
 
-    array.splice(productsIndex, 1);
+    //array.splice(productsIndex, 1);
   }
 
-  findProductsInOrder(id,array) {
+  addProductToOrder(array) {
     return this.http.post(this.host + 'api/orders/products/',array,{
       headers : new HttpHeaders().set('Authorization', 'Bearer '+ this.storageService.getToken()),
    }
