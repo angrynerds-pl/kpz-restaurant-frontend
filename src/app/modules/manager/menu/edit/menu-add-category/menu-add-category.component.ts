@@ -44,6 +44,7 @@ export class MenuAddCategoryComponent implements OnInit, OnDestroy {
 
   createCategory() {
     if (this.categoryForm.valid) {
+
       this.category = this.categoryForm.value;
       this.category.name = this.category.name.toUpperCase();
       this.category.restaurantId = +this.storageService.getRestaurantId();
@@ -56,6 +57,7 @@ export class MenuAddCategoryComponent implements OnInit, OnDestroy {
       }, err => {
         this.toastrService.error("Error!");
       });
+
     }
 
   }

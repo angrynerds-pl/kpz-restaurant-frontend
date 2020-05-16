@@ -5,6 +5,8 @@ import { Room } from 'src/app/models/room';
 import { Table } from 'src/app/models/table';
 import { Subscription } from 'rxjs';
 import { faBars } from "@fortawesome/free-solid-svg-icons";
+import { LocalStorageService } from 'src/app/services/local-storage.service';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-tables',
   templateUrl: './tables-main.component.html',
@@ -22,7 +24,7 @@ export class TablesMainComponent implements OnInit, OnDestroy {
   roomSubscription: Subscription;
   tableSubscription: Subscription;
 
-  constructor(private roomService:RoomService, private tableService:TableService) { }
+  constructor(private router:Router, private roomService:RoomService, private tableService:TableService, private localStorageService:LocalStorageService) { }
 
   ngOnInit(): void {
     this.roomSubscription = this.roomService.getRooms().subscribe(data => {
@@ -50,6 +52,11 @@ export class TablesMainComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.roomSubscription.unsubscribe();
     this.tableSubscription.unsubscribe();
+  }
+
+  logout(){
+    this.localStorageService.logout();
+    this.router.navigate(["/login"]);
   }
 
 }

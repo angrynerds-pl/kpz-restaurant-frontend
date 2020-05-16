@@ -21,6 +21,11 @@ export class LocalStorageService {
     return token ? this.getDecodedAccessToken(this.getToken()).role : null;
   }
 
+  getUserId(){
+    const token = this.getToken();
+    return token ? this.getDecodedAccessToken(this.getToken()).nameid : null;
+  }
+
   getRestaurantId(){
     const token = this.getToken();
     return token ? this.getDecodedAccessToken(this.getToken()).Restaurant : null;

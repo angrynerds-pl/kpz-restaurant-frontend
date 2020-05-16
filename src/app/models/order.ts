@@ -7,7 +7,7 @@ export interface Order {
     table: Table;
     waiterId: number;
     orderDate: Date;
-    status: boolean; 
+    status: string; 
     orderedProducts: Array<ProductsInOrder>;  
     note: string;
 }
