@@ -33,7 +33,7 @@ export class UserService {
   }
 
   updateUser(user: User):Observable<User>{
-    return this.http.put<User>(this.host + 'api/users/' + user.id, {
+    return this.http.put<User>(this.host + 'api/users/' + user.id, user, {
       headers: new HttpHeaders().set('Authorization', 'Bearer ' + this.storageService.getToken()),
     });
   }

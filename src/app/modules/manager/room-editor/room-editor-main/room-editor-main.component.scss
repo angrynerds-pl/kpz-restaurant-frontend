@@ -61,12 +61,13 @@ section {
 form {
     background-color: $gray;
     padding: 0.5em;
-    margin: 8px auto;
+    margin: 8px 8px 16px 8px;
     min-width: 0;
     border-radius: 8px;
     display: flex;
     align-items: baseline;
     flex-wrap: wrap;
+    justify-content: space-evenly;
 }
 
 .btnSubmit, .btnEdit, .btnDelete {
@@ -96,4 +97,8 @@ label {
 
 app-table-option{
     margin: 3px;
+}
+
+.button-box {
+    margin-bottom: 16px;
 }
