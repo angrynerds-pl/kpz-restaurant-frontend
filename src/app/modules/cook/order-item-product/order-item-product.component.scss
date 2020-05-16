@@ -2,15 +2,24 @@
     background-color: rgb(240, 240, 240);
     margin-bottom: 2px;
     border-radius: 5px;
-    display: flex;
+    display: flex;   
 }
 .componentReady {
-    background-color:rgb(134, 218, 0);
-    text-decoration: line-through;
+    background-color:#6DE01D;
     border-radius: 5px;
     margin-bottom: 2px;
     display: flex;
+    overflow: hidden;
 }
 .componentName {    
     padding: 4px;
+    width:100%;
+    
+}
+.deleteIcon {
+    display: flex;
+    align-items:center;
+    width: 20%;
+    background-color: #E0162A;
+    
 }
