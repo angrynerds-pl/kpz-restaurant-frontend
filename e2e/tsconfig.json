@@ -9,5 +9,9 @@
       "jasminewd2",
       "node"
     ]
-  }
+    
+    
+  },
+  "angularCompilerOptions": {
+    "enableIvy": false}
 }

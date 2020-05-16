@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Directive, Output, EventEmitter } from '@angular/core';
 import { MenuProduct } from 'src/app/models/menu-product';
 import { OrderService } from 'src/app/services/order.service';
 import { connectableObservableDescriptor } from 'rxjs/internal/observable/ConnectableObservable';
@@ -6,10 +6,12 @@ import { OrderPanelComponent } from '../order-panel/order-panel.component';
 import { ProductsInOrder } from 'src/app/models/products-in-order';
 import { Observable } from 'rxjs';
 
+
+
 @Component({
   selector: 'app-order-item-product',
   templateUrl: './order-item-product.component.html',
-  styleUrls: ['./order-item-product.component.scss']
+  styleUrls: ['./order-item-product.component.scss'],
 })
 export class OrderItemProductComponent implements OnInit {
 
@@ -17,13 +19,16 @@ export class OrderItemProductComponent implements OnInit {
   @Input() id: number;
   @Input() status: string;
   @Input() orderedProduct: ProductsInOrder;
-  
+  cancel: boolean = false;
+
+ 
   constructor(private service:OrderService) {    
+ 
     
   }
 
   ngOnInit(): void {
-
+    this.getClass();
   }
   getClass(){
     if (this.orderedProduct.status=="IN_PROGRESS")
@@ -36,9 +41,19 @@ export class OrderItemProductComponent implements OnInit {
     }
     else return 'componentPicked';
   }
-
+  setDelete(){
+    this.cancel=true;    
+  }
+  cancelOrderReady()
+  {
+    this.orderedProduct.status="IN_PROGRESS"
+    this.service.updateStatus(this.orderedProduct).subscribe();
+    this.cancel = false;
+  }
   changeStatus(){  
-    this.orderedProduct.status=="IN_PROGRESS" ? this.orderedProduct.status="READY" : this.orderedProduct.status="IN_PROGRESS";
-    this.service.updateStatus(this.orderedProduct).subscribe();  
+    if (this.orderedProduct.status=="IN_PROGRESS") 
+    {this.orderedProduct.status="READY" 
+    this.service.updateStatus(this.orderedProduct).subscribe(); }
+
   }
 }

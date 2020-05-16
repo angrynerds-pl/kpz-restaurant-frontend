@@ -1,3 +1,13 @@
-<div (click)="changeStatus()" [ngClass]="getClass()">
-    <span class="componentName">{{product.name}} </span>
+
+<head>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+</head>
+<div  [ngClass]="getClass()">
+<span (click)="changeStatus()"class="componentName">
+   {{product.name}}       
+</span>
+<span *ngIf="status==='READY'" (click)="setDelete()"  class="deleteIcon">
+    <i *ngIf="cancel==false" class="material-icons">keyboard_arrow_right</i>
+    <i *ngIf="cancel==true" (click)="cancelOrderReady()" class="material-icons">clear</i>
+</span>
 </div>
