@@ -7,7 +7,6 @@ div {
     text-align: center;
 }
 
-
 .selectBox {
     border-radius: 4px;
     padding: 4px;
@@ -21,10 +20,12 @@ div {
     margin-bottom: 2px;
     display: flex;
     justify-content:space-evenly;
+    padding: 0.5em;
 }
 .header {
     display: flex;
     justify-content:space-evenly;
+    padding: 0.5em;
 }
 span {
     flex: 1;

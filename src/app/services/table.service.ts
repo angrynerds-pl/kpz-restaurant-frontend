@@ -35,8 +35,20 @@ export class TableService {
     });
   }
 
+  addManyTables(tables: Array<Table>){
+    return this.http.post<Array<Table>>(this.host + 'api/tables/many', tables, {
+      headers: new HttpHeaders().set('Authorization', 'Bearer ' + this.storageService.getToken()),
+    });
+  }
+
   updateTable(table: Table){
     return this.http.put<Table>(this.host + 'api/tables/' + table.id, table, {
+      headers: new HttpHeaders().set('Authorization', 'Bearer ' + this.storageService.getToken()),
+    });
+  }
+
+  updateManyTables(tables: Array<Table>){
+    return this.http.put<Array<Table>>(this.host + 'api/tables/many', tables, {
       headers: new HttpHeaders().set('Authorization', 'Bearer ' + this.storageService.getToken()),
     });
   }
@@ -46,10 +58,19 @@ export class TableService {
       headers: new HttpHeaders().set('Authorization', 'Bearer ' + this.storageService.getToken()),
     });
   }
+
+  deleteManyTables(tables: Array<Table>){
+    return this.http.request('delete', this.host + 'api/tables/many', {
+      headers: new HttpHeaders().set('Authorization', 'Bearer ' + this.storageService.getToken()),
+      body: tables
+    });
+  }
+
   getTablesID(): Observable<Number[]>{
     return of(this.tablesNumber);
     
   }
+
   changeStatusOfTable(tableID: number) {
     this.getTable(tableID).pipe(take(1)).subscribe(table => {
       if(table){
@@ -70,4 +91,5 @@ export class TableService {
       }
     })
   }
+  
 }
