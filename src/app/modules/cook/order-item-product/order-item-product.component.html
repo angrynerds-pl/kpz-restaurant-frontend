@@ -7,7 +7,7 @@
    {{product.name}}       
 </span>
 <span *ngIf="status==='READY'" (click)="setDelete()"  class="deleteIcon">
-    <i *ngIf="delete==false" class="material-icons">keyboard_arrow_right</i>
-    <i *ngIf="delete==true" (click)="cancelOrderReady()" class="material-icons">clear</i>
+    <i *ngIf="cancel==false" class="material-icons">keyboard_arrow_right</i>
+    <i *ngIf="cancel==true" (click)="cancelOrderReady()" class="material-icons">clear</i>
 </span>
 </div>
