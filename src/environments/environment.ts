@@ -4,8 +4,8 @@
 
 export const environment = {
   production: false,
-  host: 'https://localhost:44301/'
-  //host: 'https://localhost:5001/'
+  //host: 'https://localhost:44301/'
+  host: 'https://localhost:5001/'
 };
 
 /*

@@ -25,7 +25,6 @@ export class OrderPanelComponent implements OnInit {
 
   loadOrders () {
     this.orderService.getOrders().subscribe(orders =>{
-  
       this.orders = orders;
       //sorting so the longest order is at the end 
      /* this.orders.sort((n1,n2) => {

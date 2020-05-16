@@ -6,6 +6,7 @@ import { OrderPanelComponent } from '../order-panel/order-panel.component';
 import { ProductInOrder } from 'src/app/models/product-in-order';
 import { ProductsInOrder } from 'src/app/models/products-in-order';
 import { Observable } from 'rxjs';
+import { Order } from 'src/app/models/order';
 
 
 
@@ -20,8 +21,8 @@ export class OrderItemProductComponent implements OnInit {
   @Input() id: number;
   @Input() status: string;
   @Input() orderedProduct: ProductsInOrder;
+  @Input() order: Order;
   cancel: boolean = false;
-
  
   constructor(private service:OrderService) {    
  
@@ -54,8 +55,26 @@ export class OrderItemProductComponent implements OnInit {
   }
   changeStatus(){  
     if (this.orderedProduct.status=="IN_PROGRESS") 
-    {this.orderedProduct.status="READY" 
-    this.service.updateStatus(this.orderedProduct).subscribe(); }
+    {
+      console.log(this.id);
+      this.orderedProduct.status="READY" 
+      this.service.updateStatus(this.orderedProduct).subscribe(); 
+      if(this.checkOrderCompleted()){
+        console.log(this.order.id+"order is ready");
+        this.order.status="in_progres";
+        console.log(this.order.status);
+        this.service.updateOrderStatus(this.order).subscribe();
+        this.service.getOrders();
+      }
+}
 
+  }
+  checkOrderCompleted(){
+    for ( var i=0; i<this.order.orderedProducts.length;i++){
+      if (this.order.orderedProducts[i].status!=="READY"){
+        return false;
+      }
+    }
+    return true;
   }
 }

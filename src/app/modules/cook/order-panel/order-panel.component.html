@@ -7,7 +7,7 @@
         <div class="timer">
             {{order.orderDate}}
         </div>       
-            <app-order-item [productInOrder]="order.orderedProducts"></app-order-item>
+            <app-order-item [order] = "order" [productInOrder]="order.orderedProducts"></app-order-item>
         <div >                         
               <app-order-comment [order]="order"></app-order-comment>           
         </div>
