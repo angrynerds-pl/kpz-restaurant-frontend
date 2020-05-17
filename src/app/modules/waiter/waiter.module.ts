@@ -20,6 +20,7 @@ import { AddNewReservationComponent } from "./reservations/add-new-reservation/a
 import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
 import {MatCheckboxModule} from '@angular/material/checkbox'
 import { ProductStatusPipe } from './table-service/product-status-pipe';
+import { CheckReservationsComponent } from './reservations/check-reservations/check-reservations.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { ProductStatusPipe } from './table-service/product-status-pipe';
     OrderSummaryComponent,
     BillComponent,
     AddNewReservationComponent,
-    ProductStatusPipe
+    ProductStatusPipe,
+    CheckReservationsComponent
   ],
   imports: [
     CommonModule,

@@ -15,7 +15,6 @@ import { TableAddOrderComponent } from "../table-add-order/table-add-order.compo
 import { BillComponent } from "../bill/bill.component";
 import { OrderService } from "src/app/services/order.service";
 import { ProductsInOrder } from "src/app/models/products-in-order";
-import { ProductsInOrderService } from "src/app/services/products-in-order.service";
 import { ProductService } from "src/app/services/product.service";
 import { MenuProduct } from "src/app/models/menu-product";
 import { Order } from "src/app/models/order";

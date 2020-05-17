@@ -9,30 +9,7 @@ import { Observable, of } from 'rxjs';
 export class ReservationService {
 
   reservations: Array<Reservation> = [
-    { 
-      reservationID: 1, 
-      tableID: 5, 
-      numberOfSeats: 3, 
-      customerName: 'John Adams', 
-      startDate: '2020-04-07 14:45', 
-      endDate: '2020-04-07 15:45' 
-    },
-    { 
-      reservationID: 2, 
-      tableID: 5, 
-      numberOfSeats: 2, 
-      customerName: 'Thomas Smith', 
-      startDate: '2020-04-07 12:45', 
-      endDate: '2020-04-07 13:15' 
-    },
-    { 
-      reservationID: 3, 
-      tableID: 4, 
-      numberOfSeats: 3, 
-      customerName: 'Thomas Edison', 
-      startDate: '2020-05-02 13:54', 
-      endDate: '2020-05-02 13:55' 
-    }
+    
   ]
 
   constructor(private http:HttpClient) { }

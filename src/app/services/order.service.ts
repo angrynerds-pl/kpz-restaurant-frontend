@@ -15,7 +15,6 @@ import { MenuProduct } from '../models/menu-product';
 export class OrderService {
   host: string = environment.host;
 
-  //productToAdd:ProductsInOrder = null;
   productsToAdd: ProductsInOrder[] = [];
 
   constructor(

@@ -3,6 +3,7 @@ import { faBars, faTintSlash } from "@fortawesome/free-solid-svg-icons";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import {MatBottomSheet} from "@angular/material/bottom-sheet";
 import {AddNewReservationComponent} from '../add-new-reservation/add-new-reservation.component'
+import {CheckReservationsComponent} from '../check-reservations/check-reservations.component'
 import { Reservation } from 'src/app/models/reservation';
 import { Subscription } from 'rxjs';
 import { ReservationService } from 'src/app/services/reservation.service';
@@ -40,13 +41,20 @@ export class ReservationsMainComponent implements OnInit, OnDestroy {
     this.router.navigate(["/login"]);
   }
 
-  addNewReservation(){
+  
+  checkReservations(){
+    
+    let role = this.localStorageService.getRole();
+    //if(role=="HEAD_WAITER"){
+
+    
     this._bottomSheet._openedBottomSheetRef = this._bottomSheet.open(
-      AddNewReservationComponent,
+      CheckReservationsComponent,
       {
         data: { },
         disableClose: false,
       }
     );
   }
+  //}
 }

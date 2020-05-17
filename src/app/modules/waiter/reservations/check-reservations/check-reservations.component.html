@@ -1,0 +1,55 @@
+<section>
+  <label for="startDate">Reservation date</label>
+  <input
+    id="startDate"
+    [(ngModel)]="reservationDatetime"
+    class="reservation-details form-control globalShadow"
+    [owlDateTime]="dt1"
+    [owlDateTimeTrigger]="dt1"
+    placeholder=""
+  />
+  <owl-date-time #dt1></owl-date-time>
+
+  <div class="select-box">
+    <label for="selectSeatNumber">Seats number</label>
+    <select id="selectSeatNumber" [(ngModel)]="seatNumber">
+      <ng-container *ngFor="let seat of tablesSeats">
+        <option [ngValue]="seat" (click)="chooseTablesBySeats(seatNumber)">{{
+          seat
+        }}</option>
+      </ng-container>
+    </select>
+  </div>
+
+  <div class="tables-wrapper">
+    <ng-container *ngIf="rooms">
+      <div class="select-box">
+        <select [(ngModel)]="currentID" (change)="setTables(1)">
+          <ng-container *ngFor="let room of rooms">
+            <option [ngValue]="room.id">{{ room.name }}</option>
+          </ng-container>
+        </select>
+      </div>
+      <div class="grid-wrapper">
+        <ng-container *ngIf="grid">
+          <ng-container *ngFor="let row of grid">
+            <div class="tableRow">
+              <ng-container *ngFor="let col of row">
+                <ng-container *ngIf="col; else empty">
+                  <app-table-view
+                    [table]="col"
+                    [newReservation]="newReservation"
+                    [reservationDate]="reservationDatetime"
+                  ></app-table-view>
+                </ng-container>
+                <ng-template #empty>
+                  <app-empty-view></app-empty-view>
+                </ng-template>
+              </ng-container>
+            </div>
+          </ng-container>
+        </ng-container>
+      </div>
+    </ng-container>
+  </div>
+</section>
