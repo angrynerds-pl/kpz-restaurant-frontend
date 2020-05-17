@@ -1,17 +1,41 @@
 <section class="container-fluid bill-view">
-    <div class="button-box">
-        <button type="button" class="btn btn-info globalShadow button-split" (click)="splitTheBill()">Split the bill</button>
-    </div>    
-        <li>
-        <ul *ngFor="let product of productsInOrder,index as i">
-            
-            <div class="product-name justify-content-between d-flex align-items-center" *ngIf="product.status=='Served'">{{products[product.productID].name}}<mat-checkbox [id]="i" [checked]="checkStatus[i]"  (change)="changeTotalAmount($event,products[product.productID].price)"></mat-checkbox></div>
-        </ul>
-    </li>
-    <div class="text-left container-fluid mt-3">To pay:</div>
-    <div class="text-right container-fluid mt-1 font-weight-bold">{{totalAmount}}</div>
-    <div class="button-box">
-        <button type="button" class="btn btn-success globalShadow" (click)="billPayment()">Payment</button>
-    </div> 
+  <div class="button-box">
+    <button
+      type="button"
+      class="btn btn-info globalShadow button-split"
+      (click)="splitTheBill()"
+    >
+      Split the bill
+    </button>
+  </div>
+  <li>
+    <ng-container *ngIf="productsInOrder">
+      <ul *ngFor="let product of productsInOrder; index as i">
+        <div
+          class="product-name justify-content-between d-flex align-items-center"
+          *ngIf="product.status == 'SERVED'"
+        >
+          {{ product.product.name}}
+          <mat-checkbox
+            [id]="i"
+            [checked]="checkStatus[i]"
+            (change)="changeTotalAmount($event, product.product.price)"
+          ></mat-checkbox>
+        </div>
+      </ul>
+    </ng-container>
+  </li>
+  <div class="text-left container-fluid mt-3">To pay:</div>
+  <div class="text-right container-fluid mt-1 font-weight-bold">
+    {{ totalAmount }}
+  </div>
+  <div class="button-box">
+    <button
+      type="button"
+      class="btn btn-success globalShadow"
+      (click)="billPayment()"
+    >
+      Payment
+    </button>
+  </div>
 </section>
-

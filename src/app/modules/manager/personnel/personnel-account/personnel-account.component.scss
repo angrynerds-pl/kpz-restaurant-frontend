@@ -34,6 +34,12 @@ label {
   margin:auto;
 }
 
+select {
+  width: 200px !important; 
+  text-align: center;
+  text-align-last: center;
+}
+
 .btn{
   border:none;
 }
@@ -57,10 +63,10 @@ label {
   
 }
 
-input.ng-valid {
+input.ng-valid, select.ng-valid {
   border: 2px solid $green;
 }
 
-input.ng-invalid.ng-touched {
+input.ng-invalid.ng-touched, select.ng-invalid.ng-touched {
   border: 2px solid $invalid;
 }

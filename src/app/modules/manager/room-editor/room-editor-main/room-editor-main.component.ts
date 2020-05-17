@@ -6,7 +6,6 @@ import { Subscription } from 'rxjs';
 import { Router } from '@angular/router';
 import { Table } from 'src/app/models/table';
 import { Room } from 'src/app/models/room';
-import { take } from 'rxjs/operators';
 import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-room-editor-main',
@@ -85,23 +84,18 @@ export class RoomEditorMainComponent implements OnInit, OnDestroy {
     this.tables = this.tables.filter(e => e !== table);
   }
 
-  ngOnDestroy(){
-    if(this.tableSubscription) this.tableSubscription.unsubscribe();
-    if(this.addRoomSubscription) this.addRoomSubscription.unsubscribe();
-    this.roomSubscription.unsubscribe();
-  }
-
   save(){
     if(this.areTablesCorrect()){
       // new room
       if(this.new){
         this.addRoomSubscription = this.roomService.addRoom(this.currentRoom).subscribe(room => {
           if(room){
-            this.tables.map(table => table.roomId = room.id);
-            //temporary
-            this.tables.forEach(t => {
-              this.tableService.addTable(t).pipe(take(1)).subscribe();
-            })
+            if(this.tables.length > 0){
+              this.tables.map(table => table.roomId = room.id);
+              this.tableService.addManyTables(this.tables).subscribe(data => {
+                console.log(data);
+              })
+            }
             this.router.navigateByUrl('/manager/statistics', { skipLocationChange: true }).then(() => {
               this.router.navigate(['/manager/room-editor']);
             }); 
@@ -110,17 +104,24 @@ export class RoomEditorMainComponent implements OnInit, OnDestroy {
       }
       // edit room
       else{
-        this.tables.forEach(t => {
-          if(t.roomId == null){
-            t.roomId = this.currentRoom.id;
-            this.tableService.addTable(t).pipe(take(1)).subscribe();
-          }else{
-            this.tableService.updateTable(t).pipe(take(1)).subscribe();
-          }
-        })
-        this.deletedTables.forEach(t => {
-          this.tableService.deleteTable(t).pipe(take(1)).subscribe();
-        })
+        const updateTables = this.tables.filter(t => t.roomId != null);
+        const newTables = this.tables.filter(t => t.roomId == null);
+        newTables.map(table => table.roomId = this.currentRoom.id);
+        if(newTables.length > 0){
+          this.tableService.addManyTables(newTables).subscribe(data => {
+            console.log(data);
+          });
+        }
+        if(updateTables.length > 0){
+          this.tableService.updateManyTables(updateTables).subscribe(data => {
+            console.log(data);
+          });
+        }
+        if(this.deletedTables.length > 0){
+          this.tableService.deleteManyTables(this.deletedTables).subscribe(data => {
+            console.log(data);
+          });
+        }
         this.router.navigateByUrl('/manager/statistics', { skipLocationChange: true }).then(() => {
           this.router.navigate(['/manager/room-editor']);
         }); 
@@ -140,10 +141,19 @@ export class RoomEditorMainComponent implements OnInit, OnDestroy {
 
   deleteRoom(room: Room) {
     this.roomService.deleteRoom(room).subscribe(data => {
-      this.toastrService.info('Room has been deleted');
+      this.toastrService.success('Room has been deleted');
+      this.router.navigateByUrl('/manager/statistics', { skipLocationChange: true }).then(() => {
+        this.router.navigate(['/manager/room-editor']);
+      }); 
     }, err => {
       this.toastrService.error('Error!');
     })
+  }
+
+  ngOnDestroy(){
+    if(this.tableSubscription) this.tableSubscription.unsubscribe();
+    if(this.addRoomSubscription) this.addRoomSubscription.unsubscribe();
+    this.roomSubscription.unsubscribe();
   }
 
 }

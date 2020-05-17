@@ -17,11 +17,13 @@ section {
 
 select {
     min-width: 200px;
+    max-width:250px;
     border-radius: 8px;
     padding: 4px 8px;
     font-size: 24px;
     margin: 16px;
     outline: none;
+    text-align:center;
 }
 
 .tableRow {
@@ -47,10 +49,10 @@ p {
 
 .float{
 	position:fixed;
-	height:50px;
-    width:50px;
-    top:0px;
-	left:0px;
+	height:40px;
+    width:40px;
+    right:0px;
+    top:13px;
 	background-color: transparent;;
 	color:#FFF;
     justify-content:center;

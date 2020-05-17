@@ -6,6 +6,8 @@ import {AddNewReservationComponent} from '../add-new-reservation/add-new-reserva
 import { Reservation } from 'src/app/models/reservation';
 import { Subscription } from 'rxjs';
 import { ReservationService } from 'src/app/services/reservation.service';
+import { LocalStorageService } from 'src/app/services/local-storage.service';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-reservations',
   templateUrl: './reservations-main.component.html',
@@ -19,7 +21,7 @@ export class ReservationsMainComponent implements OnInit, OnDestroy {
 
   reservationsSubscription:Subscription;
 
-  constructor(private _bottomSheet:MatBottomSheet, private reservationService:ReservationService) { }
+  constructor(private localStorageService:LocalStorageService, private router:Router,private _bottomSheet:MatBottomSheet, private reservationService:ReservationService) { }
   
 
   ngOnInit(): void {
@@ -33,16 +35,10 @@ export class ReservationsMainComponent implements OnInit, OnDestroy {
     this.reservationsSubscription.unsubscribe();
   }
 
-
-
-
-
-
-
-
-
-
-
+  logout(){
+    this.localStorageService.logout();
+    this.router.navigate(["/login"]);
+  }
 
   addNewReservation(){
     this._bottomSheet._openedBottomSheetRef = this._bottomSheet.open(
