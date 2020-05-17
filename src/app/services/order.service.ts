@@ -34,7 +34,7 @@ export class OrderService {
    }
    updateOrderStatus(order:Order) : Observable<any>{
     console.log(this.host + 'api/orders/'+order.id+'/'+order.status +"token: "+ this.storageService.getToken());
-    return this.http.put<any>(this.host + 'api/orders/'+order.id+'/'+order.status, {  
+    return this.http.put<any>(this.host + 'api/orders/'+order.id+'/'+order.status, {}, {  
       headers : new HttpHeaders().set('Authorization', 'Bearer '+ this.storageService.getToken()),
      });    
     }

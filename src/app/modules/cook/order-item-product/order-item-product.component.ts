@@ -61,7 +61,7 @@ export class OrderItemProductComponent implements OnInit {
       this.service.updateStatus(this.orderedProduct).subscribe(); 
       if(this.checkOrderCompleted()){
         console.log(this.order.id+"order is ready");
-        this.order.status="in_progres";
+        this.order.status='SERVED';
         console.log(this.order.status);
         this.service.updateOrderStatus(this.order).subscribe();
         this.service.getOrders();
