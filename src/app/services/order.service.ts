@@ -19,9 +19,7 @@ import { Identifiers } from '@angular/compiler';
 export class OrderService {
 
   host: string =environment.host;
-  products:MenuProduct[];
-
-  
+  products:MenuProduct[]; 
   ordersWaiter:OrderWaiter[];
   newOrder:OrderWaiter;
   constructor(private tableService:TableService, private http:HttpClient, private storageService:LocalStorageService) {

@@ -22,7 +22,9 @@ export class OrderItemProductComponent implements OnInit {
   @Input() status: string;
   @Input() orderedProduct: ProductsInOrder;
   @Input() order: Order;
+  @Output() emitter = new EventEmitter<boolean>();
   cancel: boolean = false;
+  completed: boolean =true;
  
   constructor(private service:OrderService) {    
  
@@ -60,14 +62,10 @@ export class OrderItemProductComponent implements OnInit {
       this.orderedProduct.status="READY" 
       this.service.updateStatus(this.orderedProduct).subscribe(); 
       if(this.checkOrderCompleted()){
-        console.log(this.order.id+"order is ready");
-        this.order.status='SERVED';
-        console.log(this.order.status);
-        this.service.updateOrderStatus(this.order).subscribe();
-        this.service.getOrders();
-      }
-}
-
+        this.order.status="served";     
+        this.service.updateOrderStatus(this.order).subscribe(data =>this.emitter.emit(this.completed));    
+        }
+    }
   }
   checkOrderCompleted(){
     for ( var i=0; i<this.order.orderedProducts.length;i++){

@@ -19,7 +19,6 @@ export class OrderPanelComponent implements OnInit {
   constructor(private orderService:OrderService) { }
 
   ngOnInit(): void {
-
     this.loadOrders();
   }
 
@@ -33,6 +32,12 @@ export class OrderPanelComponent implements OnInit {
         else return -1;
       });*/
     })
+  }
+  onOrderCompleted(completed:boolean){
+    if(completed)
+    {
+      this.loadOrders();
+    }
   }
  
 }
