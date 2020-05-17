@@ -9,6 +9,7 @@ import { LocalStorageService } from 'src/app/services/local-storage.service';
 import { Router } from '@angular/router';
 import { Reservation } from 'src/app/models/reservation';
 import { FormControl } from '@angular/forms';
+import { ReservationService } from 'src/app/services/reservation.service';
 @Component({
   selector: 'app-check-reservations',
   templateUrl: './check-reservations.component.html',
@@ -36,7 +37,7 @@ export class CheckReservationsComponent implements OnInit, OnDestroy {
   tablesBySeatAmount:Array<Table>;
   seatNumber:number;
 
-  constructor(private router:Router, private roomService:RoomService, private tableService:TableService, private localStorageService:LocalStorageService) { }
+  constructor(private reservationsService:ReservationService,private router:Router, private roomService:RoomService, private tableService:TableService, private localStorageService:LocalStorageService) { }
 
   ngOnInit(): void {
 
@@ -96,6 +97,9 @@ export class CheckReservationsComponent implements OnInit, OnDestroy {
     this.tableSubscription.unsubscribe();
   }
 
-
+  checkReservations(event){
+    console.log(this.reservationDatetime);
+    this.reservationsService.getReservationsByDatetime(this.reservationDatetime).subscribe();
+  }
   
 }

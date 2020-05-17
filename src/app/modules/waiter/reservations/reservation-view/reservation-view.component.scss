@@ -8,6 +8,9 @@
     padding:0;
     background-color: $lightBlue;
 }
+.reservation-details:hover{
+    cursor:pointer;
+}
 span{
     padding:5px;
 }
@@ -16,6 +19,19 @@ span{
     border-top-left-radius:1em;
     border-top-right-radius:1em;
 }
+
+.float{
+	position:fixed;
+	height:30px;
+    width:30px;
+    left: 5px;
+    bottom:5px;
+	background-color: transparent;;
+	color:black;
+    
+    
+}
+
 .tableDetails{
     //background-color: $lightBlue;
 }

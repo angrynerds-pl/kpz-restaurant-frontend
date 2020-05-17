@@ -18,46 +18,55 @@ import {MAT_BOTTOM_SHEET_DATA} from '@angular/material/bottom-sheet';
 export class AddNewReservationComponent implements OnInit {
 
   confirmReservationIcon=faPlusCircle;
-
+  
   reservation:Reservation;
-
+  
   newReservationForm:FormGroup;
   tableNumbers:Number[] = [];
   table:Table;
   reservationId: number;
-  tablesSubscription:Subscription;
 
   constructor(@Inject(MAT_BOTTOM_SHEET_DATA) public data: any,private reservationService:ReservationService,private fb:FormBuilder,private toastrService: ToastrService, private bottomSheetRef:MatBottomSheetRef, private tableService :TableService) { }
   
   
   ngOnInit(): void {
     this.reservation = this.data.reservationDetails;
-    this.table = this.data.tableDetails;
-    console.log('this.data.reservationDetails',this.data.reservationDetails)
+    this.table = this.data.table;
+    if(this.table==null){
+      this.newReservationForm = this.fb.group({
+        tableId:[this.reservation.tableId, Validators.required],
+        numberOfSeats:[this.reservation.numberOfSeats, [Validators.required,Validators.pattern("^[1-9]*$"),  Validators.min(1)]],
+        customerName:[this.reservation.customerName, Validators.required],
+        startDate:[this.reservation.startDate, Validators.required],
+        endDate:[this.reservation.startDate, Validators.required],
+        
+      })
+    }else{
     this.newReservationForm = this.fb.group({
-      tableId:[this.table.id, Validators.required],
+      tableId:[this.reservation.tableId, Validators.required],
       numberOfSeats:[this.table.seats, [Validators.required,Validators.pattern("^[1-9]*$"),  Validators.min(1), Validators.max(this.table.seats)]],
       customerName:[null, Validators.required],
       startDate:[this.reservation.startDate, Validators.required],
-      endDate:[this.reservation.endDate, Validators.required],
+      endDate:[this.reservation.startDate, Validators.required],
       
     })
-
-    this.tablesSubscription = this.tableService.getTablesID().subscribe((tableNumbers)=>{
-      this.tableNumbers = tableNumbers
-    })
+    }
+    
   }
   addReservation(){
     if (this.newReservationForm.valid) {
-      //this.reservationId = this.reservationService.getLastReservationID();
-      //this.reservation = Object.assign({}, this.newReservationForm.value);
-      //this.reservation.reservationId = this.reservationId;
-      //console.log(this.reservation);
-      //this.reservationService.addReservation(this.reservation);
+      if(this.table==null){
+        this.reservation = Object.assign({}, this.newReservationForm.value);
+        this.reservationService.updateReservation(this.reservation).subscribe();
+      }else{
+      this.reservation = Object.assign({}, this.newReservationForm.value);
+      
+      this.reservationService.addReservation(this.reservation).subscribe();
 
-      //this.resetForm();
+     
       this.toastrService.success("Reservation added!");
       this.closeBottomSheet();
+      }
     }else{
       this.toastrService.error("Reservation data incorrect!");
     }
