@@ -3,13 +3,17 @@
 section {
     display: flex;
     background-color: $gray;
-    padding: 16px;
+    padding: 8px;
     margin: 4px;
     border-radius: 8px;
 }
 
 p {
-    flex: 1;
+    flex: 3;
     text-align: center;
     margin: 0;
+}
+
+p.short {
+    flex: 2;
 }

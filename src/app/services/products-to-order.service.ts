@@ -4,17 +4,18 @@ import { Observable } from "rxjs";
 import { of as ObservableOf } from "rxjs";
 import { ProductToAdd } from "../models/product-to-add";
 import { ProductService } from './product.service';
+import { ProductsInOrder } from '../models/products-in-order';
 @Injectable({
   providedIn: "root",
 })
 export class ProductsToOrderService {
-  productsToAdd: ProductToAdd[];
+  productsToAdd: ProductToAdd[]= [];
   productToAdd:ProductToAdd;
-  constructor(private productService:ProductService) {
-    this.productsToAdd = [];
+  constructor() {
+    
   }
 
-  addProduct(product, amount: number) {
+  addProduct(product:MenuProduct, amount: number) {
     let index = this.findProduct(product);
     console.log(index);
     if (index == -1) {
@@ -51,13 +52,13 @@ export class ProductsToOrderService {
   }
 
 
-  editProdroductsFromOrder(productInOrder){
-    productInOrder.forEach(element => {
-      this.addProduct(this.productService.getProduct(element.productID),1);
+  editProductsFromOrder(productsInOrder:ProductsInOrder[]){
+    
+    productsInOrder.forEach(element => {
+      if(element.status=='IN_PROGRESS'){
+        this.addProduct(element.product,1);
+      }
     });
   }
 
-  editOrder(){
-    
-  }
 }

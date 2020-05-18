@@ -32,11 +32,13 @@
             <label>Name</label>
             <input required name="name" type="text" [(ngModel)]="name">
         </div>
-        <button class="btnSubmit" (click)="create()" [disabled]="!editorForm.valid">Add</button>
+        <div class="input-box">
+            <button class="btnSubmit" (click)="create()" [disabled]="!editorForm.valid">Add</button>
+        </div>
     </form>
 </section>
 <div class="row">
-    <article class="col-md-5 offset-md-1">
+    <article class="col-lg-5 offset-lg-1">
         <ng-container *ngIf="grid">
             <p>Layout</p>
             <div class="grid-box">
@@ -60,7 +62,7 @@
             </div>
         </ng-container>
     </article>
-    <aside class="col-md-5">
+    <aside class="col-lg-5">
         <ng-container *ngIf="picked">
             <p>Tables</p>
         </ng-container>

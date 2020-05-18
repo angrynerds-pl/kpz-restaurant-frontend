@@ -1,20 +1,11 @@
 export interface User {
-  //jak bedzie api odkomentowac
   id: number;
+  restaurantId: number;
   username: string;
   password: string;
   firstName: string;
   lastName: string;
   position: string;
+  rights: number;
 }
 
-// export class User {
-//   constructor(
-//     public id: number,
-//     public username: string,
-//     public password: string,
-//     public firstName: string,
-//     public lastName: string,
-//     public position:string
-//   ) {}
-// }
