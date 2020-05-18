@@ -49,9 +49,7 @@ export class OrderService {
     return this.http.put<ProductsInOrder>(this.host + 'api/orders/products/'+orderedProduct.id,orderedProduct, {  
     headers : new HttpHeaders().set('Authorization', 'Bearer '+ this.storageService.getToken()),
    });    
-  } 
-  createOrder(tableId:number, waiterId:number, orderedProducts,note:string){
-
+  }
   getOrdersHistory (year:number, month:number,day:number) : Observable<Array<Order>>
   {
     console.log(this.host + 'api/orders/history/'+year+"/"+month+"/"+day);
