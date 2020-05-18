@@ -43,7 +43,13 @@ export class OrderService {
     headers : new HttpHeaders().set('Authorization', 'Bearer '+ this.storageService.getToken()),
    });    
   }
-
+  getOrdersHistory (year:number, month:number,day:number) : Observable<Array<Order>>
+  {
+    console.log(this.host + 'api/orders/history/'+year+"/"+month+"/"+day);
+    return this.http.get<Array<Order>>(this.host + 'api/orders/history/'+year+"/"+month+"/"+day,  {
+      headers : new HttpHeaders().set('Authorization', 'Bearer '+ this.storageService.getToken()),
+     });    
+  }
   createOrder(tableID, notes){
     
     this.newOrder = {orderID:this.getLastOrderId() , tableID: tableID, orderDate: new Date(),notes};
