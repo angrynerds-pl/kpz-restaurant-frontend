@@ -21,11 +21,6 @@ export class OrderService {
   
   host: string =environment.host;
 
-  products:MenuProduct[]; 
-  ordersWaiter:OrderWaiter[];
-  newOrder:OrderWaiter;
-  
-
   //productToAdd:ProductsInOrder = null;
   productsToAdd:ProductsInOrder[] = [];
 
