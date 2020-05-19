@@ -8,6 +8,8 @@ import { TableService } from './table.service';
 import { ProductsInOrder } from '../models/products-in-order';
 
 import { Identifiers } from '@angular/compiler';
+import { ProductToAdd } from '../models/product-to-add';
+
 
 import { ProductToAdd } from '../models/product-to-add';
 
@@ -24,11 +26,8 @@ export class OrderService {
   products:MenuProduct[]; 
   ordersWaiter:OrderWaiter[];
   newOrder:OrderWaiter;
-  
 
-  //productToAdd:ProductsInOrder = null;
   productsToAdd:ProductsInOrder[] = [];
-
 
   constructor(private tableService:TableService, private http:HttpClient, private storageService:LocalStorageService) {
 
@@ -52,6 +51,19 @@ export class OrderService {
    });    
   } 
   createOrder(tableId:number, waiterId:number, orderedProducts,note:string){
+
+  getOrdersHistory (year:number, month:number,day:number) : Observable<Array<Order>>
+  {
+    console.log(this.host + 'api/orders/history/'+year+"/"+month+"/"+day);
+    return this.http.get<Array<Order>>(this.host + 'api/orders/history/'+year+"/"+month+"/"+day,  {
+      headers : new HttpHeaders().set('Authorization', 'Bearer '+ this.storageService.getToken()),
+     });    
+  }
+  createOrder(tableID, notes){
+    
+    this.newOrder = {orderID:this.getLastOrderId() , tableID: tableID, orderDate: new Date(),notes};
+    this.ordersWaiter.push( this.newOrder);
+    this.tableService.changeStatusOfTable(tableID);
 
     
     //new Date + two hours 
@@ -97,6 +109,7 @@ export class OrderService {
   }
 
   editOrderProducts(order:Order, productsToOrder:Array<ProductToAdd>){
+
     
        ////let currentId = order.orderedProducts.length +1;
        this.productsToAdd=order.orderedProducts;
