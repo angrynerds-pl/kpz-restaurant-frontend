@@ -50,8 +50,13 @@ export class TablesMainComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.roomSubscription.unsubscribe();
-    this.tableSubscription.unsubscribe();
+    if(this.roomSubscription){
+      this.roomSubscription.unsubscribe();
+    }
+    if(this.tableSubscription){
+      this.tableSubscription.unsubscribe();
+    }
+    
   }
 
   logout(){

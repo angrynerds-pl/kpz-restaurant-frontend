@@ -29,8 +29,8 @@
   </div>
 </header>
 <section class='container-fluid'>
-<ul *ngFor='let reservation of reservations'>
-<app-reservation-view [reservationDetails]='reservation'></app-reservation-view>
+<ul *ngFor='let reservation of reservations | async'>
+<app-reservation-view [reservationDetails]='reservation' (updateEmitter)="updateReservations()"></app-reservation-view>
 </ul>
 
 

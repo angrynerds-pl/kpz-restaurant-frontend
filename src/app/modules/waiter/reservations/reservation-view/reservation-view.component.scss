@@ -21,17 +21,19 @@ span{
 }
 
 .float{
-	position:fixed;
+	position:absolute;
 	height:30px;
     width:30px;
-    left: 5px;
-    bottom:5px;
+    left: 0px;
+    top:4px;
 	background-color: transparent;;
-	color:black;
+	
     
     
 }
-
+#deleteReservationIcon{
+    color:$red;
+}
 .tableDetails{
     //background-color: $lightBlue;
 }

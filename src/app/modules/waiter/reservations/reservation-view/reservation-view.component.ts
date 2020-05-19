@@ -1,10 +1,10 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { ReservationService } from 'src/app/services/reservation.service';
 import { Reservation } from 'src/app/models/reservation';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { AddNewReservationComponent } from '../add-new-reservation/add-new-reservation.component';
 import { LocalStorageService } from 'src/app/services/local-storage.service';
-import { faTrashAlt } from "@fortawesome/free-solid-svg-icons";
+import { faTimes } from "@fortawesome/free-solid-svg-icons";
 
 @Component({
   selector: 'app-reservation-view',
@@ -13,13 +13,14 @@ import { faTrashAlt } from "@fortawesome/free-solid-svg-icons";
 })
 export class ReservationViewComponent implements OnInit {
 
-  deleteReservationIcon=faTrashAlt;
+  deleteReservationIcon=faTimes;
 
   @Input() reservationDetails:Reservation;
+  @Output() updateEmitter:EventEmitter<any> = new EventEmitter();
   todayDate:Date= new Date();
   reservationDate :Date;
   role:string;
-
+  deletingReservation:boolean=false;
   constructor(private _bottomSheet:MatBottomSheet, private storageService:LocalStorageService, private reservationsService:ReservationService) { }
 
   ngOnInit(): void {
@@ -30,21 +31,30 @@ export class ReservationViewComponent implements OnInit {
   }
 
   deleteReservation(reservationDetails){
-    this.reservationsService.deleteReservation(reservationDetails.id).subscribe();
+    this.deletingReservation = true;
+    
+    this.reservationsService.deleteReservation(reservationDetails.id).subscribe(r=>{
+      this.updateEmitter.emit();
+    });
+    
   }
   updateReservation(reservationDetails){
-    
+    if(!this.deletingReservation){
     //if(this.role=="HEAD_WAITER"){
 
     this._bottomSheet._openedBottomSheetRef = this._bottomSheet.open(
       AddNewReservationComponent,
       {
-        data: { reservationDetails:reservationDetails
+        data: { reservationDetails:reservationDetails,
+                table:null
           },
         disableClose: false,
       }
     );
+    
   //}
+    }
+    this.deletingReservation = false;
   }
 
 }

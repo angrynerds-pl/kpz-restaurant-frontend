@@ -150,12 +150,19 @@ export class TableComponent implements OnInit, OnDestroy {
       .afterDismissed()
       .subscribe((data) => {
         if (this.productsInOrder.every((product) => product.status == "PAID")) {
+          this.tableService.changeStatusOfTable(this.id);
           this.orderDetails.status = "PAID";
-          this.orderService.editOrder(this.orderDetails);
-          if (this.productsInOrder.every((product) => product.status == "SERVED")) {
-            this.tableService.changeStatusOfTable(this.id);
-            this.tableSubscription =  this.tableService.getTable(this.id).subscribe();
-          }
+          this.productsInOrder = null;
+          this.orderService.editOrder(this.orderDetails).subscribe(editedOrder =>{
+            this.tableSubscription = this.tableService
+            .getTable(this.id)
+            .subscribe((data) => {
+              console.log(this.table.status)
+              this.table = data;
+              console.log(this.table.status)
+            });
+          });
+          
           this.orderDetails = null;
         }
       });
@@ -165,10 +172,23 @@ export class TableComponent implements OnInit, OnDestroy {
   changeOfProductStatus(product: ProductsInOrder) {
     if (product.status == "READY") {
       product.status = "SERVED";
-      this.orderService.updateStatus(product).subscribe();
-      if (this.productsInOrder.every((product) => product.status == "SERVED")) {
-        this.tableService.changeStatusOfTable(this.id);
-      }
+      this.orderService.updateStatus(product).subscribe(updatedProduct=>{
+        if (this.productsInOrder.every((product) => product.status == "SERVED")) {
+          this.tableService.changeStatusOfTable(this.id);
+          this.orderDetails.status = "SERVED";
+          this.orderService.editOrder(this.orderDetails).subscribe(editedOrder =>{
+            this.tableSubscription = this.tableService
+            .getTable(this.id)
+            .subscribe((data) => {
+              console.log(this.table.status)
+              this.table = data;
+              console.log(this.table.status)
+            });
+          });
+          
+        }
+      
+      });
     }
   }
 }

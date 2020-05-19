@@ -28,7 +28,19 @@ export class ReservationService {
   }
 
   getReservationsByDatetime(datetime:Date): Observable<Array<Reservation>> {
-    return this.http.get<Array<Reservation>>(this.host + "api/reservations", {
+    
+    let years = datetime.getFullYear();
+    let months = datetime.getMonth()+1;
+    let days = datetime.getDate();
+    let hours = datetime.getHours();
+    let minutes = datetime.getMinutes();
+    
+    console.log(years);
+    console.log(months);
+    console.log(days);
+    console.log(hours);
+    console.log(minutes);
+  return this.http.get<Array<Reservation>>(this.host + "api/reservations/"+years+"/"+months+"/"+days+"/"+hours+"/"+minutes, {
       headers: new HttpHeaders().set(
         "Authorization",
         "Bearer " + this.storageService.getToken()
@@ -39,10 +51,17 @@ export class ReservationService {
   addReservation(
     reservation:Reservation
   ) {
-    
-    return this.http.post<Reservation>(
-      this.host + "api/reservations",
-     reservation,
+      console.log(reservation.startDate);
+        return this.http.post<Reservation>(
+      this.host + "api/reservations",{
+      numberOfSeats:reservation.numberOfSeats,
+      customerName:reservation.customerName,
+      tableId:reservation.tableId,
+      startDate: reservation.startDate,
+      endDate: reservation.endDate,
+      //note:reservation.note
+      }
+     ,
       {
         headers: new HttpHeaders().set(
           "Authorization",

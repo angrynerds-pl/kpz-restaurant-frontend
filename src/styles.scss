@@ -69,4 +69,19 @@ html, body {
 .served {
     background-color: transparent;
 }
+
+.available{
+    background-color: $green;
+}
+.booked{
+    background-color: $red;
+}
+.booked:hover{
+    cursor:0;
+}
+.available:hover{
+    cursor:pointer;
+}
+
+
 @import "~bootstrap/dist/css/bootstrap.css"; // don't move !!!

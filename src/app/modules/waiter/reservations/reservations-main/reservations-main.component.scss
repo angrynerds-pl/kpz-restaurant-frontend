@@ -5,11 +5,15 @@ header {
     padding: 10px;
     text-align: center;
     font-size: 27px;
-    position: relative;
+    position: fixed;
+    width:100%;
+    top:0;
     height:65px;
     display:flex;
     align-items:center;
     justify-content:center;
+    z-index:1000;
+    background-color: $dropdownMenuColor;
 }
 
 .float{
@@ -49,9 +53,10 @@ fa-icon{
 
 section{
     
-    min-height:calc(100vh - 65px); // 100 vh - header height
+    min-height:100vh; // 100 vh - header height
     background-color:white;
     padding:10px;
+    padding-top:85px;
   }
 
 
