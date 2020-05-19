@@ -15,7 +15,7 @@ export class OrderItemComponent implements OnInit {
   @Input() productInOrder:ProductsInOrder;
   @Input() order:Order;
   @Output() emitter = new EventEmitter<boolean>();
-  constructor() {  }
+  constructor(private service:OrderService) {  }
 
 
   ngOnInit(): void {
