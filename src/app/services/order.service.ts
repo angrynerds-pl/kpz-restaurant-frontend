@@ -6,7 +6,11 @@ import { LocalStorageService } from './local-storage.service';
 import { Order } from '../models/order';
 import { TableService } from './table.service';
 import { ProductsInOrder } from '../models/products-in-order';
+
+import { Identifiers } from '@angular/compiler';
+
 import { ProductToAdd } from '../models/product-to-add';
+
 
 
 @Injectable({
@@ -16,28 +20,39 @@ export class OrderService {
 
   
   host: string =environment.host;
+
+  products:MenuProduct[]; 
+  ordersWaiter:OrderWaiter[];
+  newOrder:OrderWaiter;
   
 
   //productToAdd:ProductsInOrder = null;
   productsToAdd:ProductsInOrder[] = [];
 
+
   constructor(private tableService:TableService, private http:HttpClient, private storageService:LocalStorageService) {
 
    }
    getOrders () : Observable<Array<Order>> {
-     return this.http.get<Array<Order>>(this.host + 'api/orders',{
+     return this.http.get<Array<Order>>(this.host + 'api/orders/inprogress',{
      headers : new HttpHeaders().set('Authorization', 'Bearer '+ this.storageService.getToken()),
     });    
    }
+   updateOrderStatus(order:Order) : Observable<any>{
+    console.log(this.host + 'api/orders/'+order.id+'/'+order.status +"token: "+ this.storageService.getToken());
+    return this.http.put<any>(this.host + 'api/orders/'+order.id+'/'+order.status, {}, {  
+      headers : new HttpHeaders().set('Authorization', 'Bearer '+ this.storageService.getToken()),
+     });    
+    }
+
    updateStatus (orderedProduct:ProductsInOrder) : Observable<ProductsInOrder> { 
-     console.log(orderedProduct);
+    console.log(orderedProduct);
     return this.http.put<ProductsInOrder>(this.host + 'api/orders/products/'+orderedProduct.id,orderedProduct, {  
     headers : new HttpHeaders().set('Authorization', 'Bearer '+ this.storageService.getToken()),
    });    
-  }
-  
-  
+  } 
   createOrder(tableId:number, waiterId:number, orderedProducts,note:string){
+
     
     //new Date + two hours 
       var dt = new Date();
