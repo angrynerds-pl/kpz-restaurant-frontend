@@ -53,13 +53,7 @@ export class OrderService {
       headers : new HttpHeaders().set('Authorization', 'Bearer '+ this.storageService.getToken()),
      });    
   }
-  createOrder(tableID, notes){
-    
-    this.newOrder = {orderID:this.getLastOrderId() , tableID: tableID, orderDate: new Date(),notes};
-    this.ordersWaiter.push( this.newOrder);
-    this.tableService.changeStatusOfTable(tableID);
-   
-  } 
+
   createOrder(tableId:number, waiterId:number, orderedProducts,note:string){
 
     

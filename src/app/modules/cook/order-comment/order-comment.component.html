@@ -1,4 +1,4 @@
-<div *ngIf="isCommentNotNull" (click)="toggle()" class="showCommentIcon">
-    x  
+<div *ngIf="isCommentNotNull" (click)="toggle()" class="showCommentIcon ">
+    <span class="material-icons">expand_more </span>
     <div *ngIf ="isCommentShown">{{order.note}}</div>
 </div>
