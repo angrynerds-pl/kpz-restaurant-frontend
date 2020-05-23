@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ChartOptions, ChartType, ChartDataSets } from 'chart.js';
 import { Label } from 'ng2-charts';
+import { StatsService } from 'src/app/services/stats.service';
+import { StatsTraffic } from 'src/app/models/stats-traffic';
 
 @Component({
   selector: 'app-customers',
@@ -10,7 +12,6 @@ import { Label } from 'ng2-charts';
 export class CustomersComponent implements OnInit {
 
   options: ChartOptions = { responsive: true };
-  //colors: any[] = [ { backgroundColor: "#DD6C6C" }, { backgroundColor: "#88ACE2" }, { backgroundColor: "#CFD082" } ]
   labels: Label[] = [];
   chartType: ChartType = 'bar';
   legend = true;
@@ -21,18 +22,33 @@ export class CustomersComponent implements OnInit {
   week: boolean = true;
   month: boolean = true;
 
-  todayData = {};
-  weekData = {};
-  monthData = {};
+  todayData = { data: [], label: 'Today' };
+  weekData = { data: [], label: 'Week' };
+  monthData = { data: [], label: 'Month' };
 
-  constructor() { }
+  todayTraffic: Array<StatsTraffic>;
+  weekTraffic: Array<StatsTraffic>;
+  monthTraffic: Array<StatsTraffic>;
+  
+  startTime: number = 10;
+  endTime: number = 22;
+
+  constructor(private statsService:StatsService) { }
 
   ngOnInit() {
-    this.labels = ['8:00', '10:00', '12:00', '14:00', '16:00', '18:00', '20:00', '22:00'];
-    this.todayData = { data: [2, 23, 36, 54, 47, 0, 0, 0], label: 'Today' };
-    this.weekData = { data: [23, 33, 46, 64, 57, 12, 23, 43], label: 'Week' };
-    this.monthData = { data: [11, 26, 34, 67, 68, 26, 27, 17], label: 'Month' };
+    this.initData();
+  }
 
+  initData(){
+
+    this.labels = [];
+    this.todayData = { data: [], label: 'Today' };
+    this.weekData = { data: [], label: 'Week' };
+    this.monthData = { data: [], label: 'Month' };
+
+    this.getTodayTraffic();
+    this.getWeekTraffic();
+    this.getMonthTraffic();
     this.setChart();
   }
 
@@ -45,6 +61,38 @@ export class CustomersComponent implements OnInit {
     if(this.today) this.chartData.push(this.todayData);
     if(this.week) this.chartData.push(this.weekData);
     if(this.month) this.chartData.push(this.monthData);
+  }
+
+  getTodayTraffic(){
+    this.statsService.getCustomersTraffic('today',this.startTime,this.endTime).subscribe(data => {
+      this.todayTraffic = data;
+      this.todayTraffic.forEach(traffic => {
+        this.labels.push(traffic.startTime.slice(0,5) + " - " + traffic.endTime.slice(0,5));
+        this.todayData.data.push(traffic.quantity);
+      })
+    })
+  }
+
+  getWeekTraffic(){
+    this.statsService.getCustomersTraffic('week',this.startTime,this.endTime).subscribe(data => {
+      this.weekTraffic = data;
+      this.weekTraffic.forEach(traffic => {
+        this.weekData.data.push(traffic.quantity);
+      })
+    })
+  }
+
+  getMonthTraffic(){
+    this.statsService.getCustomersTraffic('month',this.startTime,this.endTime).subscribe(data => {
+      this.monthTraffic = data;
+      this.monthTraffic.forEach(traffic => {
+        this.monthData.data.push(traffic.quantity);
+      })
+    })
+  }
+
+  setPeriod(){
+    this.initData();
   }
 
 }

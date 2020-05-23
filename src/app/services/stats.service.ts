@@ -5,6 +5,7 @@ import { LocalStorageService } from './local-storage.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { StatsIncome } from '../models/stats-income';
 import { StatsProduct } from '../models/stats-product';
+import { StatsTraffic } from '../models/stats-traffic';
 
 @Injectable({
   providedIn: 'root'
@@ -35,6 +36,13 @@ export class StatsService {
 
   getProductsByCategories(): Observable<Array<StatsProduct>>{
     return this.http.get<Array<StatsProduct>>(this.host + 'api/stats/categories', {
+      headers: new HttpHeaders().set('Authorization', 'Bearer ' + this.storageService.getToken()),
+    });
+  }
+
+  // period month/week/today
+  getCustomersTraffic(period: string, startTime: number, endTime: number): Observable<Array<StatsTraffic>>{
+    return this.http.get<Array<StatsTraffic>>(this.host + `api/stats/customers/${period}/${startTime}/${endTime}`, {
       headers: new HttpHeaders().set('Authorization', 'Bearer ' + this.storageService.getToken()),
     });
   }

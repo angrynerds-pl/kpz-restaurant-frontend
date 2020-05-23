@@ -14,6 +14,7 @@ section {
 .btn-grid {
     display: flex;
     padding: 1em 0em;
+    flex-wrap: wrap;
 }
 
 .switch-box {
@@ -39,6 +40,32 @@ input {
     opacity: 0;
     width: 0;
     height: 0;
+}
+
+.input-box input[type=number]{
+    width: 60px;
+    height: 30px;
+    opacity: 1;
+    margin: 0 1em;
+    padding: 4px 8px;
+    border-radius: 8px;
+    border: 0;
+    background-color: $gray;
+}
+
+.input-box{
+    flex: 2;
+    text-align: center;
+    min-width: 350px;
+}
+
+.btnSet {
+    border-radius: 8px;
+    border: 0;
+    margin: 0 1em;
+    background-color: $yellow;
+    width: 60px;
+    height: 30px;
 }
 
 .slider {
