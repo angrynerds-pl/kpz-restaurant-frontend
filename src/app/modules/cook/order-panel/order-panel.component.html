@@ -5,7 +5,7 @@
             {{order.id}}
         </div>
         <div class="timer">
-            {{order.orderDate}}
+            {{order.orderDate | date:'dd-MM-yyyy hh:mm'}}
         </div>       
             <app-order-item (emitter)="onOrderCompleted($event)" [order] = "order" [productInOrder]="order.orderedProducts"></app-order-item>
         <div >                         
