@@ -1,13 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ChartOptions, ChartType, ChartDataSets } from 'chart.js';
 import { Label, SingleDataSet } from 'ng2-charts';
+import { StatsService } from 'src/app/services/stats.service';
+import { StatsProduct } from 'src/app/models/stats-product';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-products',
   templateUrl: './products.component.html',
   styleUrls: ['./products.component.scss']
 })
-export class ProductsComponent implements OnInit {
+export class ProductsComponent implements OnInit, OnDestroy {
 
   options: ChartOptions = { responsive: true };
   colorsBest: any[] = [ { backgroundColor: "#98D8B1" } ]
@@ -18,22 +21,52 @@ export class ProductsComponent implements OnInit {
   labelsWorst: Label[] = [];
   labelsPie: Label[] = [];
 
-  chartDataBest: ChartDataSets[] = [];
-  chartDataWorst: ChartDataSets[] = [];
+  chartDataBest: ChartDataSets[] = [ { data: [], label: 'Bestseller' } ];
+  chartDataWorst: ChartDataSets[] = [ { data: [], label: 'Worst selling' } ];
   chartDataPie: SingleDataSet = [];
 
-  constructor() { }
+  bestProducts: Array<StatsProduct>;
+  worstProducts: Array<StatsProduct>;
+  categories: Array<StatsProduct>;
+
+  bestSubscription: Subscription;
+  worstSubscription: Subscription;
+  categoriesSubscription: Subscription;
+
+  constructor(private statsService:StatsService) { }
 
   ngOnInit(): void {
-    // Bestsellers
-    this.chartDataBest = [ { data: [75, 70, 56, 54, 53], label: 'Bestseller' } ];
-    this.labelsBest = ['Classic', 'Margharita', 'Capriciosa', 'Spaghetti', 'Lasagne'];
-    // Worst selling
-    this.chartDataWorst = [ { data: [1, 3, 4, 6, 9] , label: 'Worst selling' } ];
-    this.labelsWorst = ['Hawaii', 'Vege', 'Carbonara', 'Mexicana', 'Peperoni'];
-    // Pie chart
-    this.labelsPie = [['Pizzas'], ['Drinks'], ['Fish'], ['Salads'], ['Burgers']];
-    this.chartDataPie = [873, 345, 65, 235, 543];
+
+    this.bestSubscription = this.statsService.getBestProducts().subscribe(data => {
+      this.bestProducts = data;
+      this.bestProducts.forEach(product => {
+        this.labelsBest.push(product.name);
+        this.chartDataBest[0].data.push(product.quantity)
+      })
+    });
+
+    this.worstSubscription = this.statsService.getWorstProducts().subscribe(data => {
+      this.worstProducts = data;
+      this.worstProducts.forEach(product => {
+        this.labelsWorst.push(product.name);
+        this.chartDataWorst[0].data.push(product.quantity)
+      })
+    });
+
+    this.categoriesSubscription = this.statsService.getProductsByCategories().subscribe(data => {
+      this.categories = data;
+      this.categories.forEach(category => {
+        this.labelsPie.push([category.name]);
+        this.chartDataPie.push(category.quantity)
+      })
+    });
+
+  }
+
+  ngOnDestroy(): void {
+    this.categoriesSubscription.unsubscribe();
+    this.bestSubscription.unsubscribe();
+    this.worstSubscription.unsubscribe();
   }
 
 }

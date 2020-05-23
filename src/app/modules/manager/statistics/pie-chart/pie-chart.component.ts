@@ -9,6 +9,7 @@ import { SingleDataSet, Label, monkeyPatchChartJsLegend, monkeyPatchChartJsToolt
 })
 export class PieChartComponent implements OnInit {
 
+  colors: any[] = [ { backgroundColor: ["#fbbf96", "#ed9191","#89a5d2","#ffe6b9", "#89a5d2","#265b7a"] } ]
   options: ChartOptions = { responsive: true };
   chartType: ChartType = 'pie';
   legend = true;
