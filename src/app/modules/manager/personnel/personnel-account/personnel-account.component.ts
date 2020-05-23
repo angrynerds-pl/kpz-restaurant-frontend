@@ -1,4 +1,4 @@
-import { Component, OnInit,Input } from '@angular/core';
+import { Component, OnInit,Input, Output, EventEmitter } from '@angular/core';
 import { User } from 'src/app/models/user';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
@@ -16,10 +16,13 @@ export class PersonnelAccountComponent implements OnInit {
 
   @Input() userToEdit:User;
 
+  @Output() submit: EventEmitter<any> = new EventEmitter<any>();
+
   userForm:FormGroup;
   acceptIcon = faCheck;
   cancelIcon = faTimes;
   editing:boolean;
+  passwordReset: boolean = false;
   user: User;
 
   constructor(private userService:UserService, private toastrService:ToastrService, 
@@ -84,8 +87,23 @@ export class PersonnelAccountComponent implements OnInit {
         }, err => {
           this.toastrService.error('Error!');
         })
+        this.submit.emit();
       }
     }
+  }
+
+  removeUser(){
+    this.userService.deleteUser(this.userToEdit).subscribe(data => {
+      this.toastrService.success('Employee has been deleted');
+    }, err => {
+      this.toastrService.error('Error');
+    });
+    this.submit.emit();
+  }
+
+  setPasswordReset(){
+    this.userForm.controls.password.setValue(null);
+    this.passwordReset = true;
   }
 
 }

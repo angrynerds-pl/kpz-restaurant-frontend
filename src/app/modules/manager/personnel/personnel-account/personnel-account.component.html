@@ -1,6 +1,5 @@
 <form (submit)="setAccount()" [formGroup]="userForm">
-    <h3>User data</h3>
-    
+   
     <div class="block d-flex justify-content-around flex-column">
       
       <div class="form-group">
@@ -70,7 +69,7 @@
       </div>
 
     </div>
-    <h3>Account details</h3>
+
     <div class="block d-flex justify-content-around flex-column">
      
       <div class="form-group">
@@ -98,47 +97,37 @@
           </ng-container>
         </div>
       </div>
-      <div class="form-group">
-        <label for="password">Password</label>
-        <input
-          type="password"
-          formControlName="password"
-          class="form-control globalShadow"
-          id="password"
-          placeholder=""
-        />
 
-        <div class="warning-box">
-          <ng-container
-            *ngIf="
-              userForm.get('password').touched &&
-              userForm.get('password').invalid
-            "
-          >
-            <span
-              class="warning"
-              *ngIf="userForm.get('password').errors.required"
-              >Password input can't be empty</span
-            >
-          </ng-container>
+      <ng-container *ngIf="!editing || passwordReset; else btnReset">
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input
+            type="password"
+            formControlName="password"
+            class="form-control globalShadow"
+            id="password"
+            placeholder=""
+          />
+          <div class="warning-box">
+            <ng-container *ngIf="userForm.get('password').touched && userForm.get('password').invalid">
+              <span class="warning" *ngIf="userForm.get('password').errors.required">Password input can't be empty</span>
+            </ng-container>
+          </div>
         </div>
-      </div>
+      </ng-container>
+      <ng-template #btnReset>
+        <button type="button" class="btn btn-info globalShadow" (click)="setPasswordReset()">Reset Password</button>
+      </ng-template>
     </div>
   
-    <div class="buttons-container d-flex justify-content-around">
-      <button
-        type="submit"
-        class="btn btn-success globalShadow"
-        [disabled]="!userForm.valid"
-      >
-        <!--fa-icon-- [icon]="acceptIcon"></!--fa-icon-->
+    <div class="buttons-container d-flex">
+      <button type="submit" class="btn btn-success globalShadow" [disabled]="!userForm.valid">
         <a *ngIf="!editing">Create</a>
         <a *ngIf="editing">Edit</a>
       </button>
 
-      <button type="button" *ngIf="!editing" class="btn btn-danger globalShadow" (click)="resetForm()">
-        <!--fa-icon-- [icon]="cancelIcon"></!--fa-icon-->
-        Cancel
-      </button>
+      <button type="button" *ngIf="!editing" class="btn btn-danger globalShadow" (click)="resetForm()">Cancel</button>
+      <button type="button" *ngIf="editing" class="btn btn-danger globalShadow" (click)="removeUser()">Delete</button>
+
     </div>
   </form>
