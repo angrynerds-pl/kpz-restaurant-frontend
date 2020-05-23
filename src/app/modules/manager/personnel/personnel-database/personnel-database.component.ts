@@ -1,9 +1,10 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { User } from 'src/app/models/user';
 import { UserService } from 'src/app/services/user.service';
-import {MatDialog,MatDialogConfig} from '@angular/material/dialog';
-import{ PersonnelDatabaseDialogComponent} from '../personnel-database-dialog/personnel-database-dialog.component';
+import { MatDialog,MatDialogConfig } from '@angular/material/dialog';
+import { PersonnelDatabaseDialogComponent } from '../personnel-database-dialog/personnel-database-dialog.component';
 import { Subscription } from 'rxjs';
+import { faUserEdit } from "@fortawesome/free-solid-svg-icons";
 
 @Component({
   selector: 'app-personnel-database',
@@ -15,6 +16,7 @@ export class PersonnelDatabaseComponent implements OnInit, OnDestroy {
 
   user:User;
   users:User[];
+  edit = faUserEdit;
 
   userSubscription: Subscription;
  
