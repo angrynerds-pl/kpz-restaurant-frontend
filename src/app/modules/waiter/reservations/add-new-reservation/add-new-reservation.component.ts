@@ -1,8 +1,6 @@
-import { Component, OnInit, Input, Inject } from "@angular/core";
+import { Component, OnInit, Inject } from "@angular/core";
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 import { faPlusCircle } from "@fortawesome/free-solid-svg-icons";
-import { TableService } from "src/app/services/table.service";
-import { Subscription } from "rxjs";
 import { Table } from "src/app/models/table";
 import { MatBottomSheetRef } from "@angular/material/bottom-sheet";
 import { ToastrService } from "ngx-toastr";
@@ -32,7 +30,6 @@ export class AddNewReservationComponent implements OnInit {
     private fb: FormBuilder,
     private toastrService: ToastrService,
     private bottomSheetRef: MatBottomSheetRef,
-    private tableService: TableService,
     private router:Router
   ) {}
 
@@ -100,8 +97,8 @@ export class AddNewReservationComponent implements OnInit {
       this.toastrService.error("Reservation data incorrect!");
     }
   }
+  
   closeBottomSheet() {
-    
     this.bottomSheetRef.dismiss();
   }
 }

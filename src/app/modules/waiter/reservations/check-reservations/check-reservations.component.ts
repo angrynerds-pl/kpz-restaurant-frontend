@@ -1,12 +1,9 @@
-import { Component, OnInit, OnDestroy, Input, Inject } from "@angular/core";
+import { Component, OnInit, OnDestroy, Inject } from "@angular/core";
 import { RoomService } from "src/app/services/room.service";
 import { TableService } from "src/app/services/table.service";
 import { Room } from "src/app/models/room";
 import { Table } from "src/app/models/table";
 import { Subscription } from "rxjs";
-import { faBars } from "@fortawesome/free-solid-svg-icons";
-import { LocalStorageService } from "src/app/services/local-storage.service";
-import { Router } from "@angular/router";
 import { Reservation } from "src/app/models/reservation";
 import { FormControl } from "@angular/forms";
 import { ReservationService } from "src/app/services/reservation.service";

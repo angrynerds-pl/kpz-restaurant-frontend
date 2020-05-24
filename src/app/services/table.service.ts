@@ -11,8 +11,6 @@ import { take } from 'rxjs/operators';
 })
 export class TableService {
 
-  tablesNumber:number[] =[1,2,3,4];
-
   host = environment.host;
 
   constructor(private http:HttpClient, private storageService:LocalStorageService) {}
@@ -66,11 +64,6 @@ export class TableService {
     });
   }
 
-  getTablesID(): Observable<Number[]>{
-    return of(this.tablesNumber);
-    
-  }
-
   changeStatusOfTable(tableID: number) {
     this.getTable(tableID).pipe(take(1)).subscribe(table => {
       if(table){
@@ -86,7 +79,6 @@ export class TableService {
             break;
         }
         this.updateTable(table).pipe(take(1)).subscribe(data => {
-          console.log(data);
         })
       }
     })

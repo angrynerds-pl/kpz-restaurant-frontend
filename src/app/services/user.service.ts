@@ -10,15 +10,8 @@ import { LocalStorageService } from './local-storage.service';
 export class UserService {
   
   host = environment.host;
-  
-  users: User[];
- 
-  constructor(private http:HttpClient, private storageService:LocalStorageService) {
-    this.users = [
-      {id:0,username: "adamn",password: "qwerty",firstName: "Adam",lastName: "Nowak",position: "Waiter", restaurantId:1, rights: 1},
-      {id:1,username: "kubag",password: "123", firstName:"Kuba",lastName: "Grabowski",position: "Cook", restaurantId:1, rights: 1}
-    ];
-  }
+
+  constructor(private http:HttpClient, private storageService:LocalStorageService) {}
 
   getUsers():Observable<Array<User>>{
     return this.http.get<Array<User>>(this.host + 'api/users', {
@@ -67,23 +60,4 @@ export class UserService {
       headers: new HttpHeaders().set('Authorization', 'Bearer ' + this.storageService.getToken()),
     });
   }
-
-  addUser(user){
-    this.users.push(user);
-  }
-
-  findUser(id){
-    console.log("index user",id )
-    let index = this.users.findIndex(user => user.id ===id);
-    return index;
-  }
-
-  getLastUserID(){
-    if(this.users.length!=0){
-      return this.users[this.users.length-1].id+1;
-    } else {
-      return 0;
-    }
-  }
-
 }

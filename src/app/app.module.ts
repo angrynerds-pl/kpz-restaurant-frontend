@@ -18,8 +18,6 @@ import { ToastrModule } from 'ngx-toastr';
 @NgModule({
   declarations: [
     AppComponent,
-
-    
   ],
   imports: [
     BrowserModule,
