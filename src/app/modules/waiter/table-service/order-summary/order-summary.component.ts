@@ -12,8 +12,8 @@ import { Subscription } from "rxjs";
 import { ProductsInOrder } from "src/app/models/products-in-order";
 import { Order } from "src/app/models/order";
 import { TableService } from "src/app/services/table.service";
-import { LocalStorageService } from 'src/app/services/local-storage.service';
-import { MenuProduct } from 'src/app/models/menu-product';
+import { LocalStorageService } from "src/app/services/local-storage.service";
+import { MenuProduct } from "src/app/models/menu-product";
 
 @Component({
   selector: "app-order-summary",
@@ -33,22 +33,22 @@ export class OrderSummaryComponent implements OnInit, OnDestroy {
   orderId: number;
   note: string = "";
   addedOrder: Order;
-  productToEdit:ProductsInOrder;
+  productToEdit: ProductsInOrder;
   productsToOrderSubscription: Subscription;
   orderSubscription: Subscription;
-  deletedProductsFromOrder:Array<MenuProduct> = new Array();
+  deletedProductsFromOrder: Array<MenuProduct> = new Array();
+
   constructor(
     private orderService: OrderService,
     private productsToOrderService: ProductsToOrderService,
     private tableService: TableService,
-    private localStorageService : LocalStorageService
+    private localStorageService: LocalStorageService
   ) {}
+
   ngOnDestroy(): void {
     if (this.orderEdit) {
       this.productsToOrderSubscription.unsubscribe();
-      
     }
-    
   }
 
   ngOnInit(): void {
@@ -61,24 +61,23 @@ export class OrderSummaryComponent implements OnInit, OnDestroy {
     }
   }
 
-  changeAmountOfProduct(amount, product:ProductToAdd) {
+  changeAmountOfProduct(amount, product: ProductToAdd) {
     product.amount += amount;
     if (product.amount == 0) {
       this.productsToOrderService.removeProduct(product.product);
     }
-    if(amount==-1){
-     if(product.amount==0)
-      this.deletedProductsFromOrder.push(product.product);
-  }
+    if (amount == -1) {
+      if (product.amount == 0)
+        this.deletedProductsFromOrder.push(product.product);
+    }
   }
 
   manageOrder() {
     //new order
     if (!this.orderEdit) {
-      
       let userId = this.localStorageService.getUserId();
       this.orderSubscription = this.orderService
-        .createOrder(this.tableId, userId, this.productsToAdd, this.note)
+        .createOrder(this.tableId, userId, this.note)
         .subscribe((newOrder) => {
           this.addedOrder = newOrder;
           this.orderService
@@ -87,20 +86,22 @@ export class OrderSummaryComponent implements OnInit, OnDestroy {
         });
 
       this.tableService.changeStatusOfTable(this.tableId);
-      
     }
     //editing order
     else {
       this.orderEdit.note = this.note;
-     
+
       this.orderSubscription = this.orderService
         .editOrder(this.orderEdit)
         .subscribe((editedOrder) => {
-         
-         this.orderService
-            .editOrderProducts(this.orderEdit, this.productsToAdd, this.deletedProductsFromOrder).subscribe(order=> console.log(order));
+          this.orderService
+            .editOrderProducts(
+              this.orderEdit,
+              this.productsToAdd,
+              this.deletedProductsFromOrder
+            )
+            .subscribe((order) => console.log(order));
         });
-      
     }
     this.close.emit();
   }

@@ -5,19 +5,17 @@ import { Observable, of } from 'rxjs';
 import { environment } from "src/environments/environment";
 import {  HttpHeaders } from "@angular/common/http";
 import { LocalStorageService } from "./local-storage.service";
+
 @Injectable({
   providedIn: 'root'
 })
+
 export class ReservationService {
 
-  
   host: string = environment.host;
   
-
   constructor(private http:HttpClient, private storageService:LocalStorageService) { }
 
-  // we will filter by date I guess
-  
   getReservations(): Observable<Array<Reservation>> {
     return this.http.get<Array<Reservation>>(this.host + "api/reservations", {
       headers: new HttpHeaders().set(
@@ -47,7 +45,6 @@ export class ReservationService {
   addReservation(
     reservation:Reservation
   ) {
-      
       reservation.startDate.setHours(reservation.startDate.getHours() + 2);
       reservation.endDate.setHours(reservation.startDate.getHours() + 2);
         return this.http.post<Reservation>(
@@ -80,6 +77,7 @@ export class ReservationService {
       }
     );
   }
+  
   updateReservation(reservation:Reservation){
     return this.http.put<Reservation>(
       this.host + "api/reservations",reservation,

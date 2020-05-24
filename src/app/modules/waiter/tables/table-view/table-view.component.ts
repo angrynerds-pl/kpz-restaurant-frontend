@@ -63,15 +63,5 @@ export class TableViewComponent implements OnInit {
         disableClose: false,
       });
     }
-     /* this._bottomSheet._openedBottomSheetRef
-      .afterDismissed()
-      .subscribe((data) => {
-        console.log("this.reservations 1",this.reservations);
-        this.reservationService.getReservations().subscribe((reservations)=>{
-          this.reservations = reservations;
-          console.log("this.reservations 2",this.reservations);
-        });
-        
-      });*/
   }
 }

@@ -4,7 +4,7 @@ import {
   OnDestroy,
   EventEmitter,
   Output,
-  Inject
+  Inject,
 } from "@angular/core";
 import { CategoryService } from "src/app/services/category.service";
 import { MenuCategory } from "src/app/models/menu-category";
@@ -15,21 +15,20 @@ import { ProductsToOrderService } from "src/app/services/products-to-order.servi
 import { ProductToAdd } from "src/app/models/product-to-add";
 import { Subscription } from "rxjs";
 import { MatBottomSheetRef } from "@angular/material/bottom-sheet";
-import {MAT_BOTTOM_SHEET_DATA} from '@angular/material/bottom-sheet';
-import { ProductsInOrder } from 'src/app/models/products-in-order';
-import {MatSelect} from "@angular/material/select";
-import { Order } from 'src/app/models/order';
+import { MAT_BOTTOM_SHEET_DATA } from "@angular/material/bottom-sheet";
+import { MatSelect } from "@angular/material/select";
+import { Order } from "src/app/models/order";
 @Component({
   selector: "app-table-add-order",
   templateUrl: "./table-add-order.component.html",
   styleUrls: ["./table-add-order.component.scss"],
 })
 export class TableAddOrderComponent implements OnInit, OnDestroy {
-  categories: Array<MenuCategory>  = [];
+  categories: Array<MenuCategory> = [];
   products: MenuProduct[];
   productsToAdd: ProductToAdd[];
   choosenCategoryId: number;
-  currentCategory:MenuCategory;
+  currentCategory: MenuCategory;
   counterBadge: number = 0;
   iconPlusCircle = faPlus;
 
@@ -37,15 +36,12 @@ export class TableAddOrderComponent implements OnInit, OnDestroy {
   categoriesSubscription: Subscription;
   productsToAddSubscription: Subscription;
 
-  tableId:number;
+  tableId: number;
 
-  pageNumber:number = 1;
+  pageNumber: number = 1;
 
-  
-
-  orderEdit:Order;
+  orderEdit: Order;
   @Output() pageChange: EventEmitter<number>;
-
   @Output() closeBootomSheet: EventEmitter<any> = new EventEmitter();
 
   constructor(
@@ -58,29 +54,28 @@ export class TableAddOrderComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     //this.productsToAdd = [];
-    
+
     this.loadCategories();
     this.loadProducts();
 
     this.tableId = this.data.id;
-    if(this.data.orderEdit){
-        this.orderEdit = this.data.orderEdit;
-        this.productsToOrderService.editProductsFromOrder(this.orderEdit.orderedProducts)
-
-      }else{
-
-      
+    if (this.data.orderEdit) {
+      this.orderEdit = this.data.orderEdit;
+      this.productsToOrderService.editProductsFromOrder(
+        this.orderEdit.orderedProducts
+      );
+    } else {
       this.productsToAddSubscription = this.productsToOrderService
-      .getProducts()
-     .subscribe((products) => (this.productsToAdd = products));
+        .getProducts()
+        .subscribe((products) => (this.productsToAdd = products));
     }
-   }
+  }
   ngOnDestroy(): void {
     this.productsToOrderService.resetProducts();
     this.categoriesSubscription.unsubscribe();
     this.productsSubscription.unsubscribe();
-    if(!this.data.orderEdit){
-    this.productsToAddSubscription.unsubscribe();
+    if (!this.data.orderEdit) {
+      this.productsToAddSubscription.unsubscribe();
     }
   }
 
@@ -91,8 +86,6 @@ export class TableAddOrderComponent implements OnInit, OnDestroy {
         this.categories = categories;
         this.currentCategory = this.categories[0];
       });
-     
-     
   }
 
   loadProducts() {
@@ -103,18 +96,17 @@ export class TableAddOrderComponent implements OnInit, OnDestroy {
       });
   }
 
-  setCategory(category){
+  setCategory(category) {
     this.currentCategory = category;
   }
-  
+
   addToSummaryProducts(product, amount) {
     this.productsToOrderService.addProduct(product, amount);
-    
+
     this.counterBadge++;
   }
 
   closeBottomSheet(event) {
-    
     this.bottomSheetRef.dismiss();
   }
 }

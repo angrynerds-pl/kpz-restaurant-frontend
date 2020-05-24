@@ -48,14 +48,12 @@ export class OrderService {
   createOrder(
     tableId: number,
     waiterId: number,
-    orderedProducts,
     note: string
   ) {
     //new Date + two hours
     var dt = new Date();
     dt.setHours(dt.getHours() + 2);
     
-    //waiterId = this.storageService.getRole();
     return this.http.post<Order>(
       this.host + "api/orders",
       {
@@ -93,22 +91,12 @@ export class OrderService {
     });
   }
 
-  //GET order by orderId
-  getOrderById(orderId: number) {
-    return this.http.get<Order>(this.host + "api/orders/" + orderId, {
-      headers: new HttpHeaders().set(
-        "Authorization",
-        "Bearer " + this.storageService.getToken()
-      ),
-    });
-  }
-
   editOrderProducts(
     order: Order,
     productsToAddInOrder: Array<ProductToAdd>,
     productsToDeleteInOrder:Array<MenuProduct>
   ) {
-    ////let currentId = order.orderedProducts.length +1;
+    
     this.productsToAdd = order.orderedProducts;
 
     let productsToAdd = new Array();
@@ -167,7 +155,7 @@ export class OrderService {
     });
   }
 
-  //PUT produkty do zamówienia
+  //PUT
   addProductsToOrder(orderId: number, productsToOrder: Array<ProductToAdd>) {
     let productsToAdd = new Array();
     let productToAdd;
