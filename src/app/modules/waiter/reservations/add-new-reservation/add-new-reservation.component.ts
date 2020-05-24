@@ -39,7 +39,6 @@ export class AddNewReservationComponent implements OnInit {
   ngOnInit(): void {
     this.reservation = this.data.reservationDetails;
     this.table = this.data.table;
-    console.log("table", this.table);
     if (this.table == null) {
       this.newReservationForm = this.fb.group({
         tableId: [this.reservation.tableId, Validators.required],
@@ -53,7 +52,7 @@ export class AddNewReservationComponent implements OnInit {
         ],
         customerName: [this.reservation.customerName, Validators.required],
         startDate: [this.reservation.startDate, Validators.required],
-        endDate: [this.reservation.startDate, Validators.required],
+        endDate: [this.reservation.endDate, Validators.required],
       });
     } else {
       this.newReservationForm = this.fb.group({

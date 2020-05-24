@@ -35,11 +35,7 @@ export class ReservationService {
     let hours = datetime.getHours();
     let minutes = datetime.getMinutes();
     
-    console.log(years);
-    console.log(months);
-    console.log(days);
-    console.log(hours);
-    console.log(minutes);
+    
   return this.http.get<Array<Reservation>>(this.host + "api/reservations/"+years+"/"+months+"/"+days+"/"+hours+"/"+minutes, {
       headers: new HttpHeaders().set(
         "Authorization",
@@ -51,7 +47,9 @@ export class ReservationService {
   addReservation(
     reservation:Reservation
   ) {
-      console.log(reservation.startDate);
+      
+      reservation.startDate.setHours(reservation.startDate.getHours() + 2);
+      reservation.endDate.setHours(reservation.startDate.getHours() + 2);
         return this.http.post<Reservation>(
       this.host + "api/reservations",{
       numberOfSeats:reservation.numberOfSeats,

@@ -5,6 +5,7 @@ import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { AddNewReservationComponent } from '../add-new-reservation/add-new-reservation.component';
 import { LocalStorageService } from 'src/app/services/local-storage.service';
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-reservation-view',
@@ -21,7 +22,7 @@ export class ReservationViewComponent implements OnInit {
   reservationDate :Date;
   role:string;
   deletingReservation:boolean=false;
-  constructor(private _bottomSheet:MatBottomSheet, private storageService:LocalStorageService, private reservationsService:ReservationService) { }
+  constructor(private _bottomSheet:MatBottomSheet, private storageService:LocalStorageService, private reservationsService:ReservationService, private toastrService: ToastrService) { }
 
   ngOnInit(): void {
     this.reservationDate = new Date(this.reservationDetails.startDate);
@@ -30,17 +31,23 @@ export class ReservationViewComponent implements OnInit {
     this.role = this.storageService.getRole();
   }
 
-  deleteReservation(reservationDetails){
+  deleteReservation(reservationDetails, ){
     this.deletingReservation = true;
-    
+    if(this.role=="HEAD_WAITER"){
     this.reservationsService.deleteReservation(reservationDetails.id).subscribe(r=>{
+      this.toastrService.success("Reservation deleted");
       this.updateEmitter.emit();
+
     });
+  }else{
+    this.toastrService.warning("You don't have permission");
+  }
+
     
   }
   updateReservation(reservationDetails){
     if(!this.deletingReservation){
-    //if(this.role=="HEAD_WAITER"){
+    if(this.role=="HEAD_WAITER"){
 
     this._bottomSheet._openedBottomSheetRef = this._bottomSheet.open(
       AddNewReservationComponent,
@@ -52,7 +59,9 @@ export class ReservationViewComponent implements OnInit {
       }
     );
     
-  //}
+  }else{
+    this.toastrService.warning("You don't have permission");
+  }
     }
     this.deletingReservation = false;
   }

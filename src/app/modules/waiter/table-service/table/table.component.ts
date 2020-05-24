@@ -149,7 +149,7 @@ export class TableComponent implements OnInit, OnDestroy {
     this._bottomSheet._openedBottomSheetRef
       .afterDismissed()
       .subscribe((data) => {
-        if (this.productsInOrder.every((product) => product.status == "PAID")) {
+        /*if (this.productsInOrder.every((product) => product.status == "PAID")) {
           this.tableService.changeStatusOfTable(this.id);
           this.orderDetails.status = "PAID";
           this.productsInOrder = null;
@@ -164,10 +164,30 @@ export class TableComponent implements OnInit, OnDestroy {
           });
           
           this.orderDetails = null;
-        }
-      });
+        }*/
+        
+          if (this.productsInOrder.every((product) => product.status == "PAID")) {
+            this.tableService.changeStatusOfTable(this.id);
+            this.orderDetails.status = "PAID";
+            this.productsInOrder = null;
+            //this.orderDetails  =null;
+            this.orderService.editOrder(this.orderDetails).subscribe(editedOrder =>{
+              this.tableSubscription = this.tableService
+              .getTable(this.id)
+              .subscribe((data) => {
+                console.log(this.table.status)
+                this.table = data;
+                console.log(this.table.status)
+              });
+            });
+            this.orderDetails  =null;
+          }
+        
+        });
     }
-  }
+     // });
+    }
+  
 
   changeOfProductStatus(product: ProductsInOrder) {
     if (product.status == "READY") {

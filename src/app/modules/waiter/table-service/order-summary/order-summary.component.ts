@@ -92,7 +92,7 @@ export class OrderSummaryComponent implements OnInit, OnDestroy {
     //editing order
     else {
       this.orderEdit.note = this.note;
-      console.log('this.deletedProductsFromOrder',this.deletedProductsFromOrder);
+     
       this.orderSubscription = this.orderService
         .editOrder(this.orderEdit)
         .subscribe((editedOrder) => {

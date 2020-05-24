@@ -9,6 +9,7 @@ import { Subscription, Observable } from 'rxjs';
 import { ReservationService } from 'src/app/services/reservation.service';
 import { LocalStorageService } from 'src/app/services/local-storage.service';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-reservations',
   templateUrl: './reservations-main.component.html',
@@ -21,8 +22,9 @@ export class ReservationsMainComponent implements OnInit, OnDestroy {
   reservations:Observable<Array<Reservation>>;
 
   reservationsSubscription:Subscription;
+  
 
-  constructor(private localStorageService:LocalStorageService, private router:Router,private _bottomSheet:MatBottomSheet, private reservationService:ReservationService) { 
+  constructor(private toastrService:ToastrService, private localStorageService:LocalStorageService, private router:Router,private _bottomSheet:MatBottomSheet, private reservationService:ReservationService) { 
     this.router.routeReuseStrategy.shouldReuseRoute = function() {
       return false;
   };
@@ -46,7 +48,7 @@ export class ReservationsMainComponent implements OnInit, OnDestroy {
   checkReservations(){
     
     let role = this.localStorageService.getRole();
-    //if(role=="HEAD_WAITER"){
+    if(role=="HEAD_WAITER"){
 
     
     this._bottomSheet._openedBottomSheetRef = this._bottomSheet.open(
@@ -58,8 +60,10 @@ export class ReservationsMainComponent implements OnInit, OnDestroy {
     );
     
   
+  }else{
+    this.toastrService.warning("You don't have permission");
   }
-  //}
+  }
   updateReservations(){
     this.reservations = this.reservationService.getReservations();
   }
