@@ -36,7 +36,7 @@ header {
 .tableOrders{
     
     min-height:calc(100vh - 65px); // 100 vh - header height
-    background-color:white;
+    background-color:$textLight;
     padding:10px;
 }
 .title-orders{
@@ -47,7 +47,7 @@ header {
     width:60px;
     height:25px;
     font-size:15px;
-    padding:5px;
+    padding:10px;
 }
 .btn:focus,.btn:active {
     outline: none ;
@@ -88,4 +88,7 @@ header {
 }
 .orderProducts{
     margin-bottom:60px;
+}
+li{
+    list-style-type:none;
 }

@@ -12,7 +12,7 @@ $green: #98D8B1;
 $yellow: #CFD082;
 $gray: #7f8fa6b7;
 $darkGray: rgb(139, 136, 136);
-$blue: #88ACE2;
+$blue: #0097e6;
 $lightBlue: #BED1EE;
 $darkBlue: #23569C;
 $textLight: #eee;
@@ -57,7 +57,7 @@ html, body {
 .mat-bottom-sheet-container{ 
     min-height: calc(100vh - 65px); 
     padding: 0px !important;
-    
+    background-color: $background; 
 }
 
 .mat-dialog-container{ 
