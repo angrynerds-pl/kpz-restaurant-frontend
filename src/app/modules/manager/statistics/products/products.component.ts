@@ -1,15 +1,30 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ChartOptions, ChartType, ChartDataSets } from 'chart.js';
 import { Label, SingleDataSet } from 'ng2-charts';
+import { StatsService } from 'src/app/services/stats.service';
+import { StatsProduct } from 'src/app/models/stats-product';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-products',
   templateUrl: './products.component.html',
   styleUrls: ['./products.component.scss']
 })
-export class ProductsComponent implements OnInit {
+export class ProductsComponent implements OnInit, OnDestroy {
 
-  options: ChartOptions = { responsive: true };
+  options: ChartOptions = { 
+    responsive: true,
+    scales : {
+      yAxes: [{
+          ticks: {
+            beginAtZero: true,
+            stepSize: 1,
+            maxTicksLimit: 10
+          }
+      }]
+    }
+  };
+
   colorsBest: any[] = [ { backgroundColor: "#98D8B1" } ]
   chartType: ChartType = 'bar';
   legend = true;
@@ -18,22 +33,79 @@ export class ProductsComponent implements OnInit {
   labelsWorst: Label[] = [];
   labelsPie: Label[] = [];
 
-  chartDataBest: ChartDataSets[] = [];
-  chartDataWorst: ChartDataSets[] = [];
+  chartDataBest: ChartDataSets[] = [ { data: [], label: 'Bestseller' } ];
+  chartDataWorst: ChartDataSets[] = [ { data: [], label: 'Worst selling' } ];
   chartDataPie: SingleDataSet = [];
 
-  constructor() { }
+  bestProducts: Array<StatsProduct>;
+  worstProducts: Array<StatsProduct>;
+  categories: Array<StatsProduct>;
+
+  bestSubscription: Subscription;
+  worstSubscription: Subscription;
+  categoriesSubscription: Subscription;
+
+  dateFrom: Date;
+  dateTo: Date;
+
+  picked: boolean = false;
+
+  constructor(private statsService:StatsService) { }
 
   ngOnInit(): void {
-    // Bestsellers
-    this.chartDataBest = [ { data: [75, 70, 56, 54, 53], label: 'Bestseller' } ];
-    this.labelsBest = ['Classic', 'Margharita', 'Capriciosa', 'Spaghetti', 'Lasagne'];
-    // Worst selling
-    this.chartDataWorst = [ { data: [1, 3, 4, 6, 9] , label: 'Worst selling' } ];
-    this.labelsWorst = ['Hawaii', 'Vege', 'Carbonara', 'Mexicana', 'Peperoni'];
-    // Pie chart
-    this.labelsPie = [['Pizzas'], ['Drinks'], ['Fish'], ['Salads'], ['Burgers']];
-    this.chartDataPie = [873, 345, 65, 235, 543];
+
+  }
+
+  load(){
+    if(this.dateFrom && this.dateTo){
+
+      const startDate = this.dateFrom.toLocaleDateString().replace(/\./g,"-");
+      const endDate = this.dateTo.toLocaleDateString().replace(/\./g,"-");
+
+      this.clear();
+
+      this.bestSubscription = this.statsService.getBestProducts(startDate, endDate).subscribe(data => {
+        this.bestProducts = data;
+        this.bestProducts.forEach(product => {
+          this.labelsBest.push(product.name);
+          this.chartDataBest[0].data.push(product.quantity)
+        })
+      });
+  
+      this.worstSubscription = this.statsService.getWorstProducts(startDate, endDate).subscribe(data => {
+        this.worstProducts = data;
+        this.worstProducts.forEach(product => {
+          this.labelsWorst.push(product.name);
+          this.chartDataWorst[0].data.push(product.quantity)
+        })
+      });
+  
+      this.categoriesSubscription = this.statsService.getProductsByCategories(startDate, endDate).subscribe(data => {
+        this.categories = data;
+        this.categories.forEach(category => {
+          this.labelsPie.push([category.name]);
+          this.chartDataPie.push(category.quantity)
+        })
+      });
+
+      this.picked = true;
+
+    }
+  }
+
+  clear(){
+    this.labelsBest = [];
+    this.labelsWorst = [];
+    this.labelsPie = [];
+    this.chartDataBest[0].data = [];
+    this.chartDataWorst[0].data = [];
+    this.chartDataPie = [];
+  }
+
+  ngOnDestroy(): void {
+    if(this.categoriesSubscription) this.categoriesSubscription.unsubscribe();
+    if(this.bestSubscription) this.bestSubscription.unsubscribe();
+    if(this.worstSubscription) this.worstSubscription.unsubscribe();
   }
 
 }

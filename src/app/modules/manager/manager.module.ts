@@ -4,6 +4,8 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
 import { MatDialogModule } from "@angular/material/dialog";
 import { MatButtonModule } from "@angular/material/button";
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatInputModule } from '@angular/material/input';
 import { ToastrModule } from "ngx-toastr";
 import { ManagerRoutingModule } from "./manager-routing.module";
 
@@ -29,6 +31,9 @@ import { ProductsComponent } from './statistics/products/products.component';
 import { CustomersComponent } from './statistics/customers/customers.component';
 import { ChartsModule } from 'ng2-charts';
 import { PieChartComponent } from './statistics/pie-chart/pie-chart.component';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatSelectModule } from '@angular/material/select';
 @NgModule({
   declarations: [
     ManagerMainComponent,
@@ -63,6 +68,11 @@ import { PieChartComponent } from './statistics/pie-chart/pie-chart.component';
     ToastrModule.forRoot(),
     MatDialogModule,
     MatButtonModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatSelectModule,
     ChartsModule
   ]
 })

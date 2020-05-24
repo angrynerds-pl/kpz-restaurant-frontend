@@ -16,22 +16,23 @@
         <span class="warning" *ngIf="categoryForm.get('name').errors.required">Category's name can't be empty</span>
       </ng-container>
     </div>
-    <!--div class="form-group">
-      <label for="iconOfCategory">Icon</label>
-      <input
-        type="file"
-        formControlName="icon"
-        (change)="handleUpload($event)"
-        class="form-control-file form-control globalShadow"
-        id="iconOfCategory"
-      />
-      <input type="text" formControlName="icon" (change)="handleUpload($event)" class=" form-control" id="iconOfCategory" placeholder="URL link">
-    </div>
-    <div class="warning-box">
-      <ng-container *ngIf="categoryForm.get('icon').touched && categoryForm.get('icon').invalid">
-        <span class="warning" *ngIf="categoryForm.get('icon').errors.required">URL link can't be empty</span>
-      </ng-container>
-    </div-->
+
+    <!--label>Icon</label>
+    <mat-form-field>
+      <mat-select formControlName="icon" >
+        <mat-option [value]="'pizza.png'"><img src="../../../../../assets/images/pizza.png"alt="p"><span>Pizza</span></mat-option>
+        <mat-option [value]="'burger.png'"><img src="../../../../../assets/images/pizza.png"alt="p"><span>Burger</span></mat-option>
+        <mat-option [value]="'fries.png'"><img src="../../../../../assets/images/pizza.png"alt="p"><span>Fries</span></mat-option>
+        <mat-option [value]="'main.png'"><img src="../../../../../assets/images/pizza.png"alt="p"><span>Main</span></mat-option>
+        <mat-option [value]="'soup.png'"><img src="../../../../../assets/images/pizza.png"alt="p"><span>Soup</span></mat-option>
+        <mat-option [value]="'salad.png'"><img src="../../../../../assets/images/pizza.png"alt="p"><span>Salad</span></mat-option>
+        <mat-option [value]="'fish.png'"><img src="../../../../../assets/images/pizza.png"alt="p"><span>Fish</span></mat-option>
+        <mat-option [value]="'dessert.png'"><img src="../../../../../assets/images/pizza.png"alt="p"><span>Dessert</span></mat-option>
+        <mat-option [value]="'drink.png'"><img src="../../../../../assets/images/pizza.png"alt="p"><span>Drink</span></mat-option>
+        <mat-option [value]="'wrap.png'"><img src="../../../../../assets/images/pizza.png"alt="p"><span>Wrap</span></mat-option>
+      </mat-select>
+    </mat-form-field-->
+
     <div class="buttons-container d-flex justify-content-around">
       <button type="submit" class="btn-sm btn-success globalShadow" [disabled]="!categoryForm.valid">
         <fa-icon [icon]="acceptIcon"></fa-icon>
