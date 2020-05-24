@@ -22,6 +22,11 @@ export class IncomeComponent implements OnInit, OnDestroy {
   incomeArray: Array<StatsIncome>;
 
   incomeSubscription: Subscription;
+  
+  dateFromFirst: Date;
+  dateFromSecond: Date;
+  dateToFirst: Date;
+  dateToSecond: Date;
 
   constructor(private statsService:StatsService) { }
 
@@ -42,6 +47,10 @@ export class IncomeComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(){
     this.incomeSubscription.unsubscribe();
+  }
+
+  compare(){
+    
   }
 
 }

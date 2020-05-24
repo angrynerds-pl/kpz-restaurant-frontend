@@ -2,6 +2,8 @@
 
 section {
     margin: 1em 0em;
+    display: flex;
+    flex-wrap: wrap;
 }
 
 .chart {
@@ -9,4 +11,51 @@ section {
     background-color: $gray;
     border-radius: 8px;
     padding: 0.5em;
+    flex: 4;
+    margin-right: 0.25em;
+}
+
+.comparision {
+    flex: 1;
+    background-color: $gray;
+    display: flex;
+    flex-direction: column;
+    margin-left: 0.25em;
+    border-radius: 8px;
+    padding: 0.75em 0em 0.5em 0em;
+}
+
+mat-form-field {
+    width: 150px;
+    margin: 0em auto;
+}
+
+p {
+    text-align: center;
+    margin: 0;
+    padding: 1em !important;
+}
+
+.button-box{
+    text-align: center;
+}
+
+.btnCompare {
+    border-radius: 8px;
+    border: 0;
+    margin: 0.25em auto 0.75em auto;
+    height: 36px;
+    padding: 4px 8px;
+    background-color: $darkBlue;
+    color: $textLight;
+}
+
+@media (max-width: 1000px){
+    .chart {
+        margin: 0.5em;
+    }
+    
+    .comparision {
+        margin: 0.5em;
+    }
 }

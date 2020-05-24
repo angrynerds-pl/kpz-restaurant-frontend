@@ -13,8 +13,11 @@ section {
 
 .btn-grid {
     display: flex;
-    padding: 1em 0em;
+    padding: 1em 0em 0.5em 0em;
     flex-wrap: wrap;
+    background-color: $gray;
+    border-radius: 8px;
+    margin-bottom: 1em;
 }
 
 .switch-box {
@@ -31,7 +34,7 @@ p {
     position: relative;
     width: 60px;
     height: 30px;
-    background-color: $gray;
+    background-color: $darkGray;
     border-radius: 8px;
     overflow: hidden;
 }
@@ -50,7 +53,7 @@ input {
     padding: 4px 8px;
     border-radius: 8px;
     border: 0;
-    background-color: $gray;
+    background-color: $textLight;
 }
 
 .input-box{
@@ -63,9 +66,15 @@ input {
     border-radius: 8px;
     border: 0;
     margin: 0 1em;
-    background-color: $yellow;
+    background-color: $darkBlue;
+    color: $textLight;
     width: 60px;
     height: 30px;
+    transition: 0.5s ease-in-out;
+}
+
+.btnSet:hover {
+    transform: scale(1.05);
 }
 
 .slider {
