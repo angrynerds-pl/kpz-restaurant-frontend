@@ -35,7 +35,7 @@ export class OrderItemProductComponent implements OnInit {
   }
 
   getClass(){
-    if (this.orderedProduct.status=="IN_PROGRESS")
+    if (this.orderedProduct.status=="IN_PROGRESS" || this.orderedProduct.status=="PAID")
     {
       return 'componentDiv';
     }
@@ -55,7 +55,7 @@ export class OrderItemProductComponent implements OnInit {
     this.cancel = false;
   }
   changeStatus(){  
-    if (this.orderedProduct.status=="IN_PROGRESS") 
+    if (this.orderedProduct.status=="IN_PROGRESS" || this.orderedProduct.status=="PAID") 
     {
       console.log(this.id);
       this.orderedProduct.status="READY" 

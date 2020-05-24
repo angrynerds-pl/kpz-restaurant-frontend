@@ -1,11 +1,12 @@
+@import "../../../../styles.scss";
 .componentDiv {
-    background-color: rgb(240, 240, 240);
+    background-color: #dcdde1;
     margin-bottom: 2px;
     border-radius: 5px;
     display: flex;   
 }
 .componentReady {
-    background-color:#6DE01D;
+    background-color:#45bd32e3;
     border-radius: 5px;
     margin-bottom: 2px;
     display: flex;
@@ -21,6 +22,6 @@
     text-align: center;
     vertical-align: auto;
     width: 20%;
-    background-color: #E0162A;
+    background-color: $invalid;
     
 }

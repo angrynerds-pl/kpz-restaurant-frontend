@@ -1,16 +1,16 @@
 @import url('https://fonts.googleapis.com/css?family=Montserrat:500&display=swap');
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
 @import "~ng-pick-datetime/assets/style/picker.min.css";
-$backgroundColor: rgba(146, 246, 253, 0.40);
+$backgroundColor: rgba(255, 255, 255, 0.4);
 //$backgroundGradient: linear-gradient(rgb(67, 149, 155), #B1C6C8);
-$lightBrown:#6D5E56;
-$activeBrown: #824C45;
-$navbarBackground:#5C4D45;
+$lightBrown:#40739e;
+$activeBrown:#273c75;
+$navbarBackground:#192a56;
 $invalid: #d34545;
 $red: #DD6C6C;
 $green: #98D8B1;
 $yellow: #CFD082;
-$gray: #C4C4C4;
+$gray: #7f8fa6b7;
 $darkGray: rgb(139, 136, 136);
 $blue: #88ACE2;
 $lightBlue: #BED1EE;
@@ -19,7 +19,7 @@ $textLight: #eee;
 $textDark: #222;
 //$snowWhite: #edede3;
 $backroundManager:rgba(255, 255, 255, 0.5);
-$background: #A8A79D;
+$background: #dcdde1;
 
 html, body {
     font-family: 'Montserrat', sans-serif;  

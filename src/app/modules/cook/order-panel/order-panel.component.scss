@@ -1,6 +1,7 @@
+@import "../../../../styles.scss";
 
 .orderBackground {
-    background-color: gray;
+    background-color: $gray;
     margin: 10px;
     border-radius: 10px;
     overflow: hidden;  
@@ -8,7 +9,7 @@
     
 }
 .orderTitle {
-    background-color: #6963AC;
+    background-color: #192a56;
     height: 30px;
     color: white;
     text-align: center;
@@ -18,7 +19,7 @@
 .timer {
     color: white;
     text-align: center;
-    background-color: #87A5D2;
+    background-color: #40739e;
     
 }
 .grid {
