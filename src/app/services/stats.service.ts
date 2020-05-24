@@ -16,8 +16,14 @@ export class StatsService {
 
   constructor(private http:HttpClient, private storageService:LocalStorageService) { }
 
-  getIncome(): Observable<Array<StatsIncome>>{
+  getIncomeMonths(): Observable<Array<StatsIncome>>{
     return this.http.get<Array<StatsIncome>>(this.host + 'api/stats/income', {
+      headers: new HttpHeaders().set('Authorization', 'Bearer ' + this.storageService.getToken()),
+    });
+  }
+
+  getIncomeRange(startDate: string, endDate: string): Observable<StatsIncome>{
+    return this.http.get<StatsIncome>(this.host + `api/stats/income/range?startDate=${startDate}&endDate=${endDate}`, {
       headers: new HttpHeaders().set('Authorization', 'Bearer ' + this.storageService.getToken()),
     });
   }

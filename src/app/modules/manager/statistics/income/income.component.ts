@@ -19,9 +19,11 @@ export class IncomeComponent implements OnInit, OnDestroy {
   legend = false;
   chartData: ChartDataSets[] = [{ data: [] }];
 
-  incomeArray: Array<StatsIncome>;
+  incomeMonth: Array<StatsIncome>;
 
-  incomeSubscription: Subscription;
+  incomeMonthSubscription: Subscription;
+  incomeFirstSubscription: Subscription;
+  incomeSecondSubscription: Subscription;
   
   dateFromFirst: Date;
   dateFromSecond: Date;
@@ -31,26 +33,66 @@ export class IncomeComponent implements OnInit, OnDestroy {
   constructor(private statsService:StatsService) { }
 
   ngOnInit(): void {
-    this.incomeSubscription = this.statsService.getIncome().subscribe(data => {
-      this.incomeArray = data;
-      this.setChart();
+    this.setChartMonth();
+  }
+
+  setChartMonth(){
+    this.clear();
+    this.incomeMonthSubscription = this.statsService.getIncomeMonths().subscribe(data => {
+      this.incomeMonth = data;
+      this.incomeMonth.reverse();
+      this.incomeMonth.forEach(inc => {
+        this.labels.push(inc.month);
+        this.chartData[0].data.push(inc.income)
+      })
     })
   }
 
-  setChart(){
-    this.incomeArray.reverse();
-    this.incomeArray.forEach(inc => {
-      this.labels.push(inc.month);
-      this.chartData[0].data.push(inc.income)
-    })
+  setChartComparision(){
+
+    if(this.dateFromFirst && this.dateToFirst && this.dateToSecond && this.dateFromSecond){
+      
+      this.clear();
+
+      const startDateFirst = this.dateFromFirst.toLocaleDateString().replace(/\./g,"-");
+      const startDateSecond = this.dateFromSecond.toLocaleDateString().replace(/\./g,"-");
+      const endDateFirst = this.dateToFirst.toLocaleDateString().replace(/\./g,"-");
+      const endDateSecond = this.dateToSecond.toLocaleDateString().replace(/\./g,"-");
+
+      this.incomeSecondSubscription = this.statsService.getIncomeRange(startDateSecond, endDateSecond).subscribe(data => {
+        this.labels.push(startDateSecond + " - " + endDateSecond);
+        this.chartData[0].data.push(data.income)
+      })
+
+      this.incomeFirstSubscription = this.statsService.getIncomeRange(startDateFirst, endDateFirst).subscribe(data => {
+        this.labels.push(startDateFirst + " - " + endDateFirst);
+        this.chartData[0].data.push(data.income)
+      })
+
+    }
   }
 
-  ngOnDestroy(){
-    this.incomeSubscription.unsubscribe();
+  clear(){
+    this.labels = [];
+    this.chartData[0].data = [];
   }
 
   compare(){
-    
+    this.setChartComparision();
+  }
+
+  reset(){
+    this.setChartMonth();
+    this.dateFromFirst = null;
+    this.dateFromSecond = null;
+    this.dateToFirst = null;
+    this.dateToSecond= null;
+  }
+
+  ngOnDestroy(){
+    this.incomeMonthSubscription.unsubscribe();
+    if(this.incomeFirstSubscription) this.incomeFirstSubscription.unsubscribe();
+    if(this.incomeSecondSubscription) this.incomeSecondSubscription.unsubscribe();
   }
 
 }

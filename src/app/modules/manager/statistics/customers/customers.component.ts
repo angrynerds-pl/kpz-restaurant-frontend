@@ -77,7 +77,7 @@ export class CustomersComponent implements OnInit {
     this.statsService.getCustomersTraffic('week',this.startTime,this.endTime).subscribe(data => {
       this.weekTraffic = data;
       this.weekTraffic.forEach(traffic => {
-        this.weekData.data.push(traffic.quantity);
+        this.weekData.data.push(Math.ceil(traffic.quantity/7));
       })
     })
   }
@@ -86,7 +86,7 @@ export class CustomersComponent implements OnInit {
     this.statsService.getCustomersTraffic('month',this.startTime,this.endTime).subscribe(data => {
       this.monthTraffic = data;
       this.monthTraffic.forEach(traffic => {
-        this.monthData.data.push(traffic.quantity);
+        this.monthData.data.push(Math.ceil(traffic.quantity/30));
       })
     })
   }

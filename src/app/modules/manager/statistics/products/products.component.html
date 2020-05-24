@@ -1,12 +1,12 @@
 <div class="form-box">
-  <mat-form-field color="accent">
+  <mat-form-field color="primary">
     <mat-label>From</mat-label>
     <input [(ngModel)]="dateFrom" matInput [matDatepicker]="picker1">
     <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
     <mat-datepicker #picker1 color="primary" ></mat-datepicker>
   </mat-form-field>
   
-  <mat-form-field color="accent">
+  <mat-form-field color="primary">
     <mat-label>To</mat-label>
     <input [(ngModel)]="dateTo" matInput [matDatepicker]="picker2">
     <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>

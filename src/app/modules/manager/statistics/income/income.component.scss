@@ -33,21 +33,30 @@ mat-form-field {
 p {
     text-align: center;
     margin: 0;
-    padding: 1em !important;
+    padding-top: 0.75em !important;
+    padding-bottom: 0.25em !important;
 }
 
 .button-box{
     text-align: center;
 }
 
-.btnCompare {
+.btn {
     border-radius: 8px;
     border: 0;
     margin: 0.25em auto 0.75em auto;
     height: 36px;
     padding: 4px 8px;
-    background-color: $darkBlue;
     color: $textLight;
+    display: block;
+}
+
+.btnCompare {
+    background-color: $darkBlue;
+}
+
+.btnReset {
+    background-color: $red;
 }
 
 @media (max-width: 1000px){

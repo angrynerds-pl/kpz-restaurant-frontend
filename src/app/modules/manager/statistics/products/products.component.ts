@@ -58,9 +58,10 @@ export class ProductsComponent implements OnInit, OnDestroy {
 
   load(){
     if(this.dateFrom && this.dateTo){
-      
-      const startDate = this.dateFrom.toISOString().slice(0,10);
-      const endDate = this.dateTo.toISOString().slice(0,10);
+
+      const startDate = this.dateFrom.toLocaleDateString().replace(/\./g,"-");
+      const endDate = this.dateTo.toLocaleDateString().replace(/\./g,"-");
+
       this.clear();
 
       this.bestSubscription = this.statsService.getBestProducts(startDate, endDate).subscribe(data => {
@@ -106,6 +107,5 @@ export class ProductsComponent implements OnInit, OnDestroy {
     if(this.bestSubscription) this.bestSubscription.unsubscribe();
     if(this.worstSubscription) this.worstSubscription.unsubscribe();
   }
-
 
 }
