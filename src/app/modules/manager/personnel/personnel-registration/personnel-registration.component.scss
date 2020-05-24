@@ -3,9 +3,10 @@
 h2,h3 {
   text-align: center;
   padding: 1em;
+  font-weight: bold;
 }
 article{
-  border:2px solid black;
+  background-color: $gray;
   border-radius:1em;
 }
 

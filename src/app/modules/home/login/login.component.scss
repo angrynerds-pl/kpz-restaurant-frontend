@@ -8,15 +8,15 @@ form {
 
 label {
     display: block;
-    color: $textLight;
-    text-shadow: 0px 4px 4px $textDark;
+    color: $navbarBackground;
+    //text-shadow: 0px 2px 2px $textLight;
     font-size: 24px;
 }
 
 input {
     margin: 0.25em auto 1em auto;
     width: 75%;
-    border: 2px solid $darkBlue;
+    border: 2px solid $lightBrown;
     padding: 4px 8px;
     border-radius: 8px;
     color: $textLight;
@@ -26,6 +26,7 @@ input {
     -moz-box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     text-align: center;
+    outline: none;
 }
 
 input.ng-touched.ng-invalid{
@@ -44,14 +45,14 @@ input.ng-touched.ng-invalid{
     border-radius: 8px;
     min-width: 125px;
     color: $textLight;
-    background-color: $darkBlue;
+    background-color: $navbarBackground;
     -webkit-box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     -moz-box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
 .btnSubmit:disabled {
-    background-color: rgb(27, 28, 65);
+    background-color: $activeBrown;
 }
 
 .btnSubmit:not(:disabled):hover {
@@ -72,6 +73,7 @@ a {
 
 a:hover {
     text-decoration: none;
+    color: $lightBrown;
 }
 
 .button-box {

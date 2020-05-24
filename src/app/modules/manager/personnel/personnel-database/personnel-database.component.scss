@@ -27,3 +27,17 @@ fa-icon:hover{
   transform: scale(1.1);
   color: $green;
 }
+
+.table {
+  background-color: $gray;
+}
+
+thead {
+  background-color: $lightBrown;
+  color: $textLight;
+  border: 0;
+}
+
+td, th {
+  border-color: $lightBrown !important;
+}

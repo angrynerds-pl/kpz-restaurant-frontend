@@ -31,10 +31,10 @@ li {
     //background-color: #17a2b8;
 }
 ::ng-deep .mat-checkbox-checked .mat-checkbox-background, .mat-checkbox-indeterminate .mat-checkbox-background {
-    background-color: $dropdownMenuColor !important;
+    background-color: $lightBrown !important;
   }
   
   
   ::ng-deep .mat-checkbox:not(.mat-checkbox-disabled) .mat-checkbox-ripple .mat-ripple-element {
-    background-color: $dropdownMenuColor !important;
+    background-color: $lightBrown !important;
   }

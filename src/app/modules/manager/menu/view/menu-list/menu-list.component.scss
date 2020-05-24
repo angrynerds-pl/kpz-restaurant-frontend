@@ -12,7 +12,7 @@ div {
     padding: 4px;
     margin-bottom: 15px;
     color: #FFFFFF;
-    background: #88D4D9;
+    background: $navbarBackground;
 }
 .productDiv {
     background-color:#FFFFFF;
@@ -29,4 +29,9 @@ div {
 }
 span {
     flex: 1;
+}
+
+label {
+    font-size: 2rem;
+    font-weight: bold;
 }

@@ -14,6 +14,8 @@ h2 {
 }
 .btn-sm{
   border: none;
+  background-color: $navbarBackground;
+  color: $textLight;
 }
 .btn-sm:focus,.btn:active {
   outline: none ;
@@ -25,8 +27,6 @@ h2 {
 article {
   display: flex;
   height: 100%;
-
-  border: 2px solid black;
- // box-shadow: 0px 0px 2px 2px $textDark; //oceńcie czy potrzebne efekty, ja nie dawałbym za dużo efektów do managera
   border-radius: 1em;
+  background-color: $gray;
 }

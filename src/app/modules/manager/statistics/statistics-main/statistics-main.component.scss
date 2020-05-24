@@ -7,7 +7,7 @@ nav {
 a {
     flex: 1;
     padding: 1em;
-    background-color: $darkBlue;
+    background-color: $lightBrown;
     color: $textLight;
     text-decoration: none;
     text-align: center;
@@ -24,6 +24,6 @@ a:hover{
 }
 
 .active, .active:hover {
-    background-color: $yellow;
-    color: $textDark;
+    background-color: $activeBrown;
+    color: $textLight;
 }
