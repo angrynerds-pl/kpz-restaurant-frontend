@@ -4,60 +4,48 @@ import { environment } from "src/environments/environment";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { LocalStorageService } from "./local-storage.service";
 import { Order } from "../models/order";
-import { TableService } from "./table.service";
 import { ProductsInOrder } from "../models/products-in-order";
 import { ProductToAdd } from "../models/product-to-add";
 import { MenuProduct } from '../models/menu-product';
-import { Identifiers } from '@angular/compiler';
-import { ProductToAdd } from '../models/product-to-add';
-
-
-
 
 @Injectable({
   providedIn: "root",
 })
 export class OrderService {
 
-
-
-
-  
-  host: string =environment.host;
+  host: string = environment.host;
   productsToAdd:ProductsInOrder[] = [];
 
-
-  constructor(private tableService:TableService, private http:HttpClient, private storageService:LocalStorageService) {
-
-   }
-   getOrders () : Observable<Array<Order>> {
-     return this.http.get<Array<Order>>(this.host + 'api/orders/inprogress',{
-     headers : new HttpHeaders().set('Authorization', 'Bearer '+ this.storageService.getToken()),
+  constructor( private http:HttpClient, private storageService:LocalStorageService) {}
+  
+  getOrders () : Observable<Array<Order>> {
+    return this.http.get<Array<Order>>(this.host + 'api/orders/inprogress',{
+      headers : new HttpHeaders().set('Authorization', 'Bearer '+ this.storageService.getToken()),
     });    
-   }
-   updateOrderStatus(order:Order) : Observable<any>{
+  }
+
+  updateOrderStatus(order:Order) : Observable<any>{
     console.log(this.host + 'api/orders/'+order.id+'/'+order.status +"token: "+ this.storageService.getToken());
     return this.http.put<any>(this.host + 'api/orders/'+order.id+'/'+order.status, {}, {  
       headers : new HttpHeaders().set('Authorization', 'Bearer '+ this.storageService.getToken()),
-     });    
-    }
+    });    
+  }
 
-   updateStatus (orderedProduct:ProductsInOrder) : Observable<ProductsInOrder> { 
+  updateStatus (orderedProduct:ProductsInOrder) : Observable<ProductsInOrder> { 
     console.log(orderedProduct);
     return this.http.put<ProductsInOrder>(this.host + 'api/orders/products/'+orderedProduct.id,orderedProduct, {  
-    headers : new HttpHeaders().set('Authorization', 'Bearer '+ this.storageService.getToken()),
-   });    
+      headers : new HttpHeaders().set('Authorization', 'Bearer '+ this.storageService.getToken()),
+    });    
   }
-  getOrdersHistory (year:number, month:number,day:number) : Observable<Array<Order>>
-  {
+  
+  getOrdersHistory (year:number, month:number,day:number) : Observable<Array<Order>>{
     console.log(this.host + 'api/orders/history/'+year+"/"+month+"/"+day);
     return this.http.get<Array<Order>>(this.host + 'api/orders/history/'+year+"/"+month+"/"+day,  {
       headers : new HttpHeaders().set('Authorization', 'Bearer '+ this.storageService.getToken()),
      });    
   }
-
  
-createOrder(
+  createOrder(
     tableId: number,
     waiterId: number,
     orderedProducts,
