@@ -5,6 +5,7 @@ import { connectableObservableDescriptor } from 'rxjs/internal/observable/Connec
 import { OrderPanelComponent } from '../order-panel/order-panel.component';
 import { ProductsInOrder } from 'src/app/models/products-in-order';
 import { Observable } from 'rxjs';
+import { Order } from 'src/app/models/order';
 
 
 
@@ -19,8 +20,10 @@ export class OrderItemProductComponent implements OnInit {
   @Input() id: number;
   @Input() status: string;
   @Input() orderedProduct: ProductsInOrder;
+  @Input() order: Order;
+  @Output() emitter = new EventEmitter<boolean>();
   cancel: boolean = false;
-
+  completed: boolean =true;
  
   constructor(private service:OrderService) {    
  
@@ -30,6 +33,7 @@ export class OrderItemProductComponent implements OnInit {
   ngOnInit(): void {
     this.getClass();
   }
+
   getClass(){
     if (this.orderedProduct.status=="IN_PROGRESS")
     {
@@ -52,8 +56,22 @@ export class OrderItemProductComponent implements OnInit {
   }
   changeStatus(){  
     if (this.orderedProduct.status=="IN_PROGRESS") 
-    {this.orderedProduct.status="READY" 
-    this.service.updateStatus(this.orderedProduct).subscribe(); }
-
+    {
+      console.log(this.id);
+      this.orderedProduct.status="READY" 
+      this.service.updateStatus(this.orderedProduct).subscribe(); 
+      if(this.checkOrderCompleted()){
+        this.order.status="served";     
+        this.service.updateOrderStatus(this.order).subscribe(data =>this.emitter.emit(this.completed));    
+        }
+    }
+  }
+  checkOrderCompleted(){
+    for ( var i=0; i<this.order.orderedProducts.length;i++){
+      if (this.order.orderedProducts[i].status!=="READY"){
+        return false;
+      }
+    }
+    return true;
   }
 }

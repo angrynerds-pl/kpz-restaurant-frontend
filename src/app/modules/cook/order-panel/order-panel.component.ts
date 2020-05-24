@@ -19,13 +19,11 @@ export class OrderPanelComponent implements OnInit {
   constructor(private orderService:OrderService) { }
 
   ngOnInit(): void {
-
     this.loadOrders();
   }
 
   loadOrders () {
     this.orderService.getOrders().subscribe(orders =>{
-  
       this.orders = orders;
       //sorting so the longest order is at the end 
      /* this.orders.sort((n1,n2) => {
@@ -34,6 +32,12 @@ export class OrderPanelComponent implements OnInit {
         else return -1;
       });*/
     })
+  }
+  onOrderCompleted(completed:boolean){
+    if(completed)
+    {
+      this.loadOrders();
+    }
   }
  
 }

@@ -7,17 +7,17 @@ import { LocalStorageService } from '../services/local-storage.service';
   providedIn: 'root'
 })
 
-export class CookGuard implements CanActivate {
+export class HistoryGuard implements CanActivate {
 
   constructor(private localStorageService:LocalStorageService, private router:Router) {}
 
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-
+      
       const role = this.localStorageService.getRole();
 
-      if(role === 'COOK'){
+      if(role === 'MANAGER' || role ==="COOK"){
         return true;
       }
         

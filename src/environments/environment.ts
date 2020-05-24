@@ -7,7 +7,6 @@ export const environment = {
   host: 'https://localhost:44301/'
 
  // host: 'https://localhost:5001/'
-
 };
 
 /*

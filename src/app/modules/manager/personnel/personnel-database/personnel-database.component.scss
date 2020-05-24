@@ -1,9 +1,7 @@
 @import "../../../../../styles.scss";
 
-
 section {
-    
-    padding:1em;
+  padding:1em;
 }
 
 h2 {
@@ -12,11 +10,20 @@ h2 {
   padding:1em;
 }
 
-.table{
-  //border-radius:1em;
- 
-}
-
 tbody tr:hover{
   cursor:pointer;
+}
+
+td:last-child {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
+fa-icon{
+  transition: 0.5s ease-in-out;
+}
+
+fa-icon:hover{
+  transform: scale(1.1);
+  color: $green;
 }

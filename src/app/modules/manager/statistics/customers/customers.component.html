@@ -22,6 +22,12 @@
                 <span class="slider"></span>
             </label>
         </div>
+        <div class="input-box">
+            <label>Period: </label>
+            <input type="number" [(ngModel)]="startTime"> :
+            <input type="number" [(ngModel)]="endTime">
+            <button class="btnSet" (click)="setPeriod()" >Set</button>
+        </div>
     </div>
 
     <div class="chart">

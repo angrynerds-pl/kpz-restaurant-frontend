@@ -1,22 +1,41 @@
-<section>
+<div class="form-box">
+  <mat-form-field color="primary">
+    <mat-label>From</mat-label>
+    <input [(ngModel)]="dateFrom" matInput [matDatepicker]="picker1">
+    <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+    <mat-datepicker #picker1 color="primary" ></mat-datepicker>
+  </mat-form-field>
+  
+  <mat-form-field color="primary">
+    <mat-label>To</mat-label>
+    <input [(ngModel)]="dateTo" matInput [matDatepicker]="picker2">
+    <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+    <mat-datepicker #picker2 color="primary"></mat-datepicker>
+  </mat-form-field>
+  <button class="btnConfirm" (click)="load()">Confirm</button>
+</div>
+<ng-container *ngIf="picked">
+  <section>
     <div class="chart best">
-        <canvas baseChart 
-          [datasets]="chartDataBest"
-          [labels]="labelsBest"
-          [colors]="colorsBest"
-          [options]="options"
-          [legend]="legend"
-          [chartType]="chartType">
-        </canvas>
-      </div>
-      <div class="chart worst">
-        <canvas baseChart 
-          [datasets]="chartDataWorst"
-          [labels]="labelsWorst"
-          [options]="options"
-          [legend]="legend"
-          [chartType]="chartType">
-        </canvas>
-      </div>
-      <app-pie-chart [labels]="labelsPie" [chartData]="chartDataPie"></app-pie-chart>
-</section>
+      <canvas baseChart 
+        [datasets]="chartDataBest"
+        [labels]="labelsBest"
+        [colors]="colorsBest"
+        [options]="options"
+        [legend]="legend"
+        [chartType]="chartType">
+      </canvas>
+    </div>
+    <div class="chart worst">
+      <canvas baseChart 
+        [datasets]="chartDataWorst"
+        [labels]="labelsWorst"
+        [options]="options"
+        [legend]="legend"
+        [chartType]="chartType">
+      </canvas>
+    </div>
+    <app-pie-chart [labels]="labelsPie" [chartData]="chartDataPie"></app-pie-chart>
+  </section>
+</ng-container>
+
