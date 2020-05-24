@@ -7,6 +7,7 @@ import { Subscription } from 'rxjs';
 import { faBars } from "@fortawesome/free-solid-svg-icons";
 import { LocalStorageService } from 'src/app/services/local-storage.service';
 import { Router } from '@angular/router';
+import {MatSelect} from "@angular/material/select";
 @Component({
   selector: 'app-tables',
   templateUrl: './tables-main.component.html',
@@ -50,8 +51,13 @@ export class TablesMainComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.roomSubscription.unsubscribe();
-    this.tableSubscription.unsubscribe();
+    if(this.roomSubscription){
+      this.roomSubscription.unsubscribe();
+    }
+    if(this.tableSubscription){
+      this.tableSubscription.unsubscribe();
+    }
+    
   }
 
   logout(){

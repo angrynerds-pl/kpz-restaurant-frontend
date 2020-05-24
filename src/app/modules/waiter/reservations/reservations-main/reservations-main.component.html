@@ -25,16 +25,17 @@
       >Service</a
     >
     
-    <a class="dropdown-item nav-link" (click)="logout()" >Logout</a>
+    <a class="dropdown-item nav-link" routerLink="" (click)="logout()" >Logout</a>
   </div>
 </header>
 <section class='container-fluid'>
-<ul *ngFor='let reservation of reservations'>
-<app-reservation-view [reservationDetails]='reservation'></app-reservation-view>
+<ul *ngFor='let reservation of reservations | async'>
+<app-reservation-view [reservationDetails]='reservation' (updateEmitter)="updateReservations()"></app-reservation-view>
 </ul>
 
-<a class="add-reservation-button" type="button" (click)="addNewReservation()">
-    <fa-icon id="iconPLus" [icon]="plusIcon"></fa-icon>
+
+<a class="check-reservations-button" type="button" (click)="checkReservations()">
+  <fa-icon id="iconPLus" [icon]="plusIcon"></fa-icon>
 
 </a>
 </section>

@@ -5,11 +5,15 @@ header {
     padding: 10px;
     text-align: center;
     font-size: 27px;
-    position: relative;
+    position: fixed;
+    width:100%;
+    top:0;
     height:65px;
     display:flex;
     align-items:center;
     justify-content:center;
+    z-index:1000;
+    background-color: $dropdownMenuColor;
 }
 
 .float{
@@ -33,7 +37,7 @@ header {
 }
 
 .dropdown-item{
-    font-size:20px;
+    font-size:15px;
 }
 .dropdown-item.active, .dropdown-item:hover {
     background-color: transparent;
@@ -43,29 +47,26 @@ header {
     border-radius:1em;
 }
 fa-icon{
-    font-size: 30px;
+    font-size: 20px;
     color:black;
   }
 
 section{
     
-    min-height:calc(100vh - 65px); // 100 vh - header height
+    min-height:100vh; // 100 vh - header height
     background-color:white;
     padding:10px;
+    padding-top:85px;
   }
 
 
-
-
-
-
-
-  .add-reservation-button{
-      position:fixed;
-      bottom:10px;
-      right:10px;
+  
+  .check-reservations-button{
+    position:fixed;
+    bottom:10px;
+    right:10px;
   }
 
-  .add-reservation-button:hover{
+  .check-reservations-button:hover{
     color: #aaa;
   }

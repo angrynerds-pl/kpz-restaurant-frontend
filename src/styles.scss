@@ -53,7 +53,7 @@ html, body {
 
 .mat-bottom-sheet-container{ //my idea with bottom sheet
     min-height: calc(100vh - 65px); 
-    padding: 5px 5px !important;
+    padding: 0px 0px !important;
     
 }
 .free {
@@ -70,4 +70,19 @@ html, body {
 .served {
     background-color: transparent;
 }
+
+.available{
+    background-color: $green;
+}
+.booked{
+    background-color: $red;
+}
+.booked:hover{
+    cursor:0;
+}
+.available:hover{
+    cursor:pointer;
+}
+
+
 @import "~bootstrap/dist/css/bootstrap.css"; // don't move !!!

@@ -15,7 +15,6 @@ import { TableAddOrderComponent } from "../table-add-order/table-add-order.compo
 import { BillComponent } from "../bill/bill.component";
 import { OrderService } from "src/app/services/order.service";
 import { ProductsInOrder } from "src/app/models/products-in-order";
-import { ProductsInOrderService } from "src/app/services/products-in-order.service";
 import { ProductService } from "src/app/services/product.service";
 import { MenuProduct } from "src/app/models/menu-product";
 import { Order } from "src/app/models/order";
@@ -150,26 +149,66 @@ export class TableComponent implements OnInit, OnDestroy {
     this._bottomSheet._openedBottomSheetRef
       .afterDismissed()
       .subscribe((data) => {
-        if (this.productsInOrder.every((product) => product.status == "PAID")) {
+        /*if (this.productsInOrder.every((product) => product.status == "PAID")) {
+          this.tableService.changeStatusOfTable(this.id);
           this.orderDetails.status = "PAID";
-          this.orderService.editOrder(this.orderDetails);
-          if (this.productsInOrder.every((product) => product.status == "SERVED")) {
-            this.tableService.changeStatusOfTable(this.id);
-            this.tableSubscription =  this.tableService.getTable(this.id).subscribe();
-          }
+          this.productsInOrder = null;
+          this.orderService.editOrder(this.orderDetails).subscribe(editedOrder =>{
+            this.tableSubscription = this.tableService
+            .getTable(this.id)
+            .subscribe((data) => {
+              console.log(this.table.status)
+              this.table = data;
+              console.log(this.table.status)
+            });
+          });
+          
           this.orderDetails = null;
-        }
-      });
+        }*/
+        
+          if (this.productsInOrder.every((product) => product.status == "PAID")) {
+            this.tableService.changeStatusOfTable(this.id);
+            this.orderDetails.status = "PAID";
+            this.productsInOrder = null;
+            //this.orderDetails  =null;
+            this.orderService.editOrder(this.orderDetails).subscribe(editedOrder =>{
+              this.tableSubscription = this.tableService
+              .getTable(this.id)
+              .subscribe((data) => {
+                console.log(this.table.status)
+                this.table = data;
+                console.log(this.table.status)
+              });
+            });
+            this.orderDetails  =null;
+          }
+        
+        });
     }
-  }
+     // });
+    }
+  
 
   changeOfProductStatus(product: ProductsInOrder) {
     if (product.status == "READY") {
       product.status = "SERVED";
-      this.orderService.updateStatus(product).subscribe();
-      if (this.productsInOrder.every((product) => product.status == "SERVED")) {
-        this.tableService.changeStatusOfTable(this.id);
-      }
+      this.orderService.updateStatus(product).subscribe(updatedProduct=>{
+        if (this.productsInOrder.every((product) => product.status == "SERVED")) {
+          this.tableService.changeStatusOfTable(this.id);
+          this.orderDetails.status = "SERVED";
+          this.orderService.editOrder(this.orderDetails).subscribe(editedOrder =>{
+            this.tableSubscription = this.tableService
+            .getTable(this.id)
+            .subscribe((data) => {
+              console.log(this.table.status)
+              this.table = data;
+              console.log(this.table.status)
+            });
+          });
+          
+        }
+      
+      });
     }
   }
 }

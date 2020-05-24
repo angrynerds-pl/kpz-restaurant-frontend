@@ -26,27 +26,27 @@
       </div>
     </div>
     <div class="form-group">
-      <label for="tableID">Table number</label>
-      <select
-        
-        formControlName="tableID"
+      <label for="tableId">Table number</label>
+      <input
+        [ngValue]="tableId"
+        formControlName="tableId"
         class="form-control globalShadow"
-        name="tableID"
-        id="tableID"
-        placeholder=""
-      ><option [ngValue]="tableID" *ngFor="let tableID of tableNumbers">{{tableID}}</option></select>
+        name="tableId"
+        id="tableId"
+        disabled
+      >
 
       <div class="warning-box">
         <ng-container
           *ngIf="
-            newReservationForm.get('tableID').touched &&
-            newReservationForm.get('tableID').invalid
+            newReservationForm.get('tableId').touched &&
+            newReservationForm.get('tableId').invalid
           "
         >
         <span
         class="warning"
         *ngIf="
-          newReservationForm.get('tableID').errors.required
+          newReservationForm.get('tableId').errors.required
         "
         >You must choose table number</span
       >
@@ -77,6 +77,21 @@
                 newReservationForm.get('numberOfSeats').errors.pattern
               "
               >Incorrect number of seats</span
+            >
+           
+            <span
+              class="warning"
+              *ngIf="
+                newReservationForm.get('numberOfSeats').errors.max 
+              "
+              >This table doesn't have enough seats</span
+            >
+            <span
+              class="warning"
+              *ngIf="
+                newReservationForm.get('numberOfSeats').errors.max 
+              "
+              >This table doesn't have enough seats</span
             >
           </ng-container>
         </div>

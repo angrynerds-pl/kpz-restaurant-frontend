@@ -4,6 +4,8 @@ section {
     display: flex;
     align-items: center;
     min-height: 100vh;
+    background-color: $dropdownMenuColor;
+    flex-direction:column;
 }
 
 .tables-wrapper {
@@ -25,7 +27,20 @@ select {
     outline: none;
     text-align:center;
 }
+input{
+    min-width: 200px;
+    max-width:250px;
+    border-radius: 8px;
+    font-size: 24px;
+    margin: 16px;
+    outline: none;
+    text-align:center;
+}
 
+label{
+    margin-top:10px;
+    font-size:20px;
+}
 .tableRow {
     display: flex;
     margin: 16px 0px;
@@ -47,38 +62,3 @@ p {
     }
 }
 
-.float{
-	position:fixed;
-	height:40px;
-    width:40px;
-    right:0px;
-    top:13px;
-	background-color: transparent;;
-	color:#FFF;
-    justify-content:center;
-    display:flex;
-    align-items:center;
-    
-}
-
-.dropdown-menu{
-    
-    text-align:center;
-    background-color: $dropdownMenuColor;
-    border-radius:1em;
-}
-
-.dropdown-item{
-    font-size:15px;
-}
-.dropdown-item.active, .dropdown-item:hover {
-    background-color: transparent;
-}
-
-.btn{
-    border-radius:1em;
-}
-fa-icon{
-    font-size: 20px;
-    color:black;
-  }

@@ -8,6 +8,9 @@
     padding:0;
     background-color: $lightBlue;
 }
+.reservation-details:hover{
+    cursor:pointer;
+}
 span{
     padding:5px;
 }
@@ -15,6 +18,21 @@ span{
     background-color: $blue;
     border-top-left-radius:1em;
     border-top-right-radius:1em;
+}
+
+.float{
+	position:absolute;
+	height:30px;
+    width:30px;
+    left: 0px;
+    top:4px;
+	background-color: transparent;;
+	
+    
+    
+}
+#deleteReservationIcon{
+    color:$red;
 }
 .tableDetails{
     //background-color: $lightBlue;

@@ -3,11 +3,13 @@ import { faBars, faTintSlash } from "@fortawesome/free-solid-svg-icons";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import {MatBottomSheet} from "@angular/material/bottom-sheet";
 import {AddNewReservationComponent} from '../add-new-reservation/add-new-reservation.component'
+import {CheckReservationsComponent} from '../check-reservations/check-reservations.component'
 import { Reservation } from 'src/app/models/reservation';
-import { Subscription } from 'rxjs';
+import { Subscription, Observable } from 'rxjs';
 import { ReservationService } from 'src/app/services/reservation.service';
 import { LocalStorageService } from 'src/app/services/local-storage.service';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-reservations',
   templateUrl: './reservations-main.component.html',
@@ -17,22 +19,24 @@ export class ReservationsMainComponent implements OnInit, OnDestroy {
 
   menuIcon = faBars;
   plusIcon = faPlus;
-  reservations:Array<Reservation>;
+  reservations:Observable<Array<Reservation>>;
 
   reservationsSubscription:Subscription;
+  
 
-  constructor(private localStorageService:LocalStorageService, private router:Router,private _bottomSheet:MatBottomSheet, private reservationService:ReservationService) { }
+  constructor(private toastrService:ToastrService, private localStorageService:LocalStorageService, private router:Router,private _bottomSheet:MatBottomSheet, private reservationService:ReservationService) { 
+    this.router.routeReuseStrategy.shouldReuseRoute = function() {
+      return false;
+  };
+  }
   
 
   ngOnInit(): void {
-    this.reservations = new Array();
-    this.reservationsSubscription = this.reservationService.getReservations().subscribe((reservations)=>{
-      this.reservations = reservations;
-    });
+    this.updateReservations();
   }
 
   ngOnDestroy(): void {
-    this.reservationsSubscription.unsubscribe();
+    
   }
 
   logout(){
@@ -40,13 +44,27 @@ export class ReservationsMainComponent implements OnInit, OnDestroy {
     this.router.navigate(["/login"]);
   }
 
-  addNewReservation(){
+  
+  checkReservations(){
+    
+    let role = this.localStorageService.getRole();
+    if(role=="HEAD_WAITER"){
+
+    
     this._bottomSheet._openedBottomSheetRef = this._bottomSheet.open(
-      AddNewReservationComponent,
+      CheckReservationsComponent,
       {
-        data: { },
+        data: { reservations:this.reservations },
         disableClose: false,
       }
     );
+    
+  
+  }else{
+    this.toastrService.warning("You don't have permission");
+  }
+  }
+  updateReservations(){
+    this.reservations = this.reservationService.getReservations();
   }
 }

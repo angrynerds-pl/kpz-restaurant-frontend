@@ -109,6 +109,7 @@ export class TableAddOrderComponent implements OnInit, OnDestroy {
   
   addToSummaryProducts(product, amount) {
     this.productsToOrderService.addProduct(product, amount);
+    
     this.counterBadge++;
   }
 

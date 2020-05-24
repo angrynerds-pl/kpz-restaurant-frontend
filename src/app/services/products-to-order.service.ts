@@ -31,16 +31,18 @@ export class ProductsToOrderService {
     this.productsToAdd[index].amount += amount;
   }
   findProduct(product) {
-    let index = this.productsToAdd.findIndex(
-      (productToAdd) => productToAdd.product.id === product.id
-    );
-
-    return index;
+   
+      let index = this.productsToAdd.findIndex(
+        (productToAdd) => productToAdd.product.id === product.id
+      );
+  
+      return index;
+    
+    
   }
 
   removeProduct(product) {
     let productsIndex = this.findProduct(product);
-
     this.productsToAdd.splice(productsIndex, 1);
   }
 

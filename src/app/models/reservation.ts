@@ -1,8 +1,8 @@
 export interface Reservation {
-    reservationID: number;
-    tableID: number;
+    id: number;
+    tableId: number;
     numberOfSeats: number;
     customerName: string;
-    startDate: string;
-    endDate: string;
+    startDate: Date;
+    endDate: Date;
 }

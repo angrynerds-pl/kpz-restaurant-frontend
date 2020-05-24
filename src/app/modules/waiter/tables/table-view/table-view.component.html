@@ -1,4 +1,7 @@
-<section [routerLink]="['/waiter/table', table.id ]" [ngClass]="getClass()">
+<section [routerLink]="['/waiter/table', table.id ]" [ngClass]="getClass()" *ngIf="!newReservation">
+    <p>{{table.number}}</p>
+</section>
+<section  [ngClass]="getReservationStatus()" *ngIf="newReservation" (click)="addNewReservation()">
     <p>{{table.number}}</p>
 </section>
 
