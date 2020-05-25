@@ -13,16 +13,18 @@ header {
     align-items:center;
     justify-content:center;
     z-index:1000;
-    background-color: $dropdownMenuColor;
+    background-color: $buttonLight;
+    color:$textLight;
 }
 
 .float{
 	position:fixed;
 	height:40px;
     width:40px;
-	right:0px;
+    right:0px;
+    margin-top:2px;
 	background-color: transparent;;
-	color:#FFF;
+	color:$textLight;
     justify-content:center;
     display:flex;
     align-items:center;
@@ -32,7 +34,7 @@ header {
 .dropdown-menu{
     
     text-align:center;
-    background-color: $dropdownMenuColor;
+    background-color: $buttonLight;
     border-radius:1em;
 }
 
@@ -48,18 +50,20 @@ header {
 }
 fa-icon{
     font-size: 20px;
-    color:black;
+    color:$textLight;
   }
 
 section{
     
     min-height:100vh; // 100 vh - header height
-    background-color:white;
+    background-color:$background;
     padding:10px;
     padding-top:85px;
   }
 
-
+  #iconPlus{
+    color:$main;
+  }
   
   .check-reservations-button{
     position:fixed;

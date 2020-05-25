@@ -15,17 +15,18 @@
 li {
   margin-bottom: 20px;
   margin-top: 20px;
+   list-style-type:none;
 }
 
 .productInfo {
   font-size: 20px;
-  background-color: $blue;
+  background-color: $buttonLight;
   padding: 10px;
   width: 100%;
   border-radius: 1em;
   outline: none;
   border: none;
-  color: black;
+  color: $textLight;
 }
 
 .productInfo:active,
@@ -36,6 +37,7 @@ li {
   background-color: transparent;
   border: 0;
   font-size:15px;
+  color: $textLight;
 }
 
 .amountButton:active,

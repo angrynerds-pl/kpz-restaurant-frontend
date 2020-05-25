@@ -1,3 +1,5 @@
+@import '../../../../../styles.scss';
+
 h4 {
     text-align: center;
 }
@@ -5,4 +7,12 @@ h4 {
 mat-dialog-actions {
     display: flex;
     justify-content: space-evenly;
+}
+
+section {
+    background-color: $background;
+}
+
+mat-dialog-container {
+    padding: 0px;
 }

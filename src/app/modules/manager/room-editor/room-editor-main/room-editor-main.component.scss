@@ -14,6 +14,11 @@ select {
     border-radius: 8px;
     padding: 0px 8px;
     border: 1px solid black;
+    outline: none;
+}
+
+option {
+    outline: none;
 }
 
 input {
@@ -23,6 +28,7 @@ input {
     width: 125px;
     border: 1px solid black;
     text-align: center;
+    outline: none;
 }
 
 .input-box{
@@ -78,9 +84,13 @@ form {
     border: 0;
     font-size: 14px;
     color: $textLight;
-    background-color: $darkBlue;
+    background-color: $buttonLight;
     transition: 0.5s ease-in-out;
-    outline: 0;
+    outline: none;
+}
+
+.btnSubmit:active, .btnEdit:active, .btnDelete:active {
+    outline: none;
 }
 
 .btnDelete {

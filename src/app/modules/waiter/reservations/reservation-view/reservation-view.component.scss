@@ -4,7 +4,6 @@
 .reservation-details{
     text-align:center;
     border-radius:1em;
-    border:1px solid black;
     padding:0;
     background-color: $lightBlue;
 }
@@ -15,9 +14,10 @@ span{
     padding:5px;
 }
 .dateDetails{
-    background-color: $blue;
+    background-color: $buttonLight;
     border-top-left-radius:1em;
     border-top-right-radius:1em;
+    color: $textLight;
 }
 
 .float{

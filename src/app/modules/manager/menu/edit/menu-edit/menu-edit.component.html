@@ -1,9 +1,9 @@
 <section class="d-flex flex-column container-fluid col-12">
 <h2>Edit menu</h2>
 <div class="buttons-container d-flex justify-content-around">
-    <button id="categoryButton" type="button" class="btn-sm btn-info globalShadow" (click)="changeEditing()"[disabled]="category">Category</button>
+    <button id="categoryButton" type="button" class="btn-sm globalShadow" (click)="changeEditing()"[disabled]="category">Category</button>
 
-    <button id="productButton" type="button" class="btn-sm btn-info globalShadow" (click)="changeEditing()" [disabled]="!category">Product</button>
+    <button id="productButton" type="button" class="btn-sm globalShadow" (click)="changeEditing()" [disabled]="!category">Product</button>
 </div>
 <article>
     <app-menu-add-category class="col-12" *ngIf="category"></app-menu-add-category>

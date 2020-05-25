@@ -2,10 +2,10 @@
 
 .navbar{
     padding: 1em;
-    background-color:$navbarBackground;
+    background-color:$main;
 }
 .dropdown-menu{
-    background-color: $dropdownMenuColor;
+    background-color: $buttonDark;
 }
 .dropdown-item:hover {
     background-color: transparent;
