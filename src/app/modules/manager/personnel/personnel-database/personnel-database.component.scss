@@ -24,8 +24,7 @@ fa-icon{
 }
 
 fa-icon:hover{
-  transform: scale(1.1);
-  color: $green;
+  color: $buttonLight;
 }
 
 .table {
@@ -33,11 +32,11 @@ fa-icon:hover{
 }
 
 thead {
-  background-color: $lightBrown;
+  background-color: $buttonDark;
   color: $textLight;
   border: 0;
 }
 
 td, th {
-  border-color: $lightBrown !important;
+  border-color: $buttonDark !important;
 }

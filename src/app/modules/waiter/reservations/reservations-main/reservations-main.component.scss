@@ -13,7 +13,7 @@ header {
     align-items:center;
     justify-content:center;
     z-index:1000;
-    background-color: $lightBrown;
+    background-color: $buttonLight;
     color:$textLight;
 }
 
@@ -34,7 +34,7 @@ header {
 .dropdown-menu{
     
     text-align:center;
-    background-color: $lightBrown;
+    background-color: $buttonLight;
     border-radius:1em;
 }
 
@@ -62,7 +62,7 @@ section{
   }
 
   #iconPlus{
-    color:$navbarBackground;
+    color:$main;
   }
   
   .check-reservations-button{
