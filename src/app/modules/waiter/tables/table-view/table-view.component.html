@@ -1,7 +1,11 @@
-<section [routerLink]="['/waiter/table', table.id ]" [ngClass]="getClass()" *ngIf="!newReservation">
+<div [ngSwitch]="newReservation">
+    <section *ngSwitchCase="null" [routerLink]="['/waiter/table', table.id ]" [ngClass]="getClass()"><p>{{table.number}}</p><span *ngIf="checkOfReadyProducts(table.id)==true" class="badge badge-pill">!</span></section>
+    <section *ngSwitchDefault [ngClass]="getReservationStatus()" (click)="addNewReservation()"><p>{{table.number}}</p></section>
+</div>
+<!--section [routerLink]="['/waiter/table', table.id ]" [ngClass]="getClass()" *ngIf="!newReservation">
     <p>{{table.number}}</p>
 </section>
 <section  [ngClass]="getReservationStatus()" *ngIf="newReservation" (click)="addNewReservation()">
     <p>{{table.number}}</p>
-</section>
+</section-->
 

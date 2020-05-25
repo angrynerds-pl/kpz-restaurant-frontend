@@ -1,5 +1,6 @@
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
+import { of as ObservableOf } from "rxjs";
 import { environment } from "src/environments/environment";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { LocalStorageService } from "./local-storage.service";
@@ -188,5 +189,17 @@ export class OrderService {
         ),
       }
     );
+  }
+  counter =1;
+  counter2 = 2;
+  getReadyTables () : Observable<Array<number>> {
+   // return this.http.get<Array<number>>(this.host + 'api/orders/inprogress',{
+   //   headers : new HttpHeaders().set('Authorization', 'Bearer '+ this.storageService.getToken()),
+  //  }); 
+    //this.counter =1;
+    let array = new Array<number>();   
+    array.push(this.counter++);
+    array.push(this.counter2++);
+    return ObservableOf(array);
   }
 }

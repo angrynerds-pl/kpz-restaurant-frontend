@@ -8,6 +8,9 @@ import { faBars } from "@fortawesome/free-solid-svg-icons";
 import { LocalStorageService } from 'src/app/services/local-storage.service';
 import { Router } from '@angular/router';
 import {MatSelect} from "@angular/material/select";
+import { takeWhile, switchMap } from 'rxjs/operators';
+import { interval, timer } from 'rxjs';
+import { OrderService } from 'src/app/services/order.service';
 @Component({
   selector: 'app-tables',
   templateUrl: './tables-main.component.html',
@@ -21,11 +24,13 @@ export class TablesMainComponent implements OnInit, OnDestroy {
   currentRoom: Room;
   currentID: number;
   grid: Array<Array<Table>>;
+  tablesNotifications:number[];
 
   roomSubscription: Subscription;
   tableSubscription: Subscription;
+  notificationsSubscription:Subscription;
 
-  constructor(private router:Router, private roomService:RoomService, private tableService:TableService, private localStorageService:LocalStorageService) { }
+  constructor(private orderService:OrderService,private router:Router, private roomService:RoomService, private tableService:TableService, private localStorageService:LocalStorageService) { }
 
   ngOnInit(): void {
     this.roomSubscription = this.roomService.getRooms().subscribe(data => {
@@ -35,8 +40,19 @@ export class TablesMainComponent implements OnInit, OnDestroy {
         this.setTables();
       }
     })
+      this.turnOnNotifications();
   }
 
+  turnOnNotifications(){
+    let counter =1;
+    this.notificationsSubscription = timer(0, 5000).pipe(
+      switchMap(() => this.orderService.getReadyTables())
+    )
+      .subscribe(resp => {
+        this.tablesNotifications = resp;
+        console.log('resp', resp);
+      });
+  }
   setTables(){
     this.currentRoom = this.rooms.find(e => e.id === this.currentID);
     this.tableSubscription = this.tableService.getTables(this.currentRoom.id).subscribe(data => {
@@ -57,7 +73,7 @@ export class TablesMainComponent implements OnInit, OnDestroy {
     if(this.tableSubscription){
       this.tableSubscription.unsubscribe();
     }
-    
+    this.notificationsSubscription.unsubscribe();
   }
 
   logout(){
