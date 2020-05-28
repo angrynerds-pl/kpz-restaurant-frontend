@@ -46,7 +46,7 @@ export class ReservationService {
     reservation:Reservation
   ) {
       reservation.startDate.setHours(reservation.startDate.getHours() + 2);
-      reservation.endDate.setHours(reservation.startDate.getHours() + 2);
+      reservation.endDate.setHours(reservation.endDate.getHours() + 2);
         return this.http.post<Reservation>(
       this.host + "api/reservations",{
       numberOfSeats:reservation.numberOfSeats,

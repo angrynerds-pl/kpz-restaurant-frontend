@@ -5,4 +5,5 @@ export interface Reservation {
     customerName: string;
     startDate: Date;
     endDate: Date;
+    note:string
 }

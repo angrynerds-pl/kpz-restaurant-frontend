@@ -18,6 +18,7 @@ export class AddNewReservationComponent implements OnInit {
   confirmReservationIcon = faPlusCircle;
 
   reservation: Reservation;
+  minDate: Date = new Date();
 
   newReservationForm: FormGroup;
   tableNumbers: Number[] = [];
@@ -50,6 +51,7 @@ export class AddNewReservationComponent implements OnInit {
         customerName: [this.reservation.customerName, Validators.required],
         startDate: [this.reservation.startDate, Validators.required],
         endDate: [this.reservation.endDate, Validators.required],
+        customerNote: [this.reservation.note],
       });
     } else {
       this.newReservationForm = this.fb.group({
@@ -66,6 +68,7 @@ export class AddNewReservationComponent implements OnInit {
         customerName: [null, Validators.required],
         startDate: [this.reservation.startDate, Validators.required],
         endDate: [this.reservation.startDate, Validators.required],
+        customerNote: [this.reservation.note],
       });
     }
   }
