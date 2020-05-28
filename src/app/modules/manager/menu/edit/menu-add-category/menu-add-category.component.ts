@@ -37,8 +37,8 @@ export class MenuAddCategoryComponent implements OnInit, OnDestroy {
 
   newCategoryForm() {
     this.categoryForm = this.fb.group({
-      name: [null, Validators.required]
-      //icon: [null, Validators.required]
+      name: [null, Validators.required],
+      icon: [null, Validators.required]
     });
   }
 
@@ -55,7 +55,7 @@ export class MenuAddCategoryComponent implements OnInit, OnDestroy {
           this.router.navigate(['/manager/menu']);
         }); 
       }, err => {
-        this.toastrService.error("Error!");
+        this.toastrService.error('Name has been already taken');
       });
 
     }
