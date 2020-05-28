@@ -28,7 +28,7 @@ export class TableViewComponent implements OnInit {
   
   
   
-  constructor(private orderService:OrderService,private reservationService:ReservationService, private _bottomSheet:MatBottomSheet) { }
+  constructor( private _bottomSheet:MatBottomSheet) { }
   
   
   
