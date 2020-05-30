@@ -54,7 +54,7 @@ export class ReservationService {
       tableId:reservation.tableId,
       startDate: reservation.startDate,
       endDate: reservation.endDate,
-      //note:reservation.note
+      note:reservation.note
       }
      ,
       {

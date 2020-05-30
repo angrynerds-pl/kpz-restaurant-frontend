@@ -1,17 +1,18 @@
 <section>
+  <div class="select-box">
   <label for="startDate">Reservation date</label>
   <input
     id="startDate"
     [(ngModel)]="reservationDatetime"
     [min]="newDate"
-    class="reservation-details form-control globalShadow"
+    class="reservation-details form-control globalShadow dateInput" 
     (ngModelChange)="checkReservations($event)"
     [owlDateTime]="dt1"
     [owlDateTimeTrigger]="dt1"
     placeholder=""
   />
   <owl-date-time  #dt1></owl-date-time>
-
+</div>
   <!--div class="select-box">
     <label for="selectSeatNumber">Seats number</label>
     <select id="selectSeatNumber" [(ngModel)]="seatNumber">

@@ -28,11 +28,11 @@ select {
     text-align:center;
 }
 input{
-    min-width: 200px;
-    max-width:250px;
+    min-width: 220px;
+    max-width:240px;
     border-radius: 8px;
-    font-size: 24px;
-    margin: 16px;
+    font-size: 20px;
+    ///margin: 16px;
     outline: none;
     text-align:center;
 }
@@ -56,15 +56,19 @@ p {
     text-align: center;
 }
 
-@media (max-width: 768px) {
-    select {
-        width: 85%;
-    }
-}
 .floorSelectView{
     display:flex;
     justify-content:center;
     align-items: center;
     font-size:25px;
     
+  }
+  .dateInput{
+    display:flex;
+    justify-content:center;
+    align-items: center;
+    font-size:15px;
+  }
+  .dateSelectBox{
+    background-color: $gray;
   }
