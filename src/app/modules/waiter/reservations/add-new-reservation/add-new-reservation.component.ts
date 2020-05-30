@@ -51,7 +51,7 @@ export class AddNewReservationComponent implements OnInit {
         customerName: [this.reservation.customerName, Validators.required],
         startDate: [this.reservation.startDate, Validators.required],
         endDate: [this.reservation.endDate, Validators.required],
-        customerNote: [this.reservation.note],
+        note: [this.reservation.note],
       });
     } else {
       this.newReservationForm = this.fb.group({
@@ -68,24 +68,30 @@ export class AddNewReservationComponent implements OnInit {
         customerName: [null, Validators.required],
         startDate: [this.reservation.startDate, Validators.required],
         endDate: [this.reservation.startDate, Validators.required],
-        customerNote: [this.reservation.note],
+        note: [this.reservation.note],
       });
     }
   }
   addReservation() {
     if (this.newReservationForm.valid) {
       if (this.table == null) {
+       
+        let id  = this.reservation.id;
         this.reservation = Object.assign({}, this.newReservationForm.value);
-        this.reservationService.updateReservation(this.reservation).subscribe(r=>{
+        this.reservation.id = id;
+        console.log( this.reservation)
+       this.reservationService.updateReservation(this.reservation).subscribe(r=>{
+        console.log(r)
           this.router.navigateByUrl('/waiter/tables', { skipLocationChange: true }).then(() => {
             this.router.navigate(['/waiter/reservations']);
-          }); 
-        });
+        }); 
+       });
         this.toastrService.success("Reservation details updated!");
       } else {
         this.reservation = Object.assign({}, this.newReservationForm.value);
-
+       
         this.reservationService.addReservation(this.reservation).subscribe(r=>{
+          
           this.router.navigateByUrl('/waiter/tables', { skipLocationChange: true }).then(() => {
             this.router.navigate(['/waiter/reservations']);
           }); 
