@@ -5,16 +5,16 @@
       *ngFor="let productToAdd of productsToAdd"
     >
       <div>{{ productToAdd.product.name }}</div>
-      <div class="amountBar">
+      <div class="amountBar d-flex justify-content-between align-items-center">
         <button
           class="amountButton"
           (click)="changeAmountOfProduct(-1, productToAdd)"
         >
           <fa-icon [icon]="iconMinusCircle"></fa-icon>
         </button>
-
+        <div class="productAmount">
         {{ productToAdd.amount }}
-
+      </div>
         <button
           class="amountButton"
           (click)="changeAmountOfProduct(1, productToAdd)"

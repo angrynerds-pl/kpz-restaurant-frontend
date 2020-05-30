@@ -33,7 +33,7 @@
           <mat-form-field>
             <mat-select  [(ngModel)]="currentCategory">
               <mat-select-trigger>
-                <div class="categorySelectView">{{ currentCategory.name |titlecase }}</div><!--img src="../../../../../assets/images/{{currentCategory.icon}}"alt="photo">{{currentCategory.name |titlecase }}--</div-->
+                <div class="categorySelectView">{{ currentCategory.name |titlecase }}</div><!--img src="../../../../../assets/images/{{currentCategory.icon}}"alt="photo">{{currentCategory.name |titlecase }}</div-->
               </mat-select-trigger>
               <mat-option *ngFor='let category of categories' [value]="category"><div class="categorySelectView"><img src="../../../../../assets/images/{{category.icon | titlecase}}"alt="p">{{category.name |titlecase }}</div></mat-option>
             </mat-select>
@@ -44,14 +44,14 @@
         
         <li>
           <ul *ngFor="let product of products">
-            <button
+            <ul
               class="productInfo d-flex justify-content-between globalShadow"
               (click)="addToSummaryProducts(product, 1)"
               *ngIf="product.categoryId == currentCategory.id"
             >
               <div>{{ product.name }}</div>
               <fa-icon class="iconAddProduct" [icon]="iconPlusCircle"></fa-icon>
-            </button>
+          </ul>
           </ul>
         </li>
       </div>
@@ -72,8 +72,9 @@
         aria-expanded="false"
         aria-controls="collapseSummary"
       >
-        <h4 class="title">
-          Chosen products <span class="badge badge-pill">{{
+        <h4 class="d-flex align-items-center justify-content-center">
+          <div class="title">
+          Chosen products </div><span class="badge">{{
             counterBadge
           }}</span>
         </h4>

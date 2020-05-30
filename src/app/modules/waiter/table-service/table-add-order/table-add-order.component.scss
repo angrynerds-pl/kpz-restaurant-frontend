@@ -10,6 +10,7 @@ section {
 .title {
   text-align: center;
   font-size: 20px;
+  margin-right:10px;
 }
 a:active,
 a:focus {
@@ -33,28 +34,27 @@ a {
   font-weight:normal;
 }
 .productInfo {
-  font-size: 20px;
+  font-size: 15px;
   background-color: $buttonLight;
-  padding: 10px;
-  width: 100%;
-  border-radius: 20px;
+  border-radius: 1em;
   outline: none;
   border: none;
   color: $textLight;
+  padding:2px 10px;
 }
 
-.productInfo:active,
-.productInfo:focus {
-  outline: 0;
+
+.productInfo:hover{
+  cursor:pointer;
 }
 .iconAddProduct{
-  font-size:15px;
+  font-size:10px;
 }
 select {
     max-width: 200px;
     border-radius: 1em;
     //padding: 4px 8px;
-    font-size: 20px;
+    font-size: 15px;
     margin: 5px;
     outline: none;
     margin:auto;
@@ -78,7 +78,7 @@ mat-form-field{
   display:flex;
   justify-content:center;
   align-items: center;
-  font-size:25px;
+  font-size:20px;
   img{
     margin-right:20px;
   }
@@ -89,4 +89,14 @@ li{
 .badge{
   background-color: $buttonLight;
   color:$textLight;
+  border-radius: 10rem;
+  font-size:15px;
+  padding:3px 6px;
+}
+.card-header{
+  padding:10px 0px;
+  text-align:center;
+}
+h4{
+  margin-bottom:0;
 }

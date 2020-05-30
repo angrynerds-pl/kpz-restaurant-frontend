@@ -40,7 +40,7 @@ header {
     padding:10px;
 }
 .title-orders{
-    font-size:25px;
+    font-size:20px;
 }
 .btn{
     border-radius:1em;
@@ -48,6 +48,7 @@ header {
     height:25px;
     font-size:15px;
     padding:10px;
+    transition:0.5s;
 }
 .btn:focus,.btn:active {
     outline: none ;
@@ -59,7 +60,7 @@ header {
 .orderInformation{
     margin-top:20px;
     
-    font-size:20px;
+    font-size:15px;
 }
 
 
@@ -75,7 +76,7 @@ header {
     bottom:0;
     left:0;
     text-align:center;
-    font-size:40px;
+    font-size:30px;
     
 }
 
