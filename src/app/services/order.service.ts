@@ -8,6 +8,7 @@ import { Order } from "../models/order";
 import { ProductsInOrder } from "../models/products-in-order";
 import { ProductToAdd } from "../models/product-to-add";
 import { MenuProduct } from '../models/menu-product';
+import { Table } from '../models/table';
 
 @Injectable({
   providedIn: "root",
@@ -190,16 +191,12 @@ export class OrderService {
       }
     );
   }
-  counter =1;
-  counter2 = 2;
-  getReadyTables () : Observable<Array<number>> {
-   // return this.http.get<Array<number>>(this.host + 'api/orders/inprogress',{
-   //   headers : new HttpHeaders().set('Authorization', 'Bearer '+ this.storageService.getToken()),
-  //  }); 
-    //this.counter =1;
-    let array = new Array<number>();   
-    array.push(this.counter++);
-    array.push(this.counter2++);
-    return ObservableOf(array);
+  
+  getReadyTables () : Observable<Array<Table>> {
+    return this.http.get<Array<Table>>(this.host + 'api/tables/ready',{
+      headers : new HttpHeaders().set('Authorization', 'Bearer '+ this.storageService.getToken()),
+   }); 
+    
+   
   }
 }

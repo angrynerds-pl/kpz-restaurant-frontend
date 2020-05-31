@@ -30,11 +30,12 @@
                 
                 <mat-form-field>
                   <mat-select  [(ngModel)]="currentID" (change)="setTables()">
-                    <mat-select-trigger>
+                    <mat-select-trigger class="d-flex align-items-center justify-content-center">
                       <div class="floorSelectView">{{currentRoom.name}}</div>
+                      <span *ngIf="selectNotification" class="badge badge-pill">!</span>
                     </mat-select-trigger>
                     <ng-container *ngFor="let room of rooms">
-                        <mat-option  [value]="room.id"><div class="floorSelectView">{{room.name}}</div></mat-option>
+                        <mat-option class="d-flex align-items-center justify-content-center"  [value]="room.id"><div class="floorSelectView">{{room.name}}</div><span *ngIf="checkReadyRoom(room.id)==true" class="badge badge-option badge-pill">!</span></mat-option>
                     </ng-container>
                    
                   </mat-select>
