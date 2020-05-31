@@ -1,9 +1,12 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import { Table } from 'src/app/models/table';
 import { Reservation } from 'src/app/models/reservation';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { AddNewReservationComponent } from '../../reservations/add-new-reservation/add-new-reservation.component';
 import { ReservationService } from 'src/app/services/reservation.service';
+import { interval, Subscription, timer } from 'rxjs';
+
+import { OrderService } from 'src/app/services/order.service';
 
 @Component({
   selector: 'app-table-view',
@@ -13,18 +16,28 @@ import { ReservationService } from 'src/app/services/reservation.service';
 export class TableViewComponent implements OnInit {
 
   @Input() table:Table;
+  @Input() tablesNotifications:number[];
+  
   @Input() newReservation:Reservation;
-  @Input() reservations:Reservation[];
   @Input() reservationDate:Date;
   @Input() avaivableReservations:Reservation[];
 
   tableIsFree:boolean=true;
-
-  constructor(private reservationService:ReservationService, private _bottomSheet:MatBottomSheet) { }
+  
+  turnOnNotificationsBoolean=true;
+  
+  
+  
+  constructor( private _bottomSheet:MatBottomSheet) { }
+  
+  
+  
 
   ngOnInit(): void {
+    
+    
   }
-
+  
   getClass() {
     switch(this.table.status){
       case 'FREE':
@@ -63,5 +76,15 @@ export class TableViewComponent implements OnInit {
         disableClose: false,
       });
     }
+  }
+
+
+  checkOfReadyProducts(id){
+    if(this.tablesNotifications.find(n => n==id)){
+      return true;
+    }else{
+      return false;
+    }
+    
   }
 }

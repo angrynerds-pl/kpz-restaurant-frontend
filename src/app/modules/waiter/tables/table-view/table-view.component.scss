@@ -12,3 +12,19 @@ p {
     margin: 0;
     padding: 0;
 }
+
+.badge{
+    position:absolute;
+    top:0;
+    right:0;
+    height:20px;
+    width:20px;
+    font-size:14px;
+    text-align:center;
+    color:red;
+    background-color: $textLight;
+    transform: translate(40%, -40%);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}

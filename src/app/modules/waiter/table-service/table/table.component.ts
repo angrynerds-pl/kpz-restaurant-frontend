@@ -173,7 +173,7 @@ export class TableComponent implements OnInit, OnDestroy {
       product.status = "SERVED";
       this.orderService.updateStatus(product).subscribe((updatedProduct) => {
         if (
-          this.productsInOrder.every((product) => product.status == "SERVED")
+          this.productsInOrder.every((product) => product.status == "SERVED" || product.status == "PAID")
         ) {
           this.tableService.changeStatusOfTable(this.id);
           this.orderDetails.status = "SERVED";

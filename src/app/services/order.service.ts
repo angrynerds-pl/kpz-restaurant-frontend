@@ -1,5 +1,6 @@
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
+import { of as ObservableOf } from "rxjs";
 import { environment } from "src/environments/environment";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { LocalStorageService } from "./local-storage.service";
@@ -7,6 +8,7 @@ import { Order } from "../models/order";
 import { ProductsInOrder } from "../models/products-in-order";
 import { ProductToAdd } from "../models/product-to-add";
 import { MenuProduct } from '../models/menu-product';
+import { Table } from '../models/table';
 
 @Injectable({
   providedIn: "root",
@@ -188,5 +190,13 @@ export class OrderService {
         ),
       }
     );
+  }
+  
+  getReadyTables () : Observable<Array<Table>> {
+    return this.http.get<Array<Table>>(this.host + 'api/tables/ready',{
+      headers : new HttpHeaders().set('Authorization', 'Bearer '+ this.storageService.getToken()),
+   }); 
+    
+   
   }
 }

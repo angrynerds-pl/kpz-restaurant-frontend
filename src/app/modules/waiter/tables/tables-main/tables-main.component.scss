@@ -82,3 +82,32 @@ fa-icon{
     font-size: 20px;
     color:black;
   }
+
+.floorSelectView{
+    display:flex;
+    justify-content:center;
+    align-items: center;
+    font-size:25px;
+    
+  }
+
+  .badge{
+    position:absolute;
+    //top:0;
+    left:0;
+    height:20px;
+    width:20px;
+    font-size:14px;
+    text-align:center;
+    color:red;
+    background-color: $textLight;
+   // transform: translate(0%, 50%);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+.badge-option{
+    
+    top:30%;
+    
+}

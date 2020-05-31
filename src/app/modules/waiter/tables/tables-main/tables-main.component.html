@@ -27,19 +27,36 @@
     <div class="tables-wrapper">
         <ng-container *ngIf="rooms">
             <div class="select-box">
+                
+                <mat-form-field>
+                  <mat-select  [(ngModel)]="currentID" (change)="setTables()">
+                    <mat-select-trigger class="d-flex align-items-center justify-content-center">
+                      <div class="floorSelectView">{{currentRoom.name}}</div>
+                      <span *ngIf="selectNotification" class="badge badge-pill">!</span>
+                    </mat-select-trigger>
+                    <ng-container *ngFor="let room of rooms">
+                        <mat-option class="d-flex align-items-center justify-content-center"  [value]="room.id"><div class="floorSelectView">{{room.name}}</div><span *ngIf="checkReadyRoom(room.id)==true" class="badge badge-option badge-pill">!</span></mat-option>
+                    </ng-container>
+                   
+                  </mat-select>
+                
+                </mat-form-field>
+              
+            </div>
+            <!--div class="select-box">
                 <select [(ngModel)]="currentID" (change)="setTables()">
                     <ng-container *ngFor="let room of rooms">
                         <option [ngValue]="room.id">{{room.name}}</option>
                     </ng-container>
                 </select>
-            </div>
+            </div-->
             <div class="grid-wrapper">
                 <ng-container *ngIf="grid">
                     <ng-container *ngFor="let row of grid;">
                         <div class="tableRow">
                             <ng-container *ngFor="let col of row;">
                                 <ng-container *ngIf="col; else empty">
-                                    <app-table-view [table]="col"></app-table-view>
+                                    <app-table-view [table]="col" [tablesNotifications]="tablesNotifications"></app-table-view>
                                 </ng-container>
                                 <ng-template #empty>
                                     <app-empty-view [booked]="false"></app-empty-view>
