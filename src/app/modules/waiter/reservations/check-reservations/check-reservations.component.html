@@ -1,17 +1,19 @@
 <section>
+  <div class="select-box">
   <label for="startDate">Reservation date</label>
   <input
     id="startDate"
     [(ngModel)]="reservationDatetime"
-    class="reservation-details form-control globalShadow"
+    [min]="newDate"
+    class="reservation-details form-control globalShadow dateInput" 
     (ngModelChange)="checkReservations($event)"
     [owlDateTime]="dt1"
     [owlDateTimeTrigger]="dt1"
     placeholder=""
   />
   <owl-date-time  #dt1></owl-date-time>
-
-  <div class="select-box">
+</div>
+  <!--div class="select-box">
     <label for="selectSeatNumber">Seats number</label>
     <select id="selectSeatNumber" [(ngModel)]="seatNumber">
       <ng-container *ngFor="let seat of tablesSeats">
@@ -20,17 +22,44 @@
         }}</option>
       </ng-container>
     </select>
-  </div>
-
+  </div-->
+  <div class="select-box">
+                
+    <mat-form-field>
+      <mat-label>Seats number</mat-label>
+      <mat-select  [(ngModel)]="seatNumber">
+        <mat-select-trigger>
+          <div class="floorSelectView">{{seatNumber}}</div>
+        </mat-select-trigger>
+        <ng-container *ngFor="let seat of tablesSeats">
+            <mat-option  [value]="seat" (click)="chooseTablesBySeats(seatNumber)"><div class="floorSelectView">{{
+              seat
+            }}</div></mat-option>
+        </ng-container>
+       
+      </mat-select>
+    
+    </mat-form-field>
+  
+</div>
   <div class="tables-wrapper">
     <ng-container *ngIf="rooms">
       <div class="select-box">
-        <select [(ngModel)]="currentID" (change)="setTables()">
-          <ng-container *ngFor="let room of rooms">
-            <option [ngValue]="room.id">{{ room.name }}</option>
-          </ng-container>
-        </select>
-      </div>
+                
+        <mat-form-field>
+          <mat-select  [(ngModel)]="currentID" (change)="setTables()">
+            <mat-select-trigger>
+              <div class="floorSelectView">{{currentRoom.name}}</div>
+            </mat-select-trigger>
+            <ng-container *ngFor="let room of rooms">
+                <mat-option  [value]="room.id"><div class="floorSelectView">{{room.name}}</div></mat-option>
+            </ng-container>
+           
+          </mat-select>
+        
+        </mat-form-field>
+      
+    </div>
       <div class="grid-wrapper">
         <ng-container *ngIf="grid">
           <ng-container *ngFor="let row of grid">

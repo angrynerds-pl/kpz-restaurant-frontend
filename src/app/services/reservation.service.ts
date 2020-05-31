@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, ComponentFactoryResolver } from '@angular/core';
 import { Reservation } from '../models/reservation';
 import { HttpClient } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
@@ -46,7 +46,7 @@ export class ReservationService {
     reservation:Reservation
   ) {
       reservation.startDate.setHours(reservation.startDate.getHours() + 2);
-      reservation.endDate.setHours(reservation.startDate.getHours() + 2);
+      reservation.endDate.setHours(reservation.endDate.getHours() + 2);
         return this.http.post<Reservation>(
       this.host + "api/reservations",{
       numberOfSeats:reservation.numberOfSeats,
@@ -54,7 +54,7 @@ export class ReservationService {
       tableId:reservation.tableId,
       startDate: reservation.startDate,
       endDate: reservation.endDate,
-      //note:reservation.note
+      note:reservation.note
       }
      ,
       {
@@ -79,8 +79,18 @@ export class ReservationService {
   }
   
   updateReservation(reservation:Reservation){
+    
     return this.http.put<Reservation>(
-      this.host + "api/reservations",reservation,
+      this.host + "api/reservations",{
+        id: reservation.id,
+        numberOfSeats:reservation.numberOfSeats,
+        customerName:reservation.customerName,
+        tableId:reservation.tableId,
+        startDate: reservation.startDate,
+        endDate: reservation.endDate,
+        note:reservation.note
+        }
+       ,
       {
         headers: new HttpHeaders().set(
           "Authorization",

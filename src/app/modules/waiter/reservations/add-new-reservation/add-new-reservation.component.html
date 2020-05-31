@@ -98,7 +98,7 @@
       </div>
       <div class="form-group">
         <label for="startDate">Start time of reservation</label>
-        <input id="startDate" class="form-control globalShadow" formControlName="startDate" [owlDateTime]="dt1" [owlDateTimeTrigger]="dt1" placeholder="">
+        <input id="startDate" [min]="minDate" class="form-control globalShadow" formControlName="startDate" [owlDateTime]="dt1" [owlDateTimeTrigger]="dt1" placeholder="">
         <owl-date-time #dt1 ></owl-date-time>
         <div class="warning-box">
           <ng-container
@@ -120,7 +120,7 @@
       
       <div class="form-group">
         <label for="endDate">End time of reservation</label>
-        <input id="endDate" class="form-control globalShadow" formControlName="endDate" [owlDateTime]="dt2" [owlDateTimeTrigger]="dt2" placeholder="">
+        <input id="endDate" [min]="minDate" class="form-control globalShadow" formControlName="endDate" [owlDateTime]="dt2" [owlDateTimeTrigger]="dt2" placeholder="">
         <owl-date-time #dt2></owl-date-time>
         <div class="warning-box">
           <ng-container
@@ -141,6 +141,16 @@
           </ng-container>
         </div>
       </div>
+      
+        <label for="note">Note</label>
+        <input
+          type="text"
+          formControlName="note"
+          class="form-control globalShadow"
+          id="note"
+          placeholder=""
+        />
+  
     <div class="button-box container-fluid">
       <button class="add-reservation-button btn" type="submit">
         <fa-icon
