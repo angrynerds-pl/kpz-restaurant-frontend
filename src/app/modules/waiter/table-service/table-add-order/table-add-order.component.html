@@ -33,9 +33,9 @@
           <mat-form-field>
             <mat-select  [(ngModel)]="currentCategory">
               <mat-select-trigger>
-                <div class="categorySelectView">{{ currentCategory.name |titlecase }}</div><!--img src="../../../../../assets/images/{{currentCategory.icon}}"alt="photo">{{currentCategory.name |titlecase }}</div-->
+                <div class="categorySelectView"><img src="../../../../../assets/images/{{currentCategory.imagePath}}"alt="photo"><span>{{ currentCategory.name | titlecase }}</span></div>
               </mat-select-trigger>
-              <mat-option *ngFor='let category of categories' [value]="category"><div class="categorySelectView"><img src="../../../../../assets/images/{{category.icon | titlecase}}"alt="p">{{category.name |titlecase }}</div></mat-option>
+              <mat-option *ngFor='let category of categories' [value]="category"><div class="categorySelectView"><img src="../../../../../assets/images/{{category.imagePath}}"alt="p"><span>{{category.name | titlecase }}</span></div></mat-option>
             </mat-select>
           
           </mat-form-field>

@@ -64,7 +64,7 @@ export class PersonnelAccountComponent implements OnInit {
           this.userService.addCook(newUser).subscribe(data => {
             this.toastrService.success("Cook has been added!");
           }, err => {
-            this.toastrService.error('Error!');
+            if(err.status === 409) this.toastrService.error('Username has been already taken');
           })
         }
         // WAITER || HEAD_WAITER
@@ -72,7 +72,7 @@ export class PersonnelAccountComponent implements OnInit {
           this.userService.addWaiter(newUser).subscribe(data => {
             this.toastrService.success("Waiter has been added!");
           }, err => {
-            this.toastrService.error('Error!');
+            if(err.status === 409) this.toastrService.error('Username has been already taken');
           })
         }
         this.resetForm();
@@ -85,7 +85,7 @@ export class PersonnelAccountComponent implements OnInit {
         this.userService.updateUser(updateUser).subscribe(data => {
           this.toastrService.success("Employee has been edited!");
         }, err => {
-          this.toastrService.error('Error!');
+          if(err.status === 409) this.toastrService.error('Username has been already taken');
         })
         this.submit.emit();
       }

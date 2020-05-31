@@ -62,7 +62,7 @@ export class MenuAddProductComponent implements OnInit, OnDestroy {
           this.router.navigate(['/manager/menu']);
         }); 
       }, err => {
-        this.toastrService.error('Error!');
+        this.toastrService.error('Name has been already taken');
       })
       this.resetForm();
     }
