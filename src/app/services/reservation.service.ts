@@ -79,7 +79,7 @@ export class ReservationService {
   }
   
   updateReservation(reservation:Reservation){
-    console.log("cscscsc");
+    
     return this.http.put<Reservation>(
       this.host + "api/reservations",{
         id: reservation.id,
