@@ -5,7 +5,6 @@ import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { faCheck } from "@fortawesome/free-solid-svg-icons";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import { ToastrService } from "ngx-toastr";
-import { LocalStorageService } from 'src/app/services/local-storage.service';
 import { Subscription } from 'rxjs';
 import { Router } from '@angular/router';
 @Component({
@@ -27,7 +26,6 @@ export class MenuAddCategoryComponent implements OnInit, OnDestroy {
     private categoryService: CategoryService,
     private fb: FormBuilder,
     private toastrService: ToastrService,
-    private storageService:LocalStorageService,
     private router:Router
   ) {}
 
@@ -38,16 +36,14 @@ export class MenuAddCategoryComponent implements OnInit, OnDestroy {
   newCategoryForm() {
     this.categoryForm = this.fb.group({
       name: [null, Validators.required],
-      icon: [null, Validators.required]
+      imagePath: [null, Validators.required]
     });
   }
 
   createCategory() {
     if (this.categoryForm.valid) {
-
       this.category = this.categoryForm.value;
       this.category.name = this.category.name.toUpperCase();
-      this.category.restaurantId = +this.storageService.getRestaurantId();
       this.categorySubscription = this.categoryService.addCategory(this.category).subscribe(data => {
         this.toastrService.success("Category has been added!");
         this.resetForm();
@@ -57,17 +53,11 @@ export class MenuAddCategoryComponent implements OnInit, OnDestroy {
       }, err => {
         this.toastrService.error('Name has been already taken');
       });
-
     }
-
   }
 
   resetForm() {
     this.categoryForm.reset();
-  }
-
-  handleUpload(e): void {
-    //próba odczytania ścieżki z pliku
   }
 
   ngOnDestroy(){

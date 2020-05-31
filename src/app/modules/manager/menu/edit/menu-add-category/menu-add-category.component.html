@@ -19,28 +19,28 @@
 
     <label>Icon</label>
     <mat-form-field>
-      <mat-select formControlName="icon" >
+      <mat-select formControlName="imagePath" >
         <mat-select-trigger>
-          <ng-container *ngIf="categoryForm.get('icon').value">
-            <img src="../../../../../assets/images/{{categoryForm.get('icon').value}}" alt="">
+          <ng-container *ngIf="categoryForm.get('imagePath').value">
+            <img src="../../../../../assets/images/{{categoryForm.get('imagePath').value}}" alt="">
           </ng-container>
         </mat-select-trigger>
         <mat-option [value]="'pizza.png'"><img src="../../../../../assets/images/pizza.png"alt="pizza"></mat-option>
-        <mat-option [value]="'burger.png'"><img src="../../../../../assets/images/burger.png"alt="burger"></mat-option>
+        <mat-option [value]="'burgers.png'"><img src="../../../../../assets/images/burgers.png"alt="burgers"></mat-option>
         <mat-option [value]="'fries.png'"><img src="../../../../../assets/images/fries.png"alt="fries"></mat-option>
         <mat-option [value]="'main.png'"><img src="../../../../../assets/images/main.png"alt="main"></mat-option>
         <mat-option [value]="'soup.png'"><img src="../../../../../assets/images/soup.png"alt="soup"></mat-option>
-        <mat-option [value]="'salad.png'"><img src="../../../../../assets/images/salad.png"alt="salad"></mat-option>
+        <mat-option [value]="'salads.png'"><img src="../../../../../assets/images/salads.png"alt="salads"></mat-option>
         <mat-option [value]="'fish.png'"><img src="../../../../../assets/images/fish.png"alt="fish"></mat-option>
-        <mat-option [value]="'dessert.png'"><img src="../../../../../assets/images/dessert.png"alt="dessert"></mat-option>
-        <mat-option [value]="'drink.png'"><img src="../../../../../assets/images/drink.png"alt="drink"></mat-option>
-        <mat-option [value]="'wrap.png'"><img src="../../../../../assets/images/wrap.png"alt="wrap"></mat-option>
+        <mat-option [value]="'desserts.png'"><img src="../../../../../assets/images/desserts.png"alt="desserts"></mat-option>
+        <mat-option [value]="'drinks.png'"><img src="../../../../../assets/images/drinks.png"alt="drinks"></mat-option>
+        <mat-option [value]="'wraps.png'"><img src="../../../../../assets/images/wraps.png"alt="wraps"></mat-option>
       </mat-select>
     </mat-form-field>
 
     <div class="warning-box">
-      <ng-container *ngIf="categoryForm.get('icon').touched && categoryForm.get('icon').invalid">
-        <span class="warning" *ngIf="categoryForm.get('icon').errors.required">Icon must be selected</span>
+      <ng-container *ngIf="categoryForm.get('imagePath').touched && categoryForm.get('imagePath').invalid">
+        <span class="warning" *ngIf="categoryForm.get('imagePath').errors.required">Icon must be selected</span>
       </ng-container>
     </div>
 
