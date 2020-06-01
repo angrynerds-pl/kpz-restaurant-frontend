@@ -83,7 +83,7 @@ export class AddNewReservationComponent implements OnInit {
           .updateReservation(this.reservation)
           .subscribe((r) => {
             this.router
-              .navigateByUrl("/waiter/tables", { skipLocationChange: true })
+              .navigateByUrl("", { skipLocationChange: true })
               .then(() => {
                 this.router.navigate(["/waiter/reservations"]);
               });
@@ -96,7 +96,7 @@ export class AddNewReservationComponent implements OnInit {
           .addReservation(this.reservation)
           .subscribe((r) => {
             this.router
-              .navigateByUrl("/waiter/tables", { skipLocationChange: true })
+              .navigateByUrl("", { skipLocationChange: true })
               .then(() => {
                 this.router.navigate(["/waiter/reservations"]);
               });
