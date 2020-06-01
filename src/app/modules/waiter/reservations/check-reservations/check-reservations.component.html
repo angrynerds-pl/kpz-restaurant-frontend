@@ -47,7 +47,7 @@
       <div class="select-box">
                 
         <mat-form-field>
-          <mat-select  [(ngModel)]="currentID" (change)="setTables()">
+          <mat-select  [(ngModel)]="currentID" (selectionChange)="setTables()">
             <mat-select-trigger>
               <div class="floorSelectView">{{currentRoom.name}}</div>
             </mat-select-trigger>
