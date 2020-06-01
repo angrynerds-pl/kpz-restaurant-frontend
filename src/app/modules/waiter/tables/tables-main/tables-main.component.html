@@ -29,7 +29,7 @@
             <div class="select-box">
                 
                 <mat-form-field>
-                  <mat-select  [(ngModel)]="currentID" (change)="setTables()">
+                  <mat-select  [(ngModel)]="currentID" (selectionChange)="setTables()">
                     <mat-select-trigger class="d-flex align-items-center justify-content-center">
                       <div class="floorSelectView">{{currentRoom.name}}</div>
                       <span *ngIf="selectNotification" class="badge badge-pill">!</span>
