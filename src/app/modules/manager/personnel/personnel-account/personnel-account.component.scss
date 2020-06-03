@@ -43,8 +43,13 @@ select {
   min-width: 80px;
 }
 
-.btn-info{
+.btn-info {
   margin: 0.5em auto;
+  background-color: #487eb0;
+}
+
+.btn-info:hover {
+  background-color: #40739e;
 }
 
 .btn:focus,.btn:active {
