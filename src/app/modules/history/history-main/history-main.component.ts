@@ -14,17 +14,27 @@ export class HistoryMainComponent implements OnInit {
   constructor(private orderService:OrderService) { }
 
   ngOnInit(): void {
-   // this.getTodaysOrders();
+    this.getTodaysOrders();
   }
-  
 
   getTodaysOrders() {
-    console.log("getting orders");
     this.orderService.getOrdersHistory(2020,parseInt('05'),18).subscribe(orders =>{
       this.orders = orders;
     });
-    console.log(this.orders);
   }
+  
+  getThisWeekOrders(){
+    this.orderService.getThisWeekOrders().subscribe(orders =>{
+      this.orders = orders;
+    })
+  }
+
+  getThisMonthOrders(){
+    this.orderService.getThisMonthOrders().subscribe(orders => {
+      this.orders = orders;
+    })
+  }
+
   getOrders(year:number,month:number,day:number)
   {
     var date = (<HTMLInputElement>document.getElementById("dateInput")).value;
