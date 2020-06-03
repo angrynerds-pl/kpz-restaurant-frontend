@@ -4,9 +4,9 @@
     </head>
 <div  class="orderDiv" >
     <ng-container>
-    <div class="orderNumber">Order number: {{order.id}}</div>
-    <div>Order date: {{order.orderDate | date:'dd-MM-yyyy hh:mm'}}</div>    
-</ng-container>  
+        <div class="orderNumber">Order number: {{order.id}}</div>
+        <div class="date">Order date: {{order.orderDate | date:'dd-MM-yyyy hh:mm'}}</div>    
+    </ng-container>  
 
 <ng-container *ngIf="order.orderedProducts.length>0">  
     <div *ngIf="showProducts">

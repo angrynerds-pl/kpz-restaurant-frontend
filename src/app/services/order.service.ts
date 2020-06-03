@@ -27,22 +27,31 @@ export class OrderService {
   }
 
   updateOrderStatus(order:Order) : Observable<any>{
-    console.log(this.host + 'api/orders/'+order.id+'/'+order.status +"token: "+ this.storageService.getToken());
     return this.http.put<any>(this.host + 'api/orders/'+order.id+'/'+order.status, {}, {  
       headers : new HttpHeaders().set('Authorization', 'Bearer '+ this.storageService.getToken()),
     });    
   }
 
   updateStatus (orderedProduct:ProductsInOrder) : Observable<ProductsInOrder> { 
-    console.log(orderedProduct);
     return this.http.put<ProductsInOrder>(this.host + 'api/orders/products/'+orderedProduct.id,orderedProduct, {  
       headers : new HttpHeaders().set('Authorization', 'Bearer '+ this.storageService.getToken()),
     });    
   }
   
   getOrdersHistory (year:number, month:number,day:number) : Observable<Array<Order>>{
-    console.log(this.host + 'api/orders/history/'+year+"/"+month+"/"+day);
     return this.http.get<Array<Order>>(this.host + 'api/orders/history/'+year+"/"+month+"/"+day,  {
+      headers : new HttpHeaders().set('Authorization', 'Bearer '+ this.storageService.getToken()),
+     });    
+  }
+
+  getThisWeekOrders () : Observable<Array<Order>>{
+    return this.http.get<Array<Order>>(this.host + 'api/orders/history/lastWeek',  {
+      headers : new HttpHeaders().set('Authorization', 'Bearer '+ this.storageService.getToken()),
+     });    
+  }
+
+  getThisMonthOrders () : Observable<Array<Order>>{
+    return this.http.get<Array<Order>>(this.host + 'api/orders/history/lastMonth',  {
       headers : new HttpHeaders().set('Authorization', 'Bearer '+ this.storageService.getToken()),
      });    
   }

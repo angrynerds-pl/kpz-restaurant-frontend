@@ -1,3 +1,4 @@
+@import "../../../../styles.scss";
 div {
     text-align: center;
 }
@@ -5,10 +6,12 @@ button {
     border-radius: 5px;
     margin: 10px;
     border: none;
-    padding: 4px;;
+    padding: 5px;   
+    background-color: $buttonDark;
+    color: $textLight;
 }
 .ordersDiv {
-    background-color: gray;
+    //background-color: gray;
     border-radius: 15px;
 }
 input {

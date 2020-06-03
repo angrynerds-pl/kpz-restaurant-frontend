@@ -3,8 +3,8 @@
     <div>
         <input id ="dateInput" class="dateInput" type="date">
     </div>
-    <button>Today</button>
-    <button>This week</button>
+    <button (click)="getThisMonthOrders()">This month</button>
+    <button (click)="getThisWeekOrders()">This week</button>
     <button (click)="getOrders()">Show history</button>
 </div>
 <div class="ordersDiv">
