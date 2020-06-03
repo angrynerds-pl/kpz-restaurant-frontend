@@ -1,0 +1,10 @@
+@import '../../../../styles.scss';
+
+.navbar{
+    padding: 1em;
+    background-color:$main;
+}
+
+a:hover{
+    cursor: pointer;
+}
