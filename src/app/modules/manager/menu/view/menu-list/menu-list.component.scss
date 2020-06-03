@@ -1,8 +1,15 @@
 @import "../../../../../../styles.scss";
+
 .table {
     background-color: $gray;
     border-radius: 8px;
 }
+
+h2 {
+    font-size: 30px;
+    font-weight: bold;
+}
+
 div {
     text-align: center;
 }
@@ -14,6 +21,7 @@ div {
     color: #FFFFFF;
     background: $buttonDark;
 }
+
 .productDiv {
     background-color:#FFFFFF;
     border-radius: 4px;
@@ -22,11 +30,13 @@ div {
     justify-content:space-evenly;
     padding: 0.5em;
 }
+
 .header {
     display: flex;
     justify-content:space-evenly;
     padding: 0.5em;
 }
+
 span {
     flex: 1;
 }

@@ -6,24 +6,36 @@
 
 h2 {
   text-align: center;
-
   font-weight: bold;
+  font-size: 30px;
 }
+
 .btn-sm:focus{
   outline:none;
 }
+
 .btn-sm{
   border: none;
-  background-color: $buttonDark;
+  background-color: $buttonLight;
   color: $textLight;
+  font-size: inherit;
+  padding: 3px 8px;
+  min-width: 115px;
 }
+
 .btn-sm:focus,.btn:active {
   outline: none ;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
-.buttons-container {
-  padding: 1em;
+
+.btn-sm:disabled{
+  background-color: $buttonDark;
 }
+
+.buttons-container {
+  padding-bottom: 0.85em;
+}
+
 article {
   display: flex;
   height: 100%;

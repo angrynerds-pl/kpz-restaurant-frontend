@@ -12,7 +12,9 @@
     <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
     <mat-datepicker #picker2 color="primary"></mat-datepicker>
   </mat-form-field>
-  <button class="btnConfirm" (click)="load()">Confirm</button>
+  <div class="button-box">
+    <button class="btnConfirm" (click)="load()">Confirm</button>
+  </div>
 </div>
 <ng-container *ngIf="picked">
   <section>

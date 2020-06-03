@@ -59,12 +59,12 @@ p {
     background-color: $red;
 }
 
-@media (max-width: 1000px){
+@media (max-width: 960px){
     .chart {
-        margin: 0.5em;
+        margin: 0.5em 0em;
     }
     
     .comparision {
-        margin: 0.5em;
+        margin: 0.5em 0em;
     }
 }

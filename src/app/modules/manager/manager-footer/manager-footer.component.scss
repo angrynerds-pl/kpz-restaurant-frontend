@@ -1,13 +1,10 @@
 @import '../../../../styles.scss';
 
 .page-footer{
-
-//border-top:1px solid black;
-
-padding:1em;
-
+    padding:1em;
 }
+
 .footer-copyright{
-    color:white;
+    color: $gray;
     text-align: center;
 }

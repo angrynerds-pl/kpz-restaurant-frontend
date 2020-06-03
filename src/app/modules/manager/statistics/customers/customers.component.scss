@@ -28,6 +28,7 @@ section {
 
 p {
     margin: 0;
+    width: 60px;
 }
 
 .switch {
@@ -59,7 +60,7 @@ input {
 .input-box{
     flex: 2;
     text-align: center;
-    min-width: 350px;
+    min-width: 300px;
 }
 
 .btnSet {
@@ -105,4 +106,20 @@ input:checked + .slider  {
   
 input:checked + .slider:before {
     transform: translateX(30px);
+}
+
+@media(max-width: 960px){
+    .btn-grid {
+        flex-direction: column;
+        flex-wrap: nowrap;
+    }
+
+    .input-box {
+        margin: 0.5em;
+    }
+
+    .btnSet {
+        margin-top: 0.5em;
+    }
+
 }

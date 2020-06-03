@@ -50,7 +50,18 @@ app-pie-chart {
     grid-row: 1/3;
 }
 
-@media(max-width: 1000px){
+@media(max-width: 960px){
+
+    .form-box mat-form-field {
+        flex-direction: column;
+    }
+
+    .button-box{
+        min-width: 200px;
+        text-align: center;
+        padding-bottom: 0.5em;
+    }
+
     section {
         grid-template-rows: repeat(3, 1fr);
     }
