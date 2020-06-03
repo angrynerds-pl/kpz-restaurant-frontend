@@ -5,6 +5,7 @@ import { CommonModule } from '@angular/common';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
+import { HistoryModule } from './modules/history/history.module';
 import { CookModule } from './modules/cook/cook.module';
 import { HomeModule } from './modules/home/home.module';
 import { ManagerModule } from './modules/manager/manager.module';
@@ -26,6 +27,7 @@ import { ToastrModule } from 'ngx-toastr';
     HomeModule,
     ManagerModule,
     WaiterModule,
+    HistoryModule,
     HttpClientModule,
     FontAwesomeModule,
     CommonModule,
